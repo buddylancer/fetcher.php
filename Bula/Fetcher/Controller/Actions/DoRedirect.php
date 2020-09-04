@@ -23,6 +23,12 @@ require_once("Bula/Fetcher/Controller/Engine.php");
  * Base class for redirecting from the web-site.
  */
 abstract class DoRedirect extends Page {
+    /**
+     * Public default constructor.
+     * @param Context $context Context instance.
+     * /
+    public DoRedirect(Context context) : base(context) { }
+    CS*/
 
     /**
      * Execute main logic for this action.

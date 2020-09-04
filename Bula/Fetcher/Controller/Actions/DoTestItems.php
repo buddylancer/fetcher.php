@@ -47,7 +47,14 @@ class DoTestItems extends Page {
         );
     }
 
-    /** Execute main logic for this action */
+    /**
+     * Public default constructor.
+     * @param Context $context Context instance.
+     * /
+    public DoTestItems(Context context) : base(context) { }
+    CS*/
+
+    /** Execute main logic for DoTestItems action */
     public function execute() {
         $insert_required = false;
         $update_required = false;

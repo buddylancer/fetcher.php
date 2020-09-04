@@ -23,6 +23,12 @@ require_once("ItemsBase.php");
  * Controller for Home block.
  */
 class Home extends ItemsBase {
+    /**
+     * Public default constructor.
+     * @param Context $context Context instance.
+     * /
+    public Home(Context context) : base(context) { }
+    CS*/
 
     /**
      * Fast check of input query parameters.
@@ -32,9 +38,7 @@ class Home extends ItemsBase {
         return new Hashtable();
     }
 
-    /**
-     * Execute main logic for Home block.
-     */
+    /** Execute main logic for Home block. */
     public function execute() {
         $Pars = $this->check();
         if ($Pars == null)

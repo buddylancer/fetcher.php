@@ -76,8 +76,8 @@ class Action extends Page {
 
         $action_class = CAT("Bula/Fetcher/Controller/Actions/", $action_info->get("class"));
         //Config::includeFile(CAT($action_class, ".php"));
-        //Internal::callStaticMethod($action_class, "execute");
-        Internal::callMethod($action_class, new ArrayList($this->context), "execute", null);
+        $args0 = new ArrayList(); $args0->add($this->context);
+        Internal::callMethod($action_class, $args0, "execute", null);
 
         if (DBConfig::$Connection != null) {
             DBConfig::$Connection->close();

@@ -30,7 +30,7 @@ require_once("Bula/Objects/Strings.php");
  * Class for request context.
  */
 class Context extends Config {
-
+    /** Default constructor. */
     public function __construct() {
         $this->initialize();
     }
@@ -56,7 +56,6 @@ class Context extends Config {
         $this->Values[$name] = $value;
     }
 
-    /**  */
     /**
      * Check whether variable is contained in internal storage.
      * @param TString $name Name of internal variable.

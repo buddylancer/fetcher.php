@@ -24,7 +24,14 @@ require_once("Bula/Fetcher/Model/DOCategory.php");
  * Logic for generating Bottom block.
  */
 class Bottom extends Page {
+    /**
+     * Public default constructor.
+     * @param Context $context Context instance.
+     * /
+    public Bottom(Context context) : base(context) { }
+    CS*/
 
+    /** Execute main logic for Bottom block */
     public function execute() {
         $Prepare = new Hashtable();
 

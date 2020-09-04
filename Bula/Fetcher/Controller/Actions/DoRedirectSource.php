@@ -24,8 +24,14 @@ require_once("Bula/Fetcher/Controller/Actions/DoRedirect.php");
  * Redirection to external source.
  */
 class DoRedirectSource extends DoRedirect {
+    /**
+     * Public default constructor.
+     * @param Context $context Context instance.
+     * /
+    public DoRedirectSource(Context context) : base(context) { }
+    CS*/
 
-    /** Execute main logic for this action */
+    /** Execute main logic for DoRedirectSource action */
     public function execute() {
         $error_message = null;
         $link_to_redirect = null;

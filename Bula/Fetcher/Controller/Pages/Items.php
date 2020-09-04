@@ -34,6 +34,12 @@ require_once("ItemsBase.php");
  * Controller for Items block.
  */
 class Items extends ItemsBase {
+    /**
+     * Public default constructor.
+     * @param Context $context Context instance.
+     * /
+    public Items(Context context) : base(context) { }
+    CS*/
 
     /**
      * Fast check of input query parameters.
@@ -95,9 +101,7 @@ class Items extends ItemsBase {
         return $Pars;
     }
 
-    /**
-     * Execute main logic for Items block.
-     */
+    /** Execute main logic for Items block. */
     public function execute() {
         $Pars = $this->check();
         if ($Pars == null)

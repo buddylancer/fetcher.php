@@ -89,6 +89,7 @@ class Util {
 
     /**
      * Main logic for getting/saving page from/into cache.
+     * @param Engine $engine Engine instance.
      * @param TString $cache_folder Cache folder root.
      * @param TString $page_name Page to process.
      * @param TString $class_name Appropriate class name.

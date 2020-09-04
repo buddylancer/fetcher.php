@@ -28,9 +28,7 @@ class Request {
     /** Internal storage for SERVER variables */
     private static $ServerVars = null;
 
-    /**
-     * Initialize internal variables for new request.
-     */
+    /** Initialize internal variables for new request. */
     public static function initialize() {
         self::$Vars = Arrays::newHashtable();
         self::$Vars->setPullValues(true);
@@ -38,7 +36,11 @@ class Request {
         self::$ServerVars->setPullValues(true);
     }
 
-    public static function getPrivateVars() {
+    /**
+     * Get private variables.
+     * @return Hashtable
+     */
+     public static function getPrivateVars() {
         return self::$Vars;
     }
 

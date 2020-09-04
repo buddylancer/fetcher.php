@@ -10,8 +10,6 @@
 namespace Bula\Objects;
 
 use Bula\Objects\ArrayList;
-
-use Bula\Fetcher\Config;
 use Bula\Objects\TString;
 
 require_once("TString.php");
@@ -115,15 +113,6 @@ class Strings {
 		}
 		return $output;
 	}
-
-    /**
-     * Format date/time to DB/GMT presentation.
-     * @param TString $pubdate Input date/time.
-     * @return TString Resulting date/time.
-     */
-    public static function getSqlDate($pubdate) {
-        return DateTimes::gmtFormat(Config::SQL_DTS, BLANK($pubdate) ? 0 : DateTimes::getTime($pubdate));
-    }
 
 	/**
      * Split a string using divider/separator.

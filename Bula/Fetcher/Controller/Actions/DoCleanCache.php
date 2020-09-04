@@ -19,8 +19,14 @@ use Bula\Fetcher\Controller\Page;
  * Action for cleaning cache.
  */
 class DoCleanCache extends Page {
+    /**
+     * Public default constructor.
+     * @param Context $context Context instance.
+     * /
+    public DoCleanCache(Context context) : base(context) { }
+    CS*/
 
-    /** Execute main logic for this action */
+    /** Execute main logic for DoCleanCache action */
     public function execute() {
         $oLogger = new Logger();
         $log = Request::getOptionalInteger("log");
@@ -34,6 +40,7 @@ class DoCleanCache extends Page {
 
     /**
      * Actual cleaning of cache folder.
+     * @param Logger $oLogger Logger instance.
      * @param TString $path_name Cache folder name (path).
      * @param TString $ext Files extension to clean.
      */

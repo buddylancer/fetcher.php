@@ -25,6 +25,12 @@ require_once("ItemsBase.php");
  * Controller for Sources block.
  */
 class Sources extends ItemsBase {
+    /**
+     * Public default constructor.
+     * @param Context $context Context instance.
+     * /
+    public Sources(Context context) : base(context) { }
+    CS*/
 
     /**
      * Fast check of input query parameters.
@@ -34,9 +40,7 @@ class Sources extends ItemsBase {
         return new Hashtable();
     }
 
-    /**
-     * Execute main logic for Source block.
-     */
+    /** Execute main logic for Source block. */
     public function execute() {
         $Prepare = new Hashtable();
 

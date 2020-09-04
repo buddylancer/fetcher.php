@@ -24,6 +24,12 @@ require_once("Bula/Fetcher/Model/DOItem.php");
  * Controller for View Item block.
  */
 class ViewItem extends Page {
+    /**
+     * Public default constructor.
+     * @param Context $context Context instance.
+     * /
+    public ViewItem(Context context) : base(context) { }
+    CS*/
 
     /**
      * Fast check of input query parameters.
@@ -48,9 +54,7 @@ class ViewItem extends Page {
         return $Pars;
     }
 
-    /**
-     * Execute main logic for View Item block.
-     */
+    /** Execute main logic for View Item block. */
     public function execute() {
         $Pars = self::check();
         if ($Pars == null)

@@ -91,6 +91,7 @@ class Engine {
     /**
      * Include file with class and generate content by calling method execute().
      * @param TString $class_name Class name to include.
+     * @param TString $default_method Default method to call.
      * @return TString Resulting content.
      */
     public function includeTemplate($class_name, $default_method = "execute") {
@@ -102,7 +103,7 @@ class Engine {
         if (Helper::fileExists(CAT($this->context->LocalRoot, $file_name))) {
             require_once($file_name);
             $args0 = new ArrayList(); $args0->add($this->context);
-            Internal::callMethod($class_name, $args0, "execute", null);
+            Internal::callMethod($class_name, $args0, $default_method, null);
             $content = $engine->getPrintString();
         }
         else

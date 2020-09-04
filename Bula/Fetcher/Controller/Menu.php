@@ -22,7 +22,14 @@ require_once("Bula/Objects/TString.php");
  * Logic for generating Menu block.
  */
 class Menu extends Page {
+    /**
+     * Public default constructor.
+     * @param Context $context Context instance.
+     * /
+    public Menu(Context context) : base(context) { }
+    CS*/
 
+    /** Execute main logic for Menu block */
     public function execute() {
         $public_pages = new ArrayList();
 

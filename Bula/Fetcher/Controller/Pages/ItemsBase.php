@@ -24,6 +24,12 @@ use Bula\Fetcher\Controller\Page;
  * Base controller for Items block.
  */
 abstract class ItemsBase extends Page {
+    /**
+     * Public default constructor.
+     * @param Context $context Context instance.
+     * /
+    public ItemsBase(Context context) : base(context) { }
+    CS*/
 
     /**
      * Check list from current query.

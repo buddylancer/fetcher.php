@@ -24,10 +24,14 @@ require_once("Bula/Fetcher/Model/DOSource.php");
  * Controller for Filter Items block.
  */
 class FilterItems extends Page {
-
     /**
-     * Execute main logic for Items block.
-     */
+     * Public default constructor.
+     * @param Context $context Context instance.
+     * /
+    public FilterItems(Context context) : base(context) { }
+    CS*/
+
+    /** Execute main logic for FilterItems block. */
     public function execute() {
         $doSource = new DOSource();
 

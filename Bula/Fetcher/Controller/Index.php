@@ -52,6 +52,14 @@ class Index extends Page {
         );
     }
 
+    /**
+     * Public default constructor.
+     * @param Context $context Context instance.
+     * /
+    public Index(Context context) : base(context) { }
+    CS*/
+
+    /** Execute main logic for Index block */
     public function execute() {
         if (self::$pages_array == null)
             self::initialize();

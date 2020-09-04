@@ -25,8 +25,14 @@ require_once("Bula/Fetcher/Controller/Actions/DoRedirect.php");
  * Redirecting to the external item.
  */
 class DoRedirectItem extends DoRedirect {
+    /**
+     * Public default constructor.
+     * @param Context $context Context instance.
+     * /
+    public DoRedirectItem(Context context) : base(context) { }
+    CS*/
 
-    /** Execute main logic for this action */
+    /** Execute main logic for DoRedirectItem action */
     public function execute() {
         $error_message = null;
         $link_to_redirect = null;

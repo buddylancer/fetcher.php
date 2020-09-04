@@ -22,7 +22,14 @@ require_once("Bula/Objects/Hashtable.php");
  * Logic for generating Top block.
  */
 class Top extends Page {
+    /**
+     * Public default constructor.
+     * @param Context $context Context instance.
+     * /
+    public Top(Context context) : base(context) { }
+    CS*/
 
+    /** Execute main logic for Top block */
     public function execute() {
         $Prepare = new Hashtable();
         $Prepare->put("[#ImgWidth]", $this->context->IsMobile ? 234 : 468);
