@@ -1,0 +1,563 @@
+
+<!-- BEGIN View/index.html -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Buddy Fetcher :: items</title>
+<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL" />
+<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in PHP/MySQL" />
+<link  rel="styleSheet" type="text/css" href="styles2.css" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+
+<body class="out" style="padding-top:1pt; padding-left:1pt;">
+<table class="out" cellpadding="0" style="border:0; width:100%; margin-left:0; margin-right:0; padding:0;">
+<tr>
+<td class="center top">
+
+<!-- BEGIN View/top.html -->
+<table class="out" style="width:100%; border:0; border-spacing:0;">
+<tr>
+<td class="left top" style="padding:2pt; white-space:nowrap;">
+<a style="font-variant:small-caps; font-size:30pt; font-weight:bold" href="/">
+<span>Buddy</span> <span class="red">Fetcher</span></a><br/>
+<strong>Latest Items</strong>
+</td>
+</tr>
+</table>
+
+<!-- END View/top.html -->
+
+</td>
+</tr>
+<tr>
+<td class="top" style="width:100%; height:100%">
+<table cellpadding="0" style="width:100%; height:100%; border-spacing:0">
+<tr>
+<td class="top">
+
+<!-- BEGIN View/menu.html -->
+<table style="width:100%; border:0; border-spacing:0;">
+<tr>
+<td class="menu center" style="padding:2pt; white-space:nowrap;">
+ <a href="/">Home</a>
+ &bull; <a href="/items">Items</a>
+ &bull; <a href="#items_by_skills">By Categories</a>
+ &bull; <a href="/sources">Sources</a>
+</td>
+</tr>
+</table>
+<!-- END View/menu.html -->
+
+</td>
+</tr>
+
+<tr class="m">
+<td class="top" style="height:100%">
+
+<!-- BEGIN View/Pages/items.html -->
+<table class="m" style="border:0; width:100%; border-spacing:0" cellpadding="0">
+<!-- Uncomment to enable filtering by source and/or category -->
+<tr>
+<td>
+<table style="border:0; width:100%; border-spacing:0">
+
+<!-- BEGIN View/Pages/filter_items.html -->
+<tr class="m">
+<td style="text-align:center; padding:8pt">
+<form name="page_submit">
+Filter by source:
+<br/>
+<select name="source">
+<option value="0" >-- Show All --</option>
+<option value="education.usnews.com"  >
+education.usnews.com
+[47]
+</option>
+<option value="health.usnews.com" selected="selected">
+health.usnews.com
+[99]
+</option>
+<option value="money.usnews.com"  >
+money.usnews.com
+[100]
+</option>
+<option value="news.usnews.com"  >
+news.usnews.com
+[99]
+</option>
+<option value="opinion.usnews.com"  >
+opinion.usnews.com
+[100]
+</option>
+<option value="travel.usnews.com"  >
+travel.usnews.com
+[100]
+</option>
+</select>
+<!--
+Time period:
+<select name="time">
+<option value="0">-- Show All--</option>
+<option value="6">Last 6 hours</option>
+<option value="12">Last 12 hours</option>
+<option value="24">Last 24 hours</option>
+<option value="w">Last week</option>
+<option value="m">Last month</option>
+</select>
+-->
+<input type="button" value=" >> " onclick="return func_submit();"/>
+
+</form>
+<script>
+function func_submit() {
+var frm = document.forms['page_submit'];
+if (frm['source'].selectedIndex == 0) {
+window.location.assign('/items');
+return false;
+}
+var source = frm['source'].options[frm['source'].selectedIndex].value;
+window.location.assign('/items/source/' + source);
+return false;
+}
+</script>
+</td>
+</tr>
+<!-- END View/Pages/filter_items.html -->
+
+</table>
+</td>
+</tr>
+<!-- -->
+<tr>
+<td class="header">
+Browse Items<br/> ... from 'health.usnews.com'
+<input type="hidden" name="s_Title" value="Browse Items<br/> ... from 'health.usnews.com'" />
+</td>
+</tr>
+
+<tr>
+<td>
+<table cellpadding="2" style="border:0; width:100%; border-spacing:0">
+<tr class="m">
+<td colspan="3" style="text-align:center; padding:8pt" >
+Page <strong>2</strong> from <strong>4</strong>
+</td>
+</tr>
+<tr class="column">
+<td style="width:70%; text-align:left">Item</td>
+<td style="width:18%; text-align:center">Creator</td>
+<td style="width:12%; text-align:center">Published</td>
+</tr>
+
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/121/ama-opens-silicon-valley-outlet-bets-on-tech-to-transform-health-care" title="From health.usnews.com">AMA Opens Silicon Valley Outlet, Bets on Tech to Transform Health Care</a></strong>
+<br/><strong>Categories</strong>: California
+</td>
+<td class="item" style="text-align:center">
+Steve Sternberg
+</td>
+<td class="item" style="text-align:center">
+11 Jan 2016 12:31 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/120/hospitals-inconsistent-in-determining-brain-death" title="From health.usnews.com">Hospitals Inconsistent in Determining Brain Death</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kimberly Leonard
+</td>
+<td class="item" style="text-align:center">
+28 Dec 2015 19:46 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/119/can-compounding-pharmacies-circumvent-big-pharma" title="From health.usnews.com">Can Compounding Pharmacies Circumvent Big Pharma?</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Steve Sternberg
+</td>
+<td class="item" style="text-align:center">
+15 Dec 2015 19:14 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/118/some-hospitals-prescribe-food-take-other-steps-to-fight-food-insecurity" title="From health.usnews.com">Some Hospitals Prescribe Food, Take Other Steps to Fight Food Insecurity</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Christopher J. Gearon
+</td>
+<td class="item" style="text-align:center">
+08 Dec 2015 19:32 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/117/jobs-for-medical-scribes-are-rising-rapidly-but-standards-lag" title="From health.usnews.com">Jobs for Medical Scribes Are Rising Rapidly but Standards Lag</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kaiser Health News
+</td>
+<td class="item" style="text-align:center">
+02 Dec 2015 19:06 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/116/genetic-revolution-brings-challenges-controversy" title="From health.usnews.com">Genetic Revolution Brings Challenges, Controversy</a></strong>
+<br/><strong>Categories</strong>: Washington
+</td>
+<td class="item" style="text-align:center">
+Steve Sternberg
+</td>
+<td class="item" style="text-align:center">
+02 Dec 2015 15:36 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/115/rates-of-hospital-mistakes-unchanged" title="From health.usnews.com">Rates of Hospital Mistakes Unchanged</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kimberly Leonard
+</td>
+<td class="item" style="text-align:center">
+01 Dec 2015 23:01 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/114/end-of-medicare-bonus-program-will-cut-pay-to-primary-care-doctors" title="From health.usnews.com">End of Medicare Bonus Program Will Cut Pay to Primary Care Doctors</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kaiser Health News
+</td>
+<td class="item" style="text-align:center">
+24 Nov 2015 15:20 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/113/a-recap-of-the-2015-u-s-news-hospital-of-tomorrow-forum" title="From health.usnews.com">A Recap of the 2015 U.S. News Hospital of Tomorrow Forum</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Sara Clarke
+</td>
+<td class="item" style="text-align:center">
+28 Oct 2015 18:12 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/112/precision-medicine-pioneer-elizabeth-mcnally-details-promise-challenges-of-genetic-research" title="From health.usnews.com">Precision Medicine Pioneer Elizabeth McNally Details Promise, Challenges of Genetic Research</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Steve Sternberg
+</td>
+<td class="item" style="text-align:center">
+27 Oct 2015 17:40 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/111/u-s-news-honors-best-hospitals-at-washington-ceremony" title="From health.usnews.com">U.S. News Honors Best Hospitals at Washington Ceremony</a></strong>
+<br/><strong>Categories</strong>: Washington
+</td>
+<td class="item" style="text-align:center">
+Kimberly Leonard
+</td>
+<td class="item" style="text-align:center">
+21 Oct 2015 01:46 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/110/archives-live-from-the-2015-hospital-of-tomorrow-conference" title="From health.usnews.com">ARCHIVES: Live From the 2015 Hospital of Tomorrow Conference</a></strong>
+</td>
+<td class="item" style="text-align:center">
+U.S. News Staff
+</td>
+<td class="item" style="text-align:center">
+20 Oct 2015 20:02 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/109/do-accountable-care-organizations-work" title="From health.usnews.com">Do Accountable Care Organizations Work?</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Michael O. Schroeder
+</td>
+<td class="item" style="text-align:center">
+20 Oct 2015 18:52 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/108/u-s-news-gives-update-on-hospital-quality-reporting" title="From health.usnews.com">U.S. News Gives Update on Hospital Quality Reporting</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Lisa Esposito
+</td>
+<td class="item" style="text-align:center">
+20 Oct 2015 17:44 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/107/getting-more-from-government-health-investment" title="From health.usnews.com">Getting More From Government Health Investment</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Tom Risen
+</td>
+<td class="item" style="text-align:center">
+20 Oct 2015 16:20 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/106/affordable-care-from-obamacare-senators-disagree" title="From health.usnews.com">Affordable Care From Obamacare? Senators Disagree</a></strong>
+<br/><strong>Categories</strong>: Louisiana, Michigan
+</td>
+<td class="item" style="text-align:center">
+Alan Neuhauser
+</td>
+<td class="item" style="text-align:center">
+20 Oct 2015 15:18 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/105/the-evolution-of-precision-medicine" title="From health.usnews.com">The Evolution of Precision Medicine</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Lylah Alphonse
+</td>
+<td class="item" style="text-align:center">
+20 Oct 2015 12:38 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/104/the-new-war-on-bugs-crafting-an-effective-antibiotic-stewardship-program" title="From health.usnews.com">The New War on Bugs: Crafting an Effective Antibiotic Stewardship Program</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kimberly Leonard
+</td>
+<td class="item" style="text-align:center">
+19 Oct 2015 23:24 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/103/better-health-cost-cutting-through-data" title="From health.usnews.com">Better Health Cost-Cutting Through Data</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Tom Risen
+</td>
+<td class="item" style="text-align:center">
+19 Oct 2015 23:08 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/102/improved-care-for-the-chronically-ill-at-a-lower-cost" title="From health.usnews.com">Improved Care for the Chronically Ill at a Lower Cost</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Michael O. Schroeder
+</td>
+<td class="item" style="text-align:center">
+19 Oct 2015 23:06 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/101/recruiting-and-retaining-skilled-doctors-in-the-accountable-care-era" title="From health.usnews.com">Recruiting and Retaining Skilled Doctors in the Accountable Care Era</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Anna Medaris Miller
+</td>
+<td class="item" style="text-align:center">
+19 Oct 2015 22:58 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/100/patient-engagement-tool-shows-future-costs-of-health-decisions" title="From health.usnews.com">Patient Engagement Tool Shows Future Costs of Health Decisions</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Lisa Esposito
+</td>
+<td class="item" style="text-align:center">
+19 Oct 2015 22:42 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/99/reconnecting-the-health-care-industry" title="From health.usnews.com">Reconnecting the Health Care Industry</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Steve Sternberg
+</td>
+<td class="item" style="text-align:center">
+19 Oct 2015 22:37 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/98/microsoft-data-collaboration-targets-improved-health-access" title="From health.usnews.com">Microsoft Data Collaboration Targets Improved Health Access</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Tom Risen
+</td>
+<td class="item" style="text-align:center">
+19 Oct 2015 22:26 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/97/when-hospitals-give-birth-to-innovation" title="From health.usnews.com">When Hospitals Give Birth to Innovation</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Michael O. Schroeder
+</td>
+<td class="item" style="text-align:center">
+19 Oct 2015 20:30 GMT
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr class="m">
+<td style="padding:8pt; font-size:larger; text-align:center">
+Pages:
+[<strong><a href="/items/source/health.usnews.com">&nbsp;1&nbsp;</a></strong>]
+<strong>=2=</strong>
+[<strong><a href="/items/source/health.usnews.com/list/3">&nbsp;3&nbsp;</a></strong>]
+[<strong><a href="/items/source/health.usnews.com/list/4">&nbsp;4&nbsp;</a></strong>]
+</td>
+</tr>
+</table>
+<!-- END View/Pages/items.html -->
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="center">
+
+<!-- BEGIN View/bottom.html -->
+<table class="m" cellpadding="0" style="border:0; width:100%; border-spacing:0">
+<tr>
+<td class="header" colspan="3" id="items_by_skills">
+Items by Categories
+</td>
+</tr>
+
+<tr>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/items/filter/AL"><strong>Alabama</strong></a><br/>
+<a href="/items/filter/AK"><strong>Alaska</strong></a><br/>
+<a href="/items/filter/AZ"><strong>Arizona</strong></a><br/>
+<a href="/items/filter/AR"><strong>Arkansas</strong></a><br/>
+<a href="/items/filter/CA"><strong>California</strong></a><br/>
+<a href="/items/filter/CO"><strong>Colorado</strong></a><br/>
+<a href="/items/filter/CT"><strong>Connecticut</strong></a><br/>
+<a href="/items/filter/DE"><strong>Delaware</strong></a><br/>
+<a href="/items/filter/FL"><strong>Florida</strong></a><br/>
+<a href="/items/filter/GA"><strong>Georgia</strong></a><br/>
+<a href="/items/filter/HI"><strong>Hawaii</strong></a><br/>
+<a href="/items/filter/IL"><strong>Illinois</strong></a><br/>
+<a href="/items/filter/IN"><strong>Indiana</strong></a><br/>
+<a href="/items/filter/IA"><strong>Iowa</strong></a><br/>
+<a href="/items/filter/KS"><strong>Kansas</strong></a><br/>
+<a href="/items/filter/KY"><strong>Kentucky</strong></a><br/>
+<a href="/items/filter/LA"><strong>Louisiana</strong></a><br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/items/filter/MA"><strong>Massachusetts</strong></a><br/>
+<a href="/items/filter/MI"><strong>Michigan</strong></a><br/>
+<a href="/items/filter/MN"><strong>Minnesota</strong></a><br/>
+<a href="/items/filter/MS"><strong>Mississippi</strong></a><br/>
+<a href="/items/filter/MO"><strong>Missouri</strong></a><br/>
+<a href="/items/filter/NV"><strong>Nevada</strong></a><br/>
+<a href="/items/filter/NM"><strong>New Mexico</strong></a><br/>
+<a href="/items/filter/NY"><strong>New York</strong></a><br/>
+<a href="/items/filter/NC"><strong>North Carolina</strong></a><br/>
+<a href="/items/filter/OH"><strong>Ohio</strong></a><br/>
+<a href="/items/filter/OK"><strong>Oklahoma</strong></a><br/>
+<a href="/items/filter/OR"><strong>Oregon</strong></a><br/>
+<a href="/items/filter/TN"><strong>Tennessee</strong></a><br/>
+<a href="/items/filter/TX"><strong>Texas</strong></a><br/>
+<a href="/items/filter/UT"><strong>Utah</strong></a><br/>
+<a href="/items/filter/VA"><strong>Virginia</strong></a><br/>
+<a href="/items/filter/WA"><strong>Washington</strong></a><br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/items/filter/WI"><strong>Wisconsin</strong></a><br/>
+<a href="/items/filter/WY"><strong>Wyoming</strong></a><br/>
+<a href="/items/filter/PR"><strong>Puerto Rico</strong></a><br/>
+<a href="/items/filter/Britain"><strong>World - Britain</strong></a><br/>
+<a href="/items/filter/Canada"><strong>World - Canada</strong></a><br/>
+<a href="/items/filter/China"><strong>World - China</strong></a><br/>
+<a href="/items/filter/Czechia"><strong>World - Czech Republic</strong></a><br/>
+<a href="/items/filter/France"><strong>World - France</strong></a><br/>
+<a href="/items/filter/Germany"><strong>World - Germany</strong></a><br/>
+<a href="/items/filter/Iran"><strong>World - Iran</strong></a><br/>
+<a href="/items/filter/Mexico"><strong>World - Mexico</strong></a><br/>
+<a href="/items/filter/Netherlands"><strong>World - Netherlands</strong></a><br/>
+<a href="/items/filter/Poland"><strong>World - Poland</strong></a><br/>
+<a href="/items/filter/Russia"><strong>World - Russia</strong></a><br/>
+<a href="/items/filter/South Korea"><strong>World - South Korea</strong></a><br/>
+<a href="/items/filter/Scotland"><strong>World - Scotland</strong></a><br/>
+</td>
+</tr>
+
+</table>
+<!-- END View/bottom.html -->
+
+</td>
+</tr>
+
+<tr>
+<td class="header center middle" style="padding:4pt">
+Copyright &copy; 2020 <strong><a href="/">Buddy Fetcher</a></strong><br/>
+<small>Powered by <a href="https://github.com/buddylancer/fetcher.php">Buddy Fetcher</a></small>
+</td>
+</tr>
+</table>
+</body>
+</html>
+<!-- END View/index.html -->

@@ -1,0 +1,54 @@
+<!--#if [#Alone]-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>[#Title]</title>
+        <meta name="keywords" content="[#Keywords]" />
+        <meta name="description" content="[#Description]" />
+        <link  rel="styleSheet" type="text/css" href="[#Top_Dir][#Styles].css" />
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    </head>
+<!--#if [#Is_Mobile]-->
+<body class="out" style="padding-top:1pt; padding-left:1pt;">
+<!--#end if-->
+<!--#if ![#Is_Mobile]-->
+<body class="out" style="padding-top:5pt; padding-left:5pt;">
+<!--#end if-->
+
+<!--#if [#Is_Mobile]-->
+<table class="out" cellpadding="0" style="border:0; width:100%; margin-left:0; margin-right:0; padding:0;">
+<!--#end if-->
+<!--#if ![#Is_Mobile]-->
+<table class="out" cellpadding="0" style="border:0; width:970px; margin-left:auto; margin-right:auto; padding:0;">
+<!--#end if-->
+<!--#end if-->
+
+<table cellpadding="0" style="width:100%; height:100%; border-spacing:0">
+    <tr>
+        <td class="header">
+            Error Page
+        </td>
+    </tr>
+
+    <tr>
+        <td class="m" style="text-align:center; vertical-align:top">
+            <br/>
+            <br/>
+            <div class="red">
+                [#ErrMessage]
+            </div>
+            <br/>
+            <br/>
+            Please, select links from menu...<br/>
+            <br/>
+            <br/>
+            ... or start from <a href="[#Top_Dir]">Home page</a>.<br/>
+            <br/>
+            <br/>
+        </td>
+    </tr>
+</table>
+<!--#if [#Alone]-->
+    </body>
+</html>
+<!--#end if-->

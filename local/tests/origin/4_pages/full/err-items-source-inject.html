@@ -1,0 +1,270 @@
+
+<!-- BEGIN View/index.html -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Buddy Fetcher :: items</title>
+<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL" />
+<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in PHP/MySQL" />
+<link  rel="styleSheet" type="text/css" href="styles.css" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+
+<body class="out" style="padding-top:5pt; padding-left:5pt;">
+<table class="out" cellpadding="0" style="border:0; width:970px; margin-left:auto; margin-right:auto; padding:0;">
+<tr>
+<td class="center top">
+
+<!-- BEGIN View/top.html -->
+<table class="out" style="width:100%; border:0; border-spacing:0;">
+<tr>
+<td class="left top" style="padding:2pt; white-space:nowrap;">
+<a style="font-variant:small-caps; font-size:30pt; font-weight:bold" href="/">
+<span>Buddy</span> <span class="red">Fetcher</span></a><br/>
+<strong>Latest Items</strong>
+</td>
+<td style="text-align:right; vertical-align:bottom; padding:2pt; white-space:nowrap;">
+<!--div style="text-align:center; vertical-align:middle; width:468px; height:60px; background-color:#fff;">
+</div-->
+<strong>Today is: 28-Jun-2020 16:49 GMT</strong>
+</td>
+</tr>
+</table>
+
+<!-- END View/top.html -->
+
+</td>
+</tr>
+<tr>
+<td class="top" style="width:100%; height:100%">
+<table cellpadding="0" style="width:100%; height:100%; border-spacing:0">
+<tr>
+<td class="top">
+
+<!-- BEGIN View/menu.html -->
+<table style="width:100%; border:0; border-spacing:0;">
+<tr>
+<td class="menu center" style="padding:2pt; white-space:nowrap;">
+ <a href="/">Home</a>
+ &bull; <a href="/index.php?p=items">Browse Items</a>
+ &bull; <a href="#items_by_skills">Items by Categories</a>
+ &bull; <a href="#read_rss_feeds">Read RSS Feeds</a>
+ &bull; <a href="/index.php?p=sources">Sources</a>
+</td>
+</tr>
+</table>
+<!-- END View/menu.html -->
+
+</td>
+</tr>
+
+<tr class="m">
+<td class="top" style="height:100%">
+
+<!-- BEGIN View/error.html -->
+
+<table cellpadding="0" style="width:100%; height:100%; border-spacing:0">
+<tr>
+<td class="header">
+Error Page
+</td>
+</tr>
+
+<tr>
+<td class="m" style="text-align:center; vertical-align:top">
+<br/>
+<br/>
+<div class="red">
+Incorrect source name!
+</div>
+<br/>
+<br/>
+Please, select links from menu...<br/>
+<br/>
+<br/>
+... or start from <a href="/">Home page</a>.<br/>
+<br/>
+<br/>
+</td>
+</tr>
+</table>
+<!-- END View/error.html -->
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="center">
+
+<!-- BEGIN View/bottom.html -->
+<table class="m" cellpadding="0" style="border:0; width:100%; border-spacing:0">
+<tr>
+<td class="header" colspan="3" id="items_by_skills">
+Items by Categories
+</td>
+</tr>
+
+<tr>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/index.php?p=items&filter=AL">Items for '<strong>Alabama</strong>'</a> (2)<br/>
+<a href="/index.php?p=items&filter=AK">Items for '<strong>Alaska</strong>'</a> (2)<br/>
+<a href="/index.php?p=items&filter=AZ">Items for '<strong>Arizona</strong>'</a> (1)<br/>
+<a href="/index.php?p=items&filter=AR">Items for '<strong>Arkansas</strong>'</a> (2)<br/>
+<a href="/index.php?p=items&filter=CA">Items for '<strong>California</strong>'</a> (19)<br/>
+<a href="/index.php?p=items&filter=CO">Items for '<strong>Colorado</strong>'</a> (3)<br/>
+<a href="/index.php?p=items&filter=CT">Items for '<strong>Connecticut</strong>'</a> (1)<br/>
+<a href="/index.php?p=items&filter=DE">Items for '<strong>Delaware</strong>'</a> (1)<br/>
+<a href="/index.php?p=items&filter=FL">Items for '<strong>Florida</strong>'</a> (9)<br/>
+<a href="/index.php?p=items&filter=GA">Items for '<strong>Georgia</strong>'</a> (6)<br/>
+<a href="/index.php?p=items&filter=HI">Items for '<strong>Hawaii</strong>'</a> (2)<br/>
+<a href="/index.php?p=items&filter=IL">Items for '<strong>Illinois</strong>'</a> (5)<br/>
+<a href="/index.php?p=items&filter=IN">Items for '<strong>Indiana</strong>'</a> (3)<br/>
+<a href="/index.php?p=items&filter=IA">Items for '<strong>Iowa</strong>'</a> (1)<br/>
+<a href="/index.php?p=items&filter=KS">Items for '<strong>Kansas</strong>'</a> (1)<br/>
+<a href="/index.php?p=items&filter=KY">Items for '<strong>Kentucky</strong>'</a> (4)<br/>
+<a href="/index.php?p=items&filter=LA">Items for '<strong>Louisiana</strong>'</a> (8)<br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/index.php?p=items&filter=MA">Items for '<strong>Massachusetts</strong>'</a> (3)<br/>
+<a href="/index.php?p=items&filter=MI">Items for '<strong>Michigan</strong>'</a> (2)<br/>
+<a href="/index.php?p=items&filter=MN">Items for '<strong>Minnesota</strong>'</a> (2)<br/>
+<a href="/index.php?p=items&filter=MS">Items for '<strong>Mississippi</strong>'</a> (3)<br/>
+<a href="/index.php?p=items&filter=MO">Items for '<strong>Missouri</strong>'</a> (3)<br/>
+<a href="/index.php?p=items&filter=NV">Items for '<strong>Nevada</strong>'</a> (2)<br/>
+<a href="/index.php?p=items&filter=NM">Items for '<strong>New Mexico</strong>'</a> (2)<br/>
+<a href="/index.php?p=items&filter=NY">Items for '<strong>New York</strong>'</a> (6)<br/>
+<a href="/index.php?p=items&filter=NC">Items for '<strong>North Carolina</strong>'</a> (1)<br/>
+<a href="/index.php?p=items&filter=OH">Items for '<strong>Ohio</strong>'</a> (1)<br/>
+<a href="/index.php?p=items&filter=OK">Items for '<strong>Oklahoma</strong>'</a> (1)<br/>
+<a href="/index.php?p=items&filter=OR">Items for '<strong>Oregon</strong>'</a> (2)<br/>
+<a href="/index.php?p=items&filter=TN">Items for '<strong>Tennessee</strong>'</a> (1)<br/>
+<a href="/index.php?p=items&filter=TX">Items for '<strong>Texas</strong>'</a> (7)<br/>
+<a href="/index.php?p=items&filter=UT">Items for '<strong>Utah</strong>'</a> (3)<br/>
+<a href="/index.php?p=items&filter=VA">Items for '<strong>Virginia</strong>'</a> (1)<br/>
+<a href="/index.php?p=items&filter=WA">Items for '<strong>Washington</strong>'</a> (8)<br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/index.php?p=items&filter=WI">Items for '<strong>Wisconsin</strong>'</a> (1)<br/>
+<a href="/index.php?p=items&filter=WY">Items for '<strong>Wyoming</strong>'</a> (1)<br/>
+<a href="/index.php?p=items&filter=PR">Items for '<strong>Puerto Rico</strong>'</a> (1)<br/>
+<a href="/index.php?p=items&filter=Britain">Items for '<strong>World - Britain</strong>'</a> (4)<br/>
+<a href="/index.php?p=items&filter=Canada">Items for '<strong>World - Canada</strong>'</a> (1)<br/>
+<a href="/index.php?p=items&filter=China">Items for '<strong>World - China</strong>'</a> (8)<br/>
+<a href="/index.php?p=items&filter=Czechia">Items for '<strong>World - Czech Republic</strong>'</a> (2)<br/>
+<a href="/index.php?p=items&filter=France">Items for '<strong>World - France</strong>'</a> (5)<br/>
+<a href="/index.php?p=items&filter=Germany">Items for '<strong>World - Germany</strong>'</a> (2)<br/>
+<a href="/index.php?p=items&filter=Iran">Items for '<strong>World - Iran</strong>'</a> (3)<br/>
+<a href="/index.php?p=items&filter=Mexico">Items for '<strong>World - Mexico</strong>'</a> (6)<br/>
+<a href="/index.php?p=items&filter=Netherlands">Items for '<strong>World - Netherlands</strong>'</a> (1)<br/>
+<a href="/index.php?p=items&filter=Poland">Items for '<strong>World - Poland</strong>'</a> (2)<br/>
+<a href="/index.php?p=items&filter=Russia">Items for '<strong>World - Russia</strong>'</a> (9)<br/>
+<a href="/index.php?p=items&filter=South Korea">Items for '<strong>World - South Korea</strong>'</a> (2)<br/>
+<a href="/index.php?p=items&filter=Scotland">Items for '<strong>World - Scotland</strong>'</a> (1)<br/>
+</td>
+</tr>
+
+<tr>
+<td class="header" colspan="3" id="read_rss_feeds">
+RSS-feeds by Categories
+<span style="color:red; letter-spacing:0;">New!</span>
+</td>
+</tr>
+
+<tr>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align:top">
+<a href="/rss.php?filter=AL">Feed for '<strong>Alabama</strong>'</a><br/>
+<a href="/rss.php?filter=AK">Feed for '<strong>Alaska</strong>'</a><br/>
+<a href="/rss.php?filter=AZ">Feed for '<strong>Arizona</strong>'</a><br/>
+<a href="/rss.php?filter=AR">Feed for '<strong>Arkansas</strong>'</a><br/>
+<a href="/rss.php?filter=CA">Feed for '<strong>California</strong>'</a><br/>
+<a href="/rss.php?filter=CO">Feed for '<strong>Colorado</strong>'</a><br/>
+<a href="/rss.php?filter=CT">Feed for '<strong>Connecticut</strong>'</a><br/>
+<a href="/rss.php?filter=DE">Feed for '<strong>Delaware</strong>'</a><br/>
+<a href="/rss.php?filter=FL">Feed for '<strong>Florida</strong>'</a><br/>
+<a href="/rss.php?filter=GA">Feed for '<strong>Georgia</strong>'</a><br/>
+<a href="/rss.php?filter=HI">Feed for '<strong>Hawaii</strong>'</a><br/>
+<a href="/rss.php?filter=ID">Feed for '<strong>Idaho</strong>'</a><br/>
+<a href="/rss.php?filter=IL">Feed for '<strong>Illinois</strong>'</a><br/>
+<a href="/rss.php?filter=IN">Feed for '<strong>Indiana</strong>'</a><br/>
+<a href="/rss.php?filter=IA">Feed for '<strong>Iowa</strong>'</a><br/>
+<a href="/rss.php?filter=KS">Feed for '<strong>Kansas</strong>'</a><br/>
+<a href="/rss.php?filter=KY">Feed for '<strong>Kentucky</strong>'</a><br/>
+<a href="/rss.php?filter=LA">Feed for '<strong>Louisiana</strong>'</a><br/>
+<a href="/rss.php?filter=ME">Feed for '<strong>Maine</strong>'</a><br/>
+<a href="/rss.php?filter=MD">Feed for '<strong>Maryland</strong>'</a><br/>
+<a href="/rss.php?filter=MA">Feed for '<strong>Massachusetts</strong>'</a><br/>
+<a href="/rss.php?filter=MI">Feed for '<strong>Michigan</strong>'</a><br/>
+<a href="/rss.php?filter=MN">Feed for '<strong>Minnesota</strong>'</a><br/>
+<a href="/rss.php?filter=MS">Feed for '<strong>Mississippi</strong>'</a><br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align:top">
+<a href="/rss.php?filter=MO">Feed for '<strong>Missouri</strong>'</a><br/>
+<a href="/rss.php?filter=MT">Feed for '<strong>Montana</strong>'</a><br/>
+<a href="/rss.php?filter=NE">Feed for '<strong>Nebraska</strong>'</a><br/>
+<a href="/rss.php?filter=NV">Feed for '<strong>Nevada</strong>'</a><br/>
+<a href="/rss.php?filter=NH">Feed for '<strong>New Hampshire</strong>'</a><br/>
+<a href="/rss.php?filter=NJ">Feed for '<strong>New Jersey</strong>'</a><br/>
+<a href="/rss.php?filter=NM">Feed for '<strong>New Mexico</strong>'</a><br/>
+<a href="/rss.php?filter=NY">Feed for '<strong>New York</strong>'</a><br/>
+<a href="/rss.php?filter=NC">Feed for '<strong>North Carolina</strong>'</a><br/>
+<a href="/rss.php?filter=ND">Feed for '<strong>North Dakota</strong>'</a><br/>
+<a href="/rss.php?filter=OH">Feed for '<strong>Ohio</strong>'</a><br/>
+<a href="/rss.php?filter=OK">Feed for '<strong>Oklahoma</strong>'</a><br/>
+<a href="/rss.php?filter=OR">Feed for '<strong>Oregon</strong>'</a><br/>
+<a href="/rss.php?filter=PA">Feed for '<strong>Pennsylvania</strong>'</a><br/>
+<a href="/rss.php?filter=RI">Feed for '<strong>Rhode Island</strong>'</a><br/>
+<a href="/rss.php?filter=SC">Feed for '<strong>South Carolina</strong>'</a><br/>
+<a href="/rss.php?filter=SD">Feed for '<strong>South Dakota</strong>'</a><br/>
+<a href="/rss.php?filter=TN">Feed for '<strong>Tennessee</strong>'</a><br/>
+<a href="/rss.php?filter=TX">Feed for '<strong>Texas</strong>'</a><br/>
+<a href="/rss.php?filter=UT">Feed for '<strong>Utah</strong>'</a><br/>
+<a href="/rss.php?filter=VT">Feed for '<strong>Vermont</strong>'</a><br/>
+<a href="/rss.php?filter=VA">Feed for '<strong>Virginia</strong>'</a><br/>
+<a href="/rss.php?filter=WA">Feed for '<strong>Washington</strong>'</a><br/>
+<a href="/rss.php?filter=WV">Feed for '<strong>West Virginia</strong>'</a><br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align:top">
+<a href="/rss.php?filter=WI">Feed for '<strong>Wisconsin</strong>'</a><br/>
+<a href="/rss.php?filter=WY">Feed for '<strong>Wyoming</strong>'</a><br/>
+<a href="/rss.php?filter=AS">Feed for '<strong>American Samoa</strong>'</a><br/>
+<a href="/rss.php?filter=DC">Feed for '<strong>District of Columbia</strong>'</a><br/>
+<a href="/rss.php?filter=FM">Feed for '<strong>Federated States of Micronesia</strong>'</a><br/>
+<a href="/rss.php?filter=GU">Feed for '<strong>Guam</strong>'</a><br/>
+<a href="/rss.php?filter=MH">Feed for '<strong>Marshall Islands</strong>'</a><br/>
+<a href="/rss.php?filter=MP">Feed for '<strong>Northern Mariana Islands</strong>'</a><br/>
+<a href="/rss.php?filter=PW">Feed for '<strong>Palau</strong>'</a><br/>
+<a href="/rss.php?filter=PR">Feed for '<strong>Puerto Rico</strong>'</a><br/>
+<a href="/rss.php?filter=VI">Feed for '<strong>Virgin Islands</strong>'</a><br/>
+<a href="/rss.php?filter=Britain">Feed for '<strong>World - Britain</strong>'</a><br/>
+<a href="/rss.php?filter=Canada">Feed for '<strong>World - Canada</strong>'</a><br/>
+<a href="/rss.php?filter=China">Feed for '<strong>World - China</strong>'</a><br/>
+<a href="/rss.php?filter=Czechia">Feed for '<strong>World - Czech Republic</strong>'</a><br/>
+<a href="/rss.php?filter=France">Feed for '<strong>World - France</strong>'</a><br/>
+<a href="/rss.php?filter=Germany">Feed for '<strong>World - Germany</strong>'</a><br/>
+<a href="/rss.php?filter=Iran">Feed for '<strong>World - Iran</strong>'</a><br/>
+<a href="/rss.php?filter=Mexico">Feed for '<strong>World - Mexico</strong>'</a><br/>
+<a href="/rss.php?filter=Netherlands">Feed for '<strong>World - Netherlands</strong>'</a><br/>
+<a href="/rss.php?filter=Poland">Feed for '<strong>World - Poland</strong>'</a><br/>
+<a href="/rss.php?filter=Russia">Feed for '<strong>World - Russia</strong>'</a><br/>
+<a href="/rss.php?filter=South Korea">Feed for '<strong>World - South Korea</strong>'</a><br/>
+<a href="/rss.php?filter=Scotland">Feed for '<strong>World - Scotland</strong>'</a><br/>
+</td>
+</tr>
+</table>
+<!-- END View/bottom.html -->
+
+</td>
+</tr>
+
+<tr>
+<td class="header center middle" style="padding:4pt">
+Copyright &copy; 2020 <strong><a href="/">Buddy Fetcher</a></strong><br/>
+<small>Powered by <a href="https://github.com/buddylancer/fetcher.php">Buddy Fetcher</a></small>
+</td>
+</tr>
+</table>
+</body>
+</html>
+<!-- END View/index.html -->

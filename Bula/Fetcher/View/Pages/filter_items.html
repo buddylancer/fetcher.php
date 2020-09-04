@@ -1,0 +1,56 @@
+<tr class="m">
+    <td style="text-align:center; padding:8pt">
+        <form name="page_submit">
+            Filter by source:
+            <!--#if [#Is_Mobile]-->
+                <br/>
+            <!--#end if-->
+            <select name="source">
+                <option value="0" [#Selected]>-- Show All --</option>
+                <!--#repeat [#Options]-->
+                    <option value="[#Id]" [#Selected]>
+                        [#Name]
+                        <!--#if [#Counter]-->
+                            [[#Counter]]
+                        <!--#end if-->
+                    </option>
+                <!--#end repeat-->
+            </select>
+            <!--
+            Time period:
+            <select name="time">
+                <option value="0">-- Show All--</option> 
+                <option value="6">Last 6 hours</option> 
+                <option value="12">Last 12 hours</option> 
+                <option value="24">Last 24 hours</option> 
+                <option value="w">Last week</option> 
+                <option value="m">Last month</option> 
+            </select>
+            -->
+            <input type="button" value=" >> " onclick="return func_submit();"/>
+
+        </form>
+        <script>
+            function func_submit() {
+                var frm = document.forms['page_submit'];
+                if (frm['source'].selectedIndex == 0) {
+                    //#if [#Fine_Urls]
+                    window.location.assign('[#Top_Dir]items');
+                    //#end if
+                    //#if ![#Fine_Urls]
+                    window.location.assign('[#Top_Dir][#Index_Page]?p=items');
+                    //#end if
+                    return false;
+                }
+                var source = frm['source'].options[frm['source'].selectedIndex].value;
+                //#if [#Fine_Urls]
+                window.location.assign('[#Top_Dir]items/source/' + source);
+                //#end if
+                //#if ![#Fine_Urls]
+                window.location.assign('[#Top_Dir][#Index_Page]?p=items&source=' + source);
+                //#end if
+                return false;
+            }
+        </script>
+    </td>
+</tr>

@@ -1,0 +1,323 @@
+
+<!-- BEGIN View/index.html -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Buddy Fetcher :: items</title>
+<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL" />
+<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in PHP/MySQL" />
+<link  rel="styleSheet" type="text/css" href="styles2.css" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+
+<body class="out" style="padding-top:1pt; padding-left:1pt;">
+<table class="out" cellpadding="0" style="border:0; width:100%; margin-left:0; margin-right:0; padding:0;">
+<tr>
+<td class="center top">
+
+<!-- BEGIN View/top.html -->
+<table class="out" style="width:100%; border:0; border-spacing:0;">
+<tr>
+<td class="left top" style="padding:2pt; white-space:nowrap;">
+<a style="font-variant:small-caps; font-size:30pt; font-weight:bold" href="/">
+<span>Buddy</span> <span class="red">Fetcher</span></a><br/>
+<strong>Latest Items</strong>
+</td>
+</tr>
+</table>
+
+<!-- END View/top.html -->
+
+</td>
+</tr>
+<tr>
+<td class="top" style="width:100%; height:100%">
+<table cellpadding="0" style="width:100%; height:100%; border-spacing:0">
+<tr>
+<td class="top">
+
+<!-- BEGIN View/menu.html -->
+<table style="width:100%; border:0; border-spacing:0;">
+<tr>
+<td class="menu center" style="padding:2pt; white-space:nowrap;">
+ <a href="/">Home</a>
+ &bull; <a href="/items">Items</a>
+ &bull; <a href="#items_by_skills">By Categories</a>
+ &bull; <a href="/sources">Sources</a>
+</td>
+</tr>
+</table>
+<!-- END View/menu.html -->
+
+</td>
+</tr>
+
+<tr class="m">
+<td class="top" style="height:100%">
+
+<!-- BEGIN View/Pages/items.html -->
+<table class="m" style="border:0; width:100%; border-spacing:0" cellpadding="0">
+<!-- Uncomment to enable filtering by source and/or category -->
+<tr>
+<td>
+<table style="border:0; width:100%; border-spacing:0">
+
+<!-- BEGIN View/Pages/filter_items.html -->
+<tr class="m">
+<td style="text-align:center; padding:8pt">
+<form name="page_submit">
+Filter by source:
+<br/>
+<select name="source">
+<option value="0" >-- Show All --</option>
+<option value="education.usnews.com"  >
+education.usnews.com
+[47]
+</option>
+<option value="health.usnews.com"  >
+health.usnews.com
+[99]
+</option>
+<option value="money.usnews.com"  >
+money.usnews.com
+[100]
+</option>
+<option value="news.usnews.com" selected="selected">
+news.usnews.com
+[99]
+</option>
+<option value="opinion.usnews.com"  >
+opinion.usnews.com
+[100]
+</option>
+<option value="travel.usnews.com"  >
+travel.usnews.com
+[100]
+</option>
+</select>
+<!--
+Time period:
+<select name="time">
+<option value="0">-- Show All--</option>
+<option value="6">Last 6 hours</option>
+<option value="12">Last 12 hours</option>
+<option value="24">Last 24 hours</option>
+<option value="w">Last week</option>
+<option value="m">Last month</option>
+</select>
+-->
+<input type="button" value=" >> " onclick="return func_submit();"/>
+
+</form>
+<script>
+function func_submit() {
+var frm = document.forms['page_submit'];
+if (frm['source'].selectedIndex == 0) {
+window.location.assign('/items');
+return false;
+}
+var source = frm['source'].options[frm['source'].selectedIndex].value;
+window.location.assign('/items/source/' + source);
+return false;
+}
+</script>
+</td>
+</tr>
+<!-- END View/Pages/filter_items.html -->
+
+</table>
+</td>
+</tr>
+<!-- -->
+<tr>
+<td class="header">
+Browse Items<br/> ... from 'news.usnews.com' ... for 'CA'
+<input type="hidden" name="s_Title" value="Browse Items<br/> ... from 'news.usnews.com' ... for 'CA'" />
+</td>
+</tr>
+
+<tr>
+<td>
+<table cellpadding="2" style="border:0; width:100%; border-spacing:0">
+<tr class="column">
+<td style="width:70%; text-align:left">Item</td>
+<td style="width:18%; text-align:center">Creator</td>
+<td style="width:12%; text-align:center">Published</td>
+</tr>
+
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/323/shooting-at-california-walmart-distribution-center-leaves-two-dead-four-injured" title="From news.usnews.com">Shooting at California Walmart Distribution Center Leaves Two Dead, Four Injured</a></strong>
+<br/><strong>Categories</strong>: California
+</td>
+<td class="item" style="text-align:center">
+Reuters
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 08:32 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/320/2-dead-after-shooting-at-california-distribution-center" title="From news.usnews.com">2 Dead After Shooting at California Distribution Center</a></strong>
+<br/><strong>Categories</strong>: California
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 07:52 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/313/2-dead-after-shooting-at-california-distribution-center" title="From news.usnews.com">2 Dead After Shooting at California Distribution Center</a></strong>
+<br/><strong>Categories</strong>: California
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 06:58 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/281/hospital-says-2-people-were-killed-4-are-in-fair-condition-after-shooting-at-walmart-distribution-center-in-california" title="From news.usnews.com">Hospital Says 2 People Were Killed, 4 Are in Fair Condition After Shooting at Walmart Distribution Center in California</a></strong>
+<br/><strong>Categories</strong>: California
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 01:46 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/268/4-california-officers-on-leave-amid-probe-of-racist-posts" title="From news.usnews.com">4 California Officers on Leave Amid Probe of Racist Posts</a></strong>
+<br/><strong>Categories</strong>: California
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+27 Jun 2020 23:41 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/item/258/low-income-california-zip-codes-see-spike-in-virus-cases" title="From news.usnews.com">Low-Income California Zip Codes See Spike in Virus Cases</a></strong>
+<br/><strong>Categories</strong>: California
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+27 Jun 2020 22:55 GMT
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+</table>
+<!-- END View/Pages/items.html -->
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="center">
+
+<!-- BEGIN View/bottom.html -->
+<table class="m" cellpadding="0" style="border:0; width:100%; border-spacing:0">
+<tr>
+<td class="header" colspan="3" id="items_by_skills">
+Items by Categories
+</td>
+</tr>
+
+<tr>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/items/filter/AL"><strong>Alabama</strong></a><br/>
+<a href="/items/filter/AK"><strong>Alaska</strong></a><br/>
+<a href="/items/filter/AZ"><strong>Arizona</strong></a><br/>
+<a href="/items/filter/AR"><strong>Arkansas</strong></a><br/>
+<a href="/items/filter/CA"><strong>California</strong></a><br/>
+<a href="/items/filter/CO"><strong>Colorado</strong></a><br/>
+<a href="/items/filter/CT"><strong>Connecticut</strong></a><br/>
+<a href="/items/filter/DE"><strong>Delaware</strong></a><br/>
+<a href="/items/filter/FL"><strong>Florida</strong></a><br/>
+<a href="/items/filter/GA"><strong>Georgia</strong></a><br/>
+<a href="/items/filter/HI"><strong>Hawaii</strong></a><br/>
+<a href="/items/filter/IL"><strong>Illinois</strong></a><br/>
+<a href="/items/filter/IN"><strong>Indiana</strong></a><br/>
+<a href="/items/filter/IA"><strong>Iowa</strong></a><br/>
+<a href="/items/filter/KS"><strong>Kansas</strong></a><br/>
+<a href="/items/filter/KY"><strong>Kentucky</strong></a><br/>
+<a href="/items/filter/LA"><strong>Louisiana</strong></a><br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/items/filter/MA"><strong>Massachusetts</strong></a><br/>
+<a href="/items/filter/MI"><strong>Michigan</strong></a><br/>
+<a href="/items/filter/MN"><strong>Minnesota</strong></a><br/>
+<a href="/items/filter/MS"><strong>Mississippi</strong></a><br/>
+<a href="/items/filter/MO"><strong>Missouri</strong></a><br/>
+<a href="/items/filter/NV"><strong>Nevada</strong></a><br/>
+<a href="/items/filter/NM"><strong>New Mexico</strong></a><br/>
+<a href="/items/filter/NY"><strong>New York</strong></a><br/>
+<a href="/items/filter/NC"><strong>North Carolina</strong></a><br/>
+<a href="/items/filter/OH"><strong>Ohio</strong></a><br/>
+<a href="/items/filter/OK"><strong>Oklahoma</strong></a><br/>
+<a href="/items/filter/OR"><strong>Oregon</strong></a><br/>
+<a href="/items/filter/TN"><strong>Tennessee</strong></a><br/>
+<a href="/items/filter/TX"><strong>Texas</strong></a><br/>
+<a href="/items/filter/UT"><strong>Utah</strong></a><br/>
+<a href="/items/filter/VA"><strong>Virginia</strong></a><br/>
+<a href="/items/filter/WA"><strong>Washington</strong></a><br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/items/filter/WI"><strong>Wisconsin</strong></a><br/>
+<a href="/items/filter/WY"><strong>Wyoming</strong></a><br/>
+<a href="/items/filter/PR"><strong>Puerto Rico</strong></a><br/>
+<a href="/items/filter/Britain"><strong>World - Britain</strong></a><br/>
+<a href="/items/filter/Canada"><strong>World - Canada</strong></a><br/>
+<a href="/items/filter/China"><strong>World - China</strong></a><br/>
+<a href="/items/filter/Czechia"><strong>World - Czech Republic</strong></a><br/>
+<a href="/items/filter/France"><strong>World - France</strong></a><br/>
+<a href="/items/filter/Germany"><strong>World - Germany</strong></a><br/>
+<a href="/items/filter/Iran"><strong>World - Iran</strong></a><br/>
+<a href="/items/filter/Mexico"><strong>World - Mexico</strong></a><br/>
+<a href="/items/filter/Netherlands"><strong>World - Netherlands</strong></a><br/>
+<a href="/items/filter/Poland"><strong>World - Poland</strong></a><br/>
+<a href="/items/filter/Russia"><strong>World - Russia</strong></a><br/>
+<a href="/items/filter/South Korea"><strong>World - South Korea</strong></a><br/>
+<a href="/items/filter/Scotland"><strong>World - Scotland</strong></a><br/>
+</td>
+</tr>
+
+</table>
+<!-- END View/bottom.html -->
+
+</td>
+</tr>
+
+<tr>
+<td class="header center middle" style="padding:4pt">
+Copyright &copy; 2020 <strong><a href="/">Buddy Fetcher</a></strong><br/>
+<small>Powered by <a href="https://github.com/buddylancer/fetcher.php">Buddy Fetcher</a></small>
+</td>
+</tr>
+</table>
+</body>
+</html>
+<!-- END View/index.html -->

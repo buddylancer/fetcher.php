@@ -1,0 +1,68 @@
+<table class="m" cellpadding="0" style="width:100%; border:0; border-spacing:0">
+    <tr>
+        <td>
+            <table cellpadding="0" class="m" style="width:100%; border:0; border-spacing:0">
+                <tr>
+                    <td class="header">
+                        List of active RSS-sources
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table class="m" cellpadding="2" style="width:100%; border:0; border-spacing:0">
+                <tr class="column">
+                    <td style="width:70%; text-align:left">[#Name_Item]</td>
+                    <td style="width:18%; text-align:center">[#Name_Creator]</td>
+                    <td style="width:12%; text-align:center">Date</td>
+                </tr>
+                <!--#repeat [#Sources]-->
+
+                <tr>
+                    <td class="view" colspan="3" style="text-align:center; font-size:larger; height:18pt">
+                        Latest [#Name_Items] from <a href="[#RedirectSource]">[#SourceName]</a>
+                    </td>
+                </tr>
+                
+                <!--#repeat [#Items]-->
+                <!--#if [#Shade]-->
+                <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+                <!--#end if-->
+                <!--#if ![#Shade]-->
+                <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+                <!--#end if-->
+                    <td class="item" style="vertical-align:middle; height:32pt">
+                        <strong>
+                            <a style="font-size:larger" href="[#Link]" title="From [#Source]">
+                                [#Title]</a>
+                        </strong>
+                        <!--#if [#Show_From]==1-->
+                            [<a href="[#Top_Dir]action.php?p=do_redirect_source&amp;source=[#Source]">[#Source]</a>]
+                        <!--#end if-->
+                        <!--#if [#Category]-->
+                            <br/><strong>[#Name_Categories]</strong>: [#Category]
+                        <!--#end if-->
+                        <!--#if [#Custom2]-->
+                            <br/><strong>[#Name_Custom2]</strong>: [#Custom2]
+                        <!--#end if-->
+                        <!--#if [#Custom1]-->
+                            <br/><strong>[#Name_Custom1]</strong>: [#Custom1]
+                        <!--#end if-->
+                    </td>
+                    <td class="item" style="text-align:center">
+                        <!--#if [#Creator]-->
+                        [#Creator]
+                        <!--#end if-->
+                    </td>
+                    <td class="item" style="text-align:center">
+                        [#Date]
+                    </td>
+                </tr>
+                <!--#end repeat-->
+                <!--#end repeat-->
+            </table>
+        </td>
+    </tr>
+</table>

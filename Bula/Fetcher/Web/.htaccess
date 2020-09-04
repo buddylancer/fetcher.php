@@ -1,0 +1,33 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /ff/
+ErrorDocument 404 /page404.html
+RewriteRule ^images/$ page404.html
+
+RewriteRule ^rss[/]*$ rss.php
+RewriteRule ^rss/([A-Za-z0-9\.]*).xml*$ rss.php?filter=$1
+RewriteRule ^rss/filter/([A-Za-z0-9\.]*)[/]*$ rss.php?filter=$1
+RewriteRule ^rss/source/([A-Za-z0-9\.]*)[/]*$ rss.php?source=$1
+RewriteRule ^rss/source/([A-Za-z0-9\.]*)/filter/([A-Za-z0-9\.]*)[/]*$ rss.php?source=$1&filter=$2
+RewriteRule ^rss/filter/([A-Za-z0-9\.]*)/source/([A-Za-z0-9\.]*)[/]*$ rss.php?filter=$1&source=$2
+
+RewriteRule ^items/source/([A-Za-z0-9\.]*)/filter/([A-Za-z0-9\.]*)/list/([0-9]*)[/]*$ index.php?p=items&source=$1&filter=$2&list=$3
+RewriteRule ^items/filter/([A-Za-z0-9\.]*)/source/([A-Za-z0-9\.]*)/list/([0-9]*)[/]*$ index.php?p=items&filter=$1&source=$2&list=$3
+RewriteRule ^items/source/([A-Za-z0-9\.]*)/filter/([A-Za-z0-9\.]*)[/]*$ index.php?p=items&source=$1&filter=$2
+RewriteRule ^items/filter/([A-Za-z0-9\.]*)/source/([A-Za-z0-9\.]*)[/]*$ index.php?p=items&filter=$1&source=$2
+RewriteRule ^items/source/([A-Za-z0-9\.]*)/list/([0-9]*)[/]*$ index.php?p=items&source=$1&list=$2
+RewriteRule ^items/source/([A-Za-z0-9\.]*)[/]*$ index.php?p=items&source=$1
+RewriteRule ^items/filter/([A-Za-z0-9\.]*)/list/([0-9]*)[/]*$ index.php?p=items&filter=$1&list=$2
+RewriteRule ^items/filter/([A-Za-z0-9\.]*)[/]*$ index.php?p=items&filter=$1
+RewriteRule ^items/list/([0-9]*)[/]*$ index.php?p=items&list=$1
+RewriteRule ^items[/]*$ index.php?p=items
+
+RewriteRule ^sources[/]*$ index.php?p=sources
+
+RewriteRule ^item/([0-9]*)/([A-Za-z0-9\-\.]*)[/]*$ index.php?p=view_item&id=$1&title=$2
+RewriteRule ^item/([0-9]*)[/]*$ index.php?p=view_item&id=$1
+
+RewriteRule ^redirect/item/([0-9]*)[/]*$ action.php?p=do_redirect_item&id=$1
+RewriteRule ^redirect/item/([0-9]*)/([A-Za-z0-9\-\.]*)[/]*$ action.php?p=do_redirect_item&id=$1&title=$2
+RewriteRule ^redirect/source/([A-Za-z0-9\.]*)[/]*$ action.php?p=do_redirect_source&source=$1
+</IfModule>

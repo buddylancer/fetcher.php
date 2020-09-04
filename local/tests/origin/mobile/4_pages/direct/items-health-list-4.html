@@ -1,0 +1,549 @@
+
+<!-- BEGIN View/index.html -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Buddy Fetcher :: items</title>
+<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL" />
+<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in PHP/MySQL" />
+<link  rel="styleSheet" type="text/css" href="styles2.css" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+
+<body class="out" style="padding-top:1pt; padding-left:1pt;">
+<table class="out" cellpadding="0" style="border:0; width:100%; margin-left:0; margin-right:0; padding:0;">
+<tr>
+<td class="center top">
+
+<!-- BEGIN View/top.html -->
+<table class="out" style="width:100%; border:0; border-spacing:0;">
+<tr>
+<td class="left top" style="padding:2pt; white-space:nowrap;">
+<a style="font-variant:small-caps; font-size:30pt; font-weight:bold" href="/">
+<span>Buddy</span> <span class="red">Fetcher</span></a><br/>
+<strong>Latest Items</strong>
+</td>
+</tr>
+</table>
+
+<!-- END View/top.html -->
+
+</td>
+</tr>
+<tr>
+<td class="top" style="width:100%; height:100%">
+<table cellpadding="0" style="width:100%; height:100%; border-spacing:0">
+<tr>
+<td class="top">
+
+<!-- BEGIN View/menu.html -->
+<table style="width:100%; border:0; border-spacing:0;">
+<tr>
+<td class="menu center" style="padding:2pt; white-space:nowrap;">
+ <a href="/">Home</a>
+ &bull; <a href="/items">Items</a>
+ &bull; <a href="#items_by_skills">By Categories</a>
+ &bull; <a href="/sources">Sources</a>
+</td>
+</tr>
+</table>
+<!-- END View/menu.html -->
+
+</td>
+</tr>
+
+<tr class="m">
+<td class="top" style="height:100%">
+
+<!-- BEGIN View/Pages/items.html -->
+<table class="m" style="border:0; width:100%; border-spacing:0" cellpadding="0">
+<!-- Uncomment to enable filtering by source and/or category -->
+<tr>
+<td>
+<table style="border:0; width:100%; border-spacing:0">
+
+<!-- BEGIN View/Pages/filter_items.html -->
+<tr class="m">
+<td style="text-align:center; padding:8pt">
+<form name="page_submit">
+Filter by source:
+<br/>
+<select name="source">
+<option value="0" >-- Show All --</option>
+<option value="education.usnews.com"  >
+education.usnews.com
+[47]
+</option>
+<option value="health.usnews.com" selected="selected">
+health.usnews.com
+[99]
+</option>
+<option value="money.usnews.com"  >
+money.usnews.com
+[100]
+</option>
+<option value="news.usnews.com"  >
+news.usnews.com
+[99]
+</option>
+<option value="opinion.usnews.com"  >
+opinion.usnews.com
+[100]
+</option>
+<option value="travel.usnews.com"  >
+travel.usnews.com
+[100]
+</option>
+</select>
+<!--
+Time period:
+<select name="time">
+<option value="0">-- Show All--</option>
+<option value="6">Last 6 hours</option>
+<option value="12">Last 12 hours</option>
+<option value="24">Last 24 hours</option>
+<option value="w">Last week</option>
+<option value="m">Last month</option>
+</select>
+-->
+<input type="button" value=" >> " onclick="return func_submit();"/>
+
+</form>
+<script>
+function func_submit() {
+var frm = document.forms['page_submit'];
+if (frm['source'].selectedIndex == 0) {
+window.location.assign('/items');
+return false;
+}
+var source = frm['source'].options[frm['source'].selectedIndex].value;
+window.location.assign('/items/source/' + source);
+return false;
+}
+</script>
+</td>
+</tr>
+<!-- END View/Pages/filter_items.html -->
+
+</table>
+</td>
+</tr>
+<!-- -->
+<tr>
+<td class="header">
+Browse Items<br/> ... from 'health.usnews.com'
+<input type="hidden" name="s_Title" value="Browse Items<br/> ... from 'health.usnews.com'" />
+</td>
+</tr>
+
+<tr>
+<td>
+<table cellpadding="2" style="border:0; width:100%; border-spacing:0">
+<tr class="m">
+<td colspan="3" style="text-align:center; padding:8pt" >
+Page <strong>4</strong> from <strong>4</strong>
+</td>
+</tr>
+<tr class="column">
+<td style="width:70%; text-align:left">Item</td>
+<td style="width:18%; text-align:center">Creator</td>
+<td style="width:12%; text-align:center">Published</td>
+</tr>
+
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/71/photos-take-a-tour-of-st-jude-children-s-research-hospital" title="From health.usnews.com">Photos: Take a Tour of St. Jude Children's Research Hospital</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Brett Ziegler
+</td>
+<td class="item" style="text-align:center">
+23 Sep 2015 13:00 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/70/an-early-defense-against-alzheimer-s-disease" title="From health.usnews.com">An Early Defense Against Alzheimer's Disease</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Cathie Gandel
+</td>
+<td class="item" style="text-align:center">
+18 Sep 2015 17:20 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/69/sepsis-the-little-discussed-national-crisis" title="From health.usnews.com">Sepsis: The Little-Discussed National Crisis</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kimberly Leonard
+</td>
+<td class="item" style="text-align:center">
+17 Sep 2015 11:00 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/68/3-d-printing-to-the-rescue" title="From health.usnews.com">3-D Printing to the Rescue</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Steve Sternberg
+</td>
+<td class="item" style="text-align:center">
+16 Sep 2015 14:54 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/67/the-travel-trend-in-health-care" title="From health.usnews.com">The Travel Trend in Health Care</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Beth Howard
+</td>
+<td class="item" style="text-align:center">
+15 Sep 2015 00:46 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/66/when-the-hospital-is-boss-that-s-where-doctors-patients-go" title="From health.usnews.com">When the Hospital Is Boss, That's Where Doctors' Patients Go</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kaiser Health News
+</td>
+<td class="item" style="text-align:center">
+10 Sep 2015 17:20 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/65/doctoring-from-a-distance" title="From health.usnews.com">Doctoring From a Distance</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Deborah Kotz
+</td>
+<td class="item" style="text-align:center">
+09 Sep 2015 17:54 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/64/hospitals-are-in-the-business-of-prevention" title="From health.usnews.com">Hospitals Are in the Business of Prevention</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Christopher J. Gearon
+</td>
+<td class="item" style="text-align:center">
+08 Sep 2015 19:32 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/63/study-doctor-owned-hospitals-are-not-cherry-picking-patients" title="From health.usnews.com">Study: Doctor-Owned Hospitals Are Not Cherry-Picking Patients</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kaiser Health News
+</td>
+<td class="item" style="text-align:center">
+08 Sep 2015 14:24 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/62/patient-of-the-future" title="From health.usnews.com">Patient of the Future</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Eric Topol
+</td>
+<td class="item" style="text-align:center">
+02 Sep 2015 13:00 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/61/some-hospitals-boost-health-by-preventing-violence-attacking-social-determinants" title="From health.usnews.com">Some Hospitals Boost Health by Preventing Violence, Attacking Social Determinants</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Christopher J. Gearon
+</td>
+<td class="item" style="text-align:center">
+24 Aug 2015 18:54 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/60/op-ed-a-new-prescription-for-the-health-care-industry-fresh-food" title="From health.usnews.com">Op-Ed: A New Prescription for the Health Care Industry? Fresh Food</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Richard Schenkel
+</td>
+<td class="item" style="text-align:center">
+14 Aug 2015 20:58 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/59/half-of-nation-s-hospitals-fail-again-to-escape-medicare-s-readmission-penalties" title="From health.usnews.com">Half of Nation's Hospitals Fail Again to Escape Medicare's Readmission Penalties</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kaiser Health News
+</td>
+<td class="item" style="text-align:center">
+05 Aug 2015 16:02 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/58/health-care-industry-rethinks-leadership-delivery-of-care" title="From health.usnews.com">Health Care Industry Rethinks Leadership, Delivery of Care</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Steve Sternberg
+</td>
+<td class="item" style="text-align:center">
+05 Aug 2015 14:08 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/57/new-paper-explores-how-precision-medicine-can-flourish" title="From health.usnews.com">New Paper Explores How Precision Medicine Can Flourish</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kimberly Leonard
+</td>
+<td class="item" style="text-align:center">
+23 Jul 2015 19:13 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/56/how-much-does-it-cost-to-have-a-baby" title="From health.usnews.com">How Much Does it Cost to Have a Baby?</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kaiser Health News
+</td>
+<td class="item" style="text-align:center">
+21 Jul 2015 18:52 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/55/the-honor-roll-of-best-hospitals-2015-16" title="From health.usnews.com">The Honor Roll of Best Hospitals 2015-16</a></strong>
+<br/><strong>Categories</strong>: Massachusetts
+</td>
+<td class="item" style="text-align:center">
+Avery Comarow
+</td>
+<td class="item" style="text-align:center">
+21 Jul 2015 04:01 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/54/which-practitioner-do-i-see-and-when" title="From health.usnews.com">Which Practitioner Do I See, and When?</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Samantha Costa
+</td>
+<td class="item" style="text-align:center">
+21 Jul 2015 04:01 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/53/best-hospitals-2015-16-guide-to-the-terms" title="From health.usnews.com">Best Hospitals 2015-16: Guide to the Terms</a></strong>
+</td>
+<td class="item" style="text-align:center">
+U.S. News Staff
+</td>
+<td class="item" style="text-align:center">
+21 Jul 2015 04:01 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/52/can-your-community-hospital-handle-this" title="From health.usnews.com">Can Your Community Hospital Handle … This?</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Lisa Esposito
+</td>
+<td class="item" style="text-align:center">
+21 Jul 2015 04:01 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/51/what-to-do-during-a-mental-health-crisis" title="From health.usnews.com">What to Do During a Mental Health Crisis</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Anna Medaris Miller
+</td>
+<td class="item" style="text-align:center">
+21 Jul 2015 04:01 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/50/best-hospitals-2015-16-an-overview" title="From health.usnews.com">Best Hospitals 2015-16: an Overview</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Ben Harder
+</td>
+<td class="item" style="text-align:center">
+21 Jul 2015 04:01 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/49/when-insurance-denies-your-hospital-upgrade" title="From health.usnews.com">When Insurance Denies Your Hospital Upgrade</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Lisa Esposito
+</td>
+<td class="item" style="text-align:center">
+21 Jul 2015 04:01 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/redirect/item/48/hospitals-have-little-to-gain-from-new-payment-models" title="From health.usnews.com">Hospitals Have Little to Gain From New Payment Models</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kimberly Leonard
+</td>
+<td class="item" style="text-align:center">
+17 Jul 2015 19:33 GMT
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr class="m">
+<td style="padding:8pt; font-size:larger; text-align:center">
+Pages:
+[<strong><a href="/items/source/health.usnews.com">&nbsp;1&nbsp;</a></strong>]
+<strong> ... </strong>
+[<strong><a href="/items/source/health.usnews.com/list/2">&nbsp;2&nbsp;</a></strong>]
+[<strong><a href="/items/source/health.usnews.com/list/3">&nbsp;3&nbsp;</a></strong>]
+<strong>=4=</strong>
+</td>
+</tr>
+</table>
+<!-- END View/Pages/items.html -->
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="center">
+
+<!-- BEGIN View/bottom.html -->
+<table class="m" cellpadding="0" style="border:0; width:100%; border-spacing:0">
+<tr>
+<td class="header" colspan="3" id="items_by_skills">
+Items by Categories
+</td>
+</tr>
+
+<tr>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/items/filter/AL"><strong>Alabama</strong></a><br/>
+<a href="/items/filter/AK"><strong>Alaska</strong></a><br/>
+<a href="/items/filter/AZ"><strong>Arizona</strong></a><br/>
+<a href="/items/filter/AR"><strong>Arkansas</strong></a><br/>
+<a href="/items/filter/CA"><strong>California</strong></a><br/>
+<a href="/items/filter/CO"><strong>Colorado</strong></a><br/>
+<a href="/items/filter/CT"><strong>Connecticut</strong></a><br/>
+<a href="/items/filter/DE"><strong>Delaware</strong></a><br/>
+<a href="/items/filter/FL"><strong>Florida</strong></a><br/>
+<a href="/items/filter/GA"><strong>Georgia</strong></a><br/>
+<a href="/items/filter/HI"><strong>Hawaii</strong></a><br/>
+<a href="/items/filter/IL"><strong>Illinois</strong></a><br/>
+<a href="/items/filter/IN"><strong>Indiana</strong></a><br/>
+<a href="/items/filter/IA"><strong>Iowa</strong></a><br/>
+<a href="/items/filter/KS"><strong>Kansas</strong></a><br/>
+<a href="/items/filter/KY"><strong>Kentucky</strong></a><br/>
+<a href="/items/filter/LA"><strong>Louisiana</strong></a><br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/items/filter/MA"><strong>Massachusetts</strong></a><br/>
+<a href="/items/filter/MI"><strong>Michigan</strong></a><br/>
+<a href="/items/filter/MN"><strong>Minnesota</strong></a><br/>
+<a href="/items/filter/MS"><strong>Mississippi</strong></a><br/>
+<a href="/items/filter/MO"><strong>Missouri</strong></a><br/>
+<a href="/items/filter/NV"><strong>Nevada</strong></a><br/>
+<a href="/items/filter/NM"><strong>New Mexico</strong></a><br/>
+<a href="/items/filter/NY"><strong>New York</strong></a><br/>
+<a href="/items/filter/NC"><strong>North Carolina</strong></a><br/>
+<a href="/items/filter/OH"><strong>Ohio</strong></a><br/>
+<a href="/items/filter/OK"><strong>Oklahoma</strong></a><br/>
+<a href="/items/filter/OR"><strong>Oregon</strong></a><br/>
+<a href="/items/filter/TN"><strong>Tennessee</strong></a><br/>
+<a href="/items/filter/TX"><strong>Texas</strong></a><br/>
+<a href="/items/filter/UT"><strong>Utah</strong></a><br/>
+<a href="/items/filter/VA"><strong>Virginia</strong></a><br/>
+<a href="/items/filter/WA"><strong>Washington</strong></a><br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/items/filter/WI"><strong>Wisconsin</strong></a><br/>
+<a href="/items/filter/WY"><strong>Wyoming</strong></a><br/>
+<a href="/items/filter/PR"><strong>Puerto Rico</strong></a><br/>
+<a href="/items/filter/Britain"><strong>World - Britain</strong></a><br/>
+<a href="/items/filter/Canada"><strong>World - Canada</strong></a><br/>
+<a href="/items/filter/China"><strong>World - China</strong></a><br/>
+<a href="/items/filter/Czechia"><strong>World - Czech Republic</strong></a><br/>
+<a href="/items/filter/France"><strong>World - France</strong></a><br/>
+<a href="/items/filter/Germany"><strong>World - Germany</strong></a><br/>
+<a href="/items/filter/Iran"><strong>World - Iran</strong></a><br/>
+<a href="/items/filter/Mexico"><strong>World - Mexico</strong></a><br/>
+<a href="/items/filter/Netherlands"><strong>World - Netherlands</strong></a><br/>
+<a href="/items/filter/Poland"><strong>World - Poland</strong></a><br/>
+<a href="/items/filter/Russia"><strong>World - Russia</strong></a><br/>
+<a href="/items/filter/South Korea"><strong>World - South Korea</strong></a><br/>
+<a href="/items/filter/Scotland"><strong>World - Scotland</strong></a><br/>
+</td>
+</tr>
+
+</table>
+<!-- END View/bottom.html -->
+
+</td>
+</tr>
+
+<tr>
+<td class="header center middle" style="padding:4pt">
+Copyright &copy; 2020 <strong><a href="/">Buddy Fetcher</a></strong><br/>
+<small>Powered by <a href="https://github.com/buddylancer/fetcher.php">Buddy Fetcher</a></small>
+</td>
+</tr>
+</table>
+</body>
+</html>
+<!-- END View/index.html -->

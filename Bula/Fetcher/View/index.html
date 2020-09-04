@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>[#Title]</title>
+        <meta name="keywords" content="[#Keywords]" />
+        <meta name="description" content="[#Description]" />
+        <link  rel="styleSheet" type="text/css" href="[#Styles].css" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    </head>
+
+<!--#if [#Is_Mobile]-->
+<body class="out" style="padding-top:1pt; padding-left:1pt;">
+    <table class="out" cellpadding="0" style="border:0; width:100%; margin-left:0; margin-right:0; padding:0;">
+<!--#end if-->
+<!--#if ![#Is_Mobile]-->
+<body class="out" style="padding-top:5pt; padding-left:5pt;">
+    <table class="out" cellpadding="0" style="border:0; width:970px; margin-left:auto; margin-right:auto; padding:0;">
+<!--#end if-->
+        <tr>
+            <td class="center top">
+                [#Top]
+            </td>
+        </tr>
+        <tr>
+            <td class="top" style="width:100%; height:100%">
+                <table cellpadding="0" style="width:100%; height:100%; border-spacing:0">
+                    <!--#if [#Menu]-->
+                    <tr>
+                        <td class="top">
+                            [#Menu]
+                        </td>
+                    </tr>
+                    <!--#end if-->
+                    
+                    <tr class="m">
+                        <td class="top" style="height:100%">
+                            [#Page]
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!--#if [#Bottom]-->
+        <tr>
+            <td class="center">
+                [#Bottom]
+            </td>
+        </tr>
+        <!--#end if-->
+
+        <tr>
+            <td class="header center middle" style="padding:4pt">
+                Copyright &copy; 2020 <strong><a href="[#Top_Dir]">[#Site_Name]</a></strong><br/>
+                <small>Powered by <a href="https://github.com/buddylancer/fetcher.php">Buddy Fetcher</a></small>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
