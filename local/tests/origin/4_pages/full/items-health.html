@@ -46,10 +46,10 @@
 <tr>
 <td class="menu center" style="padding:2pt; white-space:nowrap;">
  <a href="/">Home</a>
- &bull; <a href="/index.php?p=items">Browse Items</a>
+ &bull; <a href="/?p=items">Browse Items</a>
  &bull; <a href="#items_by_skills">Items by Categories</a>
  &bull; <a href="#read_rss_feeds">Read RSS Feeds</a>
- &bull; <a href="/index.php?p=sources">Sources</a>
+ &bull; <a href="/?p=sources">Sources</a>
 </td>
 </tr>
 </table>
@@ -118,11 +118,11 @@ Time period:
 function func_submit() {
 var frm = document.forms['page_submit'];
 if (frm['source'].selectedIndex == 0) {
-window.location.assign('/index.php?p=items');
+window.location.assign('/?p=items');
 return false;
 }
 var source = frm['source'].options[frm['source'].selectedIndex].value;
-window.location.assign('/index.php?p=items&source=' + source);
+window.location.assign('/?p=items&source=' + source);
 return false;
 }
 </script>
@@ -158,7 +158,7 @@ Page <strong>1</strong> from <strong>4</strong>
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=146&title=7-myths-about-caregiving-costs" title="From health.usnews.com">7 Myths About Caregiving Costs</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=146&title=7-myths-about-caregiving-costs" title="From health.usnews.com">7 Myths About Caregiving Costs</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Rachel Hartman
@@ -170,7 +170,7 @@ Rachel Hartman
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=145&title=what-is-a-health-savings-account" title="From health.usnews.com">What Is a Health Savings Account?</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=145&title=what-is-a-health-savings-account" title="From health.usnews.com">What Is a Health Savings Account?</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Rachel Hartman
@@ -182,7 +182,7 @@ Rachel Hartman
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=144&title=here-s-the-difference-between-flexibility-and-mobility-and-why-it-matters" title="From health.usnews.com">Here's the Difference Between Flexibility and Mobility – and Why It Matters</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=144&title=here-s-the-difference-between-flexibility-and-mobility-and-why-it-matters" title="From health.usnews.com">Here's the Difference Between Flexibility and Mobility – and Why It Matters</a></strong>
 </td>
 <td class="item" style="text-align:center">
 K. Aleisha Fetters
@@ -194,7 +194,7 @@ K. Aleisha Fetters
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=143&title=how-the-health-care-debate-is-impacting-medicare" title="From health.usnews.com">How the Health Care Debate Is Impacting Medicare</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=143&title=how-the-health-care-debate-is-impacting-medicare" title="From health.usnews.com">How the Health Care Debate Is Impacting Medicare</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Lisa Zamosky
@@ -206,7 +206,7 @@ Lisa Zamosky
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=142&title=3-ways-to-track-your-body-composition-that-are-better-than-bmi" title="From health.usnews.com">3 Ways to Track Your Body Composition That Are Better Than BMI</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=142&title=3-ways-to-track-your-body-composition-that-are-better-than-bmi" title="From health.usnews.com">3 Ways to Track Your Body Composition That Are Better Than BMI</a></strong>
 </td>
 <td class="item" style="text-align:center">
 K. Aleisha Fetters
@@ -218,7 +218,7 @@ K. Aleisha Fetters
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=141&title=how-much-do-steps-per-day-really-matter" title="From health.usnews.com">How Much Do Steps Per Day Really Matter?</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=141&title=how-much-do-steps-per-day-really-matter" title="From health.usnews.com">How Much Do Steps Per Day Really Matter?</a></strong>
 </td>
 <td class="item" style="text-align:center">
 K. Aleisha Fetters
@@ -230,7 +230,7 @@ K. Aleisha Fetters
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=140&title=is-your-running-habit-deserving-of-a-beer" title="From health.usnews.com">Is Your Running Habit Deserving of a Beer?</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=140&title=is-your-running-habit-deserving-of-a-beer" title="From health.usnews.com">Is Your Running Habit Deserving of a Beer?</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Michael O. Schroeder
@@ -242,7 +242,7 @@ Michael O. Schroeder
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=139&title=abdominal-aortic-aneurysm-emergency-or-not" title="From health.usnews.com">Abdominal Aortic Aneurysm: Emergency or Not?</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=139&title=abdominal-aortic-aneurysm-emergency-or-not" title="From health.usnews.com">Abdominal Aortic Aneurysm: Emergency or Not?</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Lisa Esposito
@@ -254,7 +254,7 @@ Lisa Esposito
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=138&title=high-performing-hospitals-in-9-procedures-and-conditions" title="From health.usnews.com">High Performing Hospitals in 9 Procedures and Conditions</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=138&title=high-performing-hospitals-in-9-procedures-and-conditions" title="From health.usnews.com">High Performing Hospitals in 9 Procedures and Conditions</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Avery Comarow
@@ -266,7 +266,7 @@ Avery Comarow
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=137&title=what-to-know-before-undergoing-heart-valve-replacement-surgery" title="From health.usnews.com">What to Know Before Undergoing Heart Valve Replacement Surgery</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=137&title=what-to-know-before-undergoing-heart-valve-replacement-surgery" title="From health.usnews.com">What to Know Before Undergoing Heart Valve Replacement Surgery</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Anna Medaris Miller
@@ -278,7 +278,7 @@ Anna Medaris Miller
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=136&title=everything-you-wanted-to-know-about-recovering-from-colorectal-surgery" title="From health.usnews.com">Everything You Wanted to Know About Recovering from Colorectal Surgery</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=136&title=everything-you-wanted-to-know-about-recovering-from-colorectal-surgery" title="From health.usnews.com">Everything You Wanted to Know About Recovering from Colorectal Surgery</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Anna Medaris Miller
@@ -290,7 +290,7 @@ Anna Medaris Miller
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=135&title=what-to-look-for-in-a-hospital-if-you-need-lung-cancer-surgery" title="From health.usnews.com">What to Look for in a Hospital if You Need Lung Cancer Surgery</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=135&title=what-to-look-for-in-a-hospital-if-you-need-lung-cancer-surgery" title="From health.usnews.com">What to Look for in a Hospital if You Need Lung Cancer Surgery</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Lisa Esposito
@@ -302,7 +302,7 @@ Lisa Esposito
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=134&title=abdominal-aortic-aneurysm-when-it-s-surgery-time" title="From health.usnews.com">Abdominal Aortic Aneurysm: When It's Surgery Time</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=134&title=abdominal-aortic-aneurysm-when-it-s-surgery-time" title="From health.usnews.com">Abdominal Aortic Aneurysm: When It's Surgery Time</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Lisa Esposito
@@ -314,7 +314,7 @@ Lisa Esposito
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=133&title=the-best-ways-for-nursing-home-residents-to-stay-active" title="From health.usnews.com">The Best Ways for Nursing Home Residents to Stay Active</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=133&title=the-best-ways-for-nursing-home-residents-to-stay-active" title="From health.usnews.com">The Best Ways for Nursing Home Residents to Stay Active</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Michael O. Schroeder
@@ -326,7 +326,7 @@ Michael O. Schroeder
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=132&title=how-children-s-hospitals-are-helping-kids-with-cancer-be-kids" title="From health.usnews.com">How Children's Hospitals Are Helping Kids With Cancer Be Kids</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=132&title=how-children-s-hospitals-are-helping-kids-with-cancer-be-kids" title="From health.usnews.com">How Children's Hospitals Are Helping Kids With Cancer Be Kids</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Anna Medaris Miller
@@ -338,7 +338,7 @@ Anna Medaris Miller
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=131&title=i-survived-childhood-cancer-now-what" title="From health.usnews.com">I Survived Childhood Cancer. Now What?</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=131&title=i-survived-childhood-cancer-now-what" title="From health.usnews.com">I Survived Childhood Cancer. Now What?</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Michael O. Schroeder
@@ -350,7 +350,7 @@ Michael O. Schroeder
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=130&title=proton-beam-radiation-a-family-decision" title="From health.usnews.com">Proton Beam Radiation: a Family Decision</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=130&title=proton-beam-radiation-a-family-decision" title="From health.usnews.com">Proton Beam Radiation: a Family Decision</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Lisa Esposito
@@ -362,7 +362,7 @@ Lisa Esposito
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=129&title=the-promise-and-limits-of-pediatric-proton-radiation" title="From health.usnews.com">The Promise (and Limits) of Pediatric Proton Radiation</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=129&title=the-promise-and-limits-of-pediatric-proton-radiation" title="From health.usnews.com">The Promise (and Limits) of Pediatric Proton Radiation</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Lisa Esposito
@@ -374,7 +374,7 @@ Lisa Esposito
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=128&title=infographic-cancer-in-our-children-by-the-numbers" title="From health.usnews.com">Infographic: Cancer in Our Children – By the Numbers</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=128&title=infographic-cancer-in-our-children-by-the-numbers" title="From health.usnews.com">Infographic: Cancer in Our Children – By the Numbers</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Michael O. Schroeder
@@ -386,7 +386,7 @@ Michael O. Schroeder
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=127&title=infographic-why-do-kids-even-get-cancer" title="From health.usnews.com">Infographic: Why Do Kids Even Get Cancer?</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=127&title=infographic-why-do-kids-even-get-cancer" title="From health.usnews.com">Infographic: Why Do Kids Even Get Cancer?</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Anna Medaris Miller
@@ -398,7 +398,7 @@ Anna Medaris Miller
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=126&title=hospital-groups-debate-how-to-grade-quality-of-care" title="From health.usnews.com">Hospital Groups Debate How to Grade Quality of Care</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=126&title=hospital-groups-debate-how-to-grade-quality-of-care" title="From health.usnews.com">Hospital Groups Debate How to Grade Quality of Care</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Steve Sternberg
@@ -410,7 +410,7 @@ Steve Sternberg
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=125&title=study-some-hospitals-are-better-at-reacting-to-cardiac-arrest-than-others" title="From health.usnews.com">Study: Some Hospitals Are Better at Reacting to Cardiac Arrest Than Others</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=125&title=study-some-hospitals-are-better-at-reacting-to-cardiac-arrest-than-others" title="From health.usnews.com">Study: Some Hospitals Are Better at Reacting to Cardiac Arrest Than Others</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Kimberly Leonard
@@ -422,7 +422,7 @@ Kimberly Leonard
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=124&title=amid-international-emergency-u-s-hospitals-prepare-for-zika" title="From health.usnews.com">Amid International Emergency, U.S. Hospitals Prepare for Zika</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=124&title=amid-international-emergency-u-s-hospitals-prepare-for-zika" title="From health.usnews.com">Amid International Emergency, U.S. Hospitals Prepare for Zika</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Kimberly Leonard
@@ -434,7 +434,7 @@ Kimberly Leonard
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=123&title=op-ed-how-hospitals-can-succeed-with-episode-based-bundled-payments" title="From health.usnews.com">Op-ed: How Hospitals Can Succeed With Episode-Based Bundled Payments</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=123&title=op-ed-how-hospitals-can-succeed-with-episode-based-bundled-payments" title="From health.usnews.com">Op-ed: How Hospitals Can Succeed With Episode-Based Bundled Payments</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Stephanie Hines
@@ -446,7 +446,7 @@ Stephanie Hines
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=122&title=testing-genetically-modified-mitochondrial-dna-permitted" title="From health.usnews.com">Testing Genetically Modified Mitochondrial DNA Permitted</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=122&title=testing-genetically-modified-mitochondrial-dna-permitted" title="From health.usnews.com">Testing Genetically Modified Mitochondrial DNA Permitted</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Allyson Chiu
@@ -463,10 +463,10 @@ Allyson Chiu
 <td style="padding:8pt; font-size:larger; text-align:center">
 Pages:
 <strong>=1=</strong>
-[<strong><a href="/index.php?p=items&amp;source=health.usnews.com&list=2">&nbsp;2&nbsp;</a></strong>]
-[<strong><a href="/index.php?p=items&amp;source=health.usnews.com&list=3">&nbsp;3&nbsp;</a></strong>]
+[<strong><a href="/?p=items&amp;source=health.usnews.com&list=2">&nbsp;2&nbsp;</a></strong>]
+[<strong><a href="/?p=items&amp;source=health.usnews.com&list=3">&nbsp;3&nbsp;</a></strong>]
 <strong> ... </strong>
-[<strong><a href="/index.php?p=items&amp;source=health.usnews.com&list=4">&nbsp;4&nbsp;</a></strong>]
+[<strong><a href="/?p=items&amp;source=health.usnews.com&list=4">&nbsp;4&nbsp;</a></strong>]
 </td>
 </tr>
 </table>
@@ -490,60 +490,60 @@ Items by Categories
 
 <tr>
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
-<a href="/index.php?p=items&filter=AL">Items for '<strong>Alabama</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=AK">Items for '<strong>Alaska</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=AZ">Items for '<strong>Arizona</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=AR">Items for '<strong>Arkansas</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=CA">Items for '<strong>California</strong>'</a> (19)<br/>
-<a href="/index.php?p=items&filter=CO">Items for '<strong>Colorado</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=CT">Items for '<strong>Connecticut</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=DE">Items for '<strong>Delaware</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=FL">Items for '<strong>Florida</strong>'</a> (9)<br/>
-<a href="/index.php?p=items&filter=GA">Items for '<strong>Georgia</strong>'</a> (6)<br/>
-<a href="/index.php?p=items&filter=HI">Items for '<strong>Hawaii</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=IL">Items for '<strong>Illinois</strong>'</a> (5)<br/>
-<a href="/index.php?p=items&filter=IN">Items for '<strong>Indiana</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=IA">Items for '<strong>Iowa</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=KS">Items for '<strong>Kansas</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=KY">Items for '<strong>Kentucky</strong>'</a> (4)<br/>
-<a href="/index.php?p=items&filter=LA">Items for '<strong>Louisiana</strong>'</a> (8)<br/>
+<a href="/?p=items&filter=AL">Items for '<strong>Alabama</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=AK">Items for '<strong>Alaska</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=AZ">Items for '<strong>Arizona</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=AR">Items for '<strong>Arkansas</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=CA">Items for '<strong>California</strong>'</a> (19)<br/>
+<a href="/?p=items&filter=CO">Items for '<strong>Colorado</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=CT">Items for '<strong>Connecticut</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=DE">Items for '<strong>Delaware</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=FL">Items for '<strong>Florida</strong>'</a> (9)<br/>
+<a href="/?p=items&filter=GA">Items for '<strong>Georgia</strong>'</a> (6)<br/>
+<a href="/?p=items&filter=HI">Items for '<strong>Hawaii</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=IL">Items for '<strong>Illinois</strong>'</a> (5)<br/>
+<a href="/?p=items&filter=IN">Items for '<strong>Indiana</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=IA">Items for '<strong>Iowa</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=KS">Items for '<strong>Kansas</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=KY">Items for '<strong>Kentucky</strong>'</a> (4)<br/>
+<a href="/?p=items&filter=LA">Items for '<strong>Louisiana</strong>'</a> (8)<br/>
 </td>
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
-<a href="/index.php?p=items&filter=MA">Items for '<strong>Massachusetts</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=MI">Items for '<strong>Michigan</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=MN">Items for '<strong>Minnesota</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=MS">Items for '<strong>Mississippi</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=MO">Items for '<strong>Missouri</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=NV">Items for '<strong>Nevada</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=NM">Items for '<strong>New Mexico</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=NY">Items for '<strong>New York</strong>'</a> (6)<br/>
-<a href="/index.php?p=items&filter=NC">Items for '<strong>North Carolina</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=OH">Items for '<strong>Ohio</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=OK">Items for '<strong>Oklahoma</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=OR">Items for '<strong>Oregon</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=TN">Items for '<strong>Tennessee</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=TX">Items for '<strong>Texas</strong>'</a> (7)<br/>
-<a href="/index.php?p=items&filter=UT">Items for '<strong>Utah</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=VA">Items for '<strong>Virginia</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=WA">Items for '<strong>Washington</strong>'</a> (8)<br/>
+<a href="/?p=items&filter=MA">Items for '<strong>Massachusetts</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=MI">Items for '<strong>Michigan</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=MN">Items for '<strong>Minnesota</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=MS">Items for '<strong>Mississippi</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=MO">Items for '<strong>Missouri</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=NV">Items for '<strong>Nevada</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=NM">Items for '<strong>New Mexico</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=NY">Items for '<strong>New York</strong>'</a> (6)<br/>
+<a href="/?p=items&filter=NC">Items for '<strong>North Carolina</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=OH">Items for '<strong>Ohio</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=OK">Items for '<strong>Oklahoma</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=OR">Items for '<strong>Oregon</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=TN">Items for '<strong>Tennessee</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=TX">Items for '<strong>Texas</strong>'</a> (7)<br/>
+<a href="/?p=items&filter=UT">Items for '<strong>Utah</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=VA">Items for '<strong>Virginia</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=WA">Items for '<strong>Washington</strong>'</a> (8)<br/>
 </td>
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
-<a href="/index.php?p=items&filter=WI">Items for '<strong>Wisconsin</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=WY">Items for '<strong>Wyoming</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=PR">Items for '<strong>Puerto Rico</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=Britain">Items for '<strong>World - Britain</strong>'</a> (4)<br/>
-<a href="/index.php?p=items&filter=Canada">Items for '<strong>World - Canada</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=China">Items for '<strong>World - China</strong>'</a> (8)<br/>
-<a href="/index.php?p=items&filter=Czechia">Items for '<strong>World - Czech Republic</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=France">Items for '<strong>World - France</strong>'</a> (5)<br/>
-<a href="/index.php?p=items&filter=Germany">Items for '<strong>World - Germany</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=Iran">Items for '<strong>World - Iran</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=Mexico">Items for '<strong>World - Mexico</strong>'</a> (6)<br/>
-<a href="/index.php?p=items&filter=Netherlands">Items for '<strong>World - Netherlands</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=Poland">Items for '<strong>World - Poland</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=Russia">Items for '<strong>World - Russia</strong>'</a> (9)<br/>
-<a href="/index.php?p=items&filter=South Korea">Items for '<strong>World - South Korea</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=Scotland">Items for '<strong>World - Scotland</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=WI">Items for '<strong>Wisconsin</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=WY">Items for '<strong>Wyoming</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=PR">Items for '<strong>Puerto Rico</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=Britain">Items for '<strong>World - Britain</strong>'</a> (4)<br/>
+<a href="/?p=items&filter=Canada">Items for '<strong>World - Canada</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=China">Items for '<strong>World - China</strong>'</a> (8)<br/>
+<a href="/?p=items&filter=Czechia">Items for '<strong>World - Czech Republic</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=France">Items for '<strong>World - France</strong>'</a> (5)<br/>
+<a href="/?p=items&filter=Germany">Items for '<strong>World - Germany</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=Iran">Items for '<strong>World - Iran</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=Mexico">Items for '<strong>World - Mexico</strong>'</a> (6)<br/>
+<a href="/?p=items&filter=Netherlands">Items for '<strong>World - Netherlands</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=Poland">Items for '<strong>World - Poland</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=Russia">Items for '<strong>World - Russia</strong>'</a> (9)<br/>
+<a href="/?p=items&filter=South Korea">Items for '<strong>World - South Korea</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=Scotland">Items for '<strong>World - Scotland</strong>'</a> (1)<br/>
 </td>
 </tr>
 

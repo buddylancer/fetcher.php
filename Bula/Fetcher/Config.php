@@ -16,7 +16,7 @@ class Config {
     /** Exactly the same as RewriteBase in .htaccess */
     const TOP_DIR = "/";
     /** Index page name */
-    const INDEX_PAGE = "index.php";
+    const INDEX_PAGE = "";
     /** Action page name */
     const ACTION_PAGE = "action.php";
     /** RSS-feeds page name */
@@ -55,6 +55,7 @@ class Config {
     const XML_DTS = "D, d M Y H:i:s \G\M\T";
     /** Date/time format for DB operations */
     const SQL_DTS = "Y-m-d H:i:s";
+    const LOG_DTS = "Y-m-d_H-i-s";
 
     // Fill these fields by your site data
     /** Site name */

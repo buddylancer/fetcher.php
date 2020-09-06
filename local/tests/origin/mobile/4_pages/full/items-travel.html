@@ -41,9 +41,9 @@
 <tr>
 <td class="menu center" style="padding:2pt; white-space:nowrap;">
  <a href="/">Home</a>
- &bull; <a href="/index.php?p=items">Items</a>
+ &bull; <a href="/?p=items">Items</a>
  &bull; <a href="#items_by_skills">By Categories</a>
- &bull; <a href="/index.php?p=sources">Sources</a>
+ &bull; <a href="/?p=sources">Sources</a>
 </td>
 </tr>
 </table>
@@ -113,11 +113,11 @@ Time period:
 function func_submit() {
 var frm = document.forms['page_submit'];
 if (frm['source'].selectedIndex == 0) {
-window.location.assign('/index.php?p=items');
+window.location.assign('/?p=items');
 return false;
 }
 var source = frm['source'].options[frm['source'].selectedIndex].value;
-window.location.assign('/index.php?p=items&source=' + source);
+window.location.assign('/?p=items&source=' + source);
 return false;
 }
 </script>
@@ -153,7 +153,7 @@ Page <strong>1</strong> from <strong>4</strong>
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=545&title=the-best-camping-gear-to-buy-for-your-next-adventure" title="From travel.usnews.com">The Best Camping Gear to Buy for Your Next Adventure</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=545&title=the-best-camping-gear-to-buy-for-your-next-adventure" title="From travel.usnews.com">The Best Camping Gear to Buy for Your Next Adventure</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Zach Watson
@@ -165,7 +165,7 @@ Zach Watson
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=544&title=20-beautiful-small-towns-in-california" title="From travel.usnews.com">20 Beautiful Small Towns in California</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=544&title=20-beautiful-small-towns-in-california" title="From travel.usnews.com">20 Beautiful Small Towns in California</a></strong>
 <br/><strong>Categories</strong>: California
 </td>
 <td class="item" style="text-align:center">
@@ -178,7 +178,7 @@ Rachel Center
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=543&title=16-top-east-coast-beaches-to-visit" title="From travel.usnews.com">16 Top East Coast Beaches to Visit</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=543&title=16-top-east-coast-beaches-to-visit" title="From travel.usnews.com">16 Top East Coast Beaches to Visit</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Kyle McCarthy
@@ -190,7 +190,7 @@ Kyle McCarthy
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=542&title=rv-travel-12-tips-for-renting-an-rv" title="From travel.usnews.com">RV Travel: 12 Tips for Renting an RV</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=542&title=rv-travel-12-tips-for-renting-an-rv" title="From travel.usnews.com">RV Travel: 12 Tips for Renting an RV</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Monica Echols
@@ -202,7 +202,7 @@ Monica Echols
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=541&title=12-top-gulf-coast-beaches-to-visit" title="From travel.usnews.com">12 Top Gulf Coast Beaches to Visit</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=541&title=12-top-gulf-coast-beaches-to-visit" title="From travel.usnews.com">12 Top Gulf Coast Beaches to Visit</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Lyn Mettler
@@ -214,7 +214,7 @@ Lyn Mettler
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=540&title=the-10-best-detroit-tours" title="From travel.usnews.com">The 10 Best Detroit Tours</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=540&title=the-10-best-detroit-tours" title="From travel.usnews.com">The 10 Best Detroit Tours</a></strong>
 </td>
 <td class="item" style="text-align:center">
 John Rodwan
@@ -226,7 +226,7 @@ John Rodwan
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=539&title=12-top-family-camping-trips-ideas-and-campgrounds" title="From travel.usnews.com">12 Top Family Camping Trips, Ideas and Campgrounds</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=539&title=12-top-family-camping-trips-ideas-and-campgrounds" title="From travel.usnews.com">12 Top Family Camping Trips, Ideas and Campgrounds</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Holly Johnson
@@ -238,7 +238,7 @@ Holly Johnson
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=538&title=the-8-best-memphis-tours" title="From travel.usnews.com">The 8 Best Memphis Tours</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=538&title=the-8-best-memphis-tours" title="From travel.usnews.com">The 8 Best Memphis Tours</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Gwen Pratesi
@@ -250,7 +250,7 @@ Gwen Pratesi
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=537&title=the-10-best-kauai-boat-tours" title="From travel.usnews.com">The 10 Best Kauai Boat Tours</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=537&title=the-10-best-kauai-boat-tours" title="From travel.usnews.com">The 10 Best Kauai Boat Tours</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Lyn Mettler
@@ -262,7 +262,7 @@ Lyn Mettler
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=536&title=the-18-best-dog-friendly-beaches-in-the-u-s" title="From travel.usnews.com">The 18 Best Dog-Friendly Beaches in the U.S.</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=536&title=the-18-best-dog-friendly-beaches-in-the-u-s" title="From travel.usnews.com">The 18 Best Dog-Friendly Beaches in the U.S.</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Gwen Pratesi
@@ -274,7 +274,7 @@ Gwen Pratesi
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=535&title=the-10-best-san-antonio-tours" title="From travel.usnews.com">The 10 Best San Antonio Tours</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=535&title=the-10-best-san-antonio-tours" title="From travel.usnews.com">The 10 Best San Antonio Tours</a></strong>
 <br/><strong>Categories</strong>: Texas
 </td>
 <td class="item" style="text-align:center">
@@ -287,7 +287,7 @@ John Rodwan
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=534&title=the-11-best-salem-tours" title="From travel.usnews.com">The 11 Best Salem Tours</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=534&title=the-11-best-salem-tours" title="From travel.usnews.com">The 11 Best Salem Tours</a></strong>
 <br/><strong>Categories</strong>: Massachusetts
 </td>
 <td class="item" style="text-align:center">
@@ -300,7 +300,7 @@ Lyn Mettler
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=533&title=15-top-weekend-getaways-in-california" title="From travel.usnews.com">15 Top Weekend Getaways in California</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=533&title=15-top-weekend-getaways-in-california" title="From travel.usnews.com">15 Top Weekend Getaways in California</a></strong>
 <br/><strong>Categories</strong>: California
 </td>
 <td class="item" style="text-align:center">
@@ -313,7 +313,7 @@ Monica Echols
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=532&title=the-7-best-chicago-walking-tours" title="From travel.usnews.com">The 7 Best Chicago Walking Tours</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=532&title=the-7-best-chicago-walking-tours" title="From travel.usnews.com">The 7 Best Chicago Walking Tours</a></strong>
 <br/><strong>Categories</strong>: Illinois
 </td>
 <td class="item" style="text-align:center">
@@ -326,7 +326,7 @@ Holly Johnson
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=531&title=the-14-best-puerto-vallarta-tours" title="From travel.usnews.com">The 14 Best Puerto Vallarta Tours</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=531&title=the-14-best-puerto-vallarta-tours" title="From travel.usnews.com">The 14 Best Puerto Vallarta Tours</a></strong>
 <br/><strong>Categories</strong>: World - Mexico
 </td>
 <td class="item" style="text-align:center">
@@ -339,7 +339,7 @@ John Rodwan
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=530&title=the-12-best-atlanta-tours" title="From travel.usnews.com">The 12 Best Atlanta Tours</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=530&title=the-12-best-atlanta-tours" title="From travel.usnews.com">The 12 Best Atlanta Tours</a></strong>
 <br/><strong>Categories</strong>: Georgia
 </td>
 <td class="item" style="text-align:center">
@@ -352,7 +352,7 @@ Gwen Pratesi
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=529&title=11-cheap-memorial-day-weekend-ideas-for-fun-at-home" title="From travel.usnews.com">11 Cheap Memorial Day Weekend Ideas for Fun at Home</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=529&title=11-cheap-memorial-day-weekend-ideas-for-fun-at-home" title="From travel.usnews.com">11 Cheap Memorial Day Weekend Ideas for Fun at Home</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Lyn Mettler
@@ -364,7 +364,7 @@ Lyn Mettler
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=528&title=the-15-best-denver-tours" title="From travel.usnews.com">The 15 Best Denver Tours</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=528&title=the-15-best-denver-tours" title="From travel.usnews.com">The 15 Best Denver Tours</a></strong>
 <br/><strong>Categories</strong>: Colorado
 </td>
 <td class="item" style="text-align:center">
@@ -377,7 +377,7 @@ Lyn Mettler
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=527&title=the-8-best-dallas-tours" title="From travel.usnews.com">The 8 Best Dallas Tours</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=527&title=the-8-best-dallas-tours" title="From travel.usnews.com">The 8 Best Dallas Tours</a></strong>
 <br/><strong>Categories</strong>: Texas
 </td>
 <td class="item" style="text-align:center">
@@ -390,7 +390,7 @@ Holly Johnson
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=526&title=the-15-best-mexico-city-tours" title="From travel.usnews.com">The 15 Best Mexico City Tours</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=526&title=the-15-best-mexico-city-tours" title="From travel.usnews.com">The 15 Best Mexico City Tours</a></strong>
 <br/><strong>Categories</strong>: World - Mexico
 </td>
 <td class="item" style="text-align:center">
@@ -403,7 +403,7 @@ Gwen Pratesi
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=525&title=15-top-all-inclusive-resorts-in-florida" title="From travel.usnews.com">15 Top All-Inclusive Resorts in Florida</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=525&title=15-top-all-inclusive-resorts-in-florida" title="From travel.usnews.com">15 Top All-Inclusive Resorts in Florida</a></strong>
 <br/><strong>Categories</strong>: Florida
 </td>
 <td class="item" style="text-align:center">
@@ -416,7 +416,7 @@ Gwen Pratesi
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=524&title=the-18-best-maui-tours" title="From travel.usnews.com">The 18 Best Maui Tours</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=524&title=the-18-best-maui-tours" title="From travel.usnews.com">The 18 Best Maui Tours</a></strong>
 </td>
 <td class="item" style="text-align:center">
 John Rodwan
@@ -428,7 +428,7 @@ John Rodwan
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=523&title=17-historical-landmarks-to-see-around-the-world" title="From travel.usnews.com">17 Historical Landmarks to See Around the World</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=523&title=17-historical-landmarks-to-see-around-the-world" title="From travel.usnews.com">17 Historical Landmarks to See Around the World</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Kyle McCarthy
@@ -440,7 +440,7 @@ Kyle McCarthy
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=522&title=the-17-best-vancouver-tours" title="From travel.usnews.com">The 17 Best Vancouver Tours</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=522&title=the-17-best-vancouver-tours" title="From travel.usnews.com">The 17 Best Vancouver Tours</a></strong>
 <br/><strong>Categories</strong>: World - Canada
 </td>
 <td class="item" style="text-align:center">
@@ -453,7 +453,7 @@ Lyn Mettler
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=521&title=what-will-happen-to-my-elite-status-and-points-because-of-the-coronavirus" title="From travel.usnews.com">What Will Happen to My Elite Status and Points Because of the Coronavirus?</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=521&title=what-will-happen-to-my-elite-status-and-points-because-of-the-coronavirus" title="From travel.usnews.com">What Will Happen to My Elite Status and Points Because of the Coronavirus?</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Christine Smith
@@ -470,10 +470,10 @@ Christine Smith
 <td style="padding:8pt; font-size:larger; text-align:center">
 Pages:
 <strong>=1=</strong>
-[<strong><a href="/index.php?p=items&amp;source=travel.usnews.com&list=2">&nbsp;2&nbsp;</a></strong>]
-[<strong><a href="/index.php?p=items&amp;source=travel.usnews.com&list=3">&nbsp;3&nbsp;</a></strong>]
+[<strong><a href="/?p=items&amp;source=travel.usnews.com&list=2">&nbsp;2&nbsp;</a></strong>]
+[<strong><a href="/?p=items&amp;source=travel.usnews.com&list=3">&nbsp;3&nbsp;</a></strong>]
 <strong> ... </strong>
-[<strong><a href="/index.php?p=items&amp;source=travel.usnews.com&list=4">&nbsp;4&nbsp;</a></strong>]
+[<strong><a href="/?p=items&amp;source=travel.usnews.com&list=4">&nbsp;4&nbsp;</a></strong>]
 </td>
 </tr>
 </table>
@@ -497,60 +497,60 @@ Items by Categories
 
 <tr>
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
-<a href="/index.php?p=items&filter=AL"><strong>Alabama</strong></a><br/>
-<a href="/index.php?p=items&filter=AK"><strong>Alaska</strong></a><br/>
-<a href="/index.php?p=items&filter=AZ"><strong>Arizona</strong></a><br/>
-<a href="/index.php?p=items&filter=AR"><strong>Arkansas</strong></a><br/>
-<a href="/index.php?p=items&filter=CA"><strong>California</strong></a><br/>
-<a href="/index.php?p=items&filter=CO"><strong>Colorado</strong></a><br/>
-<a href="/index.php?p=items&filter=CT"><strong>Connecticut</strong></a><br/>
-<a href="/index.php?p=items&filter=DE"><strong>Delaware</strong></a><br/>
-<a href="/index.php?p=items&filter=FL"><strong>Florida</strong></a><br/>
-<a href="/index.php?p=items&filter=GA"><strong>Georgia</strong></a><br/>
-<a href="/index.php?p=items&filter=HI"><strong>Hawaii</strong></a><br/>
-<a href="/index.php?p=items&filter=IL"><strong>Illinois</strong></a><br/>
-<a href="/index.php?p=items&filter=IN"><strong>Indiana</strong></a><br/>
-<a href="/index.php?p=items&filter=IA"><strong>Iowa</strong></a><br/>
-<a href="/index.php?p=items&filter=KS"><strong>Kansas</strong></a><br/>
-<a href="/index.php?p=items&filter=KY"><strong>Kentucky</strong></a><br/>
-<a href="/index.php?p=items&filter=LA"><strong>Louisiana</strong></a><br/>
+<a href="/?p=items&filter=AL"><strong>Alabama</strong></a><br/>
+<a href="/?p=items&filter=AK"><strong>Alaska</strong></a><br/>
+<a href="/?p=items&filter=AZ"><strong>Arizona</strong></a><br/>
+<a href="/?p=items&filter=AR"><strong>Arkansas</strong></a><br/>
+<a href="/?p=items&filter=CA"><strong>California</strong></a><br/>
+<a href="/?p=items&filter=CO"><strong>Colorado</strong></a><br/>
+<a href="/?p=items&filter=CT"><strong>Connecticut</strong></a><br/>
+<a href="/?p=items&filter=DE"><strong>Delaware</strong></a><br/>
+<a href="/?p=items&filter=FL"><strong>Florida</strong></a><br/>
+<a href="/?p=items&filter=GA"><strong>Georgia</strong></a><br/>
+<a href="/?p=items&filter=HI"><strong>Hawaii</strong></a><br/>
+<a href="/?p=items&filter=IL"><strong>Illinois</strong></a><br/>
+<a href="/?p=items&filter=IN"><strong>Indiana</strong></a><br/>
+<a href="/?p=items&filter=IA"><strong>Iowa</strong></a><br/>
+<a href="/?p=items&filter=KS"><strong>Kansas</strong></a><br/>
+<a href="/?p=items&filter=KY"><strong>Kentucky</strong></a><br/>
+<a href="/?p=items&filter=LA"><strong>Louisiana</strong></a><br/>
 </td>
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
-<a href="/index.php?p=items&filter=MA"><strong>Massachusetts</strong></a><br/>
-<a href="/index.php?p=items&filter=MI"><strong>Michigan</strong></a><br/>
-<a href="/index.php?p=items&filter=MN"><strong>Minnesota</strong></a><br/>
-<a href="/index.php?p=items&filter=MS"><strong>Mississippi</strong></a><br/>
-<a href="/index.php?p=items&filter=MO"><strong>Missouri</strong></a><br/>
-<a href="/index.php?p=items&filter=NV"><strong>Nevada</strong></a><br/>
-<a href="/index.php?p=items&filter=NM"><strong>New Mexico</strong></a><br/>
-<a href="/index.php?p=items&filter=NY"><strong>New York</strong></a><br/>
-<a href="/index.php?p=items&filter=NC"><strong>North Carolina</strong></a><br/>
-<a href="/index.php?p=items&filter=OH"><strong>Ohio</strong></a><br/>
-<a href="/index.php?p=items&filter=OK"><strong>Oklahoma</strong></a><br/>
-<a href="/index.php?p=items&filter=OR"><strong>Oregon</strong></a><br/>
-<a href="/index.php?p=items&filter=TN"><strong>Tennessee</strong></a><br/>
-<a href="/index.php?p=items&filter=TX"><strong>Texas</strong></a><br/>
-<a href="/index.php?p=items&filter=UT"><strong>Utah</strong></a><br/>
-<a href="/index.php?p=items&filter=VA"><strong>Virginia</strong></a><br/>
-<a href="/index.php?p=items&filter=WA"><strong>Washington</strong></a><br/>
+<a href="/?p=items&filter=MA"><strong>Massachusetts</strong></a><br/>
+<a href="/?p=items&filter=MI"><strong>Michigan</strong></a><br/>
+<a href="/?p=items&filter=MN"><strong>Minnesota</strong></a><br/>
+<a href="/?p=items&filter=MS"><strong>Mississippi</strong></a><br/>
+<a href="/?p=items&filter=MO"><strong>Missouri</strong></a><br/>
+<a href="/?p=items&filter=NV"><strong>Nevada</strong></a><br/>
+<a href="/?p=items&filter=NM"><strong>New Mexico</strong></a><br/>
+<a href="/?p=items&filter=NY"><strong>New York</strong></a><br/>
+<a href="/?p=items&filter=NC"><strong>North Carolina</strong></a><br/>
+<a href="/?p=items&filter=OH"><strong>Ohio</strong></a><br/>
+<a href="/?p=items&filter=OK"><strong>Oklahoma</strong></a><br/>
+<a href="/?p=items&filter=OR"><strong>Oregon</strong></a><br/>
+<a href="/?p=items&filter=TN"><strong>Tennessee</strong></a><br/>
+<a href="/?p=items&filter=TX"><strong>Texas</strong></a><br/>
+<a href="/?p=items&filter=UT"><strong>Utah</strong></a><br/>
+<a href="/?p=items&filter=VA"><strong>Virginia</strong></a><br/>
+<a href="/?p=items&filter=WA"><strong>Washington</strong></a><br/>
 </td>
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
-<a href="/index.php?p=items&filter=WI"><strong>Wisconsin</strong></a><br/>
-<a href="/index.php?p=items&filter=WY"><strong>Wyoming</strong></a><br/>
-<a href="/index.php?p=items&filter=PR"><strong>Puerto Rico</strong></a><br/>
-<a href="/index.php?p=items&filter=Britain"><strong>World - Britain</strong></a><br/>
-<a href="/index.php?p=items&filter=Canada"><strong>World - Canada</strong></a><br/>
-<a href="/index.php?p=items&filter=China"><strong>World - China</strong></a><br/>
-<a href="/index.php?p=items&filter=Czechia"><strong>World - Czech Republic</strong></a><br/>
-<a href="/index.php?p=items&filter=France"><strong>World - France</strong></a><br/>
-<a href="/index.php?p=items&filter=Germany"><strong>World - Germany</strong></a><br/>
-<a href="/index.php?p=items&filter=Iran"><strong>World - Iran</strong></a><br/>
-<a href="/index.php?p=items&filter=Mexico"><strong>World - Mexico</strong></a><br/>
-<a href="/index.php?p=items&filter=Netherlands"><strong>World - Netherlands</strong></a><br/>
-<a href="/index.php?p=items&filter=Poland"><strong>World - Poland</strong></a><br/>
-<a href="/index.php?p=items&filter=Russia"><strong>World - Russia</strong></a><br/>
-<a href="/index.php?p=items&filter=South Korea"><strong>World - South Korea</strong></a><br/>
-<a href="/index.php?p=items&filter=Scotland"><strong>World - Scotland</strong></a><br/>
+<a href="/?p=items&filter=WI"><strong>Wisconsin</strong></a><br/>
+<a href="/?p=items&filter=WY"><strong>Wyoming</strong></a><br/>
+<a href="/?p=items&filter=PR"><strong>Puerto Rico</strong></a><br/>
+<a href="/?p=items&filter=Britain"><strong>World - Britain</strong></a><br/>
+<a href="/?p=items&filter=Canada"><strong>World - Canada</strong></a><br/>
+<a href="/?p=items&filter=China"><strong>World - China</strong></a><br/>
+<a href="/?p=items&filter=Czechia"><strong>World - Czech Republic</strong></a><br/>
+<a href="/?p=items&filter=France"><strong>World - France</strong></a><br/>
+<a href="/?p=items&filter=Germany"><strong>World - Germany</strong></a><br/>
+<a href="/?p=items&filter=Iran"><strong>World - Iran</strong></a><br/>
+<a href="/?p=items&filter=Mexico"><strong>World - Mexico</strong></a><br/>
+<a href="/?p=items&filter=Netherlands"><strong>World - Netherlands</strong></a><br/>
+<a href="/?p=items&filter=Poland"><strong>World - Poland</strong></a><br/>
+<a href="/?p=items&filter=Russia"><strong>World - Russia</strong></a><br/>
+<a href="/?p=items&filter=South Korea"><strong>World - South Korea</strong></a><br/>
+<a href="/?p=items&filter=Scotland"><strong>World - Scotland</strong></a><br/>
 </td>
 </tr>
 

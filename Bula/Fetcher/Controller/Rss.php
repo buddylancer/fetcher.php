@@ -295,7 +295,7 @@ class Rss extends Page {
         // Save content to cache (if applicable)
         if (Config::CACHE_RSS && !$count_set)
         {
-            Util::testFileFolder($cached_file);
+            Helper::testFileFolder($cached_file);
             //Helper::writeText($cached_file, Strings::concat("\xEF\xBB\xBF", $xml_content));
             Helper::writeText($cached_file, $xml_content);
         }

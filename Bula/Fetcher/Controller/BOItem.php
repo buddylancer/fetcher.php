@@ -303,7 +303,7 @@ class BOItem {
      *
      * For example:
      * "Officials: Fireworks Spark Utah Wildfire, Evacuations"
-     *    will became
+     *    will become
      * "officials-fireworks-spark-utah-wildfire-evacuations"
      */
     public function getUrlTitle($translit = false) {

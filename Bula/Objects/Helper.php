@@ -127,7 +127,7 @@ class Helper {
      * @return Boolean Result of operation (true - OK, false - error).
      */
     public static function writeText($filename, $text) {
-        file_put_contents(CAT($filename), CAT($text)) !== false;
+        return file_put_contents(CAT($filename), CAT($text)) !== false;
     }
 
 	/**
@@ -137,7 +137,7 @@ class Helper {
      * @return Boolean Result of operation (true - OK, false - error).
      */
     public static function appendText($filename, $text) {
-        file_put_contents(CAT($filename), CAT($text), FILE_APPEND) !== false;
+        return file_put_contents(CAT($filename), CAT($text), FILE_APPEND) !== false;
     }
 
     /**
@@ -156,6 +156,36 @@ class Helper {
      */
     public static function isDir($path) {
         return is_dir(CAT($path));
+    }
+
+    /**
+     * Test the chain of (sub)folder(s), create them if necessary.
+     * @param TString $folder Folder's full path.
+     */
+    public static function testFolder($folder) {
+        $chunks = $folder->split("/");
+        $pathname = null;
+        for ($n = 0; $n < SIZE($chunks); $n++) {
+            $pathname = CAT($pathname, $chunks[$n]);
+            if (!Helper::dirExists($pathname))
+                Helper::createDir($pathname);
+            $pathname = CAT($pathname, "/");
+        }
+    }
+
+    /**
+     * Test the chain of (sub)folder(s) and file, create if necessary.
+     * @param TString $filename Filename's full path
+     */
+    public static function testFileFolder($filename) {
+        $chunks = $filename->split("/");
+        $pathname = null;
+        for ($n = 0; $n < SIZE($chunks) - 1; $n++) {
+            $pathname = CAT($pathname, $chunks[$n]);
+            if (!Helper::dirExists($pathname))
+                Helper::createDir($pathname);
+            $pathname = CAT($pathname, "/");
+        }
     }
 
     /**

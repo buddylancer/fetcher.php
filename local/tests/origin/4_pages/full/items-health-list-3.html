@@ -46,10 +46,10 @@
 <tr>
 <td class="menu center" style="padding:2pt; white-space:nowrap;">
  <a href="/">Home</a>
- &bull; <a href="/index.php?p=items">Browse Items</a>
+ &bull; <a href="/?p=items">Browse Items</a>
  &bull; <a href="#items_by_skills">Items by Categories</a>
  &bull; <a href="#read_rss_feeds">Read RSS Feeds</a>
- &bull; <a href="/index.php?p=sources">Sources</a>
+ &bull; <a href="/?p=sources">Sources</a>
 </td>
 </tr>
 </table>
@@ -118,11 +118,11 @@ Time period:
 function func_submit() {
 var frm = document.forms['page_submit'];
 if (frm['source'].selectedIndex == 0) {
-window.location.assign('/index.php?p=items');
+window.location.assign('/?p=items');
 return false;
 }
 var source = frm['source'].options[frm['source'].selectedIndex].value;
-window.location.assign('/index.php?p=items&source=' + source);
+window.location.assign('/?p=items&source=' + source);
 return false;
 }
 </script>
@@ -158,7 +158,7 @@ Page <strong>3</strong> from <strong>4</strong>
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=96&title=keeping-up-with-the-clinics-how-hospitals-can-compete-with-retail-medicine" title="From health.usnews.com">Keeping Up With the Clinics: How Hospitals Can Compete With Retail Medicine</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=96&title=keeping-up-with-the-clinics-how-hospitals-can-compete-with-retail-medicine" title="From health.usnews.com">Keeping Up With the Clinics: How Hospitals Can Compete With Retail Medicine</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Alan Neuhauser
@@ -170,7 +170,7 @@ Alan Neuhauser
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=95&title=analytics-pinpoint-high-risk-patients-to-improve-and-streamline-health-care" title="From health.usnews.com">Analytics Pinpoint High-Risk Patients to Improve and Streamline Health Care</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=95&title=analytics-pinpoint-high-risk-patients-to-improve-and-streamline-health-care" title="From health.usnews.com">Analytics Pinpoint High-Risk Patients to Improve and Streamline Health Care</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Lisa Esposito
@@ -182,7 +182,7 @@ Lisa Esposito
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=94&title=a-master-class-in-value-based-care" title="From health.usnews.com">A Master Class in Value-Based Care</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=94&title=a-master-class-in-value-based-care" title="From health.usnews.com">A Master Class in Value-Based Care</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Kimberly Leonard
@@ -194,7 +194,7 @@ Kimberly Leonard
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=93&title=how-hospitals-can-improve-the-patient-experience" title="From health.usnews.com">How Hospitals Can Improve the Patient Experience</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=93&title=how-hospitals-can-improve-the-patient-experience" title="From health.usnews.com">How Hospitals Can Improve the Patient Experience</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Angela Haupt
@@ -206,7 +206,7 @@ Angela Haupt
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=92&title=telehealth-is-changing-patient-care-now" title="From health.usnews.com">Telehealth Is Changing Patient Care Now</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=92&title=telehealth-is-changing-patient-care-now" title="From health.usnews.com">Telehealth Is Changing Patient Care Now</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Samantha Costa
@@ -218,7 +218,7 @@ Samantha Costa
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=91&title=medicare-incentives-and-penalties-critical-lessons-learned" title="From health.usnews.com">Medicare Incentives and Penalties: Critical Lessons Learned</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=91&title=medicare-incentives-and-penalties-critical-lessons-learned" title="From health.usnews.com">Medicare Incentives and Penalties: Critical Lessons Learned</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Kimberly Leonard
@@ -230,7 +230,7 @@ Kimberly Leonard
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=90&title=the-power-and-potential-pitfalls-of-health-partnerships" title="From health.usnews.com">The Power – and Potential Pitfalls – of Health Partnerships</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=90&title=the-power-and-potential-pitfalls-of-health-partnerships" title="From health.usnews.com">The Power – and Potential Pitfalls – of Health Partnerships</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Alan Neuhauser
@@ -242,7 +242,7 @@ Alan Neuhauser
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=89&title=op-ed-technology-must-let-doctors-be-doctors" title="From health.usnews.com">Op-ed: Technology Must Let Doctors Be Doctors</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=89&title=op-ed-technology-must-let-doctors-be-doctors" title="From health.usnews.com">Op-ed: Technology Must Let Doctors Be Doctors</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Jonathan Bush
@@ -254,7 +254,7 @@ Jonathan Bush
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=88&title=could-digital-disruption-help-get-our-money-s-worth-from-hospitals" title="From health.usnews.com">Could Digital Disruption Help Get Our Money's Worth From Hospitals?</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=88&title=could-digital-disruption-help-get-our-money-s-worth-from-hospitals" title="From health.usnews.com">Could Digital Disruption Help Get Our Money's Worth From Hospitals?</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Kaveh Safavi
@@ -266,7 +266,7 @@ Kaveh Safavi
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=87&title=delivering-better-more-efficient-care" title="From health.usnews.com">Delivering Better, More Efficient Care</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=87&title=delivering-better-more-efficient-care" title="From health.usnews.com">Delivering Better, More Efficient Care</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Kimberly Leonard
@@ -278,7 +278,7 @@ Kimberly Leonard
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=86&title=hospitals-harnessing-data-insights-to-enhance-care" title="From health.usnews.com">Hospitals Harnessing 'Data Insights' to Enhance Care</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=86&title=hospitals-harnessing-data-insights-to-enhance-care" title="From health.usnews.com">Hospitals Harnessing 'Data Insights' to Enhance Care</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Alan Neuhauser
@@ -290,7 +290,7 @@ Alan Neuhauser
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=85&title=the-2014-hospital-of-tomorrow-conference-join-the-conversation" title="From health.usnews.com">The 2014 Hospital of Tomorrow Conference: Join the Conversation</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=85&title=the-2014-hospital-of-tomorrow-conference-join-the-conversation" title="From health.usnews.com">The 2014 Hospital of Tomorrow Conference: Join the Conversation</a></strong>
 </td>
 <td class="item" style="text-align:center">
 U.S. News Staff
@@ -302,7 +302,7 @@ U.S. News Staff
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=84&title=watch-live-from-the-2015-hospital-of-tomorrow-conference" title="From health.usnews.com">WATCH: Live From the 2015 Hospital of Tomorrow Conference</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=84&title=watch-live-from-the-2015-hospital-of-tomorrow-conference" title="From health.usnews.com">WATCH: Live From the 2015 Hospital of Tomorrow Conference</a></strong>
 </td>
 <td class="item" style="text-align:center">
 U.S. News Staff
@@ -314,7 +314,7 @@ U.S. News Staff
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=83&title=ucla-s-steinberg-innovations-in-health-care-start-with-patients-personnel" title="From health.usnews.com">UCLA's Steinberg: Innovations in Health Care Start With Patients, Personnel</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=83&title=ucla-s-steinberg-innovations-in-health-care-start-with-patients-personnel" title="From health.usnews.com">UCLA's Steinberg: Innovations in Health Care Start With Patients, Personnel</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Steve Sternberg
@@ -326,7 +326,7 @@ Steve Sternberg
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=82&title=the-2015-hospital-of-tomorrow-conference-join-the-conversation" title="From health.usnews.com">The 2015 Hospital of Tomorrow Conference: Join the Conversation</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=82&title=the-2015-hospital-of-tomorrow-conference-join-the-conversation" title="From health.usnews.com">The 2015 Hospital of Tomorrow Conference: Join the Conversation</a></strong>
 </td>
 <td class="item" style="text-align:center">
 U.S. News Staff
@@ -338,7 +338,7 @@ U.S. News Staff
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=81&title=mayo-clinic-ceo-health-care-focuses-on-outcomes-sharing-knowledge" title="From health.usnews.com">Mayo Clinic CEO: Health Care Focuses on Outcomes, Sharing Knowledge</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=81&title=mayo-clinic-ceo-health-care-focuses-on-outcomes-sharing-knowledge" title="From health.usnews.com">Mayo Clinic CEO: Health Care Focuses on Outcomes, Sharing Knowledge</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Steve Sternberg
@@ -350,7 +350,7 @@ Steve Sternberg
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=80&title=study-medical-prices-higher-in-areas-where-large-doctor-groups-dominate" title="From health.usnews.com">Study: Medical Prices Higher in Areas Where Large Doctor Groups Dominate</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=80&title=study-medical-prices-higher-in-areas-where-large-doctor-groups-dominate" title="From health.usnews.com">Study: Medical Prices Higher in Areas Where Large Doctor Groups Dominate</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Kaiser Health News
@@ -362,7 +362,7 @@ Kaiser Health News
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=79&title=a-focus-on-falls-anatomy-of-a-hospital-push-to-improve-population-health" title="From health.usnews.com">A Focus on Falls: Anatomy of a Hospital Push to Improve Population Health</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=79&title=a-focus-on-falls-anatomy-of-a-hospital-push-to-improve-population-health" title="From health.usnews.com">A Focus on Falls: Anatomy of a Hospital Push to Improve Population Health</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Christopher J. Gearon
@@ -374,7 +374,7 @@ Christopher J. Gearon
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=78&title=johns-hopkins-medicine-patient-satisfaction-is-key-to-future-of-health-care" title="From health.usnews.com">Johns Hopkins Medicine: Patient Satisfaction Is Key to Future of Health Care</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=78&title=johns-hopkins-medicine-patient-satisfaction-is-key-to-future-of-health-care" title="From health.usnews.com">Johns Hopkins Medicine: Patient Satisfaction Is Key to Future of Health Care</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Steve Sternberg
@@ -386,7 +386,7 @@ Steve Sternberg
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=77&title=whistleblower-doctor-warns-about-hospitals-hiring-physicians" title="From health.usnews.com">Whistleblower Doctor Warns About Hospitals Hiring Physicians</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=77&title=whistleblower-doctor-warns-about-hospitals-hiring-physicians" title="From health.usnews.com">Whistleblower Doctor Warns About Hospitals Hiring Physicians</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Kaiser Health News
@@ -398,7 +398,7 @@ Kaiser Health News
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=76&title=percentage-of-baby-friendly-hospitals-increases" title="From health.usnews.com">Percentage of 'Baby-Friendly' Hospitals Increases</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=76&title=percentage-of-baby-friendly-hospitals-increases" title="From health.usnews.com">Percentage of 'Baby-Friendly' Hospitals Increases</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Kimberly Leonard
@@ -410,7 +410,7 @@ Kimberly Leonard
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=75&title=health-care-ceo-telemedicine-will-continue-to-grow" title="From health.usnews.com">Health Care CEO: Telemedicine Will Continue to Grow</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=75&title=health-care-ceo-telemedicine-will-continue-to-grow" title="From health.usnews.com">Health Care CEO: Telemedicine Will Continue to Grow</a></strong>
 <br/><strong>Categories</strong>: Louisiana
 </td>
 <td class="item" style="text-align:center">
@@ -423,7 +423,7 @@ Steve Sternberg
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=74&title=cdc-s-srinivasan-improving-use-of-antibiotics-is-critical" title="From health.usnews.com">CDC's Srinivasan: Improving Use of Antibiotics Is Critical</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=74&title=cdc-s-srinivasan-improving-use-of-antibiotics-is-critical" title="From health.usnews.com">CDC's Srinivasan: Improving Use of Antibiotics Is Critical</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Steve Sternberg
@@ -435,7 +435,7 @@ Steve Sternberg
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=73&title=op-ed-the-new-land-rush-information-management-and-the-future-of-health-care" title="From health.usnews.com">Op-ed: The New Land Rush: Information Management and the Future of Health Care</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=73&title=op-ed-the-new-land-rush-information-management-and-the-future-of-health-care" title="From health.usnews.com">Op-ed: The New Land Rush: Information Management and the Future of Health Care</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Thomas Kiesau
@@ -447,7 +447,7 @@ Thomas Kiesau
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=72&title=the-story-of-st-jude-children-s-research-hospital" title="From health.usnews.com">The Story of St. Jude Children's Research Hospital</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=72&title=the-story-of-st-jude-children-s-research-hospital" title="From health.usnews.com">The Story of St. Jude Children's Research Hospital</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Michael Morella
@@ -463,10 +463,10 @@ Michael Morella
 <tr class="m">
 <td style="padding:8pt; font-size:larger; text-align:center">
 Pages:
-[<strong><a href="/index.php?p=items&amp;source=health.usnews.com">&nbsp;1&nbsp;</a></strong>]
-[<strong><a href="/index.php?p=items&amp;source=health.usnews.com&list=2">&nbsp;2&nbsp;</a></strong>]
+[<strong><a href="/?p=items&amp;source=health.usnews.com">&nbsp;1&nbsp;</a></strong>]
+[<strong><a href="/?p=items&amp;source=health.usnews.com&list=2">&nbsp;2&nbsp;</a></strong>]
 <strong>=3=</strong>
-[<strong><a href="/index.php?p=items&amp;source=health.usnews.com&list=4">&nbsp;4&nbsp;</a></strong>]
+[<strong><a href="/?p=items&amp;source=health.usnews.com&list=4">&nbsp;4&nbsp;</a></strong>]
 </td>
 </tr>
 </table>
@@ -490,60 +490,60 @@ Items by Categories
 
 <tr>
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
-<a href="/index.php?p=items&filter=AL">Items for '<strong>Alabama</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=AK">Items for '<strong>Alaska</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=AZ">Items for '<strong>Arizona</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=AR">Items for '<strong>Arkansas</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=CA">Items for '<strong>California</strong>'</a> (19)<br/>
-<a href="/index.php?p=items&filter=CO">Items for '<strong>Colorado</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=CT">Items for '<strong>Connecticut</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=DE">Items for '<strong>Delaware</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=FL">Items for '<strong>Florida</strong>'</a> (9)<br/>
-<a href="/index.php?p=items&filter=GA">Items for '<strong>Georgia</strong>'</a> (6)<br/>
-<a href="/index.php?p=items&filter=HI">Items for '<strong>Hawaii</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=IL">Items for '<strong>Illinois</strong>'</a> (5)<br/>
-<a href="/index.php?p=items&filter=IN">Items for '<strong>Indiana</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=IA">Items for '<strong>Iowa</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=KS">Items for '<strong>Kansas</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=KY">Items for '<strong>Kentucky</strong>'</a> (4)<br/>
-<a href="/index.php?p=items&filter=LA">Items for '<strong>Louisiana</strong>'</a> (8)<br/>
+<a href="/?p=items&filter=AL">Items for '<strong>Alabama</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=AK">Items for '<strong>Alaska</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=AZ">Items for '<strong>Arizona</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=AR">Items for '<strong>Arkansas</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=CA">Items for '<strong>California</strong>'</a> (19)<br/>
+<a href="/?p=items&filter=CO">Items for '<strong>Colorado</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=CT">Items for '<strong>Connecticut</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=DE">Items for '<strong>Delaware</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=FL">Items for '<strong>Florida</strong>'</a> (9)<br/>
+<a href="/?p=items&filter=GA">Items for '<strong>Georgia</strong>'</a> (6)<br/>
+<a href="/?p=items&filter=HI">Items for '<strong>Hawaii</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=IL">Items for '<strong>Illinois</strong>'</a> (5)<br/>
+<a href="/?p=items&filter=IN">Items for '<strong>Indiana</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=IA">Items for '<strong>Iowa</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=KS">Items for '<strong>Kansas</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=KY">Items for '<strong>Kentucky</strong>'</a> (4)<br/>
+<a href="/?p=items&filter=LA">Items for '<strong>Louisiana</strong>'</a> (8)<br/>
 </td>
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
-<a href="/index.php?p=items&filter=MA">Items for '<strong>Massachusetts</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=MI">Items for '<strong>Michigan</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=MN">Items for '<strong>Minnesota</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=MS">Items for '<strong>Mississippi</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=MO">Items for '<strong>Missouri</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=NV">Items for '<strong>Nevada</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=NM">Items for '<strong>New Mexico</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=NY">Items for '<strong>New York</strong>'</a> (6)<br/>
-<a href="/index.php?p=items&filter=NC">Items for '<strong>North Carolina</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=OH">Items for '<strong>Ohio</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=OK">Items for '<strong>Oklahoma</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=OR">Items for '<strong>Oregon</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=TN">Items for '<strong>Tennessee</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=TX">Items for '<strong>Texas</strong>'</a> (7)<br/>
-<a href="/index.php?p=items&filter=UT">Items for '<strong>Utah</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=VA">Items for '<strong>Virginia</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=WA">Items for '<strong>Washington</strong>'</a> (8)<br/>
+<a href="/?p=items&filter=MA">Items for '<strong>Massachusetts</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=MI">Items for '<strong>Michigan</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=MN">Items for '<strong>Minnesota</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=MS">Items for '<strong>Mississippi</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=MO">Items for '<strong>Missouri</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=NV">Items for '<strong>Nevada</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=NM">Items for '<strong>New Mexico</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=NY">Items for '<strong>New York</strong>'</a> (6)<br/>
+<a href="/?p=items&filter=NC">Items for '<strong>North Carolina</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=OH">Items for '<strong>Ohio</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=OK">Items for '<strong>Oklahoma</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=OR">Items for '<strong>Oregon</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=TN">Items for '<strong>Tennessee</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=TX">Items for '<strong>Texas</strong>'</a> (7)<br/>
+<a href="/?p=items&filter=UT">Items for '<strong>Utah</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=VA">Items for '<strong>Virginia</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=WA">Items for '<strong>Washington</strong>'</a> (8)<br/>
 </td>
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
-<a href="/index.php?p=items&filter=WI">Items for '<strong>Wisconsin</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=WY">Items for '<strong>Wyoming</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=PR">Items for '<strong>Puerto Rico</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=Britain">Items for '<strong>World - Britain</strong>'</a> (4)<br/>
-<a href="/index.php?p=items&filter=Canada">Items for '<strong>World - Canada</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=China">Items for '<strong>World - China</strong>'</a> (8)<br/>
-<a href="/index.php?p=items&filter=Czechia">Items for '<strong>World - Czech Republic</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=France">Items for '<strong>World - France</strong>'</a> (5)<br/>
-<a href="/index.php?p=items&filter=Germany">Items for '<strong>World - Germany</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=Iran">Items for '<strong>World - Iran</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=Mexico">Items for '<strong>World - Mexico</strong>'</a> (6)<br/>
-<a href="/index.php?p=items&filter=Netherlands">Items for '<strong>World - Netherlands</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=Poland">Items for '<strong>World - Poland</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=Russia">Items for '<strong>World - Russia</strong>'</a> (9)<br/>
-<a href="/index.php?p=items&filter=South Korea">Items for '<strong>World - South Korea</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=Scotland">Items for '<strong>World - Scotland</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=WI">Items for '<strong>Wisconsin</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=WY">Items for '<strong>Wyoming</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=PR">Items for '<strong>Puerto Rico</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=Britain">Items for '<strong>World - Britain</strong>'</a> (4)<br/>
+<a href="/?p=items&filter=Canada">Items for '<strong>World - Canada</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=China">Items for '<strong>World - China</strong>'</a> (8)<br/>
+<a href="/?p=items&filter=Czechia">Items for '<strong>World - Czech Republic</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=France">Items for '<strong>World - France</strong>'</a> (5)<br/>
+<a href="/?p=items&filter=Germany">Items for '<strong>World - Germany</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=Iran">Items for '<strong>World - Iran</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=Mexico">Items for '<strong>World - Mexico</strong>'</a> (6)<br/>
+<a href="/?p=items&filter=Netherlands">Items for '<strong>World - Netherlands</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=Poland">Items for '<strong>World - Poland</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=Russia">Items for '<strong>World - Russia</strong>'</a> (9)<br/>
+<a href="/?p=items&filter=South Korea">Items for '<strong>World - South Korea</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=Scotland">Items for '<strong>World - Scotland</strong>'</a> (1)<br/>
 </td>
 </tr>
 

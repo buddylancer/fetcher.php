@@ -1,13 +1,15 @@
 <?php
 
-// Below are meta functions, that can be replaced when converting to other language (Java, C#)
-
 use Bula\Objects\TString;
 
-const /* TString */ DIV = "|";
+const DIV = "|";
 
-function /* void */ STOP(/* TString */ $str) {
-    die($str instanceof TString ? $str->getValue() : $str);
+/**
+ * Stop executing. 
+ * @param string $str
+ */
+function STOP($str) {
+    die(CAT($str));
 }
 
 function /* void */ PR(/* TString */ $str) {
@@ -15,20 +17,21 @@ function /* void */ PR(/* TString */ $str) {
 }
 
 // Common functions
-function /* Boolean */ NUL(/* Object */ $value) {
+/**
+ * Check whether an object is null.
+ * @param object $value
+ * @return boolean
+ */
+function NUL($value) {
     return $value == null && !isset($value);
 }
 
-function /* Boolean */ YES(/* Object */ $value) {
-    return !NUL($value) && ($value == 1 || $value == true);
-}
-
 /**
- * Convert Object to Integer.
- * @param Object $value Input value.
- * @return Integer Resulting Integer.
+ * Get integer value of any object.
+ * @param object $value Input object.
+ * @return integer Integer result.
  */
-function /* Integer */ INT(/* Object */ $value) {
+function INT($value) {
     if (NUL($value))
         return 0;
     if ($value instanceof TString)
@@ -36,7 +39,12 @@ function /* Integer */ INT(/* Object */ $value) {
     return intval($value);
 }
 
-function /* Float */ FLOAT(/* Object */ $value) {
+/**
+ * Get float value of any object.
+ * @param object $value Input object.
+ * @return double Float result.
+ */
+function FLOAT($value) {
     if (NUL($value))
         return 0;
     if ($value instanceof TString)
@@ -44,7 +52,12 @@ function /* Float */ FLOAT(/* Object */ $value) {
     return floatval($value);
 }
 
-function /* TString */ STR(/* Object */ $value) {
+/**
+ * Get string value of any object.
+ * @param object $value Input object.
+ * @return string String result.
+ */
+function STR($value) {
     if (NUL($value))
         return null;
     if ($value instanceof TString)
@@ -56,7 +69,13 @@ function /* TString */ STR(/* Object */ $value) {
     return CAT($value);
 }
 
-function /* Boolean */ EQ($value1, $value2) {
+/**
+ * Check whether 2 object are equal.
+ * @param object $value1 First object.
+ * @param object $value2 Second object.
+ * @return boolean
+ */
+function EQ($value1, $value2) {
     if ($value1 instanceof TString)
         $value1 = $value1->getValue();
     if ($value2 instanceof TString)
@@ -65,7 +84,12 @@ function /* Boolean */ EQ($value1, $value2) {
 }
 
 // TString functions
-function /* Boolean */ BLANK($arg) {
+/**
+ * Check whether an object is empty.
+ * @param object $arg Input object.
+ * @return boolean
+ */
+function BLANK($arg) {
     if ($arg == null || !isset($arg))
         return true;
     if ($arg instanceof TString)
@@ -73,11 +97,21 @@ function /* Boolean */ BLANK($arg) {
     return EQ($arg, "");
 }
 
-function /* Integer */ LEN(/* TString */ $str) {
+/**
+ * Get the length of an object (processed as string).
+ * @param object $str Input object.
+ * @return integer Length of resulting string
+ */
+function LEN($str) {
     return BLANK($str) ? 0 : strlen($str);
 }
 
-function /* TString */ CAT(/* ... */) {
+/**
+ * Concatenate any number of objects as string.
+ * @param array $args Variable length array of parameters.
+ * @return string Resulting string
+ */
+function CAT(/* ... */) {
     $args = func_get_args();
     /* TString */ $result = "";
     foreach ($args as $arg) {
@@ -90,28 +124,22 @@ function /* TString */ CAT(/* ... */) {
     return $result;
 }
 
-function /* Integer */ IXOF($str, $what, $off = 0) {
-    $pos = strpos($str, $what, $off);
-    return $pos === false ? -1 : $pos;
-}
-
-function /* Integer */ RIXOF($str, $what, $off = 0) {
-    $pos = strrpos($str, $what, $off);
-    return $pos === false ? -1 : $pos;
-}
-
-//function /* void */ PR($str) {
-//    echo $str instanceof TString ? $str->getValue() : $str;
-//}
-
-function /* Object[] */ ARR(/* ... */) {
+/**
+ * Instantiate array of objects.
+ * @param array $args Variable length array of parameters.
+ * @return array
+ */
+function ARR(/* ... */) {
     return func_get_args();
-    //$result = array();
-    //foreach ($args as $arg)
-    //    $result[] = $arg;
-    //return $result;
 }
 
+/**
+ * Merge arrays.
+ * @param array $args Variable length array of parameters.
+ * 1st parameter - original array.
+ * 2nd+ parameter - object(s) to merge into original array.
+ * @return array Merged array
+ */
 function /* Object[] */ ADD(/* ... */) {
     $num_args = func_num_args();
     $arr = func_get_arg(0);
@@ -126,7 +154,12 @@ function /* Object[] */ ADD(/* ... */) {
     return $arr;
 }
 
-function /* Integer */ SIZE(/* Object */ $val) {
+/**
+ * Identify the size of any object.
+ * @param object $val Input object.
+ * @return integer Resulting size.
+ */
+function SIZE($val) {
     if ($val == null)
         return 0;
     if (is_array($val))
@@ -136,8 +169,13 @@ function /* Integer */ SIZE(/* Object */ $val) {
     return 0;
 }
 
-function /* Object */ CALL(/* Object */ $Object, /* TString */ $Method, /* Object[] */ $Args) {
-    //$Object->$Method($Args);
+/**
+ * Call obj.method(args) and return its result.
+ * @param string $Object Object instance.
+ * @param string $Method Method to call.
+ * @param array $Args Array of parameters.
+ * @return object Result of method calling.
+ */
+function CALL($Object, $Method, $Args) {
     return call_user_func_array(array($Object, $Method), $Args);
 }
-

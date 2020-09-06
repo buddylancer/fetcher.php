@@ -73,8 +73,8 @@ class BOFetcher {
         $this->context->set("Log_Object", $this->oLogger);
         $log = Request::getOptionalInteger("log");
         if (!NUL($log) && $log != -99999) { //TODO
-            $filename_template = new TString("C:/Temp/Log_{0}_{1}.html");
-            $filename = Util::formatString($filename_template, ARR("fetch_items", DateTimes::format(DBConfig::SQL_DTS)));
+            $filename_template = new TString(CAT($this->context->LocalRoot, "local/logs/{0}_{1}.html"));
+            $filename = Util::formatString($filename_template, ARR("fetch_items", DateTimes::format(Config::LOG_DTS)));
             $this->oLogger->init($filename);
         }
     }

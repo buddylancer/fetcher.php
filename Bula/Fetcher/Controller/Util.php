@@ -127,7 +127,7 @@ class Util {
             $prefix = EQ($page_name, "bottom") ? null : "Pages/";
             $content = $engine->includeTemplate(CAT("Bula/Fetcher/Controller/", $prefix, $class_name));
 
-            self::testFileFolder($file_name);
+            Helper::testFileFolder($file_name);
             Helper::writeText($file_name, $content);
             //$content = CAT("*** Cached to ", str_replace("/", " /", $file_name), "***<br/>", $content);
         }
@@ -179,7 +179,7 @@ class Util {
      */
     public static function removeInfo($source, $from, $to = null) {
         $result = null;
-        $index1 = $from == null ? 0 : IXOF($source, $from);
+        $index1 = $from == null ? 0 : $source->indexOf($from);
         if ($index1 != -1) {
             if ($to == null)
                 $result = $source->substring($index1);
@@ -196,36 +196,6 @@ class Util {
             }
         }
         return $result->trim();
-    }
-
-    /**
-     * Test the chain of (sub)folder(s), create them if necessary.
-     * @param TString $folder Folder's full path.
-     */
-    public static function testFolder($folder) {
-        $chunks = $folder->split("/");
-        $pathname = null;
-        for ($n = 0; $n < SIZE($chunks); $n++) {
-            $pathname = CAT($pathname, $chunks[$n]);
-            if (!Helper::dirExists($pathname))
-                Helper::createDir($pathname);
-            $pathname = CAT($pathname, "/");
-        }
-    }
-
-    /**
-     * Test the chain of (sub)folder(s) and file, create if necessary.
-     * @param TString $filename Filename's full path
-     */
-    public static function testFileFolder($filename) {
-        $chunks = $filename->split("/");
-        $pathname = null;
-        for ($n = 0; $n < SIZE($chunks) - 1; $n++) {
-            $pathname = CAT($pathname, $chunks[$n]);
-            if (!Helper::dirExists($pathname))
-                Helper::createDir($pathname);
-            $pathname = CAT($pathname, "/");
-        }
     }
 
     private static $ru_chars =

@@ -66,7 +66,7 @@ class Menu extends Page {
             $title = $public_pages->get($n+0);
             $page = $public_pages->get($n+1);
             $href = null;
-            if ($page->equals("home"))
+            if (EQ($page, "home"))
                 $href = Config::TOP_DIR;
             else {
                 if (EQ($page->substring(0, 1), "#"))

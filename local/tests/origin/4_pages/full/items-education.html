@@ -46,10 +46,10 @@
 <tr>
 <td class="menu center" style="padding:2pt; white-space:nowrap;">
  <a href="/">Home</a>
- &bull; <a href="/index.php?p=items">Browse Items</a>
+ &bull; <a href="/?p=items">Browse Items</a>
  &bull; <a href="#items_by_skills">Items by Categories</a>
  &bull; <a href="#read_rss_feeds">Read RSS Feeds</a>
- &bull; <a href="/index.php?p=sources">Sources</a>
+ &bull; <a href="/?p=sources">Sources</a>
 </td>
 </tr>
 </table>
@@ -118,11 +118,11 @@ Time period:
 function func_submit() {
 var frm = document.forms['page_submit'];
 if (frm['source'].selectedIndex == 0) {
-window.location.assign('/index.php?p=items');
+window.location.assign('/?p=items');
 return false;
 }
 var source = frm['source'].options[frm['source'].selectedIndex].value;
-window.location.assign('/index.php?p=items&source=' + source);
+window.location.assign('/?p=items&source=' + source);
 return false;
 }
 </script>
@@ -158,7 +158,7 @@ Page <strong>1</strong> from <strong>2</strong>
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=47&title=online-summer-classes-discounted-for-coronavirus" title="From education.usnews.com">Online Summer Classes Discounted for Coronavirus</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=47&title=online-summer-classes-discounted-for-coronavirus" title="From education.usnews.com">Online Summer Classes Discounted for Coronavirus</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Emma Kerr
@@ -170,7 +170,7 @@ Emma Kerr
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=46&title=how-to-learn-python-a-u-s-news-guide" title="From education.usnews.com">How to Learn Python: A U.S. News Guide</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=46&title=how-to-learn-python-a-u-s-news-guide" title="From education.usnews.com">How to Learn Python: A U.S. News Guide</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Carlos Soto
@@ -182,7 +182,7 @@ Carlos Soto
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=45&title=how-to-learn-data-science-a-u-s-news-guide" title="From education.usnews.com">How to Learn Data Science: A U.S. News Guide</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=45&title=how-to-learn-data-science-a-u-s-news-guide" title="From education.usnews.com">How to Learn Data Science: A U.S. News Guide</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Whitney Blair Wyckoff
@@ -194,7 +194,7 @@ Whitney Blair Wyckoff
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=44&title=project-management-courses-a-u-s-news-guide" title="From education.usnews.com">Project Management Courses: A U.S. News Guide</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=44&title=project-management-courses-a-u-s-news-guide" title="From education.usnews.com">Project Management Courses: A U.S. News Guide</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Ali Follman
@@ -206,7 +206,7 @@ Ali Follman
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=43&title=find-an-act-tutor" title="From education.usnews.com">Find an ACT Tutor</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=43&title=find-an-act-tutor" title="From education.usnews.com">Find an ACT Tutor</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Bob Musinski
@@ -218,7 +218,7 @@ Bob Musinski
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=42&title=find-an-sat-tutor" title="From education.usnews.com">Find an SAT Tutor</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=42&title=find-an-sat-tutor" title="From education.usnews.com">Find an SAT Tutor</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Bob Musinski
@@ -230,7 +230,7 @@ Bob Musinski
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=41&title=how-to-learn-spanish-a-u-s-news-guide" title="From education.usnews.com">How to Learn Spanish: A U.S. News Guide</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=41&title=how-to-learn-spanish-a-u-s-news-guide" title="From education.usnews.com">How to Learn Spanish: A U.S. News Guide</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Kara Coleman Fields
@@ -242,7 +242,7 @@ Kara Coleman Fields
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=40&title=finding-a-high-school-tutor" title="From education.usnews.com">Finding a High School Tutor</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=40&title=finding-a-high-school-tutor" title="From education.usnews.com">Finding a High School Tutor</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Bob Musinski
@@ -254,7 +254,7 @@ Bob Musinski
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=39&title=financial-literacy-for-college-students" title="From education.usnews.com">Financial Literacy for College Students</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=39&title=financial-literacy-for-college-students" title="From education.usnews.com">Financial Literacy for College Students</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Beverly Harzog
@@ -266,7 +266,7 @@ Beverly Harzog
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=38&title=college-road-trip-indiana" title="From education.usnews.com">College Road Trip: Indiana</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=38&title=college-road-trip-indiana" title="From education.usnews.com">College Road Trip: Indiana</a></strong>
 <br/><strong>Categories</strong>: Indiana
 </td>
 <td class="item" style="text-align:center">
@@ -279,7 +279,7 @@ Brian Burnsed
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=37&title=college-road-trip-california" title="From education.usnews.com">College Road Trip: California</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=37&title=college-road-trip-california" title="From education.usnews.com">College Road Trip: California</a></strong>
 <br/><strong>Categories</strong>: California
 </td>
 <td class="item" style="text-align:center">
@@ -292,7 +292,7 @@ Brian Burnsed
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=36&title=college-road-trip-georgia" title="From education.usnews.com">College Road Trip: Georgia</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=36&title=college-road-trip-georgia" title="From education.usnews.com">College Road Trip: Georgia</a></strong>
 <br/><strong>Categories</strong>: Georgia
 </td>
 <td class="item" style="text-align:center">
@@ -305,7 +305,7 @@ Brian Burnsed
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=35&title=improving-instruction-on-instruction-in-education-grad-schools" title="From education.usnews.com">Improving Instruction on Instruction in Education Grad Schools</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=35&title=improving-instruction-on-instruction-in-education-grad-schools" title="From education.usnews.com">Improving Instruction on Instruction in Education Grad Schools</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Jessica Calefati
@@ -317,7 +317,7 @@ Jessica Calefati
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=34&title=the-new-doctors-in-the-house" title="From education.usnews.com">The New Doctors in the House</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=34&title=the-new-doctors-in-the-house" title="From education.usnews.com">The New Doctors in the House</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Bernadine Healy, M.D.
@@ -329,7 +329,7 @@ Bernadine Healy, M.D.
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=33&title=bringing-better-health-to-rural-america" title="From education.usnews.com">Bringing Better Health to Rural America</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=33&title=bringing-better-health-to-rural-america" title="From education.usnews.com">Bringing Better Health to Rural America</a></strong>
 </td>
 <td class="item" style="text-align:center">
 January W. Payne
@@ -341,7 +341,7 @@ January W. Payne
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=32&title=the-science-rankings-methodology" title="From education.usnews.com">The Science Rankings Methodology</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=32&title=the-science-rankings-methodology" title="From education.usnews.com">The Science Rankings Methodology</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Sam Flanigan
@@ -353,7 +353,7 @@ Sam Flanigan
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=31&title=business-school-teaching-more-than-work-ethic" title="From education.usnews.com">Business School: Teaching More Than Work Ethic</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=31&title=business-school-teaching-more-than-work-ethic" title="From education.usnews.com">Business School: Teaching More Than Work Ethic</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Matthew Bandyk
@@ -365,7 +365,7 @@ Matthew Bandyk
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=30&title=the-business-school-rankings-methodology" title="From education.usnews.com">The Business School Rankings Methodology</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=30&title=the-business-school-rankings-methodology" title="From education.usnews.com">The Business School Rankings Methodology</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Sam Flanigan
@@ -377,7 +377,7 @@ Sam Flanigan
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=29&title=bitten-by-the-green-design-bug" title="From education.usnews.com">Bitten by the Green Design Bug</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=29&title=bitten-by-the-green-design-bug" title="From education.usnews.com">Bitten by the Green Design Bug</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Thomas K. Grose
@@ -389,7 +389,7 @@ Thomas K. Grose
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=28&title=colleges-where-need-for-aid-can-hurt-admission-odds" title="From education.usnews.com">Colleges Where Need for Aid Can Hurt Admission Odds</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=28&title=colleges-where-need-for-aid-can-hurt-admission-odds" title="From education.usnews.com">Colleges Where Need for Aid Can Hurt Admission Odds</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Kim Clark
@@ -401,7 +401,7 @@ Kim Clark
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=27&title=government-helps-low-income-grad-students-pay-for-school" title="From education.usnews.com">Government Helps Low-Income Grad Students Pay for School</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=27&title=government-helps-low-income-grad-students-pay-for-school" title="From education.usnews.com">Government Helps Low-Income Grad Students Pay for School</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Kim Clark
@@ -413,7 +413,7 @@ Kim Clark
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=26&title=medical-schools-fight-the-war-against-disease" title="From education.usnews.com">Medical Schools Fight the War Against Disease</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=26&title=medical-schools-fight-the-war-against-disease" title="From education.usnews.com">Medical Schools Fight the War Against Disease</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Carol Frey
@@ -425,7 +425,7 @@ Carol Frey
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=25&title=business-schools-look-for-different-kinds-of-students" title="From education.usnews.com">Business Schools Look for Different Kinds of Students</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=25&title=business-schools-look-for-different-kinds-of-students" title="From education.usnews.com">Business Schools Look for Different Kinds of Students</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Alison Go
@@ -437,7 +437,7 @@ Alison Go
 
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=24&title=aerospace-engineering-searches-for-new-talent" title="From education.usnews.com">Aerospace Engineering Searches for New Talent</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=24&title=aerospace-engineering-searches-for-new-talent" title="From education.usnews.com">Aerospace Engineering Searches for New Talent</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Thomas K. Grose
@@ -449,7 +449,7 @@ Thomas K. Grose
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
-<strong><a style="font-size:larger" href="/index.php?p=view_item&id=23&title=how-technology-is-changing-the-medical-profession" title="From education.usnews.com">How Technology Is Changing the Medical Profession</a></strong>
+<strong><a style="font-size:larger" href="/?p=view_item&id=23&title=how-technology-is-changing-the-medical-profession" title="From education.usnews.com">How Technology Is Changing the Medical Profession</a></strong>
 </td>
 <td class="item" style="text-align:center">
 Bernadine Healy, M.D.
@@ -466,7 +466,7 @@ Bernadine Healy, M.D.
 <td style="padding:8pt; font-size:larger; text-align:center">
 Pages:
 <strong>=1=</strong>
-[<strong><a href="/index.php?p=items&amp;source=education.usnews.com&list=2">&nbsp;2&nbsp;</a></strong>]
+[<strong><a href="/?p=items&amp;source=education.usnews.com&list=2">&nbsp;2&nbsp;</a></strong>]
 </td>
 </tr>
 </table>
@@ -490,60 +490,60 @@ Items by Categories
 
 <tr>
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
-<a href="/index.php?p=items&filter=AL">Items for '<strong>Alabama</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=AK">Items for '<strong>Alaska</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=AZ">Items for '<strong>Arizona</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=AR">Items for '<strong>Arkansas</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=CA">Items for '<strong>California</strong>'</a> (19)<br/>
-<a href="/index.php?p=items&filter=CO">Items for '<strong>Colorado</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=CT">Items for '<strong>Connecticut</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=DE">Items for '<strong>Delaware</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=FL">Items for '<strong>Florida</strong>'</a> (9)<br/>
-<a href="/index.php?p=items&filter=GA">Items for '<strong>Georgia</strong>'</a> (6)<br/>
-<a href="/index.php?p=items&filter=HI">Items for '<strong>Hawaii</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=IL">Items for '<strong>Illinois</strong>'</a> (5)<br/>
-<a href="/index.php?p=items&filter=IN">Items for '<strong>Indiana</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=IA">Items for '<strong>Iowa</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=KS">Items for '<strong>Kansas</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=KY">Items for '<strong>Kentucky</strong>'</a> (4)<br/>
-<a href="/index.php?p=items&filter=LA">Items for '<strong>Louisiana</strong>'</a> (8)<br/>
+<a href="/?p=items&filter=AL">Items for '<strong>Alabama</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=AK">Items for '<strong>Alaska</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=AZ">Items for '<strong>Arizona</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=AR">Items for '<strong>Arkansas</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=CA">Items for '<strong>California</strong>'</a> (19)<br/>
+<a href="/?p=items&filter=CO">Items for '<strong>Colorado</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=CT">Items for '<strong>Connecticut</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=DE">Items for '<strong>Delaware</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=FL">Items for '<strong>Florida</strong>'</a> (9)<br/>
+<a href="/?p=items&filter=GA">Items for '<strong>Georgia</strong>'</a> (6)<br/>
+<a href="/?p=items&filter=HI">Items for '<strong>Hawaii</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=IL">Items for '<strong>Illinois</strong>'</a> (5)<br/>
+<a href="/?p=items&filter=IN">Items for '<strong>Indiana</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=IA">Items for '<strong>Iowa</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=KS">Items for '<strong>Kansas</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=KY">Items for '<strong>Kentucky</strong>'</a> (4)<br/>
+<a href="/?p=items&filter=LA">Items for '<strong>Louisiana</strong>'</a> (8)<br/>
 </td>
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
-<a href="/index.php?p=items&filter=MA">Items for '<strong>Massachusetts</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=MI">Items for '<strong>Michigan</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=MN">Items for '<strong>Minnesota</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=MS">Items for '<strong>Mississippi</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=MO">Items for '<strong>Missouri</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=NV">Items for '<strong>Nevada</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=NM">Items for '<strong>New Mexico</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=NY">Items for '<strong>New York</strong>'</a> (6)<br/>
-<a href="/index.php?p=items&filter=NC">Items for '<strong>North Carolina</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=OH">Items for '<strong>Ohio</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=OK">Items for '<strong>Oklahoma</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=OR">Items for '<strong>Oregon</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=TN">Items for '<strong>Tennessee</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=TX">Items for '<strong>Texas</strong>'</a> (7)<br/>
-<a href="/index.php?p=items&filter=UT">Items for '<strong>Utah</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=VA">Items for '<strong>Virginia</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=WA">Items for '<strong>Washington</strong>'</a> (8)<br/>
+<a href="/?p=items&filter=MA">Items for '<strong>Massachusetts</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=MI">Items for '<strong>Michigan</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=MN">Items for '<strong>Minnesota</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=MS">Items for '<strong>Mississippi</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=MO">Items for '<strong>Missouri</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=NV">Items for '<strong>Nevada</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=NM">Items for '<strong>New Mexico</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=NY">Items for '<strong>New York</strong>'</a> (6)<br/>
+<a href="/?p=items&filter=NC">Items for '<strong>North Carolina</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=OH">Items for '<strong>Ohio</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=OK">Items for '<strong>Oklahoma</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=OR">Items for '<strong>Oregon</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=TN">Items for '<strong>Tennessee</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=TX">Items for '<strong>Texas</strong>'</a> (7)<br/>
+<a href="/?p=items&filter=UT">Items for '<strong>Utah</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=VA">Items for '<strong>Virginia</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=WA">Items for '<strong>Washington</strong>'</a> (8)<br/>
 </td>
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
-<a href="/index.php?p=items&filter=WI">Items for '<strong>Wisconsin</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=WY">Items for '<strong>Wyoming</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=PR">Items for '<strong>Puerto Rico</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=Britain">Items for '<strong>World - Britain</strong>'</a> (4)<br/>
-<a href="/index.php?p=items&filter=Canada">Items for '<strong>World - Canada</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=China">Items for '<strong>World - China</strong>'</a> (8)<br/>
-<a href="/index.php?p=items&filter=Czechia">Items for '<strong>World - Czech Republic</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=France">Items for '<strong>World - France</strong>'</a> (5)<br/>
-<a href="/index.php?p=items&filter=Germany">Items for '<strong>World - Germany</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=Iran">Items for '<strong>World - Iran</strong>'</a> (3)<br/>
-<a href="/index.php?p=items&filter=Mexico">Items for '<strong>World - Mexico</strong>'</a> (6)<br/>
-<a href="/index.php?p=items&filter=Netherlands">Items for '<strong>World - Netherlands</strong>'</a> (1)<br/>
-<a href="/index.php?p=items&filter=Poland">Items for '<strong>World - Poland</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=Russia">Items for '<strong>World - Russia</strong>'</a> (9)<br/>
-<a href="/index.php?p=items&filter=South Korea">Items for '<strong>World - South Korea</strong>'</a> (2)<br/>
-<a href="/index.php?p=items&filter=Scotland">Items for '<strong>World - Scotland</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=WI">Items for '<strong>Wisconsin</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=WY">Items for '<strong>Wyoming</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=PR">Items for '<strong>Puerto Rico</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=Britain">Items for '<strong>World - Britain</strong>'</a> (4)<br/>
+<a href="/?p=items&filter=Canada">Items for '<strong>World - Canada</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=China">Items for '<strong>World - China</strong>'</a> (8)<br/>
+<a href="/?p=items&filter=Czechia">Items for '<strong>World - Czech Republic</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=France">Items for '<strong>World - France</strong>'</a> (5)<br/>
+<a href="/?p=items&filter=Germany">Items for '<strong>World - Germany</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=Iran">Items for '<strong>World - Iran</strong>'</a> (3)<br/>
+<a href="/?p=items&filter=Mexico">Items for '<strong>World - Mexico</strong>'</a> (6)<br/>
+<a href="/?p=items&filter=Netherlands">Items for '<strong>World - Netherlands</strong>'</a> (1)<br/>
+<a href="/?p=items&filter=Poland">Items for '<strong>World - Poland</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=Russia">Items for '<strong>World - Russia</strong>'</a> (9)<br/>
+<a href="/?p=items&filter=South Korea">Items for '<strong>World - South Korea</strong>'</a> (2)<br/>
+<a href="/?p=items&filter=Scotland">Items for '<strong>World - Scotland</strong>'</a> (1)<br/>
 </td>
 </tr>
 

@@ -44,8 +44,10 @@ class Logger {
         }
         if (Helper::fileExists($this->file_name))
             Helper::appendText($this->file_name, $text);
-        else
+        else {
+            Helper::testFileFolder($this->file_name);
             Helper::writeText($this->file_name, $text);
+        }
 
     }
 
