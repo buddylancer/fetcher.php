@@ -16,7 +16,8 @@ require_once("TString.php");
 /**
  * Helper class to manipulate with Date and Times.
  */
-class DateTimes {
+class DateTimes
+{
     /**
      * Format of date/time in RSS-feeds.
      */
@@ -24,41 +25,45 @@ class DateTimes {
 
     /**
      * Get time as Unix timestamp.
-     * @param TString $time_string Input string.
+     * @param TString $timeString Input string.
      * @return Integer Resulting time (Unix timestamp).
      */
-    public static function getTime($time_string= null) {
-        if ($time_string == null) $time_string = "now";
-        return strtotime($time_string instanceof TString ? $time_string->getValue() : $time_string);
+    public static function getTime($timeString= null)
+    {
+        if ($timeString == null) $timeString = "now";
+        return strtotime($timeString instanceof TString ? $timeString->getValue() : $timeString);
     }
 
     /**
      * Get Unix timestamp from date/time extracted from RSS-feed.
-     * @param TString $time_string Input string.
+     * @param TString $timeString Input string.
      * @return Integer Resulting timestamp.
      */
-    public static function fromRss($time_string) {
-        return self::getTime($time_string);
+    public static function fromRss($timeString)
+    {
+        return self::getTime($timeString);
 
     }
 
     /**
      * Format time from Unix timestamp to string presentation.
-     * @param TString $format_string Format to apply.
-     * @param Integer $time_value Input time value (Unix timestamp).
+     * @param TString $formatString Format to apply.
+     * @param Integer $timeValue Input time value (Unix timestamp).
      * @return TString Resulting string.
      */
-    public static function format($format_string, $time_value = 0) {
-        return $time_value == 0 ? date($format_string, strtotime("now")) : date($format_string, $time_value);
+    public static function format($formatString, $timeValue = 0)
+    {
+        return $timeValue == 0 ? date($formatString, strtotime("now")) : date($formatString, $timeValue);
     }
 
     /**
      * Format time from timestamp to GMT string presentation.
-     * @param TString $format_string Format to apply.
-     * @param Integer $time_value Input time value (Unix timestamp).
+     * @param TString $formatString Format to apply.
+     * @param Integer $timeValue Input time value (Unix timestamp).
      * @return TString Resulting string.
      */
-    public static function gmtFormat($format_string, $time_value = 0) {
-        return $time_value == 0 ? gmdate($format_string, strtotime("now")) : gmdate($format_string, $time_value);
+    public static function gmtFormat($formatString, $timeValue = 0)
+    {
+        return $timeValue == 0 ? gmdate($formatString, strtotime("now")) : gmdate($formatString, $timeValue);
     }
 }

@@ -12,12 +12,14 @@ namespace Bula\Objects;
 /**
  * Helper class for processing server response.
  */
-class Response {
+class Response
+{
     /**
      * Write text to current response.
      * @param TString $input Text to write.
      */
-    public static function write($input) {
+    public static function write($input)
+    {
         print CAT($input);
     }
 
@@ -26,7 +28,8 @@ class Response {
      * @param TString $name Header name.
      * @param TString $value Header value.
      */
-    public static function writeHeader($name, $value) {
+    public static function writeHeader($name, $value)
+    {
         header(CAT($name, ": ", $value));
     }
 
@@ -34,7 +37,8 @@ class Response {
      * End current response.
      * @param TString $input Text to write before ending response.
      */
-    public static function end($input) {
+    public static function end($input)
+    {
         self::write($input);
         die();
     }

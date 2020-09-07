@@ -30,10 +30,12 @@ require_once("Bula/Model/DataSet.php");
 /**
  * Logic for remote method invocation.
  */
-class CallMethod extends Page {
+class CallMethod extends Page
+{
 
     /** Execute method using parameters from request. */
-    public function execute() {
+    public function execute()
+    {
         Request::initialize();
 		Request::extractAllVars();
 
@@ -50,10 +52,10 @@ class CallMethod extends Page {
 		$package = Request::get("package");
 		if (BLANK($package))
 			Response::end("Empty package!");
-        $package_chunks = Strings::split("-", $package);
-        for ($n = 0; $n < SIZE($package_chunks); $n++)
-            $package_chunks[$n] = Strings::firstCharToUpper($package_chunks[$n]);
-		$package = Strings::join("/", $package_chunks);
+        $packageChunks = Strings::split("-", $package);
+        for ($n = 0; $n < SIZE($packageChunks); $n++)
+            $packageChunks[$n] = Strings::firstCharToUpper($packageChunks[$n]);
+		$package = Strings::join("/", $packageChunks);
 
 		// Check class
         if (!Request::contains("class"))
@@ -73,36 +75,35 @@ class CallMethod extends Page {
         $count = 0;
 		$pars = new ArrayList();
 		for ($n = 1; $n <= 6; $n++) {
-			$par_name = CAT("par", $n);
-			if (!Request::contains($par_name))
+			$parName = CAT("par", $n);
+			if (!Request::contains($parName))
 				break;
-			$par_value = Request::get($par_name);
-			if (EQ($par_value, "_"))
-				$par_value = "";
-			//$pars_array[] = $par_value;
-            $pars->add($par_value);
+			$parValue = Request::get($parName);
+			if (EQ($parValue, "_"))
+				$parValue = "";
+			//$parsArray[] = $parValue;
+            $pars->add($parValue);
 			$count++;
 		}
 
         $buffer = null;
         $result = null;
 
-        $full_class = CAT($package, "/", $className);
-//if php
-		$class_file = CAT($full_class, ".php");
-		require_once($class_file);
-		$full_class = Strings::replace("/", "\\", $full_class);
-		$doClass = new $full_class;
+        $fullClass = CAT($package, "/", $className);
+		$classFile = CAT($fullClass, ".php");
+		require_once($classFile);
+		$fullClass = Strings::replace("/", "\\", $fullClass);
+		$doClass = new $fullClass;
 		if ($doClass == null)
             Response::end("Can not instantiate class!");
-        $reflectionMethod = new \ReflectionMethod($full_class, $method);
+        $reflectionMethod = new \ReflectionMethod($fullClass, $method);
         $parameters = $reflectionMethod->getParameters();
-        $count_required = 0;
+        $countRequired = 0;
         for ($n = 0; $n < SIZE($parameters); $n++) {
-            $p = new \ReflectionParameter(array($full_class, $method), $n);
-            if (!$p->isOptional()) $count_required++;
+            $p = new \ReflectionParameter(array($fullClass, $method), $n);
+            if (!$p->isOptional()) $countRequired++;
         }
-        if ($pars->count() < $count_required)
+        if ($pars->count() < $countRequired)
             $result = null;
         else
             $result = $reflectionMethod->invokeArgs($doClass, $pars->toArray());

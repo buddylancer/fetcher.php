@@ -23,34 +23,30 @@ require_once("Bula/Fetcher/Controller/Actions/DoRedirect.php");
 /**
  * Redirection to external source.
  */
-class DoRedirectSource extends DoRedirect {
-    /**
-     * Public default constructor.
-     * @param Context $context Context instance.
-     * /
-    public DoRedirectSource(Context context) : base(context) { }
-    CS*/
+class DoRedirectSource extends DoRedirect
+{
 
     /** Execute main logic for DoRedirectSource action */
-    public function execute() {
-        $error_message = null;
-        $link_to_redirect = null;
+    public function execute()
+    {
+        $errorMessage = null;
+        $linkToRedirect = null;
         if (!Request::contains("source"))
-            $error_message = "Source name is required!";
+            $errorMessage = "Source name is required!";
         else {
-            $source_name = Request::get("source");
-            if (!Request::isDomainName($source_name))
-                $error_message = "Incorrect source name!";
+            $sourceName = Request::get("source");
+            if (!Request::isDomainName($sourceName))
+                $errorMessage = "Incorrect source name!";
             else {
                 $doSource = new DOSource();
                 $oSource =
                     ARR(new Hashtable());
-                if (!$doSource->checkSourceName($source_name, $oSource))
-                    $error_message = "No such source name!";
+                if (!$doSource->checkSourceName($sourceName, $oSource))
+                    $errorMessage = "No such source name!";
                 else
-                    $link_to_redirect = $oSource[0]->get("s_External");
+                    $linkToRedirect = $oSource[0]->get("s_External");
             }
         }
-        $this->executeRedirect($link_to_redirect, $error_message);
+        $this->executeRedirect($linkToRedirect, $errorMessage);
     }
 }

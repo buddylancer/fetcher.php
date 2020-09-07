@@ -29,9 +29,11 @@ require_once("Bula/Objects/Strings.php");
 /**
  * Class for request context.
  */
-class Context extends Config {
+class Context extends Config
+{
     /** Default constructor. */
-    public function __construct() {
+    public function __construct()
+    {
         $this->initialize();
     }
 
@@ -43,7 +45,8 @@ class Context extends Config {
      * @param TString $name Name of internal variable.
      * @return TString Value of variable.
      */
-    public function get($name) {
+    public function get($name)
+    {
         return /*(TString)*/$this->Values[$name];
     }
 
@@ -52,7 +55,8 @@ class Context extends Config {
      * @param TString $name Name of internal variable.
      * @param TString $value Value of internal variable to set.
      */
-    public function set($name, $value) {
+    public function set($name, $value)
+    {
         $this->Values[$name] = $value;
     }
 
@@ -61,7 +65,8 @@ class Context extends Config {
      * @param TString $name Name of internal variable.
      * @return Boolean True - variable exists, False - not exists.
      */
-    public function contains($name) {
+    public function contains($name)
+    {
         return isset($this->Values[$name]);
     }
 
@@ -104,23 +109,24 @@ class Context extends Config {
     /**
      * Check whether current request is from test script?
      */
-    public function checkTestRun() {
-        $http_tester = Request::getVar(/*[Request::]*/INPUT_SERVER, "HTTP_USER_AGENT");
-        if ($http_tester == null)
+    public function checkTestRun()
+    {
+        $httpTester = Request::getVar(/*[Request::]*/INPUT_SERVER, "HTTP_USER_AGENT");
+        if ($httpTester == null)
             return;
-        if (EQ($http_tester, "TestFull")) {
+        if (EQ($httpTester, "TestFull")) {
             $this->TestRun = true;
             $this->FineUrls = false;
             $this->ImmediateRedirect = false;
             $this->Site = "http://www.test.com";
         }
-        else if (EQ($http_tester, "TestFine")) {
+        else if (EQ($httpTester, "TestFine")) {
             $this->TestRun = true;
             $this->FineUrls = true;
             $this->ImmediateRedirect = false;
             $this->Site = "http://www.test.com";
         }
-        else if (EQ($http_tester, "TestDirect")) {
+        else if (EQ($httpTester, "TestDirect")) {
             $this->TestRun = true;
             $this->FineUrls = true;
             $this->ImmediateRedirect = true;
@@ -131,15 +137,16 @@ class Context extends Config {
     /**
      * Initialize all variables for current request.
      */
-    public function initialize() {
+    public function initialize()
+    {
         //------------------------------------------------------------------------------
         // You can change something below this line if you know what are you doing :)
-        $root_dir = Request::getVar(/*[Request::]*/INPUT_SERVER, "DOCUMENT_ROOT");
+        $rootDir = Request::getVar(/*[Request::]*/INPUT_SERVER, "DOCUMENT_ROOT");
         for ($n = 0; $n <= 3; $n++) {
-            $last_slash_index = $root_dir->lastIndexOf("/");
-            $root_dir = $root_dir->substring(0, $last_slash_index);
+            $lastSlashIndex = $rootDir->lastIndexOf("/");
+            $rootDir = $rootDir->substring(0, $lastSlashIndex);
         }
-        $this->LocalRoot = $root_dir->concat("/");
+        $this->LocalRoot = $rootDir->concat("/");
         set_include_path($this->LocalRoot->getValue());
 
         $this->Host = Request::getVar(/*[Request::]*/INPUT_SERVER, "HTTP_HOST");
@@ -164,7 +171,8 @@ class Context extends Config {
     /**
      * Define global constants.
      */
-    private function defineConstants() {
+    private function defineConstants()
+    {
         $this->GlobalConstants = new Hashtable();
         $this->GlobalConstants->put("[#Site_Name]", Config::SITE_NAME);
         $this->GlobalConstants->put("[#Site_Comments]", Config::SITE_COMMENTS);
@@ -175,7 +183,6 @@ class Context extends Config {
         //    $this->GlobalConstants->put("[#Is_Mobile]", "1");
         $this->GlobalConstants->put("[#Lang]", $this->Lang);
 
-//if php
         $prefix = "Bula\Fetcher\Config";
         if (defined("$prefix::NAME_CATEGORY")) $this->Set("Name_Category", Config::NAME_CATEGORY);
         if (defined("$prefix::NAME_CATEGORIES")) $this->Set("Name_Categories", Config::NAME_CATEGORIES);
@@ -203,11 +210,12 @@ class Context extends Config {
 
     /**
      * Push engine.
-     * @param Boolean $print_flag Whether to print content immediately (true) or save it for further processing (false).
+     * @param Boolean $printFlag Whether to print content immediately (true) or save it for further processing (false).
      */
-    public function pushEngine($print_flag) {
+    public function pushEngine($printFlag)
+    {
         $engine = new Engine($this);
-        $engine->setPrintFlag($print_flag);
+        $engine->setPrintFlag($printFlag);
         $this->EngineIndex++;
         if ($this->EngineInstances == null)
             $this->EngineInstances = new ArrayList();
@@ -219,7 +227,8 @@ class Context extends Config {
     }
 
     /** Pop engine back. */
-    public function popEngine() {
+    public function popEngine()
+    {
         if ($this->EngineIndex == -1)
             return;
         $engine = /*(Engine)*/$this->EngineInstances->get($this->EngineIndex);
@@ -229,7 +238,8 @@ class Context extends Config {
     }
 
     /** Get current engine */
-    public function getEngine() {
+    public function getEngine()
+    {
         return /*(Engine)*/$this->EngineInstances->get($this->EngineIndex);
     }
 }

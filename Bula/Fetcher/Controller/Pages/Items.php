@@ -33,209 +33,206 @@ require_once("ItemsBase.php");
 /**
  * Controller for Items block.
  */
-class Items extends ItemsBase {
-    /**
-     * Public default constructor.
-     * @param Context $context Context instance.
-     * /
-    public Items(Context context) : base(context) { }
-    CS*/
+class Items extends ItemsBase
+{
 
     /**
      * Fast check of input query parameters.
      * @return Hashtable Parsed parameters (or null in case of any error).
      */
-    public function check() {
-        $error_message = new TString();
+    public function check()
+    {
+        $errorMessage = new TString();
 
         $list = Request::get("list");
         if (!NUL($list)) {
             if (BLANK($list))
-                $error_message->concat("Empty list number!");
+                $errorMessage->concat("Empty list number!");
             else if (!Request::isInteger($list))
-                $error_message->concat("Incorrect list number!");
+                $errorMessage->concat("Incorrect list number!");
         }
 
-        $source_name = Request::get("source");
-        if (!NUL($source_name)) {
-            if (BLANK($source_name)) {
-                if ($error_message->length() > 0)
-                    $error_message->concat("<br/>");
-                $error_message->concat("Empty source name!");
+        $sourceName = Request::get("source");
+        if (!NUL($sourceName)) {
+            if (BLANK($sourceName)) {
+                if ($errorMessage->length() > 0)
+                    $errorMessage->concat("<br/>");
+                $errorMessage->concat("Empty source name!");
             }
-            else if (!Request::isDomainName($source_name)) {
-                if ($error_message->length() > 0)
-                    $error_message->concat("<br/>");
-                $error_message->concat("Incorrect source name!");
-            }
-        }
-
-        $filter_name = Request::get("filter");
-        if (!NUL($filter_name)) {
-            if (BLANK($filter_name)) {
-                if ($error_message->length() > 0)
-                    $error_message->concat("<br/>");
-                $error_message->concat("Empty filter name!");
-            }
-            else if (!Request::isName($filter_name)) {
-                if ($error_message->length() > 0)
-                    $error_message->concat("<br/>");
-                $error_message->concat("Incorrect filter name!");
+            else if (!Request::isDomainName($sourceName)) {
+                if ($errorMessage->length() > 0)
+                    $errorMessage->concat("<br/>");
+                $errorMessage->concat("Incorrect source name!");
             }
         }
 
-        if ($error_message->length() > 0) {
-            $Prepare = new Hashtable();
-            $Prepare->put("[#ErrMessage]", $error_message);
-            $this->write("Bula/Fetcher/View/error.html", $Prepare);
+        $filterName = Request::get("filter");
+        if (!NUL($filterName)) {
+            if (BLANK($filterName)) {
+                if ($errorMessage->length() > 0)
+                    $errorMessage->concat("<br/>");
+                $errorMessage->concat("Empty filter name!");
+            }
+            else if (!Request::isName($filterName)) {
+                if ($errorMessage->length() > 0)
+                    $errorMessage->concat("<br/>");
+                $errorMessage->concat("Incorrect filter name!");
+            }
+        }
+
+        if ($errorMessage->length() > 0) {
+            $prepare = new Hashtable();
+            $prepare->put("[#ErrMessage]", $errorMessage);
+            $this->write("Bula/Fetcher/View/error.html", $prepare);
             return null;
         }
 
-        $Pars = new Hashtable();
+        $pars = new Hashtable();
         if (!NUL($list))
-            $Pars->put("list", $list);
-        if (!NUL($source_name))
-            $Pars->put("source_name", $source_name);
-        if (!NUL($filter_name))
-            $Pars->put("filter_name", $filter_name);
-        return $Pars;
+            $pars->put("list", $list);
+        if (!NUL($sourceName))
+            $pars->put("source_name", $sourceName);
+        if (!NUL($filterName))
+            $pars->put("filter_name", $filterName);
+        return $pars;
     }
 
     /** Execute main logic for Items block. */
-    public function execute() {
-        $Pars = $this->check();
-        if ($Pars == null)
+    public function execute()
+    {
+        $pars = $this->check();
+        if ($pars == null)
             return;
 
-        $list = /*(TString)*/$Pars->get("list");
-        $list_number = $list == null ? 1 : INT($list);
-        $source_name = /*(TString)*/$Pars->get("source_name");
-        $filter_name = /*(TString)*/$Pars->get("filter_name");
+        $list = /*(TString)*/$pars->get("list");
+        $listNumber = $list == null ? 1 : INT($list);
+        $sourceName = /*(TString)*/$pars->get("source_name");
+        $filterName = /*(TString)*/$pars->get("filter_name");
 
-        $error_message = new TString();
+        $errorMessage = new TString();
         $filter = null;
 
-        if (!NUL($filter_name)) {
+        if (!NUL($filterName)) {
             $doCategory = new DOCategory();
             $oCategory =
                 ARR(new Hashtable());
-            if (!$doCategory->checkFilterName($filter_name, $oCategory))
-                $error_message->concat("Non-existing filter name!");
+            if (!$doCategory->checkFilterName($filterName, $oCategory))
+                $errorMessage->concat("Non-existing filter name!");
             else
                 $filter = $oCategory[0]->get("s_Filter");
         }
 
-        if (!NUL($source_name)) {
+        if (!NUL($sourceName)) {
             $doSource = new DOSource();
             $oSource =
                 ARR(new Hashtable());
-            if (!$doSource->checkSourceName($source_name, $oSource)) {
-                if ($error_message->length() > 0)
-                    $error_message->concat("<br/>");
-                $error_message->concat("Non-existing source name!");
+            if (!$doSource->checkSourceName($sourceName, $oSource)) {
+                if ($errorMessage->length() > 0)
+                    $errorMessage->concat("<br/>");
+                $errorMessage->concat("Non-existing source name!");
             }
         }
 
         $engine = $this->context->getEngine();
 
-        $Prepare = new Hashtable();
-        if ($error_message->length() > 0) {
-            $Prepare->put("[#ErrMessage]", $error_message);
-            $this->write("Bula/Fetcher/View/error.html", $Prepare);
+        $prepare = new Hashtable();
+        if ($errorMessage->length() > 0) {
+            $prepare->put("[#ErrMessage]", $errorMessage);
+            $this->write("Bula/Fetcher/View/error.html", $prepare);
             return;
         }
 
         // Uncomment to enable filtering by source and/or category
-        $Prepare->put("[#FilterItems]", $engine->includeTemplate("Bula/Fetcher/Controller/Pages/FilterItems"));
+        $prepare->put("[#FilterItems]", $engine->includeTemplate("Bula/Fetcher/Controller/Pages/FilterItems"));
 
         $s_Title = CAT(
             "Browse ",
             Config::NAME_ITEMS,
             ($this->context->IsMobile ? "<br/>" : null),
-            (!BLANK($source_name) ? CAT(" ... from '", $source_name, "'") : null),
-            (!BLANK($filter) ? CAT(" ... for '", $filter_name, "'") : null)
+            (!BLANK($sourceName) ? CAT(" ... from '", $sourceName, "'") : null),
+            (!BLANK($filter) ? CAT(" ... for '", $filterName, "'") : null)
         );
 
-        $Prepare->put("[#Title]", $s_Title);
+        $prepare->put("[#Title]", $s_Title);
 
-        $max_rows = Config::DB_ITEMS_ROWS;
+        $maxRows = Config::DB_ITEMS_ROWS;
 
         $doItem = new DOItem();
-        $dsItems = $doItem->enumItems($source_name, $filter, $list_number, $max_rows);
+        $dsItems = $doItem->enumItems($sourceName, $filter, $listNumber, $maxRows);
 
-        $list_total = $dsItems->getTotalPages();
-        if ($list_number > $list_total) {
-            $Prepare->put("[#ErrMessage]", "List number is too large!");
-            $this->write("Bula/Fetcher/View/error.html", $Prepare);
+        $listTotal = $dsItems->getTotalPages();
+        if ($listNumber > $listTotal) {
+            $prepare->put("[#ErrMessage]", "List number is too large!");
+            $this->write("Bula/Fetcher/View/error.html", $prepare);
             return;
         }
-        if ($list_total > 1) {
-            $Prepare->put("[#List_Total]", $list_total);
-            $Prepare->put("[#List]", $list_number);
+        if ($listTotal > 1) {
+            $prepare->put("[#List_Total]", $listTotal);
+            $prepare->put("[#List]", $listNumber);
         }
 
         $count = 1;
-        $Rows = new ArrayList();
+        $rows = new ArrayList();
         for ($n = 0; $n < $dsItems->getSize(); $n++) {
             $oItem = $dsItems->getRow($n);
-            $Row = parent::fillItemRow($oItem, $doItem->getIdField(), $count);
+            $row = parent::fillItemRow($oItem, $doItem->getIdField(), $count);
             $count++;
-            $Rows->add($Row);
+            $rows->add($row);
         }
-        $Prepare->put("[#Rows]", $Rows);
+        $prepare->put("[#Rows]", $rows);
 
-        if ($list_total > 1) {
+        if ($listTotal > 1) {
             $chunk = 2;
             $before = false;
             $after = false;
 
-            $Pages = new ArrayList();
-            for ($n = 1; $n <= $list_total; $n++) {
-                $Page = new Hashtable();
-                if ($n < $list_number - $chunk) {
+            $pages = new ArrayList();
+            for ($n = 1; $n <= $listTotal; $n++) {
+                $page = new Hashtable();
+                if ($n < $listNumber - $chunk) {
                     if (!$before) {
                         $before = true;
-                        $Page->put("[#Text]", "1");
-                        $Page->put("[#Link]", parent::getPageLink(1));
-                        $Pages->add($Page);
-                        $Page = new Hashtable();
-                        $Page->put("[#Text]", " ... ");
-                        //$Row->remove("[#Link]");
-                        $Pages->add($Page);
+                        $page->put("[#Text]", "1");
+                        $page->put("[#Link]", parent::getPageLink(1));
+                        $pages->add($page);
+                        $page = new Hashtable();
+                        $page->put("[#Text]", " ... ");
+                        //$row->remove("[#Link]");
+                        $pages->add($page);
                     }
                     continue;
                 }
-                if ($n > $list_number + $chunk) {
+                if ($n > $listNumber + $chunk) {
                     if (!$after) {
                         $after = true;
-                        $Page->put("[#Text]", " ... ");
-                        $Pages->add($Page);
-                        $Page = new Hashtable();
-                        $Page->put("[#Text]", $list_total);
-                        $Page->put("[#Link]", parent::getPageLink($list_total));
-                        $Pages->add($Page);
+                        $page->put("[#Text]", " ... ");
+                        $pages->add($page);
+                        $page = new Hashtable();
+                        $page->put("[#Text]", $listTotal);
+                        $page->put("[#Link]", parent::getPageLink($listTotal));
+                        $pages->add($page);
                     }
                     continue;
                 }
-                if ($list_number == $n) {
-                    $Page->put("[#Text]", CAT("=", $n, "="));
-                    $Pages->add($Page);
+                if ($listNumber == $n) {
+                    $page->put("[#Text]", CAT("=", $n, "="));
+                    $pages->add($page);
                 }
                 else {
                     if ($n == 1) {
-                        $Page->put("[#Link]", parent::getPageLink(1));
-                        $Page->put("[#Text]", 1);
+                        $page->put("[#Link]", parent::getPageLink(1));
+                        $page->put("[#Text]", 1);
                     }
                     else  {
-                        $Page->put("[#Link]", parent::getPageLink($n));
-                        $Page->put("[#Text]", $n);
+                        $page->put("[#Link]", parent::getPageLink($n));
+                        $page->put("[#Text]", $n);
                     }
-                    $Pages->add($Page);
+                    $pages->add($page);
                 }
             }
-            $Prepare->put("[#Pages]", $Pages);
+            $prepare->put("[#Pages]", $pages);
         }
 
-        $this->write("Bula/Fetcher/View/Pages/items.html", $Prepare);
+        $this->write("Bula/Fetcher/View/Pages/items.html", $prepare);
     }
 }

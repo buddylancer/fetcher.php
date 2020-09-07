@@ -20,19 +20,22 @@ require_once("TString.php");
 /**
  * Base class for ArrayList and Hashtable.
  */
-abstract class Collection {
+abstract class Collection
+{
     protected $collection = array();
-    protected $pull_values = false;
+    protected $pullValues = false;
 
     /**
      * Set mode for pulling objects from collection.
      * @param Boolean $input True - pull as values, False - pull as objects.
      */
-    public function setPullValues($input) {
-        $this->pull_values = $input;
+    public function setPullValues($input)
+    {
+        $this->pullValues = $input;
     }
-    public function getPullValues() {
-        return $this->pull_values;
+    public function getPullValues()
+    {
+        return $this->pullValues;
     }
 
     /**
@@ -40,7 +43,8 @@ abstract class Collection {
      * @param Object $input Input object.
      * @return Object Resulting value.
      */
-    protected function pushValue($input) {
+    protected function pushValue($input)
+    {
         if ($input instanceof ArrayList)
             return $input->toArray(0);
         else if ($input instanceof Hashtable)
@@ -55,7 +59,8 @@ abstract class Collection {
      * @param Object $input Input value.
      * @return Object Resulting object.
      */
-    protected function pullObject($input) {
+    protected function pullObject($input)
+    {
         if (is_array($input)) {
             if (isset($input[0]) && $input[0] == "_A") {
                 $result = new ArrayList();
@@ -77,7 +82,8 @@ abstract class Collection {
 
     //public abstract function toArray();
 
-    public function toString() {
+    public function toString()
+    {
         return "Not implemented!";
     }
 }

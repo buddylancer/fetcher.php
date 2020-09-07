@@ -39,11 +39,13 @@ require_once("Bula/Fetcher/Controller/Util.php");
 /**
  * Controller for main Index page.
  */
-class Index extends Page {
-    private static $pages_array = null;
+class Index extends Page
+{
+    private static $pagesArray = null;
 
-    private static function initialize() {
-        self::$pages_array = array(
+    private static function initialize()
+    {
+        self::$pagesArray = array(
             // page name,   class,          post,   code
             "home",         "Home",         0,      0,
             "items",        "Items",        0,      0,
@@ -52,84 +54,78 @@ class Index extends Page {
         );
     }
 
-    /**
-     * Public default constructor.
-     * @param Context $context Context instance.
-     * /
-    public Index(Context context) : base(context) { }
-    CS*/
-
     /** Execute main logic for Index block */
-    public function execute() {
-        if (self::$pages_array == null)
+    public function execute()
+    {
+        if (self::$pagesArray == null)
             self::initialize();
 
         DataAccess::setErrorDelegate("Bula\Objects\Response::end");
 
-        $page_info = Request::testPage(self::$pages_array, "home");
+        $pageInfo = Request::testPage(self::$pagesArray, "home");
 
         // Test action name
-        if (!$page_info->containsKey("page"))
+        if (!$pageInfo->containsKey("page"))
             Response::end("Error in parameters -- no page");
 
-        $page_name = /*(TString)*/$page_info->get("page");
-        $class_name = /*(TString)*/$page_info->get("class");
+        $pageName = /*(TString)*/$pageInfo->get("page");
+        $className = /*(TString)*/$pageInfo->get("class");
 
         Request::initialize();
-        if (INT($page_info->get("post_required")) == 1)
+        if (INT($pageInfo->get("post_required")) == 1)
             Request::extractPostVars();
         else
             Request::extractAllVars();
         //echo "In Index -- " . print_r($this, true);
-        $this->context->set("Page", $page_name);
+        $this->context->set("Page", $pageName);
 
         $engine = $this->context->pushEngine(true);
 
-        $Prepare = new Hashtable();
-        $Prepare->put("[#Site_Name]", Config::SITE_NAME);
-        $p_from_vars = Request::contains("p") ? Request::get("p") : "home";
-        $id_from_vars = Request::contains("id") ? Request::get("id") : null;
+        $prepare = new Hashtable();
+        $prepare->put("[#Site_Name]", Config::SITE_NAME);
+        $pFromVars = Request::contains("p") ? Request::get("p") : "home";
+        $idFromVars = Request::contains("id") ? Request::get("id") : null;
         $title = Config::SITE_NAME;
-        if ($p_from_vars != "home")
-            $title = CAT($title, " :: ", $p_from_vars, (!NUL($id_from_vars)? CAT(" :: ", $id_from_vars) : null));
+        if ($pFromVars != "home")
+            $title = CAT($title, " :: ", $pFromVars, (!NUL($idFromVars)? CAT(" :: ", $idFromVars) : null));
 
-        $Prepare->put("[#Title]", $title); //TODO -- need unique title on each page
-        $Prepare->put("[#Keywords]", Config::SITE_KEYWORDS);
-        $Prepare->put("[#Description]", Config::SITE_DESCRIPTION);
-        $Prepare->put("[#Styles]", CAT(
+        $prepare->put("[#Title]", $title); //TODO -- need unique title on each page
+        $prepare->put("[#Keywords]", Config::SITE_KEYWORDS);
+        $prepare->put("[#Description]", Config::SITE_DESCRIPTION);
+        $prepare->put("[#Styles]", CAT(
                 ($this->context->TestRun ? null : Config::TOP_DIR),
                 $this->context->IsMobile ? "styles2" : "styles"));
-        $Prepare->put("[#ContentType]", "text/html; charset=UTF-8");
-        $Prepare->put("[#Top]", $engine->includeTemplate("Bula/Fetcher/Controller/Top"));
-        $Prepare->put("[#Menu]", $engine->includeTemplate("Bula/Fetcher/Controller/Menu"));
+        $prepare->put("[#ContentType]", "text/html; charset=UTF-8");
+        $prepare->put("[#Top]", $engine->includeTemplate("Bula/Fetcher/Controller/Top"));
+        $prepare->put("[#Menu]", $engine->includeTemplate("Bula/Fetcher/Controller/Menu"));
 
         // Get included page either from cache or build it from the scratch
-        $error_content = $engine->includeTemplate(CAT("Bula/Fetcher/Controller/Pages/", $class_name), "check");
-        if (!BLANK($error_content)) {
-            $Prepare->put("[#Page]", $error_content);
+        $errorContent = $engine->includeTemplate(CAT("Bula/Fetcher/Controller/Pages/", $className), "check");
+        if (!BLANK($errorContent)) {
+            $prepare->put("[#Page]", $errorContent);
         }
         else {
-            if (Config::CACHE_PAGES/* && !Config::$DontCache->contains($page_name)*/) //TODO!!!
-                $Prepare->put("[#Page]", Util::showFromCache($engine, $this->context->CacheFolder, $page_name, $class_name));
+            if (Config::CACHE_PAGES/* && !Config::$DontCache->contains($pageName)*/) //TODO!!!
+                $prepare->put("[#Page]", Util::showFromCache($engine, $this->context->CacheFolder, $pageName, $className));
             else
-                $Prepare->put("[#Page]", $engine->includeTemplate(CAT("Bula/Fetcher/Controller/Pages/", $class_name)));
+                $prepare->put("[#Page]", $engine->includeTemplate(CAT("Bula/Fetcher/Controller/Pages/", $className)));
         }
 
         if (/*Config::$RssAllowed != null && */Config::SHOW_BOTTOM) {
             // Get bottom block either from cache or build it from the scratch
             if (Config::CACHE_PAGES)
-                $Prepare->put("[#Bottom]", Util::showFromCache($engine, $this->context->CacheFolder, "bottom", "Bottom"));
+                $prepare->put("[#Bottom]", Util::showFromCache($engine, $this->context->CacheFolder, "bottom", "Bottom"));
             else
-                $Prepare->put("[#Bottom]", $engine->includeTemplate("Bula/Fetcher/Controller/Bottom"));
+                $prepare->put("[#Bottom]", $engine->includeTemplate("Bula/Fetcher/Controller/Bottom"));
         }
 
-        $this->write("Bula/Fetcher/View/index.html", $Prepare);
+        $this->write("Bula/Fetcher/View/index.html", $prepare);
 
         // Fix <title>
         //TODO -- comment for now
-        //$new_title = Util::extractInfo($content, "<input type=\"hidden\" name=\"s_Title\" value=\"", "\" />");
-        //if (!BLANK($new_title))
-        //    $content = Regex::replace($content, "<title>(.*?)</title>", CAT("<title>", Config::SITE_NAME, " -- ", $new_title, "</title>"), RegexOptions::IgnoreCase);
+        //$newTitle = Util::extractInfo($content, "<input type=\"hidden\" name=\"s_Title\" value=\"", "\" />");
+        //if (!BLANK($newTitle))
+        //    $content = Regex::replace($content, "<title>(.*?)</title>", CAT("<title>", Config::SITE_NAME, " -- ", $newTitle, "</title>"), RegexOptions::IgnoreCase);
 
         Response::write($engine->getPrintString());
 

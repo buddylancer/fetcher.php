@@ -19,8 +19,10 @@ require_once("TString.php");
 /**
  * Straight-forward implementation of Java Hashtable object.
  */
-class Hashtable extends Collection {
-	public function __construct() {
+class Hashtable extends Collection
+{
+	public function __construct()
+    {
 	}
 
     /**
@@ -28,7 +30,8 @@ class Hashtable extends Collection {
      * @param Object $input Object to check.
      * @return Boolean
      */
-    public function contains($input) {
+    public function contains($input)
+    {
         return in_array($input, $this->collection);
     }
 
@@ -37,15 +40,18 @@ class Hashtable extends Collection {
      * @param Object $key Key to check.
      * @return Boolean
      */
-    public function containsKey($key) {
+    public function containsKey($key)
+    {
         return array_key_exists(CAT($key), $this->collection);
     }
 
-    public function copyTo(&$array, $index) {
+    public function copyTo(&$array, $index)
+    {
         //TODO
     }
 
-    public function cloneMe() {
+    public function cloneMe()
+    {
         $output = $this;
         return $output;
     }
@@ -55,21 +61,23 @@ class Hashtable extends Collection {
      * @param Object $key Key of an object.
      * @return Object Resulting object or null if key not exists.
      */
-    public function get($key) {
-        $key_var = $this->checkKey($key);
-        if (!$this->containsKey($key_var))
+    public function get($key)
+    {
+        $keyVar = $this->checkKey($key);
+        if (!$this->containsKey($keyVar))
             return null;
-        if ($this->pull_values)
-            return $this->collection[$key_var];
+        if ($this->pullValues)
+            return $this->collection[$keyVar];
         else
-            return $this->pullObject($this->collection[$key_var]);
+            return $this->pullObject($this->collection[$keyVar]);
     }
 
     /**
      * Check whether collection is empty.
      * @return Boolean
      */
-    public function isEmpty() {
+    public function isEmpty()
+    {
         return SIZE($this->collection) == 0;
     }
 
@@ -77,7 +85,8 @@ class Hashtable extends Collection {
      * Get collection's keys.
      * @return Enumerator Resulting Enumerator object
      */
-    public function keys() {
+    public function keys()
+    {
         return new Enumerator(array_keys($this->collection));
 	}
 
@@ -86,9 +95,10 @@ class Hashtable extends Collection {
      * @param Object $key Key to assign.
      * @param Object $input Object to add.
      */
-    public function put($key, $input) {
-        $key_var = $this->checkKey($key);
-        $this->collection[$key_var] = $this->pushValue($input);
+    public function put($key, $input)
+    {
+        $keyVar = $this->checkKey($key);
+        $this->collection[$keyVar] = $this->pushValue($input);
     }
 
     /**
@@ -96,12 +106,13 @@ class Hashtable extends Collection {
      * @param Object $key Key of an object.
      * @return Boolean True - an object removed, False - a key not found.
      */
-    public function remove($key) {
+    public function remove($key)
+    {
         if (!$this->containsKey($key))
             return false;
-        $key_var = $this->checkKey($key);
-        $this->collection[$key_var] = null;
-        unset($this->collection[$key_var]);
+        $keyVar = $this->checkKey($key);
+        $this->collection[$keyVar] = null;
+        unset($this->collection[$keyVar]);
         return true;
     }
 
@@ -109,7 +120,8 @@ class Hashtable extends Collection {
      * Get size of collection.
      * @return Integer
      */
-    public function count() {
+    public function count()
+    {
         return sizeof($this->collection);
     }
 
@@ -117,18 +129,20 @@ class Hashtable extends Collection {
      * Get an array of values from collection.
      * @return Object[]
      */
-    public function values() {
+    public function values()
+    {
         return new Enumerator(array_values($this->collection));
 	}
 
     // Return string value of a key.
-    protected function checkKey($key) {
+    protected function checkKey($key)
+    {
 		if ($key == null)
 			return null;
-		$key_var = $key instanceof TString ? $key->getValue() : $key;
-		if ($key_var == "")
+		$keyVar = $key instanceof TString ? $key->getValue() : $key;
+		if ($keyVar == "")
 			return null;
-		return $key_var;
+		return $keyVar;
 	}
 
 }

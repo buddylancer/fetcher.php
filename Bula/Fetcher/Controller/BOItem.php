@@ -31,7 +31,8 @@ require_once("Bula/Model/DataSet.php");
 /**
  * Manipulating with items.
  */
-class BOItem {
+class BOItem
+{
     // Input fields
     /** Source name */
     private $source = null;
@@ -41,9 +42,9 @@ class BOItem {
     /** Link to external item */
     public $link = null;
     /** Original title */
-    public $full_title = null;
+    public $fullTitle = null;
     /** Original description */
-    public $full_description = null;
+    public $fullDescription = null;
 
     // Output fields
     /** Final (processed) title */
@@ -66,7 +67,8 @@ class BOItem {
      * @param TString $source Current processed source.
      * @param TString $item Current processed RSS-item from given source.
      */
-    public function __construct($source, $item) {
+    public function __construct($source, $item)
+    {
         $this->initialize($source, $item);
     }
 
@@ -75,7 +77,8 @@ class BOItem {
      * @param Hashtable $source Current processed source.
      * @param Hashtable $item Current processed RSS-item from given source.
      */
-    private function initialize($source, Hashtable $item) {
+    private function initialize($source, Hashtable $item)
+    {
         $this->source = $source;
         $this->item = $item;
 
@@ -83,9 +86,9 @@ class BOItem {
 
         // Pre-process full description & title
         // Trick to eliminate non-UTF-8 characters
-        $this->full_title = Regex::replace(/*(TString)*/$item->get("title"), "[\xF0-\xF7][\x80-\xBF]{3}", "");
+        $this->fullTitle = Regex::replace(/*(TString)*/$item->get("title"), "[\xF0-\xF7][\x80-\xBF]{3}", "");
         if ($item->containsKey("description") && !BLANK($item->get("description")))
-            $this->full_description = Regex::replace(/*(TString)*/$item->get("description"), "[\xF0-\xF7][\x80-\xBF]{3}", "");
+            $this->fullDescription = Regex::replace(/*(TString)*/$item->get("description"), "[\xF0-\xF7][\x80-\xBF]{3}", "");
 
         $this->preProcessLink();
     }
@@ -93,23 +96,25 @@ class BOItem {
     /**
      * Pre-process link (just placeholder for now)
      */
-    protected function preProcessLink() {}
+    protected function preProcessLink()
+    {}
 
     /**
      * Process description.
      */
-    public function processDescription() {
+    public function processDescription()
+    {
         $BR = "\n";
-        $title = Strings::removeTags($this->full_title);
+        $title = Strings::removeTags($this->fullTitle);
         $title = $title->replace("&#", "[--amp--]");
         $title = $title->replace("#", "[sharp]");
         $title = $title->replace("[--amp--]", "&#");
         $title = $title->replace("&amp;", "&");
         $this->title = $title;
 
-        if ($this->full_description == null)
+        if ($this->fullDescription == null)
             return;
-        $description = $this->full_description;
+        $description = $this->fullDescription;
 
         //TODO -- Fixes for FetchRSS feeds (parsed from Twitter) here...
         $description = $description->replace("&#160;", "");
@@ -118,22 +123,22 @@ class BOItem {
         // Start -- Fixes and workarounds for some sources here...
         // End
 
-        $has_p = Regex::isMatch($description, "<p[^>]*>");
-        $has_br = $description->indexOf("<br") != -1;
-        $has_li = $description->indexOf("<li") != -1;
-        $has_div = $description->indexOf("<div") != -1;
-        $include_tags = Strings::concat(
+        $hasP = Regex::isMatch($description, "<p[^>]*>");
+        $hasBr = $description->indexOf("<br") != -1;
+        $hasLi = $description->indexOf("<li") != -1;
+        $hasDiv = $description->indexOf("<div") != -1;
+        $includeTags = Strings::concat(
             "<br>",
-            ($has_p ? "<p>" : null),
-            ($has_li ? "<ul><ol><li>" : null),
-            ($has_div ? "<div>" : null)
+            ($hasP ? "<p>" : null),
+            ($hasLi ? "<ul><ol><li>" : null),
+            ($hasDiv ? "<div>" : null)
         );
 
-        $description = Strings::removeTags($description, $include_tags);
+        $description = Strings::removeTags($description, $includeTags);
 
-        if ($has_br)
+        if ($hasBr)
             $description = Regex::replace($description, "[ \t\r\n]*<br[ ]*[/]*>[ \t\r\n]*", $BR, RegexOptions::IgnoreCase);
-        if ($has_li) {
+        if ($hasLi) {
             $description = Regex::replace($description, "<ul[^>]*>", $BR, RegexOptions::IgnoreCase);
             $description = Regex::replace($description, "<ol[^>]*>", "* ", RegexOptions::IgnoreCase);
             $description = Regex::replace($description, "<li[^>]*>", "* ", RegexOptions::IgnoreCase);
@@ -141,11 +146,11 @@ class BOItem {
             $description = Regex::replace($description, "</ol>", $BR, RegexOptions::IgnoreCase);
             $description = Regex::replace($description, "</li>", $BR, RegexOptions::IgnoreCase);
         }
-        if ($has_p) {
+        if ($hasP) {
             $description = Regex::replace($description, "<p[^>]*>", $BR, RegexOptions::IgnoreCase);
             $description = Regex::replace($description, "</p>", $BR, RegexOptions::IgnoreCase);
         }
-        if ($has_div) {
+        if ($hasDiv) {
             $description = Regex::replace($description, "<div[^>]*>", $BR, RegexOptions::IgnoreCase);
             $description = Regex::replace($description, "</div>", $BR, RegexOptions::IgnoreCase);
         }
@@ -164,7 +169,8 @@ class BOItem {
     /**
      * Process category (if any).
      */
-    public function processCategory() {
+    public function processCategory()
+    {
         // Set or fix category from item
         $category = null;
         if (!BLANK($this->item->get("category")))
@@ -180,10 +186,11 @@ class BOItem {
 
     /**
      * Pre-process category.
-     * @param TString $category_item Input category.
+     * @param TString $categoryItem Input category.
      * @return TString Pre-processed category.
      */
-    private function preProcessCategory($category_item) {
+    private function preProcessCategory($categoryItem)
+    {
         // Pre-process category from $item["category"]
 
         // This is just sample - implement your own logic
@@ -192,15 +199,15 @@ class BOItem {
         }
 
         $category = null;
-        if (!$category_item->isEmpty()) {
-            $categories_arr = $category_item->replace(",&,", " & ")->split(",");
-            $categories_new = new ArrayList();
-            for ($c = 0; $c < SIZE($categories_arr); $c++) {
-                $temp = $categories_arr[$c];
+        if (!$categoryItem->isEmpty()) {
+            $categoriesArr = $categoryItem->replace(",&,", " & ")->split(",");
+            $categoriesNew = new ArrayList();
+            for ($c = 0; $c < SIZE($categoriesArr); $c++) {
+                $temp = $categoriesArr[$c];
                 if (!BLANK($temp))
-                    $categories_new->add($temp);
+                    $categoriesNew->add($temp);
             }
-            $category = Strings::join(", ", /*(TString[])*/$categories_new->toArray());
+            $category = Strings::join(", ", /*(TString[])*/$categoriesNew->toArray());
         }
 
         return $category;
@@ -210,7 +217,8 @@ class BOItem {
      * Extract category.
      * @return TString Resulting category.
      */
-    private function extractCategory() {
+    private function extractCategory()
+    {
         // Try to extract category from description body (if no $item["category"])
 
         $category = null;
@@ -227,57 +235,59 @@ class BOItem {
      * @param DataSet $dsCategories DataSet with categories (pre-loaded from DB).
      * @param TString $lang Input language.
      */
-    public function addStandardCategories($dsCategories, $lang) {
+    public function addStandardCategories($dsCategories, $lang)
+    {
         //if (BLANK($this->description))
         //    return;
 
-        $category_tags = BLANK($this->category) ?
+        $categoryTags = BLANK($this->category) ?
             Strings::emptyArray() : $this->category->split(",");
         for ($n1 = 0; $n1 < $dsCategories->getSize(); $n1++) {
             $oCategory = $dsCategories->getRow($n1);
-            $rss_allowed_key = $oCategory->get("s_CatId");
+            $rssAllowedKey = $oCategory->get("s_CatId");
             $name = $oCategory->get("s_Name");
 
-            $filter_value = $oCategory->get("s_Filter");
-            $filter_chunks = Strings::split("~", $filter_value);
-            $include_chunks = SIZE($filter_chunks) > 0 ?
-                Strings::split("|", $filter_chunks[0]) : Strings::emptyArray();
-            $exclude_chunks = SIZE($filter_chunks) > 1 ?
-                Strings::split("|", $filter_chunks[1]) : Strings::emptyArray();
+            $filterValue = $oCategory->get("s_Filter");
+            $filterChunks = Strings::split("~", $filterValue);
+            $includeChunks = SIZE($filterChunks) > 0 ?
+                Strings::split("|", $filterChunks[0]) : Strings::emptyArray();
+            $excludeChunks = SIZE($filterChunks) > 1 ?
+                Strings::split("|", $filterChunks[1]) : Strings::emptyArray();
 
-            $include_flag = false;
-            for ($n2 = 0; $n2 < SIZE($include_chunks); $n2++) {
-                $include_chunk = Regex::escape($include_chunks[$n2]);
-                if (!BLANK($this->description) && Regex::isMatch($this->description, $include_chunk, RegexOptions::IgnoreCase))
-                    $include_flag |= true;
-                if (Regex::isMatch($this->title, $include_chunk, RegexOptions::IgnoreCase))
-                    $include_flag |= true;
+            $includeFlag = false;
+            for ($n2 = 0; $n2 < SIZE($includeChunks); $n2++) {
+                $includeChunk = Regex::escape($includeChunks[$n2]);
+                if (!BLANK($this->description) && Regex::isMatch($this->description, $includeChunk, RegexOptions::IgnoreCase))
+                    $includeFlag |= true;
+                if (Regex::isMatch($this->title, $includeChunk, RegexOptions::IgnoreCase))
+                    $includeFlag |= true;
             }
-            for ($n3 = 0; $n3 < SIZE($exclude_chunks); $n3++) {
-                $exclude_chunk = Regex::escape($exclude_chunks[$n3]);
-                if (!BLANK($this->description) && Regex::isMatch($this->description, $exclude_chunk, RegexOptions::IgnoreCase))
-                    $include_flag &= false;
-                if (Regex::isMatch($this->title, $exclude_chunk, RegexOptions::IgnoreCase))
-                    $include_flag |= true;
+            for ($n3 = 0; $n3 < SIZE($excludeChunks); $n3++) {
+                $excludeChunk = Regex::escape($excludeChunks[$n3]);
+                if (!BLANK($this->description) && Regex::isMatch($this->description, $excludeChunk, RegexOptions::IgnoreCase))
+                    $includeFlag &= false;
+                if (Regex::isMatch($this->title, $excludeChunk, RegexOptions::IgnoreCase))
+                    $includeFlag |= true;
             }
-            if ($include_flag) {
-                $category_tags = /*(TString[])*/ADD($category_tags, $name);
+            if ($includeFlag) {
+                $categoryTags = /*(TString[])*/ADD($categoryTags, $name);
             }
         }
-        if (SIZE($category_tags) == 0)
+        if (SIZE($categoryTags) == 0)
             return;
 
         //TODO
-        //$unique_categories = $this->NormalizeList($category_tags, $lang);
-        //$category = TString::join(", ", $unique_categories);
+        //$uniqueCategories = $this->NormalizeList($categoryTags, $lang);
+        //$category = TString::join(", ", $uniqueCategories);
 
-        $this->category = Strings::join(", ", $category_tags);
+        $this->category = Strings::join(", ", $categoryTags);
     }
 
     /**
      * Process creator (publisher, company etc).
      */
-    public function processCreator() {
+    public function processCreator()
+    {
         // Extract creator from item (if it is not set yet)
         if ($this->creator == null) {
             if (!BLANK($this->item->get("company")))
@@ -306,7 +316,8 @@ class BOItem {
      *    will become
      * "officials-fireworks-spark-utah-wildfire-evacuations"
      */
-    public function getUrlTitle($translit = false) {
+    public function getUrlTitle($translit = false)
+    {
         $title = Strings::addSlashes($this->title);
 
         if ($translit)

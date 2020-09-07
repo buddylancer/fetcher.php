@@ -18,7 +18,8 @@ require_once("TString.php");
 /**
  * Helper class for manipulations using Regex.
  */
-class Regex {
+class Regex
+{
 
 	/**
      * Check whether input string matches a pattern.
@@ -27,11 +28,12 @@ class Regex {
      * @param Integer $options Matching options (0 - no options).
      * @return Boolean True - matches, False - not matches.
      */
-    public static function isMatch($input, $pattern, $options = 0 ) {
-        $input_value = CAT($input);
-		$pattern_value = CAT(DIV, $pattern, DIV,
+    public static function isMatch($input, $pattern, $options = 0 )
+    {
+        $inputValue = CAT($input);
+		$patternValue = CAT(DIV, $pattern, DIV,
 			((INT($options) & RegexOptions::IgnoreCase) != 0) ? "i" : null);
-		$result = preg_match($pattern_value, $input_value);
+		$result = preg_match($patternValue, $inputValue);
 		if ($result === false)
            return false;
 		return $result == 1;
@@ -45,10 +47,11 @@ class Regex {
      * @param Integer $options Matching options (0 - no options).
      * @return TString Resulting string.
      */
-    public static function replace($input, $pattern, $replacement, $options = 0) {
-		$pattern_value = CAT(DIV, $pattern, DIV,
+    public static function replace($input, $pattern, $replacement, $options = 0)
+    {
+		$patternValue = CAT(DIV, $pattern, DIV,
 			((INT($options) & RegexOptions::IgnoreCase) != 0) ?	"i" : null);
-		return new TString(preg_replace($pattern_value, CAT($replacement), $input->getValue()));
+		return new TString(preg_replace($patternValue, CAT($replacement), $input->getValue()));
 	}
 
 	/**
@@ -58,14 +61,15 @@ class Regex {
      * @param Integer $options Matching options (0 - no options).
      * @return TString[] Resulting array of strings.
      */
-    public static function split($input, $pattern, $options = null ) {
-		$pattern_value = CAT(DIV, self::escape($pattern), DIV,
+    public static function split($input, $pattern, $options = null )
+    {
+		$patternValue = CAT(DIV, self::escape($pattern), DIV,
 			((INT($options) & RegexOptions::IgnoreCase) != 0) ? "i" : null);
-        $preg_array = preg_split($pattern_value, $input->getValue(), -1, PREG_SPLIT_NO_EMPTY);
-		$out_array = array();
-        foreach ($preg_array as $preg_item)
-            $out_array[] = new TString($preg_item);
-        return $out_array;
+        $pregArray = preg_split($patternValue, $input->getValue(), -1, PREG_SPLIT_NO_EMPTY);
+		$outArray = array();
+        foreach ($pregArray as $pregItem)
+            $outArray[] = new TString($pregItem);
+        return $outArray;
 	}
 
 	/**
@@ -75,13 +79,14 @@ class Regex {
      * @param Integer $options Matching options (0 - no options).
      * @return TString[] Resulting array of strings (or null).
      */
-    public static function getMatches($input, $pattern, $options = null ) {
-		$pattern_value = CAT(DIV, self::escape($pattern), DIV, "u",
+    public static function getMatches($input, $pattern, $options = null )
+    {
+		$patternValue = CAT(DIV, self::escape($pattern), DIV, "u",
 			((INT($options) & RegexOptions::IgnoreCase) != 0) ? "i" : null);
-		$out_array = array();
+		$outArray = array();
 		$result = new ArrayList();
-		if (preg_match($pattern_value, $input->getValue(), $out_array) > 0)
-			$result = new ArrayList($out_array);
+		if (preg_match($patternValue, $input->getValue(), $outArray) > 0)
+			$result = new ArrayList($outArray);
 		return $result->toArray();
 	}
 
@@ -90,7 +95,8 @@ class Regex {
      * @param TString $input Input string/pattern.
      * @return TString Resulting quoted string/pattern.
      */
-    public static function escape($pattern) {
+    public static function escape($pattern)
+    {
         return preg_quote(CAT($pattern), DIV);
 
     }
@@ -100,7 +106,8 @@ class Regex {
      * @param TString $input Quoted string.
      * @return TString Resulting unquoted string.
      */
-    public static function unescape($input) {
+    public static function unescape($input)
+    {
         if ($input instanceof TString)
             return new TString(stripslashes($input->getValue()));
         else

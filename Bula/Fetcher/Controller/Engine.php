@@ -33,81 +33,89 @@ require_once("Bula/Objects/TString.php");
 /**
  * Engine for processing templates.
  */
-class Engine {
+class Engine
+{
     private $context = null;
-    private $print_flag = false;
-    private $print_string = "";
+    private $printFlag = false;
+    private $printString = "";
 
     /** Public default constructor */
-    public function __construct($context) {
+    public function __construct($context)
+    {
         $this->context = $context;
-        $this->print_flag = false;
-        $this->print_string = "";
+        $this->printFlag = false;
+        $this->printString = "";
     }
 
     /**
      * Set print string for current engine instance.
      * @param TString $val Print string to set.
      */
-    public function setPrintString($val) {
-        $this->print_string = $val;
+    public function setPrintString($val)
+    {
+        $this->printString = $val;
     }
 
     /**
      * Get print string for current engine instance.
      * @return TString Current print string.
      */
-    public function getPrintString() {
-        return $this->print_string;
+    public function getPrintString()
+    {
+        return $this->printString;
     }
 
     /**
      * Set print flag for current engine instance.
      * @param Boolean $val Print flag to set.
      */
-    public function setPrintFlag($val) {
-        $this->print_flag = $val;
+    public function setPrintFlag($val)
+    {
+        $this->printFlag = $val;
     }
 
     /**
      * Get print flag for current engine instance.
      * @return Boolean Current print flag.
      */
-    public function getPrintFlag() {
-        return $this->print_flag;
+    public function getPrintFlag()
+    {
+        return $this->printFlag;
     }
 
     /**
      * Write string.
      * @param TString $val String to write.
      */
-    public function write($val) {
-        if ($this->print_flag)
+    public function write($val)
+    {
+        if ($this->printFlag)
             Response::write($val);
         else
-            $this->print_string .= $val->getValue();
+            $this->printString .= $val->getValue();
     }
 
     /**
      * Include file with class and generate content by calling method execute().
-     * @param TString $class_name Class name to include.
-     * @param TString $default_method Default method to call.
+     * @param TString $className Class name to include.
+     * @param TString $defaultMethod Default method to call.
      * @return TString Resulting content.
      */
-    public function includeTemplate($class_name, $default_method = "execute") {
+    public function includeTemplate($className, $defaultMethod = "execute")
+    {
         $engine = $this->context->pushEngine(false);
-        $file_name = 
-            CAT($class_name, ".php");
+        $fileName =
+            CAT($className, ".php");
 
         $content = null;
-        if (Helper::fileExists(CAT($this->context->LocalRoot, $file_name))) {
-            require_once($file_name);
+        if (Helper::fileExists(CAT($this->context->LocalRoot, $fileName))) {
+            require_once($fileName);
             $args0 = new ArrayList(); $args0->add($this->context);
-            Internal::callMethod($class_name, $args0, $default_method, null);
+            Internal::callMethod($className, $args0, $defaultMethod, null);
             $content = $engine->getPrintString();
         }
         else
-            $content = CAT("No such file: ", $file_name);
+            $content = CAT("No such file: ", $fileName);
         $this->context->popEngine();
         return $content;
     }
@@ -118,7 +126,8 @@ class Engine {
      * @param Hashtable $hash Data in the form of Hashtable to use for merging.
      * @return TString Resulting content.
      */
-    public function showTemplate($filename, $hash = null) {
+    public function showTemplate($filename, $hash = null)
+    {
         $template = $this->getTemplate($filename);
 
         $content = new TString();
@@ -133,7 +142,8 @@ class Engine {
      * @param TString $filename File name.
      * @return ArrayList Resulting array with lines.
      */
-    private function getTemplate($filename) {
+    private function getTemplate($filename)
+    {
         if (Helper::fileExists(CAT($this->context->LocalRoot, $filename))) {
             $lines = Helper::readAllLines(CAT($this->context->LocalRoot, $filename));
             return Arrays::createArrayList($lines);
@@ -151,7 +161,8 @@ class Engine {
      * @param Hashtable $hash Data for merging with template.
      * @return TString Resulting content.
      */
-    public function formatTemplate($template, Hashtable $hash) {
+    public function formatTemplate($template, Hashtable $hash)
+    {
         if ($hash == null)
             $hash = new Hashtable();
         $content = Strings::replaceInTemplate($template, $hash);
@@ -163,7 +174,8 @@ class Engine {
      * @param TString $str Input string.
      * @return TString Resulting string.
      */
-    private static function trimComments($str) {
+    private static function trimComments($str)
+    {
         $line = new TString($str);
         $trimmed = false;
         if ($line->indexOf("<!--#") != -1) {
@@ -185,102 +197,103 @@ class Engine {
      * @param Hashtable $hash Data for merging with template.
      * @return TString Resulting content.
      */
-    private function processTemplate(ArrayList $template, Hashtable $hash = null) {
+    private function processTemplate(ArrayList $template, Hashtable $hash = null)
+    {
         if ($this->context->IsMobile) {
             if ($hash == null)
                 $hash = new Hashtable();
             $hash->put("[#Is_Mobile]", 1);
         }
-        $trim_line = true;
-        $trim_end = "\n";
-        $if_mode = 0;
-        $repeat_mode = 0;
-        $if_buf = new ArrayList();
-        $repeat_buf = new ArrayList();
-        $if_what = "";
-        $repeat_what = "";
+        $trimLine = true;
+        $trimEnd = "\n";
+        $ifMode = 0;
+        $repeatMode = 0;
+        $ifBuf = new ArrayList();
+        $repeatBuf = new ArrayList();
+        $ifWhat = "";
+        $repeatWhat = "";
         $content = new TString();
         for ($n = 0; $n < $template->count(); $n++) {
             $line = /*(TString)*/$template->get($n);
-            $line_no_comments = self::trimComments($line);
-            if ($if_mode > 0) {
-                if ($line_no_comments->indexOf("#if") == 0)
-                    $if_mode++;
-                if ($line_no_comments->indexOf("#end if") == 0) {
-                    if ($if_mode == 1) {
-                        $not = ($if_what->indexOf("!") == 0);
-                        $eq = ($if_what->indexOf("==") != -1);
-                        $neq = ($if_what->indexOf("!=") != -1);
-                        $process_flag = false;
+            $lineNoComments = self::trimComments($line);
+            if ($ifMode > 0) {
+                if ($lineNoComments->indexOf("#if") == 0)
+                    $ifMode++;
+                if ($lineNoComments->indexOf("#end if") == 0) {
+                    if ($ifMode == 1) {
+                        $not = ($ifWhat->indexOf("!") == 0);
+                        $eq = ($ifWhat->indexOf("==") != -1);
+                        $neq = ($ifWhat->indexOf("!=") != -1);
+                        $processFlag = false;
                         if ($not == true) {
-                            if (!$hash->containsKey($if_what->substring(1))) //TODO
-                                $process_flag = true;
+                            if (!$hash->containsKey($ifWhat->substring(1))) //TODO
+                                $processFlag = true;
                         }
                         else {
                             if ($eq) {
-                                $if_what_array = Strings::split("==", $if_what);
-                                $if_what_1 = $if_what_array[0];
-                                $if_what_2 = $if_what_array[1];
-                                if ($hash->containsKey($if_what_1) && EQ($hash->get($if_what_1), $if_what_2))
-                                    $process_flag = true;
+                                $ifWhatArray = Strings::split("==", $ifWhat);
+                                $ifWhat1 = $ifWhatArray[0];
+                                $ifWhat2 = $ifWhatArray[1];
+                                if ($hash->containsKey($ifWhat1) && EQ($hash->get($ifWhat1), $ifWhat2))
+                                    $processFlag = true;
                             }
                             else if ($neq) {
-                                $if_what_array = Strings::split("!=", $if_what);
-                                $if_what_1 = $if_what_array[0];
-                                $if_what_2 = $if_what_array[1];
-                                if ($hash->containsKey($if_what_1) && !EQ($hash->get($if_what_1), $if_what_2))
-                                    $process_flag = true;
+                                $ifWhatArray = Strings::split("!=", $ifWhat);
+                                $ifWhat1 = $ifWhatArray[0];
+                                $ifWhat2 = $ifWhatArray[1];
+                                if ($hash->containsKey($ifWhat1) && !EQ($hash->get($ifWhat1), $ifWhat2))
+                                    $processFlag = true;
                             }
-                            else if ($hash->containsKey($if_what))
-                                $process_flag = true;
+                            else if ($hash->containsKey($ifWhat))
+                                $processFlag = true;
                         }
 
-                        if ($process_flag)
-                            $content->concat(self::processTemplate($if_buf, $hash));
-                        $if_buf = new ArrayList();
+                        if ($processFlag)
+                            $content->concat(self::processTemplate($ifBuf, $hash));
+                        $ifBuf = new ArrayList();
                     }
                     else
-                        $if_buf->add($line);
-                    $if_mode--;
+                        $ifBuf->add($line);
+                    $ifMode--;
                 }
                 else
-                    $if_buf->add($line);
+                    $ifBuf->add($line);
             }
-            else if ($repeat_mode > 0) {
-                if ($line_no_comments->indexOf("#repeat") == 0)
-                    $repeat_mode++;
-                if ($line_no_comments->indexOf("#end repeat") == 0) {
-                    if ($repeat_mode == 1) {
-                        if ($hash->containsKey($repeat_what)) {
-                            $rows = /*(ArrayList)*/$hash->get($repeat_what);
+            else if ($repeatMode > 0) {
+                if ($lineNoComments->indexOf("#repeat") == 0)
+                    $repeatMode++;
+                if ($lineNoComments->indexOf("#end repeat") == 0) {
+                    if ($repeatMode == 1) {
+                        if ($hash->containsKey($repeatWhat)) {
+                            $rows = /*(ArrayList)*/$hash->get($repeatWhat);
                             for ($r = 0; $r < $rows->count(); $r++)
-                                $content->concat(self::processTemplate($repeat_buf, /*(Hashtable)*/$rows->get($r)));
-                            $hash->remove($repeat_what);
+                                $content->concat(self::processTemplate($repeatBuf, /*(Hashtable)*/$rows->get($r)));
+                            $hash->remove($repeatWhat);
                         }
-                        $repeat_buf = new ArrayList();
+                        $repeatBuf = new ArrayList();
                     }
                     else
-                        $repeat_buf->add($line);
-                    $repeat_mode--;
+                        $repeatBuf->add($line);
+                    $repeatMode--;
                 }
                 else
-                    $repeat_buf->add($line);
+                    $repeatBuf->add($line);
             }
             else {
-                if ($line_no_comments->indexOf("#if") == 0) {
-                    $if_mode = $repeat_mode > 0 ? 2 : 1;
-                    $if_what = $line_no_comments->substring(4)->trim();
+                if ($lineNoComments->indexOf("#if") == 0) {
+                    $ifMode = $repeatMode > 0 ? 2 : 1;
+                    $ifWhat = $lineNoComments->substring(4)->trim();
                 }
-                else if ($line_no_comments->indexOf("#repeat") == 0) {
-                    $repeat_mode++;
-                    $repeat_what = $line_no_comments->substring(8)->trim();
-                    $repeat_buf = new ArrayList();
+                else if ($lineNoComments->indexOf("#repeat") == 0) {
+                    $repeatMode++;
+                    $repeatWhat = $lineNoComments->substring(8)->trim();
+                    $repeatBuf = new ArrayList();
                 }
                 else {
-                    if ($trim_line) {
+                    if ($trimLine) {
                         $line = new TString($line);
                         $line = $line->trim();
-                        $line->concat($trim_end);
+                        $line->concat($trimEnd);
                     }
                     $content->concat($line);
                 }

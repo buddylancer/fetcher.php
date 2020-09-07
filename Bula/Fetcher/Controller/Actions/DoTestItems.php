@@ -24,12 +24,14 @@ require_once("Bula/Fetcher/Controller/BOFetcher.php");
 /**
  * Testing sources for necessary fetching.
  */
-class DoTestItems extends Page {
+class DoTestItems extends Page
+{
     private static $TOP = null;
     private static $BOTTOM = null;
 
     /** Initialize TOP and BOTTOM blocks. */
-    private static function initialize() {
+    private static function initialize()
+    {
         self::$TOP = CAT(
             "<!DOCTYPE html>\r\n",
             "<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n",
@@ -47,33 +49,27 @@ class DoTestItems extends Page {
         );
     }
 
-    /**
-     * Public default constructor.
-     * @param Context $context Context instance.
-     * /
-    public DoTestItems(Context context) : base(context) { }
-    CS*/
-
     /** Execute main logic for DoTestItems action */
-    public function execute() {
-        $insert_required = false;
-        $update_required = false;
+    public function execute()
+    {
+        $insertRequired = false;
+        $updateRequired = false;
 
         $doTime = new DOTime();
 
         $dsTimes = $doTime->getById(1);
-        $time_shift = 240; // 4 min
-        $current_time = DateTimes::getTime();
+        $timeShift = 240; // 4 min
+        $currentTime = DateTimes::getTime();
         if ($dsTimes->getSize() > 0) {
             $oTime = $dsTimes->getRow(0);
-            if ($current_time > DateTimes::getTime($oTime->get("d_Time")) + $time_shift)
-                $update_required = true;
+            if ($currentTime > DateTimes::getTime($oTime->get("d_Time")) + $timeShift)
+                $updateRequired = true;
         }
         else
-            $insert_required = true;
+            $insertRequired = true;
 
         Response::write(self::$TOP);
-        if ($update_required || $insert_required) {
+        if ($updateRequired || $insertRequired) {
             Response::write("Fetching new items... Please wait...<br/>\r\n");
 
             $boFetcher = new BOFetcher($this->context);
@@ -82,7 +78,7 @@ class DoTestItems extends Page {
             $doTime = new DOTime(); // Need for DB reopen
             $fields = new Hashtable();
             $fields->put("d_Time", DateTimes::format(Config::SQL_DTS, DateTimes::getTime()));
-            if ($insert_required) {
+            if ($insertRequired) {
                 $fields->put("i_Id", 1);
                 $doTime->insert($fields);
             }

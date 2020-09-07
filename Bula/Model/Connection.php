@@ -20,7 +20,8 @@ require_once("PreparedStatement.php");
 /**
  * Implement operations with connection to the database.
  */
-class Connection {
+class Connection
+{
     private $link; // Mysql link object
     private $stmt; // Prepared statement to use with connection
 
@@ -34,7 +35,8 @@ class Connection {
      * @param TString $charset DB charset.
      * @return Integer Result of operation (1 - OK, -1 - error).
      */
-    public function open($host, $port, $admin, $password, $db, $charset = null) {
+    public function open($host, $port, $admin, $password, $db, $charset = null)
+    {
         $this->link = DataAccess::connect($host, $admin, $password, $db, $port); //TODO PHP
         if ($this->link == null || $this->link == false) {
             DataAccess::callErrorDelegate("Can't open DB! Check whether it exists!");
@@ -48,7 +50,8 @@ class Connection {
     /**
      * Close connection to the database.
      */
-    public function close() {
+    public function close()
+    {
         DataAccess::close($this->link);
         $this->link = null;
         unset($this->link);
@@ -59,7 +62,8 @@ class Connection {
      * @param TString $sql SQL-query.
      * @return Prepared statement.
      */
-    public function prepareStatement($sql) {
+    public function prepareStatement($sql)
+    {
         $this->stmt = new PreparedStatement();
         $this->stmt->setLink($this->link);
         $this->stmt->setSql($sql);

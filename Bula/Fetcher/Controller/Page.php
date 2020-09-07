@@ -21,7 +21,8 @@ require_once("Bula/Objects/Hashtable.php");
 /**
  * Basic logic for generating Page block.
  */
-abstract class Page {
+abstract class Page
+{
     /** Current context */
     protected $context = null;
 
@@ -29,7 +30,8 @@ abstract class Page {
      * Public default constructor.
      * @param Context $context Context instance.
      */
-    public function __construct($context) {
+    public function __construct($context)
+    {
         $this->context = $context;
         //echo "In Page constructor -- " . print_r($context, true);
     }
@@ -42,7 +44,8 @@ abstract class Page {
      * @param TString $template Template name.
      * @param Hashtable $prepare Prepared variables.
      */
-    public function write($template, $prepare) {
+    public function write($template, $prepare)
+    {
         $engine = $this->context->getEngine();
         $engine->write($engine->showTemplate($template, $prepare));
     }

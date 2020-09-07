@@ -20,23 +20,26 @@ require_once("Bula/Objects/TString.php");
 /**
  * Non-typed data set implementation.
  */
-class DataSet {
+class DataSet
+{
 	private $rows;
-	private $page_size;
-	private $total_pages;
+	private $pageSize;
+	private $totalPages;
 
 	/** Default public constructor */
-    public function __construct() {
+    public function __construct()
+    {
 		$this->rows = new ArrayList();
-		$this->page_size = 10;
-		$this->total_pages = 0;
+		$this->pageSize = 10;
+		$this->totalPages = 0;
 	}
 
     /**
      * Get the size (number of rows) of the DataSet.
-     * @return Integer 
+     * @return Integer
      */
-	public function getSize() {
+	public function getSize()
+    {
         return $this->rows->count();
     }
 
@@ -45,7 +48,8 @@ class DataSet {
      * @param Integer $n Number of the row.
      * @return Hashtable Required row or null.
      */
-    public function getRow($n) {
+    public function getRow($n)
+    {
         return $this->rows->get($n);
     }
 
@@ -53,7 +57,8 @@ class DataSet {
      * Add new row into the DataSet.
      * @param Hashtable $row New row to add.
      */
-    public function addRow($row) {
+    public function addRow($row)
+    {
         $this->rows->add($row);
     }
 
@@ -61,35 +66,40 @@ class DataSet {
      * Get page size of the DataSet.
      * @return Integer Current page size.
      */
-    public function getPageSize() {
-        return $this->page_size;
+    public function getPageSize()
+    {
+        return $this->pageSize;
     }
 
 	/**
      * Set page size of the DataSet.
      * @param Integer page_size Current page size.
      */
-	public function setPageSize($page_size) {
-        $this->page_size = $page_size;
+	public function setPageSize($pageSize)
+    {
+        $this->pageSize = $pageSize;
     }
 
 	/**
      * Get total number of pages in the DataSet.
      * @return Integer Number of pages.
      */
-    public function getTotalPages() {
-        return $this->total_pages;
+    public function getTotalPages()
+    {
+        return $this->totalPages;
     }
 
 	/**
      * Set total number of pages in the DataSet.
-     * @param Integer $total_pages Number of pages.
+     * @param Integer $totalPages Number of pages.
      */
-    public function setTotalPages($total_pages) {
-        $this->total_pages = $total_pages;
+    public function setTotalPages($totalPages)
+    {
+        $this->totalPages = $totalPages;
     }
 
-    private function addSpaces($level) {
+    private function addSpaces($level)
+    {
         $spaces = new TString();
         for ($n = 0; $n < $level; $n++)
             $spaces->concat("    ");
@@ -100,7 +110,8 @@ class DataSet {
      * Get serialized (XML) representation of the DataSet.
      * @return TString Resulting representation.
      */
-    public function toXml() {
+    public function toXml()
+    {
         $level = 0;
         $spaces = null;
         $output = new TString();

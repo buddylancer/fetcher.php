@@ -24,35 +24,31 @@ require_once("Bula/Fetcher/Controller/Actions/DoRedirect.php");
 /**
  * Redirecting to the external item.
  */
-class DoRedirectItem extends DoRedirect {
-    /**
-     * Public default constructor.
-     * @param Context $context Context instance.
-     * /
-    public DoRedirectItem(Context context) : base(context) { }
-    CS*/
+class DoRedirectItem extends DoRedirect
+{
 
     /** Execute main logic for DoRedirectItem action */
-    public function execute() {
-        $error_message = null;
-        $link_to_redirect = null;
+    public function execute()
+    {
+        $errorMessage = null;
+        $linkToRedirect = null;
         if (!Request::contains("id"))
-            $error_message = "Item ID is required!";
+            $errorMessage = "Item ID is required!";
         else {
             $id = Request::get("id");
             if (!Request::isInteger($id) || INT($id) <= 0)
-                $error_message = "Incorrect item ID!";
+                $errorMessage = "Incorrect item ID!";
             else {
                 $doItem = new DOItem();
                 $dsItems = $doItem->getById(INT($id));
                 if ($dsItems->getSize() == 0)
-                    $error_message = "No item with such ID!";
+                    $errorMessage = "No item with such ID!";
                 else {
                     $oItem = $dsItems->getRow(0);
-                    $link_to_redirect = $oItem->get("s_Link");
+                    $linkToRedirect = $oItem->get("s_Link");
                 }
             }
         }
-        $this->executeRedirect($link_to_redirect, $error_message);
+        $this->executeRedirect($linkToRedirect, $errorMessage);
     }
 }

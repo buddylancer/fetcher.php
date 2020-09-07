@@ -17,15 +17,17 @@ require_once("TString.php");
 /**
  * Helper class for manipulation with Files and Directories.
  */
-class Helper {
-    private static $last_error = null;
+class Helper
+{
+    private static $lastError = null;
 
 	/**
      * Get last error (if any).
      * @return TString Last error message.
      */
-    public static function lastError() {
-        return $last_error;
+    public static function lastError()
+    {
+        return $lastError;
     }
 
     /**
@@ -33,7 +35,8 @@ class Helper {
      * @param TString $path File name.
      * @return Boolean
      */
-    public static function fileExists($path) {
+    public static function fileExists($path)
+    {
 		return file_exists(CAT($path)) && self::isFile(CAT($path));
 	}
 
@@ -42,7 +45,8 @@ class Helper {
      * @param TString $path File name.
      * @return Boolean
      */
-	public static function dirExists($path) {
+	public static function dirExists($path)
+    {
 		return file_exists(CAT($path)) && self::isDir(CAT($path));
 	}
 
@@ -51,7 +55,8 @@ class Helper {
      * @param TString $path Directory path to create.
      * @return Boolean True - created OK, False - error.
      */
-    public static function createDir($path) {
+    public static function createDir($path)
+    {
 		return mkdir(CAT($path));
 
 	}
@@ -61,7 +66,8 @@ class Helper {
      * @param TString $path File name.
      * @return Boolean True - OK, False - error.
      */
-    public static function deleteFile($path) {
+    public static function deleteFile($path)
+    {
 		return unlink(CAT($path));
 
 	}
@@ -71,7 +77,8 @@ class Helper {
      * @param TString $path Directory name.
      * @return Boolean True - OK, False - error.
      */
-	public static function deleteDir($path) {
+	public static function deleteDir($path)
+    {
 		if ($path instanceof TString) $path = $path->getValue();
 
         if (!self::dirExists($path))
@@ -94,7 +101,8 @@ class Helper {
      * @param TString $path Directory name.
      * @return Boolean True - OK, False - error.
      */
-    public static function removeDir($path) {
+    public static function removeDir($path)
+    {
         return rmdir(CAT($path));
 
     }
@@ -105,7 +113,8 @@ class Helper {
      * @param TString $encoding Encoding name [optional].
      * @return TString Resulting content.
      */
-    public static function readAllText($filename, $encoding = null) {
+    public static function readAllText($filename, $encoding = null)
+    {
 		return new TString(file_get_contents(CAT($filename)));
 	}
 
@@ -115,7 +124,8 @@ class Helper {
      * @param TString $encoding Encoding name [optional].
      * @return Object[] Resulting content (lines).
      */
-    public static function readAllLines($filename, $encoding = null) {
+    public static function readAllLines($filename, $encoding = null)
+    {
 		return file(CAT($filename));
 
 	}
@@ -126,7 +136,8 @@ class Helper {
      * @param TString $text Content to write.
      * @return Boolean Result of operation (true - OK, false - error).
      */
-    public static function writeText($filename, $text) {
+    public static function writeText($filename, $text)
+    {
         return file_put_contents(CAT($filename), CAT($text)) !== false;
     }
 
@@ -136,7 +147,8 @@ class Helper {
      * @param TString $text Content to append.
      * @return Boolean Result of operation (true - OK, false - error).
      */
-    public static function appendText($filename, $text) {
+    public static function appendText($filename, $text)
+    {
         return file_put_contents(CAT($filename), CAT($text), FILE_APPEND) !== false;
     }
 
@@ -145,7 +157,8 @@ class Helper {
      * @param TString $path Path of an object.
      * @return Boolean True - is a file.
      */
-    public static function isFile($path) {
+    public static function isFile($path)
+    {
         return is_file(CAT($path));
     }
 
@@ -154,7 +167,8 @@ class Helper {
      * @param TString $path Path of an object.
      * @return Boolean True - is a directory.
      */
-    public static function isDir($path) {
+    public static function isDir($path)
+    {
         return is_dir(CAT($path));
     }
 
@@ -162,7 +176,8 @@ class Helper {
      * Test the chain of (sub)folder(s), create them if necessary.
      * @param TString $folder Folder's full path.
      */
-    public static function testFolder($folder) {
+    public static function testFolder($folder)
+    {
         $chunks = $folder->split("/");
         $pathname = null;
         for ($n = 0; $n < SIZE($chunks); $n++) {
@@ -177,7 +192,8 @@ class Helper {
      * Test the chain of (sub)folder(s) and file, create if necessary.
      * @param TString $filename Filename's full path
      */
-    public static function testFileFolder($filename) {
+    public static function testFileFolder($filename)
+    {
         $chunks = $filename->split("/");
         $pathname = null;
         for ($n = 0; $n < SIZE($chunks) - 1; $n++) {
@@ -193,8 +209,8 @@ class Helper {
      * @param TString $path Path of a directory.
      * @return Enumerator Enumerated entries.
      */
-//if php
-    public static function listDirEntries($path) {
+    public static function listDirEntries($path)
+    {
 		if (($handle = opendir(CAT($path))) == null)
             return null;
         $entries = new ArrayList();

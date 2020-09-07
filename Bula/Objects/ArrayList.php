@@ -14,12 +14,14 @@ require_once("Collection.php");
 /**
  * Straight-forward implementation of ArrayList.
  */
-class ArrayList extends Collection {
-	public function __construct(/*...*/) {
+class ArrayList extends Collection
+{
+	public function __construct(/*...*/)
+    {
         $this->collection[] = "_A"; // Zero element marks that this is ArrayList, not Hashtable
 		$args = func_get_args();
         if (SIZE($args) > 0)
-            $this->pull_values = true;
+            $this->pullValues = true;
         foreach ($args as $arg) {
             if (is_array($arg))
                 $this->addAll($arg);
@@ -32,7 +34,8 @@ class ArrayList extends Collection {
      * Add object to collection.
      * @param Object $input Object to add.
      */
-    private function addObject($input) {
+    private function addObject($input)
+    {
         $this->collection[] = $input;
     }
 
@@ -40,15 +43,17 @@ class ArrayList extends Collection {
      * Add object.
      * @param Object $input Object to add.
      */
-    public function add($input) {
-        $this->addObject($this->pushValue($input)); 
+    public function add($input)
+    {
+        $this->addObject($this->pushValue($input));
     }
 
     /**
      * Add multiple objects.
      * @param Object[] $inputs Array of objects.
      */
-    public function addAll($inputs) {
+    public function addAll($inputs)
+    {
         foreach ($inputs as $input)
             $this->add($input);
     }
@@ -58,7 +63,8 @@ class ArrayList extends Collection {
      * @param Object $input Object to check.
      * @return Boolean
      */
-    public function contains($input) {
+    public function contains($input)
+    {
         return in_array($input, $this-collection);
     }
 
@@ -67,9 +73,10 @@ class ArrayList extends Collection {
      * @param Integer $n Index of an object.
      * @return Object Object or null (if index not exists)
      */
-    public function get($n) {
+    public function get($n)
+    {
         if (isset($this->collection[$n+1])) {
-            if ($this->pull_values)
+            if ($this->pullValues)
                 return $this->collection[$n+1];
             else
                 return $this->pullObject($this->collection[$n+1]);
@@ -82,7 +89,8 @@ class ArrayList extends Collection {
      * @param Object $input Object to check.
      * @return Integer Index or -1 (if object not exists).
      */
-    public function indexOf($input) {
+    public function indexOf($input)
+    {
         for ($n = 1; $n < SIZE($this->collection); $n++) {
             if ($input === $this->collection[$n])
                 return $n - 1;
@@ -94,7 +102,8 @@ class ArrayList extends Collection {
      * Check whether the list is empty.
      * @return Boolean
      */
-    public function isEmpty() {
+    public function isEmpty()
+    {
         return SIZE($this->collection) == 1;
     }
 
@@ -103,7 +112,8 @@ class ArrayList extends Collection {
      * @param Object $input Object to check.
      * @return Integer Last index or -1 (if object not exists).
      */
-    public function lastIndexOf($input) {
+    public function lastIndexOf($input)
+    {
         for ($n = SIZE($this->collection) - 1; $n >= 0; $n--) {
             if ($input == $this->collection[$n+1])
                 return $n;
@@ -116,7 +126,8 @@ class ArrayList extends Collection {
      * @param Object $input Object to remove.
      * @return Boolean True if removed, False if object not exists.
      */
-    public function remove($input) {
+    public function remove($input)
+    {
         if (is_integer($input))
             return removeByIndex($input);
         $index = $this->indexOf($input);
@@ -132,7 +143,8 @@ class ArrayList extends Collection {
      * @param Object $index Index of an object.
      * @return Boolean True if removed, False if index not exists.
      */
-    public function removeByIndex($index) {
+    public function removeByIndex($index)
+    {
         if (isset($this->collection[$index+1])) {
             unset($this->collection[$index+1]);
             return true;
@@ -145,7 +157,8 @@ class ArrayList extends Collection {
      * @param Integer $index Index of an object to replace (or set).
      * @param Object $input Object to replace (or set).
      */
-    public function set($index, $input) {
+    public function set($index, $input)
+    {
         $this->collection[$index+1] = $input;
     }
 
@@ -153,7 +166,8 @@ class ArrayList extends Collection {
      * Get size of the list.
      * @return Integer
      */
-    public function count() {
+    public function count()
+    {
         return SIZE($this->collection) - 1;
     }
 
@@ -161,7 +175,8 @@ class ArrayList extends Collection {
      * Get collection as array.
      * @return Object[]
      */
-    public function toArray($from = 1) {
+    public function toArray($from = 1)
+    {
         return array_slice($this->collection, $from);
     }
 }

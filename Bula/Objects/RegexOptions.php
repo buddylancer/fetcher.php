@@ -9,6 +9,7 @@
  */
 namespace Bula\Objects;
 
-class RegexOptions {
+class RegexOptions
+{
     const IgnoreCase = 1;
 }

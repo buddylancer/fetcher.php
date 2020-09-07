@@ -17,15 +17,17 @@ use Bula\Objects\TString;
 /**
  * Simple logger.
  */
-class Logger {
-    private $file_name = null;
+class Logger
+{
+    private $fileName = null;
 
     /**
      * Initialize logging into file.
      * @param TString $filename Log file name.
      */
-    public function init($filename) {
-        $this->file_name = $filename;
+    public function init($filename)
+    {
+        $this->fileName = $filename;
         if (!$filename->isEmpty()) {
             if (Helper::fileExists($filename))
                 Helper::deleteFile($filename);
@@ -36,17 +38,18 @@ class Logger {
      * Log text string.
      * @param TString $text Content to log.
      */
-    public function output($text) {
-        if ($this->file_name == null) {
+    public function output($text)
+    {
+        if ($this->fileName == null) {
             if ($text instanceof TString) $buffer = $buffer->getValue();
             Response::write($text);
             return;
         }
-        if (Helper::fileExists($this->file_name))
-            Helper::appendText($this->file_name, $text);
+        if (Helper::fileExists($this->fileName))
+            Helper::appendText($this->fileName, $text);
         else {
-            Helper::testFileFolder($this->file_name);
-            Helper::writeText($this->file_name, $text);
+            Helper::testFileFolder($this->fileName);
+            Helper::writeText($this->fileName, $text);
         }
 
     }
@@ -55,7 +58,8 @@ class Logger {
      * Log text string + current time.
      * @param TString $text Content to log.
      */
-    public function time($text) {
+    public function time($text)
+    {
         $this->output(CAT($text, " -- ", DateTimes::format("H:i:s"), "<br/>\r\n"));
     }
 }

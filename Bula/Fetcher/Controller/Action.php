@@ -31,11 +31,13 @@ require_once("Bula/Fetcher/Controller/Page.php");
 /**
  * Logic for executing actions.
  */
-class Action extends Page {
-    private static $actions_array = null;
+class Action extends Page
+{
+    private static $actionsArray = null;
 
-    private static function initialize() {
-        self::$actions_array = array(
+    private static function initialize()
+    {
+        self::$actionsArray = array(
         //action name            page                   post      code
         "do_redirect_item",     "DoRedirectItem",       0,        0,
         "do_redirect_source",   "DoRedirectSource",     0,        0,
@@ -45,22 +47,23 @@ class Action extends Page {
     }
 
     /** Execute main logic for required action. */
-    public function execute() {
-        if (self::$actions_array == null)
+    public function execute()
+    {
+        if (self::$actionsArray == null)
             self::initialize();
 
-        $action_info = Request::testPage(self::$actions_array);
+        $actionInfo = Request::testPage(self::$actionsArray);
 
         // Test action name
-        if (!$action_info->containsKey("page"))
+        if (!$actionInfo->containsKey("page"))
             Response::end("Error in parameters -- no page");
 
         // Test action context
-        if (INT($action_info->get("post_required")) == 1 && INT($action_info->get("from_post")) == 0)
+        if (INT($actionInfo->get("post_required")) == 1 && INT($actionInfo->get("from_post")) == 0)
             Response::end("Error in parameters -- inconsistent pars");
 
         Request::initialize();
-        if (INT($action_info->get("post_required")) == 1)
+        if (INT($actionInfo->get("post_required")) == 1)
             Request::extractPostVars();
         else
             Request::extractAllVars();
@@ -69,15 +72,15 @@ class Action extends Page {
         //if (!Request::CheckReferer(Config::$Site))
         //    err404();
 
-        if (INT($action_info->get("code_required")) == 1) {
+        if (INT($actionInfo->get("code_required")) == 1) {
             if (!Request::contains("code") || !EQ(Request::get("code"), Config::SECURITY_CODE)) //TODO -- hardcoded!!!
                 Response::end("No access.");
         }
 
-        $action_class = CAT("Bula/Fetcher/Controller/Actions/", $action_info->get("class"));
-        //Config::includeFile(CAT($action_class, ".php"));
+        $actionClass = CAT("Bula/Fetcher/Controller/Actions/", $actionInfo->get("class"));
+        //Config::includeFile(CAT($actionClass, ".php"));
         $args0 = new ArrayList(); $args0->add($this->context);
-        Internal::callMethod($action_class, $args0, "execute", null);
+        Internal::callMethod($actionClass, $args0, "execute", null);
 
         if (DBConfig::$Connection != null) {
             DBConfig::$Connection->close();

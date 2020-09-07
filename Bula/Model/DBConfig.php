@@ -12,7 +12,8 @@ namespace Bula\Model;
 /**
  * Set info for database connection here.
  */
-class DBConfig {
+class DBConfig
+{
     /** Database host */
     const DB_HOST = "localhost";
     /** Database name */

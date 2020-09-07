@@ -12,7 +12,8 @@ namespace Bula\Fetcher;
 /**
  * Main class for configuring data.
  */
-class Config {
+class Config
+{
     /** Exactly the same as RewriteBase in .htaccess */
     const TOP_DIR = "/";
     /** Index page name */
@@ -85,4 +86,4 @@ class Config {
 
     /** Show bottom blocks (Filtering and RSS) */
     const SHOW_BOTTOM = true;
-} 
+}

@@ -14,9 +14,10 @@ require_once("Bula\Meta.php");
 /**
  * Facade class for interfacing with mysql database.
  */
-class DataAccess {
-    private static $error_delegate = "STOP";
-    private static $print_delegate = null; // Set "PR" for debug, set null for release
+class DataAccess
+{
+    private static $errorDelegate = "STOP";
+    private static $printDelegate = null; // Set "PR" for debug, set null for release
 
     /**
      * Connect to the database.
@@ -27,7 +28,8 @@ class DataAccess {
      * @param TString $port Port number.
      * @return Object Link to the database.
      */
-    public static function connect($host, $admin, $password, $db, $port) {
+    public static function connect($host, $admin, $password, $db, $port)
+    {
         return mysqli_connect($host, $admin, $password, $db, $port);
     }
 
@@ -35,7 +37,8 @@ class DataAccess {
      * Close the connection to the database.
      * @param Object $link Link to the database.
      */
-    public static function close($link) {
+    public static function close($link)
+    {
         mysqli_close($link);
     }
 
@@ -45,13 +48,16 @@ class DataAccess {
      * @param RString $input SQL-query to execute.
      * @return Object Result of query execution.
      */
-    public static function selectQuery($link, $input) {
+    public static function selectQuery($link, $input)
+    {
         return mysqli_query($link, $input);
     }
-    public static function updateQuery($link, $input) {
+    public static function updateQuery($link, $input)
+    {
         return mysqli_query($link, $input);
     }
-    public static function nonQuery($link, $input) {
+    public static function nonQuery($link, $input)
+    {
         return mysqli_query($link, $input);
     }
 
@@ -60,7 +66,8 @@ class DataAccess {
      * @param Object $link Link to the database.
      * @return Integer
      */
-    public static function affectedRows($link) {
+    public static function affectedRows($link)
+    {
         return mysqli_affected_rows($link);
     }
 
@@ -69,7 +76,8 @@ class DataAccess {
      * @param Object $link Link to the database.
      * @return Integer
      */
-    public static function insertId($link) {
+    public static function insertId($link)
+    {
         return mysqli_insert_id($link);
     }
 
@@ -78,7 +86,8 @@ class DataAccess {
      * @return Object Result of query execution.
      * @return Integer
      */
-    public static function numRows($result) {
+    public static function numRows($result)
+    {
         return mysqli_num_rows($result);
     }
 
@@ -87,7 +96,8 @@ class DataAccess {
      * @return Object Result of query execution.
      * @return Hashtable Next row or null.
      */
-    public static function fetchArray($result) {
+    public static function fetchArray($result)
+    {
         return mysqli_fetch_array($result);
     }
 
@@ -95,7 +105,8 @@ class DataAccess {
      * Free last query result.
      * @return Object Result of query execution.
      */
-    public static function freeResult($result) {
+    public static function freeResult($result)
+    {
         mysqli_free_result($result);
     }
 
@@ -103,33 +114,37 @@ class DataAccess {
      * Set function for error printing.
      * @param Object $delegateFunction Function delegate.
      */
-    public static function setErrorDelegate($delegateFunction) {
-        self::$error_delegate = $delegateFunction;
+    public static function setErrorDelegate($delegateFunction)
+    {
+        self::$errorDelegate = $delegateFunction;
     }
 
     /**
      * Set function for debug printing.
      * @param Object $delegateFunction Function delegate.
      */
-    public static function setPrintDelegate($delegateFunction) {
-        self::$print_delegate = $delegateFunction;
+    public static function setPrintDelegate($delegateFunction)
+    {
+        self::$printDelegate = $delegateFunction;
     }
 
     /**
      * Call delegate function for error printing.
      * @param TString $input Error message.
      */
-    public static function callErrorDelegate($input) {
-        if (self::$error_delegate != null)
-            call_user_func_array(self::$error_delegate, array($input));
+    public static function callErrorDelegate($input)
+    {
+        if (self::$errorDelegate != null)
+            call_user_func_array(self::$errorDelegate, array($input));
     }
 
     /**
      * Call delegate function for debug printing.
      * @param TString $input Debug message.
      */
-    public static function callPrintDelegate($input) {
-        if (self::$print_delegate != null)
-            call_user_func_array(self::$print_delegate, array($input));
+    public static function callPrintDelegate($input)
+    {
+        if (self::$printDelegate != null)
+            call_user_func_array(self::$printDelegate, array($input));
     }
 }

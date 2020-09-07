@@ -54,60 +54,62 @@ require_once("Bula/Fetcher/Controller/Page.php");
 /**
  * Main logic for generating RSS-feeds.
  */
-class Rss extends Page {
+class Rss extends Page
+{
 
     /**
      * Execute main logic for generating RSS-feeds.
      */
-    public function execute() {
+    public function execute()
+    {
         Request::initialize();
         Request::extractAllVars();
 
-        $error_message = new TString();
+        $errorMessage = new TString();
 
         // Check source
         $source = Request::get("source");
         if (!NUL($source)) {
             if (BLANK($source))
-                $error_message->concat("Empty source!");
+                $errorMessage->concat("Empty source!");
             else {
                 $doSource = new DOSource();
                 $oSource =
                     ARR(new Hashtable());
                 if (!$doSource->checkSourceName($source, $oSource))
-                    $error_message->concat(CAT("Incorrect source '", $source, "'!"));
+                    $errorMessage->concat(CAT("Incorrect source '", $source, "'!"));
             }
         }
 
-        $any_filter = false;
+        $anyFilter = false;
         if (Request::contains("code")) {
             if (EQ(Request::get("code"), Config::SECURITY_CODE))
-                $any_filter = true;
+                $anyFilter = true;
         }
 
         // Check filter
         $filter = null;
-        $filter_name = null;
+        $filterName = null;
         $doCategory = new DOCategory();
         $dsCategories = $doCategory->enumCategories();
         if ($dsCategories->getSize() > 0) {
-            $filter_name = Request::get("filter");
-            if (!NUL($filter_name)) {
-                if (BLANK($filter_name)) {
-                    if ($error_message->length() > 0)
-                        $error_message->concat(" ");
-                    $error_message->concat("Empty filter!");
+            $filterName = Request::get("filter");
+            if (!NUL($filterName)) {
+                if (BLANK($filterName)) {
+                    if ($errorMessage->length() > 0)
+                        $errorMessage->concat(" ");
+                    $errorMessage->concat("Empty filter!");
                 }
                 else {
                     $oCategory =
                         ARR(new Hashtable());
-                    if ($doCategory->checkFilterName($filter_name, $oCategory))
+                    if ($doCategory->checkFilterName($filterName, $oCategory))
                         $filter = $oCategory[0]->get("s_Filter");
                     else {
-                        if ($any_filter)
-                            $filter = $filter_name;
+                        if ($anyFilter)
+                            $filter = $filterName;
                         else
-                            $error_message->concat(CAT("Incorrect filter '", $filter_name, "'!"));
+                            $errorMessage->concat(CAT("Incorrect filter '", $filterName, "'!"));
                     }
                 }
             }
@@ -118,25 +120,25 @@ class Rss extends Page {
         while ($keys->moveNext()) {
             $key = /*(TString)*/$keys->current();
             if ($key != "source" && $key != "filter" && $key != "code" && $key != "count") {
-                if ($error_message->length() > 0)
-                    $error_message->concat(" ");
-                $error_message->concat(CAT("Incorrect parameter '", $key, "'!"));
+                if ($errorMessage->length() > 0)
+                    $errorMessage->concat(" ");
+                $errorMessage->concat(CAT("Incorrect parameter '", $key, "'!"));
             }
         }
 
-        if ($error_message->length() > 0) {
+        if ($errorMessage->length() > 0) {
             Response::writeHeader("Content-type", "text/xml; charset=UTF-8");
             Response::write("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n");
-            Response::write(CAT("<data>", $error_message, "</data>"));
+            Response::write(CAT("<data>", $errorMessage, "</data>"));
             return;
         }
 
-        $full_title = false;
+        $fullTitle = false;
         if (Request::contains("title") && Request::get("title") == "full")
-            $full_title = true;
+            $fullTitle = true;
 
         $count = Config::MAX_RSS_ITEMS;
-        $count_set = false;
+        $countSet = false;
         if (Request::contains("count")) {
             if (INT(Request::get("count")) > 0) {
                 $count = INT(Request::get("count"));
@@ -144,23 +146,23 @@ class Rss extends Page {
                     $count = Config::MIN_RSS_ITEMS;
                 if ($count > Config::MAX_RSS_ITEMS)
                     $count = Config::MAX_RSS_ITEMS;
-                $count_set = true;
+                $countSet = true;
             }
         }
 
         // Get content from cache (if enabled and cache data exists)
-        $cached_file = new TString();
-        if (Config::CACHE_RSS && !$count_set) {
-            $cached_file = Strings::concat(
+        $cachedFile = new TString();
+        if (Config::CACHE_RSS && !$countSet) {
+            $cachedFile = Strings::concat(
                 $this->context->RssFolder, "/rss",
                 (BLANK($source) ? null : CAT("-s=", $source)),
-                (BLANK($filter_name) ? null : CAT("-f=", $filter_name)),
-                ($full_title ? "-full" : null), ".xml");
-            if (Helper::fileExists($cached_file)) {
+                (BLANK($filterName) ? null : CAT("-f=", $filterName)),
+                ($fullTitle ? "-full" : null), ".xml");
+            if (Helper::fileExists($cachedFile)) {
                 Response::writeHeader("Content-type", "text/xml; charset=UTF-8");
-                $temp_content = Helper::readAllText($cached_file);
-                //Response::write($temp_content->substring(3)); //TODO -- BOM?
-                Response::write($temp_content); //TODO -- BOM?
+                $tempContent = Helper::readAllText($cachedFile);
+                //Response::write($tempContent->substring(3)); //TODO -- BOM?
+                Response::write($tempContent); //TODO -- BOM?
                 return;
             }
         }
@@ -180,7 +182,7 @@ class Rss extends Page {
         $fromDate = DateTimes::gmtFormat(Config::XML_DTS, $nowTime - 6*60*60);
         $dsItems = $doItem->enumItemsFromSource($fromDate, $source, $filter, $count);
         $current = 0;
-        $items_content = new TString();
+        $itemsContent = new TString();
         for ($n = 0; $n < $dsItems->getSize(); $n++) {
             $oItem = $dsItems->getRow($n);
             $date = $oItem->get("d_Date");
@@ -195,7 +197,7 @@ class Rss extends Page {
             $custom1 = $this->context->contains("Name_Custom1") ? $oItem->get("s_Custom1") : null;
             $custom2 = $this->context->contains("Name_Custom2") ? $oItem->get("s_Custom2") : null;
 
-            $source_name = $oItem->get("s_SourceName");
+            $sourceName = $oItem->get("s_SourceName");
             $description = $oItem->get("t_Description");
             if (!BLANK($description)) {
                 $description = Regex::replace($description, "<br/>", " ", RegexOptions::IgnoreCase);
@@ -203,17 +205,17 @@ class Rss extends Page {
                 $description = Regex::replace($description, "[ \r\n\t]+", " ");
                 if ($description->length() > 512) {
                     $description = $description->substring(0, 511);
-                    $last_space_index = $description->lastIndexOf(" ");
-                    $description = Strings::concat($description->substring(0, $last_space_index), " ...");
+                    $lastSpaceIndex = $description->lastIndexOf(" ");
+                    $description = Strings::concat($description->substring(0, $lastSpaceIndex), " ...");
                 }
                 //$utfIsValid = mb_check_encoding($description->getValue(), "UTF-8");
                 //if ($utfIsValid == false)
                 //    $description = new TString(); //TODO
             }
-            $item_title = CAT(
-                ($full_title == true && !BLANK($custom2) ? CAT($custom2, " | ") : null),
+            $itemTitle = CAT(
+                ($fullTitle == true && !BLANK($custom2) ? CAT($custom2, " | ") : null),
                 Strings::removeTags(Strings::stripSlashes($oItem->get("s_Title"))),
-                ($full_title == true ? CAT(" [", $source_name, "]") : null)
+                ($fullTitle == true ? CAT(" [", $sourceName, "]") : null)
             );
 
             $link = null;
@@ -221,20 +223,20 @@ class Rss extends Page {
                 $link = $oItem->get("s_Link");
             else {
                 $url = $oItem->get("s_Url");
-                $id_field = $doItem->getIdField();
+                $idField = $doItem->getIdField();
                 $link = CAT(
                     $this->context->Site, Config::TOP_DIR,
                     ($this->context->FineUrls ? "item/" : CAT(Config::INDEX_PAGE, "?p=view_item&amp;id=")),
-                    $oItem->get($id_field),
+                    $oItem->get($idField),
                     (BLANK($url) ? null : CAT(($this->context->FineUrls ? "/" : "&amp;title="), $url))
                 );
             }
 
             $args = array(7);
             $args[0] = $link;
-            $args[1] = $item_title;
-            $args[2] = CAT($this->context->Site, Config::TOP_DIR, Config::ACTION_PAGE, "?p=do_redirect_source&amp;source=", $source_name);
-            $args[3] = $source_name;
+            $args[1] = $itemTitle;
+            $args[2] = CAT($this->context->Site, Config::TOP_DIR, Config::ACTION_PAGE, "?p=do_redirect_source&amp;source=", $sourceName);
+            $args[3] = $sourceName;
             $args[4] = DateTimes::format(Config::XML_DTS, DateTimes::getTime($date));
             $additional = CAT(
                 (BLANK($creator) ? null : CAT($this->context->get("Name_Creator"), ": ", $creator, "<br/>")),
@@ -242,19 +244,19 @@ class Rss extends Page {
                 (BLANK($custom2) ? null : CAT($this->context->get("Name_Custom2"), ": ", $custom2, "<br/>")),
                 (BLANK($custom1) ? null : CAT($this->context->get("Name_Custom1"), ": ", $custom1, "<br/>"))
             );
-            $extended_description = null;
+            $extendedDescription = null;
             if (!BLANK($description)) {
                 if (BLANK($additional))
-                    $extended_description = $description;
+                    $extendedDescription = $description;
                 else
-                    $extended_description = CAT($additional, "<br/>", $description);
+                    $extendedDescription = CAT($additional, "<br/>", $description);
             }
             else if (!BLANK($additional))
-                $extended_description = $additional;
-            $args[5] = $extended_description;
+                $extendedDescription = $additional;
+            $args[5] = $extendedDescription;
             $args[6] = $category;
 
-            $xml_template = Strings::concat(
+            $xmlTemplate = Strings::concat(
                 "<item>\r\n",
                 "<title><![CDATA[{1}]]></title>\r\n",
                 "<link>{0}</link>\r\n",
@@ -264,44 +266,44 @@ class Rss extends Page {
                 "<guid>{0}</guid>\r\n",
                 "</item>\r\n"
             );
-            $items_content->concat(Util::formatString($xml_template, $args));
+            $itemsContent->concat(Util::formatString($xmlTemplate, $args));
             $current++;
         }
 
-        $rss_title = CAT(
+        $rssTitle = CAT(
             "Items for ", (BLANK($source) ? "ALL sources" : CAT("'", $source, "'")),
-            (BLANK($filter_name) ? null : CAT(" and filtered by '", $filter_name, "'"))
+            (BLANK($filterName) ? null : CAT(" and filtered by '", $filterName, "'"))
         );
-        $xml_content = Strings::concat(
+        $xmlContent = Strings::concat(
             "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n",
             "<rss version=\"2.0\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\r\n",
             "<channel>\r\n",
             //"<title>" . Config::SITE_NAME . "</title>\r\n",
-            "<title>", $rss_title, "</title>\r\n",
+            "<title>", $rssTitle, "</title>\r\n",
             "<link>", $this->context->Site, Config::TOP_DIR, "</link>\r\n",
-            "<description>", $rss_title, "</description>\r\n",
+            "<description>", $rssTitle, "</description>\r\n",
             ($this->context->Lang == "ru" ? "<language>ru-RU</language>\r\n" : "<language>en-US</language>\r\n"),
             "<pubDate>", $pubDate, "</pubDate>\r\n",
             "<lastBuildDate>", $pubDate, "</lastBuildDate>\r\n",
             "<generator>", Config::SITE_NAME, "</generator>\r\n"
         );
 
-        $xml_content->concat($items_content);
+        $xmlContent->concat($itemsContent);
 
-        $xml_content->concat(CAT(
+        $xmlContent->concat(CAT(
             "</channel>\r\n",
             "</rss>\r\n"));
 
         // Save content to cache (if applicable)
-        if (Config::CACHE_RSS && !$count_set)
+        if (Config::CACHE_RSS && !$countSet)
         {
-            Helper::testFileFolder($cached_file);
-            //Helper::writeText($cached_file, Strings::concat("\xEF\xBB\xBF", $xml_content));
-            Helper::writeText($cached_file, $xml_content);
+            Helper::testFileFolder($cachedFile);
+            //Helper::writeText($cachedFile, Strings::concat("\xEF\xBB\xBF", $xmlContent));
+            Helper::writeText($cachedFile, $xmlContent);
         }
 
         Response::writeHeader("Content-type", "text/xml; charset=UTF-8");
-        Response::write($xml_content->getValue());
+        Response::write($xmlContent->getValue());
 
         if (DBConfig::$Connection != null) {
             DBConfig::$Connection->close();

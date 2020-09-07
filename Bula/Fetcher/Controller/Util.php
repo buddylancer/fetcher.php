@@ -30,13 +30,15 @@ require_once("Bula/Objects/Strings.php");
 /**
  * Various helper methods.
  */
-class Util {
+class Util
+{
     /**
      * Output text safely.
      * @param TString $input Text to output.
      * @return TString Converted text.
      */
-    public static function safe($input) {
+    public static function safe($input)
+    {
         $output = Strings::stripSlashes($input);
         $output = $output->replace("<", "&lt;");
         $output = $output->replace(">", "&gt;");
@@ -49,7 +51,8 @@ class Util {
      * @param TString $input Text to output.
      * @return TString Converted text.
      */
-    public static function show($input) {
+    public static function show($input)
+    {
         if ($input == null)
             return null;
         $output = self::safe($input);
@@ -62,7 +65,8 @@ class Util {
      * @param TString $input Input date/time.
      * @return TString Resulting date/time.
      */
-    public static function showTime($input) {
+    public static function showTime($input)
+    {
         return DateTimes::format(Config::GMT_DTS, DateTimes::getTime($input));
     }
 
@@ -72,12 +76,13 @@ class Util {
      * @param Object[] $arr Parameters.
      * @return TString Resulting string.
      */
-    public static function formatString($format, $arr) {
+    public static function formatString($format, $arr)
+    {
         if (BLANK($format))
             return null;
         $output = $format;
-        $arr_size = SIZE($arr);
-        for ($n = 0; $n < $arr_size; $n++) {
+        $arrSize = SIZE($arr);
+        for ($n = 0; $n < $arrSize; $n++) {
             $match = CAT("{", $n, "}");
             $ind = $format->indexOf($match);
             if ($ind == -1)
@@ -90,15 +95,16 @@ class Util {
     /**
      * Main logic for getting/saving page from/into cache.
      * @param Engine $engine Engine instance.
-     * @param TString $cache_folder Cache folder root.
-     * @param TString $page_name Page to process.
-     * @param TString $class_name Appropriate class name.
+     * @param TString $cacheFolder Cache folder root.
+     * @param TString $pageName Page to process.
+     * @param TString $className Appropriate class name.
      * @param TString $query Query to process.
      * @return TString Resulting content.
      */
-    public static function showFromCache($engine, $cache_folder, $page_name, $class_name, $query = null) {
-        if (EQ($page_name, "bottom"))
-            $query = $page_name;
+    public static function showFromCache($engine, $cacheFolder, $pageName, $className, $query = null)
+    {
+        if (EQ($pageName, "bottom"))
+            $query = $pageName;
         else {
             if ($query == null)
                 $query = Request::getVar(INPUT_SERVER, "QUERY_STRING");
@@ -108,28 +114,28 @@ class Util {
 
         $content = null;
 
-        if (EQ($page_name, "view_item")) {
-            $title_pos = $query->indexOf("&title=");
-            if ($title_pos != -1)
-                $query = $query->substring(0, $title_pos);
+        if (EQ($pageName, "view_item")) {
+            $titlePos = $query->indexOf("&title=");
+            if ($titlePos != -1)
+                $query = $query->substring(0, $titlePos);
         }
 
         $hash = $query;
         //$hash = str_replace("?", "_Q_", $hash);
         $hash = Strings::replace("=", "_EQ_", $hash);
         $hash = Strings::replace("&", "_AND_", $hash);
-        $file_name = Strings::concat($cache_folder, "/", $hash, ".cache");
-        if (Helper::fileExists($file_name)) {
-            $content = Helper::readAllText($file_name);
-            //$content = CAT("*** Got from cache ", str_replace("/", " /", $file_name), "***<br/>", $content);
+        $fileName = Strings::concat($cacheFolder, "/", $hash, ".cache");
+        if (Helper::fileExists($fileName)) {
+            $content = Helper::readAllText($fileName);
+            //$content = CAT("*** Got from cache ", str_replace("/", " /", $fileName), "***<br/>", $content);
         }
         else {
-            $prefix = EQ($page_name, "bottom") ? null : "Pages/";
-            $content = $engine->includeTemplate(CAT("Bula/Fetcher/Controller/", $prefix, $class_name));
+            $prefix = EQ($pageName, "bottom") ? null : "Pages/";
+            $content = $engine->includeTemplate(CAT("Bula/Fetcher/Controller/", $prefix, $className));
 
-            Helper::testFileFolder($file_name);
-            Helper::writeText($file_name, $content);
-            //$content = CAT("*** Cached to ", str_replace("/", " /", $file_name), "***<br/>", $content);
+            Helper::testFileFolder($fileName);
+            Helper::writeText($fileName, $content);
+            //$content = CAT("*** Cached to ", str_replace("/", " /", $fileName), "***<br/>", $content);
         }
         return $content;
     }
@@ -146,7 +152,8 @@ class Util {
      * @param TString $to Substring to extract info "To".
      * @return TString Resulting string.
      */
-    public static function extractInfo($source, $after, $to = null) {
+    public static function extractInfo($source, $after, $to = null)
+    {
         $result = null;
         if (!NUL($source)) {
             $index1 = 0;
@@ -177,7 +184,8 @@ class Util {
      * @param TString $to Substring to remove "To".
      * @return TString Resulting string.
      */
-    public static function removeInfo($source, $from, $to = null) {
+    public static function removeInfo($source, $from, $to = null)
+    {
         $result = null;
         $index1 = $from == null ? 0 : $source->indexOf($from);
         if ($index1 != -1) {
@@ -198,7 +206,7 @@ class Util {
         return $result->trim();
     }
 
-    private static $ru_chars =
+    private static $ruChars =
     array(
         "а","б","в","г","д","е","ё","ж","з","и","й","к","л","м","н","о","п",
         "р","с","т","у","ф","х","ц","ч","ш","щ","ъ","ы","ь","э","ю","я",
@@ -208,7 +216,7 @@ class Util {
         "Á", "Ą", "Ä", "Ę", "Ó", "Ś"
     );
 
-    private static $en_chars =
+    private static $enChars =
     array(
         "a","b","v","g","d","e","io","zh","z","i","y","k","l","m","n","o","p",
         "r","s","t","u","f","h","ts","ch","sh","shch","\"","i","\"","e","yu","ya",
@@ -220,11 +228,12 @@ class Util {
 
     /**
      * Transliterate Russian text.
-     * @param TString $ru_text Original Russian text.
+     * @param TString $ruText Original Russian text.
      * @return TString Transliterated text.
      */
-    public static function transliterateRusToLat($ru_text) {
-        return new TString(str_replace(self::$ru_chars, self::$en_chars, $ru_text->getValue()));
+    public static function transliterateRusToLat($ruText)
+    {
+        return new TString(str_replace(self::$ruChars, self::$enChars, $ruText->getValue()));
 
     }
 }

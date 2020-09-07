@@ -22,10 +22,12 @@ require_once("Bula/Fetcher/Controller/Page.php");
 /**
  * Logic for getting test feed.
  */
-class GetFeed extends Page {
+class GetFeed extends Page
+{
 
     /** Get test feed using parameters from request. */
-    public function execute() {
+    public function execute()
+    {
         Request::initialize();
 		Request::extractAllVars();
 
@@ -34,7 +36,7 @@ class GetFeed extends Page {
 			Response::end("Source is required!");
 		$source = Request::get("source");
 		if (BLANK($source))
-			Response::end("Empty source!");       
+			Response::end("Empty source!");
 
         Response::writeHeader("Content-type", "text/xml; charset=UTF-8");
         Response::write(Helper::readAllText(CAT($this->context->LocalRoot->getValue(), "local/tests/input/U.S. News - ", $source, ".xml"))->getValue());

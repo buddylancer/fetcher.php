@@ -53,13 +53,15 @@ require_once("Bula/Fetcher/Controller/Actions/DoCleanCache.php");
 /**
  * Logic for fetching data.
  */
-class BOFetcher {
+class BOFetcher
+{
     private $context = null;
     private $oLogger = null;
     private $dsCategories = null;
 
     /** Public default constructor */
-    public function __construct($context) {
+    public function __construct($context)
+    {
         $this->context = $context;
         $this->initializeLog();
         $this->preLoadCategories();
@@ -68,13 +70,14 @@ class BOFetcher {
     /**
      * Initialize logging.
      */
-    private function initializeLog() {
+    private function initializeLog()
+    {
         $this->oLogger = new Logger();
         $this->context->set("Log_Object", $this->oLogger);
         $log = Request::getOptionalInteger("log");
         if (!NUL($log) && $log != -99999) { //TODO
-            $filename_template = new TString(CAT($this->context->LocalRoot, "local/logs/{0}_{1}.html"));
-            $filename = Util::formatString($filename_template, ARR("fetch_items", DateTimes::format(Config::LOG_DTS)));
+            $filenameTemplate = new TString(CAT($this->context->LocalRoot, "local/logs/{0}_{1}.html"));
+            $filename = Util::formatString($filenameTemplate, ARR("fetch_items", DateTimes::format(Config::LOG_DTS)));
             $this->oLogger->init($filename);
         }
     }
@@ -82,7 +85,8 @@ class BOFetcher {
     /**
      * Pre-load categories into DataSet.
      */
-    private function preLoadCategories() {
+    private function preLoadCategories()
+    {
         $doCategory = new DOCategory();
         $this->dsCategories = $doCategory->enumCategories();
     }
@@ -92,7 +96,8 @@ class BOFetcher {
      * @param Hashtable $oSource Source object.
      * @return Object[] Resulting items.
      */
-    private function fetchFromSource($oSource) {
+    private function fetchFromSource($oSource)
+    {
         $url = $oSource->get("s_Feed");
         if ($url->isEmpty())
             return null;
@@ -104,9 +109,9 @@ class BOFetcher {
         $this->oLogger->output("<br/>\r\nStarted ");
 
         //if ($url->indexOf("https") != -1) {
-        //    $enc_url = $url->replace("?", "%3F");
-        //    $enc_url = $enc_url->replace("&", "%26");
-        //    $url = Strings::concat(Config::$Site, "/get_ssl_rss.php?url=", $enc_url);
+        //    $encUrl = $url->replace("?", "%3F");
+        //    $encUrl = $encUrl->replace("&", "%26");
+        //    $url = Strings::concat(Config::$Site, "/get_ssl_rss.php?url=", $encUrl);
         //}
         $this->oLogger->output(CAT("[[[", $url, "]]]<br/>\r\n"));
         $rss = Internal::fetchRss($url->getValue());
@@ -128,18 +133,19 @@ class BOFetcher {
      * @param Hashtable $item Item object.
      * @return Integer Result of executing SQL-query.
      */
-    private function parseItemData($oSource, $item) {
+    private function parseItemData($oSource, $item)
+    {
         // Load original values
 
-        $source_name = $oSource->get("s_SourceName");
-        $source_id = INT($oSource->get("i_SourceId"));
-        $boItem = new BOItem($source_name, $item);
+        $sourceName = $oSource->get("s_SourceName");
+        $sourceId = INT($oSource->get("i_SourceId"));
+        $boItem = new BOItem($sourceName, $item);
         $pubdate = $item->get("pubdate");
         $date = DateTimes::format(Config::SQL_DTS, DateTimes::fromRss($pubdate));
 
         // Check whether item with the same link exists already
         $doItem = new DOItem();
-        $dsItems = $doItem->findItemByLink($boItem->link, $source_id);
+        $dsItems = $doItem->findItemByLink($boItem->link, $sourceId);
         if ($dsItems->getSize() > 0)
             return 0;
 
@@ -155,12 +161,12 @@ class BOFetcher {
         $fields = new Hashtable();
         $fields->put("s_Link", $boItem->link);
         $fields->put("s_Title", $boItem->title);
-        $fields->put("s_FullTitle", $boItem->full_title);
+        $fields->put("s_FullTitle", $boItem->fullTitle);
         $fields->put("s_Url", $url);
         if ($boItem->description != null)
             $fields->put("t_Description", $boItem->description);
-        if ($boItem->full_description != null)
-            $fields->put("t_FullDescription", $boItem->full_description);
+        if ($boItem->fullDescription != null)
+            $fields->put("t_FullDescription", $boItem->fullDescription);
         $fields->put("d_Date", $date);
         $fields->put("i_SourceLink", INT($oSource->get("i_SourceId")));
         if (!BLANK($boItem->category))
@@ -179,14 +185,14 @@ class BOFetcher {
     /**
      * Main logic.
      */
-    public function fetchFromSources() {
+    public function fetchFromSources()
+    {
         $this->oLogger->output("Start logging<br/>\r\n");
 
         //TODO -- Purge old items
         //$doItem = new DOItem();
         //$doItem->purgeOldItems(10);
 
-//if php
         define("MAGPIE_CACHE_ON", true);
         define("MAGPIE_OUTPUT_ENCODING", "UTF-8");
         define("MAGPIE_DEBUG", 1);
@@ -195,30 +201,30 @@ class BOFetcher {
         $doSource = new DOSource();
         $dsSources = $doSource->enumFetchedSources();
 
-        $total_counter = 0;
+        $totalCounter = 0;
         $this->oLogger->output(CAT("<br/>\r\nChecking ", $dsSources->getSize(), " sources..."));
 
         // Loop through sources
         for ($n = 0; $n < $dsSources->getSize(); $n++) {
             $oSource = $dsSources->getRow($n);
 
-            $items_array = $this->fetchFromSource($oSource);
-            if ($items_array == null)
+            $itemsArray = $this->fetchFromSource($oSource);
+            if ($itemsArray == null)
                 continue;
 
             // Fetch done for this source
             $this->oLogger->output(" fetched ");
 
-            $items_counter = 0;
+            $itemsCounter = 0;
             // Loop through fetched items and parse their data
-            for ($i = SIZE($items_array) - 1; $i >= 0; $i--) {
-                $hash = Arrays::createHashtable($items_array[$i]);
+            for ($i = SIZE($itemsArray) - 1; $i >= 0; $i--) {
+                $hash = Arrays::createHashtable($itemsArray[$i]);
                 if (BLANK($hash->get("link")))
                     continue;
                 $itemid = $this->parseItemData($oSource, $hash);
                 if ($itemid > 0) {
-                    $items_counter++;
-                    $total_counter++;
+                    $itemsCounter++;
+                    $totalCounter++;
                 }
             }
 
@@ -228,15 +234,15 @@ class BOFetcher {
                 DBConfig::$Connection = null;
             }
 
-            $this->oLogger->output(CAT(" (", $items_counter, " items) end<br/>\r\n"));
+            $this->oLogger->output(CAT(" (", $itemsCounter, " items) end<br/>\r\n"));
         }
 
         // Re-count categories
         $this->recountCategories();
 
-        $this->oLogger->output(CAT("<hr/>Total items added - ", $total_counter, "<br/>\r\n"));
+        $this->oLogger->output(CAT("<hr/>Total items added - ", $totalCounter, "<br/>\r\n"));
 
-        if (Config::CACHE_PAGES && $total_counter > 0) {
+        if (Config::CACHE_PAGES && $totalCounter > 0) {
             $doCleanCache = new DoCleanCache($this->context);
             $doCleanCache->cleanCache($this->oLogger);
         }
@@ -245,7 +251,8 @@ class BOFetcher {
     /**
      * Execute re-counting of categories.
      */
-    private function recountCategories() {
+    private function recountCategories()
+    {
         $this->oLogger->output(CAT("Recount categories ... <br/>\r\n"));
         $doCategory = new DOCategory();
         $dsCategories = $doCategory->enumCategories();
@@ -254,8 +261,8 @@ class BOFetcher {
             $id = $oCategory->get("s_CatId");
             $filter = $oCategory->get("s_Filter");
             $doItem = new DOItem();
-            $sql_filter = $doItem->buildSqlFilter($filter);
-            $dsItems = $doItem->enumIds($sql_filter);
+            $sqlFilter = $doItem->buildSqlFilter($filter);
+            $dsItems = $doItem->enumIds($sqlFilter);
             $fields = new Hashtable();
             $fields->put("i_Counter", $dsItems->getSize());
             $result = $doCategory->updateById($id, $fields);

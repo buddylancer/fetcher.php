@@ -5,14 +5,16 @@ use Bula\Objects\TString;
 const DIV = "|";
 
 /**
- * Stop executing. 
+ * Stop executing.
  * @param string $str
  */
-function STOP($str) {
+function STOP($str)
+{
     die(CAT($str));
 }
 
-function /* void */ PR(/* TString */ $str) {
+function /* void */ PR(/* TString */ $str)
+{
     print $str;
 }
 
@@ -22,7 +24,8 @@ function /* void */ PR(/* TString */ $str) {
  * @param object $value
  * @return boolean
  */
-function NUL($value) {
+function NUL($value)
+{
     return $value == null && !isset($value);
 }
 
@@ -31,7 +34,8 @@ function NUL($value) {
  * @param object $value Input object.
  * @return integer Integer result.
  */
-function INT($value) {
+function INT($value)
+{
     if (NUL($value))
         return 0;
     if ($value instanceof TString)
@@ -44,7 +48,8 @@ function INT($value) {
  * @param object $value Input object.
  * @return double Float result.
  */
-function FLOAT($value) {
+function FLOAT($value)
+{
     if (NUL($value))
         return 0;
     if ($value instanceof TString)
@@ -57,7 +62,8 @@ function FLOAT($value) {
  * @param object $value Input object.
  * @return string String result.
  */
-function STR($value) {
+function STR($value)
+{
     if (NUL($value))
         return null;
     if ($value instanceof TString)
@@ -75,7 +81,8 @@ function STR($value) {
  * @param object $value2 Second object.
  * @return boolean
  */
-function EQ($value1, $value2) {
+function EQ($value1, $value2)
+{
     if ($value1 instanceof TString)
         $value1 = $value1->getValue();
     if ($value2 instanceof TString)
@@ -89,7 +96,8 @@ function EQ($value1, $value2) {
  * @param object $arg Input object.
  * @return boolean
  */
-function BLANK($arg) {
+function BLANK($arg)
+{
     if ($arg == null || !isset($arg))
         return true;
     if ($arg instanceof TString)
@@ -102,7 +110,8 @@ function BLANK($arg) {
  * @param object $str Input object.
  * @return integer Length of resulting string
  */
-function LEN($str) {
+function LEN($str)
+{
     return BLANK($str) ? 0 : strlen($str);
 }
 
@@ -111,7 +120,8 @@ function LEN($str) {
  * @param array $args Variable length array of parameters.
  * @return string Resulting string
  */
-function CAT(/* ... */) {
+function CAT(/* ... */)
+{
     $args = func_get_args();
     /* TString */ $result = "";
     foreach ($args as $arg) {
@@ -129,7 +139,8 @@ function CAT(/* ... */) {
  * @param array $args Variable length array of parameters.
  * @return array
  */
-function ARR(/* ... */) {
+function ARR(/* ... */)
+{
     return func_get_args();
 }
 
@@ -140,10 +151,11 @@ function ARR(/* ... */) {
  * 2nd+ parameter - object(s) to merge into original array.
  * @return array Merged array
  */
-function /* Object[] */ ADD(/* ... */) {
-    $num_args = func_num_args();
+function /* Object[] */ ADD(/* ... */)
+{
+    $numArgs = func_num_args();
     $arr = func_get_arg(0);
-    for ($n = 1; $n < $num_args; $n++) {
+    for ($n = 1; $n < $numArgs; $n++) {
         $arg = func_get_arg($n);
         if (is_array($arg))
             foreach ($arg as $item)
@@ -159,7 +171,8 @@ function /* Object[] */ ADD(/* ... */) {
  * @param object $val Input object.
  * @return integer Resulting size.
  */
-function SIZE($val) {
+function SIZE($val)
+{
     if ($val == null)
         return 0;
     if (is_array($val))
@@ -171,11 +184,12 @@ function SIZE($val) {
 
 /**
  * Call obj.method(args) and return its result.
- * @param string $Object Object instance.
- * @param string $Method Method to call.
- * @param array $Args Array of parameters.
+ * @param string $object Object instance.
+ * @param string $method Method to call.
+ * @param array $args Array of parameters.
  * @return object Result of method calling.
  */
-function CALL($Object, $Method, $Args) {
-    return call_user_func_array(array($Object, $Method), $Args);
+function CALL($object, $method, $args)
+{
+    return call_user_func_array(array($object, $method), $args);
 }

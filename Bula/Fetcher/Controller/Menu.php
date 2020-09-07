@@ -21,50 +21,46 @@ require_once("Bula/Objects/TString.php");
 /**
  * Logic for generating Menu block.
  */
-class Menu extends Page {
-    /**
-     * Public default constructor.
-     * @param Context $context Context instance.
-     * /
-    public Menu(Context context) : base(context) { }
-    CS*/
+class Menu extends Page
+{
 
     /** Execute main logic for Menu block */
-    public function execute() {
-        $public_pages = new ArrayList();
+    public function execute()
+    {
+        $publicPages = new ArrayList();
 
-        $public_pages->add("Home");
-        $public_pages->add("home");
+        $publicPages->add("Home");
+        $publicPages->add("home");
         if ($this->context->IsMobile) {
-            $public_pages->add(Config::NAME_ITEMS); $public_pages->add("items");
+            $publicPages->add(Config::NAME_ITEMS); $publicPages->add("items");
             if (Config::SHOW_BOTTOM && $this->context->contains("Name_Categories")) {
-                $public_pages->add(CAT("By ", $this->context->get("Name_Categories")));
-                $public_pages->add("#items_by_skills");
-                //$public_pages->add("RSS Feeds");
-                //$public_pages->add("#read_rss_feeds");
+                $publicPages->add(CAT("By ", $this->context->get("Name_Categories")));
+                $publicPages->add("#items_by_skills");
+                //$publicPages->add("RSS Feeds");
+                //$publicPages->add("#read_rss_feeds");
             }
-            $public_pages->add("Sources");
-            $public_pages->add("sources");
+            $publicPages->add("Sources");
+            $publicPages->add("sources");
         }
         else {
-            $public_pages->add(CAT("Browse ", Config::NAME_ITEMS));
-            $public_pages->add("items");
+            $publicPages->add(CAT("Browse ", Config::NAME_ITEMS));
+            $publicPages->add("items");
             if (Config::SHOW_BOTTOM && $this->context->contains("Name_Categories")) {
-                $public_pages->add(CAT(Config::NAME_ITEMS, " by ", $this->context->get("Name_Categories")));
-                $public_pages->add("#items_by_skills");
+                $publicPages->add(CAT(Config::NAME_ITEMS, " by ", $this->context->get("Name_Categories")));
+                $publicPages->add("#items_by_skills");
 
-                $public_pages->add("Read RSS Feeds");
-                $public_pages->add("#read_rss_feeds");
+                $publicPages->add("Read RSS Feeds");
+                $publicPages->add("#read_rss_feeds");
             }
-            $public_pages->add("Sources");
-            $public_pages->add("sources");
+            $publicPages->add("Sources");
+            $publicPages->add("sources");
         }
 
-        $MenuItems = new ArrayList();
-        for ($n = 0; $n < $public_pages->count(); $n += 2) {
-            $Row = new Hashtable();
-            $title = $public_pages->get($n+0);
-            $page = $public_pages->get($n+1);
+        $menuItems = new ArrayList();
+        for ($n = 0; $n < $publicPages->count(); $n += 2) {
+            $row = new Hashtable();
+            $title = $publicPages->get($n+0);
+            $page = $publicPages->get($n+1);
             $href = null;
             if (EQ($page, "home"))
                 $href = Config::TOP_DIR;
@@ -77,15 +73,15 @@ class Menu extends Page {
                         $href = CAT(Config::TOP_DIR, $page);
                 }
             }
-            $Row->put("[#Link]", $href);
-            $Row->put("[#LinkText]", $title);
-            $Row->put("[#Prefix]", $n != 0 ? " &bull; " : " ");
-            $MenuItems->add($Row);
+            $row->put("[#Link]", $href);
+            $row->put("[#LinkText]", $title);
+            $row->put("[#Prefix]", $n != 0 ? " &bull; " : " ");
+            $menuItems->add($row);
         }
 
-        $Prepare = new Hashtable();
-        $Prepare->put("[#MenuItems]", $MenuItems);
-        $this->write("Bula/Fetcher/View/menu.html", $Prepare);
+        $prepare = new Hashtable();
+        $prepare->put("[#MenuItems]", $menuItems);
+        $this->write("Bula/Fetcher/View/menu.html", $prepare);
     }
 }
 

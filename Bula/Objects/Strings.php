@@ -17,12 +17,14 @@ require_once("TString.php");
 /**
  * Helper class for manipulations with strings.
  */
-class Strings {
+class Strings
+{
     /**
      * Provide empty array.
      * @return TString[] Empty array of strings.
      */
-    public static function emptyArray() {
+    public static function emptyArray()
+    {
         return array();
     }
 
@@ -31,7 +33,8 @@ class Strings {
      * @param TString $input Input string.
      * @return TString Resulting string.
      */
-    public static function firstCharToUpper($input) {
+    public static function firstCharToUpper($input)
+    {
         $input = $input instanceof TString ? $input : new TString($input);
         return self::concat($input->substring(0, 1)->toUpperCase(), $input->substring(1));
 	}
@@ -42,7 +45,8 @@ class Strings {
      * @param TString[] $strings Array of strings.
      * @return TString Resulting string.
      */
-    public static function join($divider, $strings) {
+    public static function join($divider, $strings)
+    {
         $output = new TString();
         $count = 0;
         foreach ($strings as $string1) {
@@ -60,7 +64,8 @@ class Strings {
      * @param TString $except List of allowed tags (do not remove).
      * @return TString Resulting string.
      */
-    public static function removeTags($input, $except= null ) {
+    public static function removeTags($input, $except= null )
+    {
         if ($except != null && $except instanceof TString) $except = $except->getValue();
         return new TString(strip_tags($input->getValue(), $except == null ? null : $except));
 	}
@@ -70,7 +75,8 @@ class Strings {
      * @param TString $input Input string.
      * @return TString Resulting string.
      */
-    public static function addSlashes($input) {
+    public static function addSlashes($input)
+    {
 		return new TString(addslashes(CAT($input)));
 	}
 
@@ -79,7 +85,8 @@ class Strings {
      * @param TString $input Input string.
      * @return TString Resulting string.
      */
-	public static function stripSlashes($input) {
+	public static function stripSlashes($input)
+    {
 		return new TString(stripslashes(CAT($input)));
 	}
 
@@ -89,7 +96,8 @@ class Strings {
      * @param TString $chunk String to count.
      * @return Integer Number of substrings.
      */
-    public static function countSubstrings($input, $chunk) {
+    public static function countSubstrings($input, $chunk)
+    {
 		if ($input->length() == 0)
 			return 0;
 		$replaced = $input->replace($chunk, "");
@@ -101,7 +109,8 @@ class Strings {
      * @param Object[] $args Array of strings.
      * @return TString Resulting string.
      */
-    public static function concat(/*...*/) {
+    public static function concat(/*...*/)
+    {
 		$output = new TString();
 		$args = func_get_args();
 		if (SIZE($args) != 0) {
@@ -120,10 +129,11 @@ class Strings {
      * @param TString $input Input string.
      * @return TString[] Array of resulting strings.
      */
-    public static function split($divider, $input) {
+    public static function split($divider, $input)
+    {
 		$divider = CAT(DIV, Regex::escape($divider), DIV);
         if ($input instanceof TString) $input = $input->getValue();
-		$chunks = 
+		$chunks =
             preg_split($divider, $input, -1, PREG_SPLIT_NO_EMPTY);
 		$result = new ArrayList();
         for ($n = 0; $n < SIZE($chunks); $n++)
@@ -139,17 +149,18 @@ class Strings {
      * @param type $limit Max number of replacements [optional].
      * @return TString Resulting string.
      */
-    public static function replace($from, $to, $input, $limit= 0) {
-//if php        
-        $is_object = $input instanceof TString;
-        if (!$is_object) $input = new TString($input);
+    public static function replace($from, $to, $input, $limit= 0)
+    {
+//if php
+        $isObject = $input instanceof TString;
+        if (!$isObject) $input = new TString($input);
         if (!$from instanceof TString) $from = new TString($from);
         if (!$to instanceof TString) $to = new TString($to);
-		$has_pattern = $from->length() > 1 && $from->startsWith(DIV) && $from->endsWith(DIV);
+		$hasPattern = $from->length() > 1 && $from->startsWith(DIV) && $from->endsWith(DIV);
         $result = null;
-        if ($limit != 0 || $has_pattern) {
+        if ($limit != 0 || $hasPattern) {
             // Use preg_replace
-            if (!$has_pattern) $from = self::concat(DIV, $from, DIV);
+            if (!$hasPattern) $from = self::concat(DIV, $from, DIV);
 			if ($limit == 0)
 				$result = preg_replace($from->getValue(), $to->getValue(), $input->getValue());
             else
@@ -159,7 +170,7 @@ class Strings {
             // Use str_replace
 			$result = str_replace($from->getValue(), $to->getValue(), $input->getValue());
         }
-		return $is_object ? new TString($result) : $result;
+		return $isObject ? new TString($result) : $result;
 	}
 
     /**
@@ -169,7 +180,8 @@ class Strings {
      * @param TString $input Input string.
      * @return TString Resulting string.
      */
-    public static function replaceAll($regex, $to, $input) {
+    public static function replaceAll($regex, $to, $input)
+    {
         $regex = CAT(DIV, $regex, DIV);
         return self::replace($regex, $to, $input);
     }
@@ -181,7 +193,8 @@ class Strings {
      * @param TString $input Input string.
      * @return TString Resulting string.
      */
-    public static function replaceFirst($regex , $to, $input) {
+    public static function replaceFirst($regex , $to, $input)
+    {
         $regex = CAT(DIV, $regex, DIV);
         return self::replace($regex, $to, $input, 1);
     }
@@ -192,7 +205,8 @@ class Strings {
      * @param Hashtable $hash Set of key/value pairs.
      * @return TString Resulting string.
      */
-    public static function replaceInTemplate($template, $hash){
+    public static function replaceInTemplate($template, $hash)
+    {
         return $content = strtr($template, Arrays::toArray($hash));
 
     }

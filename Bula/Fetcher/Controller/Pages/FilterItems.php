@@ -23,26 +23,22 @@ require_once("Bula/Fetcher/Model/DOSource.php");
 /**
  * Controller for Filter Items block.
  */
-class FilterItems extends Page {
-    /**
-     * Public default constructor.
-     * @param Context $context Context instance.
-     * /
-    public FilterItems(Context context) : base(context) { }
-    CS*/
+class FilterItems extends Page
+{
 
     /** Execute main logic for FilterItems block. */
-    public function execute() {
+    public function execute()
+    {
         $doSource = new DOSource();
 
         $source = null;
         if (Request::contains("source"))
             $source = Request::get("source");
 
-        $Prepare = new Hashtable();
+        $prepare = new Hashtable();
         if ($this->context->FineUrls)
-            $Prepare->put("[#Fine_Urls]", 1);
-        $Prepare->put("[#Selected]", BLANK($source) ? " selected=\"selected\" " : null);
+            $prepare->put("[#Fine_Urls]", 1);
+        $prepare->put("[#Selected]", BLANK($source) ? " selected=\"selected\" " : null);
         $dsSources = null;
         //TODO -- This can be too long on big databases... Switch off counters for now.
         $useCounters = true;
@@ -50,18 +46,18 @@ class FilterItems extends Page {
             $dsSources = $doSource->enumSourcesWithCounters();
         else
             $dsSources = $doSource->enumSources();
-        $Options = new ArrayList();
+        $options = new ArrayList();
         for ($n = 0; $n < $dsSources->getSize(); $n++) {
             $oSource = $dsSources->getRow($n);
-            $Option = new Hashtable();
-            $Option->put("[#Selected]", ($oSource->get("s_SourceName")->equals($source) ? "selected=\"selected\"" : " "));
-            $Option->put("[#Id]", $oSource->get("s_SourceName"));
-            $Option->put("[#Name]", $oSource->get("s_SourceName"));
+            $option = new Hashtable();
+            $option->put("[#Selected]", ($oSource->get("s_SourceName")->equals($source) ? "selected=\"selected\"" : " "));
+            $option->put("[#Id]", $oSource->get("s_SourceName"));
+            $option->put("[#Name]", $oSource->get("s_SourceName"));
             if ($useCounters)
-                $Option->put("[#Counter]", $oSource->get("cntpro"));
-            $Options->add($Option);
+                $option->put("[#Counter]", $oSource->get("cntpro"));
+            $options->add($option);
         }
-        $Prepare->put("[#Options]", $Options);
-        $this->write("Bula/Fetcher/View/Pages/filter_items.html", $Prepare);
+        $prepare->put("[#Options]", $options);
+        $this->write("Bula/Fetcher/View/Pages/filter_items.html", $prepare);
     }
 }

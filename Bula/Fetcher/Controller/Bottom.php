@@ -23,19 +23,15 @@ require_once("Bula/Fetcher/Model/DOCategory.php");
 /**
  * Logic for generating Bottom block.
  */
-class Bottom extends Page {
-    /**
-     * Public default constructor.
-     * @param Context $context Context instance.
-     * /
-    public Bottom(Context context) : base(context) { }
-    CS*/
+class Bottom extends Page
+{
 
     /** Execute main logic for Bottom block */
-    public function execute() {
-        $Prepare = new Hashtable();
+    public function execute()
+    {
+        $prepare = new Hashtable();
 
-        $filter_link = CAT(Config::TOP_DIR,
+        $filterLink = CAT(Config::TOP_DIR,
             ($this->context->FineUrls ? "items/filter/" : CAT(Config::INDEX_PAGE, "?p=items&filter=")));
 
         $doCategory = new DOCategory();
@@ -45,10 +41,10 @@ class Bottom extends Page {
         $n1 = INT($size / 3) + ($size3 == 0 ? 0 : 1);
         $n2 = $n1 * 2;
         $nn = array(0, $n1, $n2, $size);
-        $FilterBlocks = new ArrayList();
+        $filterBlocks = new ArrayList();
         for ($td = 0; $td < 3; $td++) {
-            $FilterBlock = new Hashtable();
-            $Rows = new ArrayList();
+            $filterBlock = new Hashtable();
+            $rows = new ArrayList();
             for ($n = INT($nn[$td]); $n < INT($nn[$td+1]); $n++) {
                 $oCategory = $dsCategory->getRow($n);
                 $counter = INT($oCategory->get("i_Counter"));
@@ -56,21 +52,21 @@ class Bottom extends Page {
                     continue;
                 $key = $oCategory->get("s_CatId");
                 $name = $oCategory->get("s_Name");
-                $Row = new Hashtable();
-                $href = CAT($filter_link, $key);
-                $Row->put("[#Link]", $href);
-                $Row->put("[#LinkText]", $name);
+                $row = new Hashtable();
+                $href = CAT($filterLink, $key);
+                $row->put("[#Link]", $href);
+                $row->put("[#LinkText]", $name);
                 //if ($counter > 0)
-                    $Row->put("[#Counter]", $counter);
-                $Rows->add($Row);
+                    $row->put("[#Counter]", $counter);
+                $rows->add($row);
             }
-            $FilterBlock->put("[#Rows]", $Rows);
-            $FilterBlocks->add($FilterBlock);
+            $filterBlock->put("[#Rows]", $rows);
+            $filterBlocks->add($filterBlock);
         }
-        $Prepare->put("[#FilterBlocks]", $FilterBlocks);
+        $prepare->put("[#FilterBlocks]", $filterBlocks);
 
         if (!$this->context->IsMobile) {
-            $filter_link = CAT(Config::TOP_DIR,
+            $filterLink = CAT(Config::TOP_DIR,
                 ($this->context->FineUrls ? "rss/" : CAT(Config::RSS_PAGE, "?filter=")));
             $dsCategory = $doCategory->enumAll();
             $size = $dsCategory->getSize(); //50
@@ -78,26 +74,26 @@ class Bottom extends Page {
             $n1 = INT($size / 3) + ($size3 == 0 ? 0 : 1); //17.3
             $n2 = $n1 * 2; //34.6
             $nn = array(0, $n1, $n2, $size);
-            $RssBlocks = new ArrayList();
+            $rssBlocks = new ArrayList();
             for ($td = 0; $td < 3; $td++) {
-                $RssBlock = new Hashtable();
-                $Rows = new ArrayList();
+                $rssBlock = new Hashtable();
+                $rows = new ArrayList();
                 for ($n = INT($nn[$td]); $n < INT($nn[$td+1]); $n++) {
                     $oCategory = $dsCategory->getRow($n);
                     $key = $oCategory->get("s_CatId");
                     $name = $oCategory->get("s_Name");
                     //$counter = INT($oCategory->get("i_Counter"));
-                    $Row = new Hashtable();
-                    $href = CAT($filter_link, $key, ($this->context->FineUrls ? ".xml" : null));
-                    $Row->put("[#Link]", $href);
-                    $Row->put("[#LinkText]", $name);
-                    $Rows->add($Row);
+                    $row = new Hashtable();
+                    $href = CAT($filterLink, $key, ($this->context->FineUrls ? ".xml" : null));
+                    $row->put("[#Link]", $href);
+                    $row->put("[#LinkText]", $name);
+                    $rows->add($row);
                 }
-                $RssBlock->put("[#Rows]", $Rows);
-                $RssBlocks->add($RssBlock);
+                $rssBlock->put("[#Rows]", $rows);
+                $rssBlocks->add($rssBlock);
             }
-            $Prepare->put("[#RssBlocks]", $RssBlocks);
+            $prepare->put("[#RssBlocks]", $rssBlocks);
         }
-        $this->write("Bula/Fetcher/View/bottom.html", $Prepare);
+        $this->write("Bula/Fetcher/View/bottom.html", $prepare);
     }
 }

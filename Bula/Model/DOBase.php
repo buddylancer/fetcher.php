@@ -30,39 +30,42 @@ require_once("DataSet.php");
 /**
  * Base class for manipulating with DB objects.
  */
-class DOBase {
-    private $db_connection = null;
+class DOBase
+{
+    private $dbConnection = null;
 
     /**
      * Name of a DB table.
      * @var TString
      */
-    protected $table_name;
+    protected $tableName;
 
     /**
      * Name of a table ID field.
      * @var TString
      */
-    protected $id_field;
+    protected $idField;
 
     /** Public constructor */
-    public function __construct() {
+    public function __construct()
+    {
         if (DBConfig::$Connection == null)
             DBConfig::$Connection = $this->createConnection();
 
-        $this->db_connection = DBConfig::$Connection;
+        $this->dbConnection = DBConfig::$Connection;
     }
 
     // Create connection to the database given parameters from DBConfig.
-    private function createConnection() {
+    private function createConnection()
+    {
         $oConn = new Connection();
-        $db_admin = DBConfig::DB_ADMIN != null ? DBConfig::DB_ADMIN : DBConfig::DB_NAME;
-        $db_password = DBConfig::DB_PASSWORD != null ? DBConfig::DB_PASSWORD : DBConfig::DB_NAME;
+        $dbAdmin = DBConfig::DB_ADMIN != null ? DBConfig::DB_ADMIN : DBConfig::DB_NAME;
+        $dbPassword = DBConfig::DB_PASSWORD != null ? DBConfig::DB_PASSWORD : DBConfig::DB_NAME;
         $ret = 0;
         if (DBConfig::DB_CHARSET != null)
-            $ret = $oConn->open(DBConfig::DB_HOST, DBConfig::DB_PORT, $db_admin, $db_password, DBConfig::DB_NAME, DBConfig::DB_CHARSET);
+            $ret = $oConn->open(DBConfig::DB_HOST, DBConfig::DB_PORT, $dbAdmin, $dbPassword, DBConfig::DB_NAME, DBConfig::DB_CHARSET);
         else
-            $ret = $oConn->open(DBConfig::DB_HOST, DBConfig::DB_PORT, $db_admin, $db_password, DBConfig::DB_NAME);
+            $ret = $oConn->open(DBConfig::DB_HOST, DBConfig::DB_PORT, $dbAdmin, $dbPassword, DBConfig::DB_NAME);
         if ($ret == -1)
             $oConn = null;
         return $oConn;
@@ -72,16 +75,18 @@ class DOBase {
      * Get current connection.
      * @return Connection Current connection.
      */
-    public function getConnection() {
-        return $this->db_connection;
+    public function getConnection()
+    {
+        return $this->dbConnection;
     }
 
     /**
      * Get current ID field name.
      * @return TString
      */
-    public function getIdField() {
-        return $this->id_field;
+    public function getIdField()
+    {
+        return $this->idField;
     }
 
     /**
@@ -90,8 +95,9 @@ class DOBase {
      * @param Object[] $pars Query parameters.
      * @return DataSet Resulting data set.
      */
-    public function getDataSet($query, $pars) {
-        $oStmt = $this->db_connection->prepareStatement($query);
+    public function getDataSet($query, $pars)
+    {
+        $oStmt = $this->dbConnection->prepareStatement($query);
         if ($pars != null && SIZE($pars) > 0) {
             $n = 1;
             for ($i = 0; $i < SIZE($pars); $i += 2) {
@@ -124,11 +130,12 @@ class DOBase {
      * @param Integer $rows Number of rows in a list.
      * @return DataSet Resulting data set.
      */
-    public function getDataSetList($query, $pars, $list, $rows) {
+    public function getDataSetList($query, $pars, $list, $rows)
+    {
         if ($rows <= 0 || $list <= 0)
             return $this->getDataSet($query, $pars);
 
-        $oStmt = $this->db_connection->prepareStatement($query);
+        $oStmt = $this->dbConnection->prepareStatement($query);
         if (SIZE($pars) > 0) {
             $n = 1;
             for ($p = 0; $p < SIZE($pars); $p += 2) {
@@ -143,8 +150,8 @@ class DOBase {
             return null;
 
         $ds = new DataSet();
-        $total_rows = $oRs->getRows();
-        $ds->setTotalPages(INT(($total_rows - 1) / $rows + 1));
+        $totalRows = $oRs->getRows();
+        $ds->setTotalPages(INT(($totalRows - 1) / $rows + 1));
 
         $count = 0;
         if ($list != 1) {
@@ -177,8 +184,9 @@ class DOBase {
      * @param TString $operation Operation - "update" (default) or "insert".
      * @return Integer Update status (or inserted ID for "insert" operation).
      */
-    protected function updateInternal($query, $pars, $operation= "update") {
-        $oStmt = $this->db_connection->prepareStatement($query);
+    protected function updateInternal($query, $pars, $operation= "update")
+    {
+        $oStmt = $this->dbConnection->prepareStatement($query);
         if (SIZE($pars) > 0) {
             $n = 1;
             for ($i = 0; $i < SIZE($pars); $i += 2) {
@@ -200,10 +208,11 @@ class DOBase {
      * @param Integer $id Unique ID.
      * @return DataSet Resulting data set.
      */
-    public function getById($id) {
+    public function getById($id)
+    {
         $query = Strings::concat(
-            " select * from ", $this->table_name,
-            " where ", $this->id_field, " = ?"
+            " select * from ", $this->tableName,
+            " where ", $this->idField, " = ?"
         );
         $pars = array("setInt", $id);
         return $this->getDataSet($query, $pars);
@@ -215,12 +224,13 @@ class DOBase {
      * @param TString $order Field to order by [optional].
      * @return DataSet Resulting data set.
      */
-    public function enumIds($where= null, $order= null) {
+    public function enumIds($where= null, $order= null)
+    {
         $query = Strings::concat(
-            " select ", $this->id_field, " from ", $this->table_name, " _this ",
+            " select ", $this->idField, " from ", $this->tableName, " _this ",
             (BLANK($where) ? null : CAT(" where ", $where)),
             " order by ",
-            (BLANK($order) ? $this->id_field : $order)
+            (BLANK($order) ? $this->idField : $order)
         );
         $pars = array();
         return $this->getDataSet($query, $pars);
@@ -232,9 +242,10 @@ class DOBase {
      * @param TString $order Field to order by [optional].
      * @return DataSet Resulting data set.
      */
-    public function enumAll($where= null, $order= null) {
+    public function enumAll($where= null, $order= null)
+    {
         $query = Strings::concat(
-            " select * from ", $this->table_name, " _this ",
+            " select * from ", $this->tableName, " _this ",
             (BLANK($where) ? null : CAT(" where ", $where)),
             (BLANK($order) ? null : CAT(" order by ", $order))
         );
@@ -249,9 +260,10 @@ class DOBase {
      * @param TString $order Field to order by [optional].
      * @return DataSet Resulting data set.
      */
-    public function enumFields($fields, $where= null, $order= null) {
+    public function enumFields($fields, $where= null, $order= null)
+    {
         $query = Strings::concat(
-            " select ", $fields, " from ", $this->table_name, " _this ",
+            " select ", $fields, " from ", $this->tableName, " _this ",
             (BLANK($where) ? null : CAT(" where ", $where)),
             (BLANK($order) ? null : CAT(" order by ", $order))
         );
@@ -266,13 +278,14 @@ class DOBase {
      * @param TString $order Field to order by [optional].
      * @return DataSet Resulting data set.
      */
-    public function select($fields= null, $where= null, $order= null) {
+    public function select($fields= null, $where= null, $order= null)
+    {
         if ($fields == null)
             $fields = "_this.*";
 
         $query = Strings::concat(
             " select ", $fields,
-            " from ", $this->table_name, " _this ",
+            " from ", $this->tableName, " _this ",
             (BLANK($where) ? null : CAT(" where ", $where)),
             (BLANK($order) ? null : CAT(" order by ", $order))
         );
@@ -289,12 +302,13 @@ class DOBase {
      * @param TString $order Field to order by [optional].
      * @return DataSet Resulting data set.
      */
-    public function selectList($list, $rows, $fields= null, $where= null, $order= null) {
+    public function selectList($list, $rows, $fields= null, $where= null, $order= null)
+    {
         if ($fields == null)
             $fields = "_this.*";
         $query = Strings::concat(
             " select ",  $fields,
-            " from ", $this->table_name, " _this ",
+            " from ", $this->tableName, " _this ",
             (BLANK($where) ? null : CAT(" where ", $where)),
             (BLANK($order) ? null : CAT(" order by ", $order))
         );
@@ -309,10 +323,11 @@ class DOBase {
      * @param Integer $id Unique ID.
      * @return Integer Result of operation.
      */
-    public function deleteById($id) {
+    public function deleteById($id)
+    {
         $query = Strings::concat(
-            " delete from ", $this->table_name,
-            " where ", $this->id_field, " = ?"
+            " delete from ", $this->tableName,
+            " where ", $this->idField, " = ?"
         );
         $pars = array("setInt", $id);
         return $this->updateInternal($query, $pars, "update");
@@ -323,25 +338,26 @@ class DOBase {
      * @param Hashtable $fields The set of fields.
      * @return Integer Result of SQL-query execution.
      */
-    public function insert(Hashtable $fields) {
+    public function insert(Hashtable $fields)
+    {
         $keys = $fields->keys();
-        $field_names = new TString();
-        $field_values = new TString();
+        $fieldNames = new TString();
+        $fieldValues = new TString();
         $pars = array();
         //$pars->setPullValues(true);
         $n = 0;
         while ($keys->moveNext()) {
             $key = /*(TString)*/$keys->current();
-            if ($n != 0) $field_names->concat(", ");
-            if ($n != 0) $field_values->concat(", ");
-            $field_names->concat($key);
-            $field_values->concat("?");
+            if ($n != 0) $fieldNames->concat(", ");
+            if ($n != 0) $fieldValues->concat(", ");
+            $fieldNames->concat($key);
+            $fieldValues->concat("?");
             $pars = ADD($pars, $this->setFunction($key), $fields->get($key));
             $n++;
         }
         $query = Strings::concat(
-            " insert into ", $this->table_name, " (", $field_names, ") ",
-            " values (", $field_values, ")"
+            " insert into ", $this->tableName, " (", $fieldNames, ") ",
+            " values (", $fieldValues, ")"
         );
         return $this->updateInternal($query, $pars, "insert");
     }
@@ -352,26 +368,27 @@ class DOBase {
      * @param Hashtable $fields The set of fields.
      * @return Integer Result of SQL-query execution.
      */
-    public function updateById($id, Hashtable $fields) {
+    public function updateById($id, Hashtable $fields)
+    {
         $keys = $fields->keys();
-        $set_values = new TString();
+        $setValues = new TString();
         $pars = array();
         //$pars->setPullValues(true);
         $n = 0;
         while ($keys->moveNext()) {
             $key = /*(TString)*/$keys->current();
-            if ($key == $this->id_field) //TODO PHP
+            if ($key == $this->idField) //TODO PHP
                 continue;
             if ($n != 0)
-                $set_values->concat(", ");
-            $set_values->concat(CAT($key, " = ?"));
+                $setValues->concat(", ");
+            $setValues->concat(CAT($key, " = ?"));
             $pars = ADD($pars, $this->setFunction($key), $fields->get($key));
             $n++;
         }
-        $pars = ADD($pars, $this->setFunction($this->id_field), $id);
+        $pars = ADD($pars, $this->setFunction($this->idField), $id);
         $query = Strings::concat(
-            " update ", $this->table_name, " set ", $set_values,
-            " where (", $this->id_field, " = ?)"
+            " update ", $this->tableName, " set ", $setValues,
+            " where (", $this->idField, " = ?)"
         );
         return $this->updateInternal($query, $pars, "update");
     }
@@ -381,7 +398,8 @@ class DOBase {
      * @param TString $key  Field name.
      * @return TString Function name for setting that field.
      */
-    private function setFunction($key) {
+    private function setFunction($key)
+    {
         if (!$key instanceof TString) $key = new TString($key);
         $prefix = $key->substring(0, 2);
         $func = "setString";

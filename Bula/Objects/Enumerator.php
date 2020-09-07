@@ -12,16 +12,19 @@ namespace Bula\Objects;
 /**
  * Very simple implementation of Java Enumerator.
  */
-class Enumerator {
+class Enumerator
+{
     private $collection = null;
     private $pointer = -1;
 
-    public function __construct($elements) {
+    public function __construct($elements)
+    {
         $this->collection = $elements;
         $this->pointer = -1;
     }
 
-    public function moveNext() {
+    public function moveNext()
+    {
         if ($this->pointer < sizeof($this->collection) - 1) {
             $this->pointer++;
             return true;
@@ -29,7 +32,8 @@ class Enumerator {
         return false;
     }
 
-    public function current() {
+    public function current()
+    {
         if ($this->pointer >= 0)
             return $this->collection[$this->pointer];
         return null;

@@ -22,33 +22,29 @@ require_once("Bula/Fetcher/Controller/Engine.php");
 /**
  * Base class for redirecting from the web-site.
  */
-abstract class DoRedirect extends Page {
-    /**
-     * Public default constructor.
-     * @param Context $context Context instance.
-     * /
-    public DoRedirect(Context context) : base(context) { }
-    CS*/
+abstract class DoRedirect extends Page
+{
 
     /**
      * Execute main logic for this action.
-     * @param TString $link_to_redirect Link to redirect (or null if there were some errors).
-     * @param TString $error_message Error to show (or null if no errors).
+     * @param TString $linkToRedirect Link to redirect (or null if there were some errors).
+     * @param TString $errorMessage Error to show (or null if no errors).
      */
-    public function executeRedirect($link_to_redirect, $error_message) {
-        $Prepare = new Hashtable();
-        $template_name = null;
-        if (!NUL($error_message)) {
-            $Prepare->put("[#Title]", "Error");
-            $Prepare->put("[#ErrMessage]", $error_message);
-            $template_name = "Bula/Fetcher/View/error_alone.html";
+    public function executeRedirect($linkToRedirect, $errorMessage)
+    {
+        $prepare = new Hashtable();
+        $templateName = null;
+        if (!NUL($errorMessage)) {
+            $prepare->put("[#Title]", "Error");
+            $prepare->put("[#ErrMessage]", $errorMessage);
+            $templateName = "Bula/Fetcher/View/error_alone.html";
         }
-        else if (!BLANK($link_to_redirect)) {
-            $Prepare->put("[#Link]", $link_to_redirect);
-            $template_name = "Bula/Fetcher/View/redirect.html";
+        else if (!BLANK($linkToRedirect)) {
+            $prepare->put("[#Link]", $linkToRedirect);
+            $templateName = "Bula/Fetcher/View/redirect.html";
         }
 
         $engine = $this->context->pushEngine(true);
-        Response::write($engine->showTemplate($template_name, $Prepare)->getValue());
+        Response::write($engine->showTemplate($templateName, $prepare)->getValue());
     }
 }

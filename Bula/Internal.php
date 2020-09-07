@@ -13,48 +13,51 @@ use Bula\Objects\ArrayList;
 
 require_once("Bula/Objects/ArrayList.php");
 
-class Internal {
+class Internal
+{
     /**
      * Call static method of given class using provided arguments.
-     * @param TString $class_name Class name.
-     * @param TString $method_name Method name.
+     * @param TString $className Class name.
+     * @param TString $methodName Method name.
      * @param ArrayList $args List of arguments.
      * @return Object Result of method execution.
      */
-    public static function callStaticMethod($class_name, $method_name, $args = null) {
-        $class_name = "\\" . str_replace("/", "\\", $class_name);
+    public static function callStaticMethod($className, $methodName, $args = null)
+    {
+        $className = "\\" . str_replace("/", "\\", $className);
         if ($args != null && $args->count() > 0) {
-            //return $class_name::$method_name($args->toArray());
-            $reflectionMethod = new \ReflectionMethod($class_name, $method_name);
+            //return $className::$methodName($args->toArray());
+            $reflectionMethod = new \ReflectionMethod($className, $methodName);
             return $reflectionMethod->invokeArgs(null, $args->toArray());
         }
         else
-            return $class_name::$method_name();
+            return $className::$methodName();
     }
 
     /**
      * Call method of given class using provided arguments.
-     * @param TString $class_name Class name.
-     * @param TString $method_name Method name.
+     * @param TString $className Class name.
+     * @param TString $methodName Method name.
      * @param ArrayList $args List of arguments.
      * @return Object Result of method execution.
      */
-    public static function callMethod($class_name, $con_args, $method_name, $exe_args = null) {
-        require_once($class_name . ".php");
-        $class_name = "\\" . str_replace("/", "\\", $class_name);
-        $class = new \ReflectionClass($class_name);
-        $instance = $class->newInstanceArgs($con_args->toArray());
-        $reflectionMethod = new \ReflectionMethod($class_name, $method_name);
+    public static function callMethod($className, $conArgs, $methodName, $exeArgs = null)
+    {
+        require_once($className . ".php");
+        $className = "\\" . str_replace("/", "\\", $className);
+        $class = new \ReflectionClass($className);
+        $instance = $class->newInstanceArgs($conArgs->toArray());
+        $reflectionMethod = new \ReflectionMethod($className, $methodName);
         $result = null;
-        if ($exe_args != null)
-            $result = $reflectionMethod->invokeArgs($instance, $exe_args->toArray());
+        if ($exeArgs != null)
+            $result = $reflectionMethod->invokeArgs($instance, $exeArgs->toArray());
         else
             $result = $reflectionMethod->invoke($instance);
         return $result;
         //if ($args != null && $args->count() > 0)
-        //    return $class_name::$method_name($args->toArray());
+        //    return $className::$methodName($args->toArray());
         //else
-        //    return $class_name::$method_name();
+        //    return $className::$methodName();
     }
 
     /**
@@ -62,7 +65,8 @@ class Internal {
      * @param TString $url RSS-feed url.
      * @return Object[] Array of fetched items.
      */
-    public static function fetchRss($url) {
+    public static function fetchRss($url)
+    {
         return fetch_rss($url);
     }
 }

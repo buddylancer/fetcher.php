@@ -20,5 +20,5 @@ use Bula\Fetcher\Controller\Testing\GetFeed;
 
 error_reporting(E_ALL);
 date_default_timezone_set("UTC");
-$get_feed = new GetFeed($context);
-$get_feed->execute();
+$getFeed = new GetFeed($context);
+$getFeed->execute();

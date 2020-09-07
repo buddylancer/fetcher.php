@@ -22,50 +22,47 @@ require_once("ItemsBase.php");
 /**
  * Controller for Home block.
  */
-class Home extends ItemsBase {
-    /**
-     * Public default constructor.
-     * @param Context $context Context instance.
-     * /
-    public Home(Context context) : base(context) { }
-    CS*/
+class Home extends ItemsBase
+{
 
     /**
      * Fast check of input query parameters.
      * @return Hashtable Parsed parameters (or null in case of any error).
      */
-    public function check() {
+    public function check()
+    {
         return new Hashtable();
     }
 
     /** Execute main logic for Home block. */
-    public function execute() {
-        $Pars = $this->check();
-        if ($Pars == null)
+    public function execute()
+    {
+        $pars = $this->check();
+        if ($pars == null)
             return;
 
-        $Prepare = new Hashtable();
+        $prepare = new Hashtable();
 
         $doItem = new DOItem();
 
-        $all_items_href =
+        $allItemsHref =
             CAT(Config::TOP_DIR, ($this->context->FineUrls ? null : CAT(Config::INDEX_PAGE, "?p=")), "items");
-        $Prepare->put("[#BrowseItemsLink]", $all_items_href);
+        $prepare->put("[#BrowseItemsLink]", $allItemsHref);
 
         $source = null;
         $search = null;
-        $max_rows = Config::DB_HOME_ROWS;
-        $dsItems = $doItem->enumItems($source, $search, 1, $max_rows);
-        $row_count = 1;
-        $Items = new ArrayList();
+        $maxRows = Config::DB_HOME_ROWS;
+        $dsItems = $doItem->enumItems($source, $search, 1, $maxRows);
+        $rowCount = 1;
+        $items = new ArrayList();
         for ($n = 0; $n < $dsItems->getSize(); $n++) {
             $oItem = $dsItems->getRow($n);
-            $Row = parent::fillItemRow($oItem, $doItem->getIdField(), $row_count);
-            $Items->add($Row);
-            $row_count++;
+            $row = parent::fillItemRow($oItem, $doItem->getIdField(), $rowCount);
+            $items->add($row);
+            $rowCount++;
         }
-        $Prepare->put("[#Items]", $Items);
+        $prepare->put("[#Items]", $items);
 
-        $this->write("Bula/Fetcher/View/Pages/home.html", $Prepare);
+        $this->write("Bula/Fetcher/View/Pages/home.html", $prepare);
     }
 }

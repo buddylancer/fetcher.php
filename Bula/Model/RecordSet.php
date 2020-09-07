@@ -21,66 +21,73 @@ require_once("Bula/Objects/Hashtable.php");
 /**
  * Implement operations with record sets.
  */
-class RecordSet {
+class RecordSet
+{
     /** Current result */
     public $result = null;
     /** Current record */
     public $record = null;
 
-    private $num_rows = 0;
-    private $num_pages = 0;
-    private $page_rows = 10;
-    private $page_no = 0;
+    private $numRows = 0;
+    private $numPages = 0;
+    private $pageRows = 10;
+    private $pageNo = 0;
 
     /** Public constructor */
-    public function __construct() {
-        $this->num_rows = 0;
-        $this->num_pages = 0;
-        $this->page_rows = 10;
-        $this->page_no = 0;
+    public function __construct()
+    {
+        $this->numRows = 0;
+        $this->numPages = 0;
+        $this->pageRows = 10;
+        $this->pageNo = 0;
     }
 
     /**
      * Set number of page rows in record set.
      * @param Integer $no Number of rows.
      */
-    public function setPageRows($no) {
-        $this->page_rows = $no;
+    public function setPageRows($no)
+    {
+        $this->pageRows = $no;
     }
 
     /**
      * Set current number of rows (and pages) in the record set.
      * @param Integer $no Number of rows.
      */
-    public function setRows($no) {
-        $this->num_rows = $no;
-        $this->num_pages = INT(($no - 1) / $this->page_rows) + 1;
+    public function setRows($no)
+    {
+        $this->numRows = $no;
+        $this->numPages = INT(($no - 1) / $this->pageRows) + 1;
     }
 
     /**
      * Get current number of rows in the record set.
      * @return Integer Number of rows.
      */
-    public function getRows() {
-        return $this->num_rows;
+    public function getRows()
+    {
+        return $this->numRows;
     }
 
     /**
      * Get current number of pages in the record set.
      * @return Integer Number of pages.
      */
-    public function getPages() {
-        return $this->num_pages;
+    public function getPages()
+    {
+        return $this->numPages;
     }
 
     /**
      * Set current page of the record set.
      * @param Integer $no Current page.
      */
-    public function setPage($no) {
-        $this->page_no = $no;
+    public function setPage($no)
+    {
+        $this->pageNo = $no;
         if ($no != 1) {
-            $n = ($no - 1) * $this->page_rows;
+            $n = ($no - 1) * $this->pageRows;
             while ($n-- > 0)
                 $this->next();
         }
@@ -90,8 +97,9 @@ class RecordSet {
      * Get current page of the record set.
      * @return Integer Current page number.
      */
-    public function getPage() {
-        return $this->page_no;
+    public function getPage()
+    {
+        return $this->pageNo;
     }
 
     /**
@@ -100,7 +108,8 @@ class RecordSet {
      *   1 - next record exists.
      *   0 - next record not exists.
      */
-    public function next() {
+    public function next()
+    {
         $arr = DataAccess::fetchArray($this->result);
 
         if ($arr != null) {
@@ -116,7 +125,8 @@ class RecordSet {
      * @param Integer $par Number of value.
      * @return Object
      */
-    public function getValue($par) {
+    public function getValue($par)
+    {
         return $this->record->get($par);
     }
 
@@ -125,7 +135,8 @@ class RecordSet {
      * @param Integer $par Number of value.
      * @return TString
      */
-    public function getString($par) {
+    public function getString($par)
+    {
         return $this->record->get($par);
     }
 
@@ -134,7 +145,8 @@ class RecordSet {
      * @param Integer $par Number of value.
      * @return TString
      */
-    public function getDate($par) {
+    public function getDate($par)
+    {
         return $this->record->get($par);
     }
 
@@ -143,7 +155,8 @@ class RecordSet {
      * @param Integer $par Number of value.
      * @return Integer
      */
-    public function getInt($par) {
+    public function getInt($par)
+    {
         return INT($this->record->get($par));
     }
 
@@ -152,14 +165,16 @@ class RecordSet {
      * @param Integer $par Number of value.
      * @return Double
      */
-    public function getFloat($par) {
+    public function getFloat($par)
+    {
         return FLOAT($this->record->get($par));
     }
 
     /**
      * Close this record set.
      */
-    public function close() {
+    public function close()
+    {
         DataAccess::freeResult($this->result);
     }
 }

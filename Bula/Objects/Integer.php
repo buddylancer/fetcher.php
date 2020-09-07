@@ -11,22 +11,27 @@ namespace Bula\Objects;
 
 require_once("TString.php");
 
-class Integer {
+class Integer
+{
 	private $value = 0;
 
-	public function __construct($input) {
+	public function __construct($input)
+    {
 		self::set($input);
 	}
 
-	public function set($input) {
+	public function set($input)
+    {
 		$this->value = intval($input instanceof TString ? $input->getValue() : $input);
 	}
 
-	public function get() {
+	public function get()
+    {
 		return $this->value;
 	}
 
-	public function toString() {
+	public function toString()
+    {
 		return CAT($this->value);
 	}
 

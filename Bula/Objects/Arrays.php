@@ -15,9 +15,11 @@ use Bula\Objects\Hashtable;
 /**
  * Helper class for manipulating with arrays.
  */
-class Arrays {
+class Arrays
+{
     /** Create new array list. */
-    public static function newArrayList() {
+    public static function newArrayList()
+    {
         return new ArrayList();
     }
 
@@ -25,7 +27,8 @@ class Arrays {
      * Create new hash table.
      * @return Hashtable New hash table.
      */
-    public static function newHashtable() {
+    public static function newHashtable()
+    {
         return new Hashtable();
     }
 
@@ -34,7 +37,8 @@ class Arrays {
      * @param Integer $size Size of array.
      * @return Object[] Resulting array.
      */
-    public static function newArray($size) {
+    public static function newArray($size)
+    {
         return array();
     }
 
@@ -44,7 +48,8 @@ class Arrays {
      * @param Hashtable $extra Hash table to merge with original one.
      * @return Hashtable Merged hash table.
      */
-    public static function mergeHashtable($input, $extra) {
+    public static function mergeHashtable($input, $extra)
+    {
         if ($input == null)
             return null;
         if ($extra == null)
@@ -65,7 +70,8 @@ class Arrays {
      * @param ArrayList $extra Array list to merge with original one.
      * @return ArrayList Resulting array list.
      */
-    public static function mergeArrayList($input, $extra) {
+    public static function mergeArrayList($input, $extra)
+    {
         if ($input == null)
             return null;
         if ($extra == null)
@@ -85,20 +91,21 @@ class Arrays {
      * @param Array $extra Array to merge with original one.
      * @return Array Resulting array.
      */
-    public static function mergeArray($input, $extra) {
+    public static function mergeArray($input, $extra)
+    {
         if ($input == null)
             return null;
         if ($extra == null)
             return $input;
 
-        $input_size = SIZE($input);
-        $extra_size = SIZE($extra);
-        $new_size = $input_size + $extra_size;
-        $output = self::newArray($new_size);
-        for ($n = 0; $n < $input_size; $n++)
+        $inputSize = SIZE($input);
+        $extraSize = SIZE($extra);
+        $newSize = $inputSize + $extraSize;
+        $output = self::newArray($newSize);
+        for ($n = 0; $n < $inputSize; $n++)
             $output[$n] = $input[$n];
-        for ($n = 0; $n < $extra_size; $n++)
-            $output[$input_size + $n] = $extra[$n];
+        for ($n = 0; $n < $extraSize; $n++)
+            $output[$inputSize + $n] = $extra[$n];
         return $output;
     }
 
@@ -108,18 +115,19 @@ class Arrays {
      * @param Object $element Object to add to original array.
      * @return Array Resulting array.
      */
-    public static function extendArray($input, $element) {
+    public static function extendArray($input, $element)
+    {
         if ($input == null)
             return null;
         if ($element == null)
             return $input;
 
-        $input_size = SIZE($input);
-        $new_size = $input_size + 1;
-        $output = self::newArray($new_size);
-        for ($n = 0; $n < $input_size; $n++)
+        $inputSize = SIZE($input);
+        $newSize = $inputSize + 1;
+        $output = self::newArray($newSize);
+        for ($n = 0; $n < $inputSize; $n++)
             $output[$n] = $input[$n];
-        $output[$input_size] = $element;
+        $output[$inputSize] = $element;
         return $output;
     }
 
@@ -128,7 +136,8 @@ class Arrays {
      * @param Object[] $input Array of objects.
      * @return ArrayList Resulting array list.
      */
-    public static function createArrayList($input) {
+    public static function createArrayList($input)
+    {
 		if ($input == null)
             return null;
         $output = new ArrayList();
@@ -139,13 +148,13 @@ class Arrays {
         return $output;
     }
 
-//if php
     /**
      * Create hash table from associative array.
      * @param Array $input Input array.
      * @return Hashtable Resulting hash table.
      */
-    public static function createHashtable($input) {
+    public static function createHashtable($input)
+    {
 		if ($input == null || !is_array($input))
             return null;
         $output = new Hashtable();
@@ -164,7 +173,8 @@ class Arrays {
      * Get collection as associative array.
      * @return array
      */
-    public static function toArray($input) {
+    public static function toArray($input)
+    {
         $result = self::newArray($input->count());
         $keys = $input->keys();
         while ($keys->moveNext()) {
@@ -176,11 +186,13 @@ class Arrays {
         return $result;
     }
 
-    public static function getArrayKeys($input) {
+    public static function getArrayKeys($input)
+    {
         return new Enumerator(array_keys($input));
     }
 
-    public static function getArrayValue($input, $key) {
+    public static function getArrayValue($input, $key)
+    {
         return $input[$key];
     }
 }

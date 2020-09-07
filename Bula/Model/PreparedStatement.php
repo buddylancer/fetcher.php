@@ -26,7 +26,8 @@ require_once("RecordSet.php");
 /**
  * Implement operations with prepared statement.
  */
-class PreparedStatement {
+class PreparedStatement
+{
     /** Link to database instance */
     private $link;
     /** Initial SQL-query */
@@ -40,10 +41,11 @@ class PreparedStatement {
      * Resulting record set of the last operation.
      * @var RecordSet
      */
-    public $record_set;
+    public $recordSet;
 
 	/** Default public constructor */
-    public function __construct() {
+    public function __construct()
+    {
         $this->pars = new ArrayList();
         $this->pars->add("dummy"); // Parameter number will start from 1.
     }
@@ -52,8 +54,9 @@ class PreparedStatement {
      * Execute selection query.
      * @return RecordSet
      */
-    public function executeQuery() {
-        $this->record_set = new RecordSet();
+    public function executeQuery()
+    {
+        $this->recordSet = new RecordSet();
         if ($this->formQuery()) {
             DataAccess::callPrintDelegate(CAT("Executing selection query [", $this->query, "] ..."));
             $result = DataAccess::selectQuery($this->link, $this->query->getValue());
@@ -61,10 +64,10 @@ class PreparedStatement {
                 DataAccess::callErrorDelegate(CAT("Selection query failed [", $this->query, "]"));
                 return null;
             }
-            $this->record_set->result = $result;
-            $this->record_set->setRows(DataAccess::numRows($result));
-            $this->record_set->setPage(1);
-            return $this->record_set;
+            $this->recordSet->result = $result;
+            $this->recordSet->setRows(DataAccess::numRows($result));
+            $this->recordSet->setPage(1);
+            return $this->recordSet;
         }
         else {
             DataAccess::callErrorDelegate(CAT("Error in query: ", $this->query, "<hr/>"));
@@ -78,7 +81,8 @@ class PreparedStatement {
      *   -1 - error during form query.
      *   -2 - error during execution.
      */
-    public function executeUpdate() {
+    public function executeUpdate()
+    {
         if ($this->formQuery()) {
             DataAccess::callPrintDelegate(CAT("Executing update query [", $this->query, "] ..."));
             $result = DataAccess::updateQuery($this->link, $this->query->getValue());
@@ -99,7 +103,8 @@ class PreparedStatement {
      * Get ID for just inserted record.
      * @return Integer
      */
-    public function getInsertId() {
+    public function getInsertId()
+    {
         return DataAccess::insertId($this->link);
     }
 
@@ -107,16 +112,17 @@ class PreparedStatement {
      * Form query (replace '?' marks with real parameters).
      * @return Boolean
      */
-    private function formQuery() {
-        $question_index = -1;
-        $start_from = 0;
+    private function formQuery()
+    {
+        $questionIndex = -1;
+        $startFrom = 0;
         $n = 1;
         $str = new TString($this->sql);
-        while (($question_index = $str->indexOf("?", $start_from)) != -1) {
+        while (($questionIndex = $str->indexOf("?", $startFrom)) != -1) {
             $value = /*(TString)*/$this->pars->get($n);
-            $before = $str->substring(0, $question_index);
-            $after = $str->substring($question_index + 1);
-            $str = $before; $str->concat($value); $start_from = $str->length();
+            $before = $str->substring(0, $questionIndex);
+            $after = $str->substring($questionIndex + 1);
+            $str = $before; $str->concat($value); $startFrom = $str->length();
             $str->concat($after);
             $n++;
         }
@@ -125,7 +131,8 @@ class PreparedStatement {
     }
 
     // Set parameter value
-    private function setValue($n, $val) {
+    private function setValue($n, $val)
+    {
         if ($n >= SIZE($this->pars))
             $this->pars->add($val);
         else
@@ -137,7 +144,8 @@ class PreparedStatement {
      * @param Integer $n Parameter number.
      * @param Integer $val Parameter value.
      */
-    public function setInt($n, $val) {
+    public function setInt($n, $val)
+    {
         self::setValue($n, CAT($val));
     }
 
@@ -146,7 +154,8 @@ class PreparedStatement {
      * @param Integer $n Parameter number.
      * @param TString $val Parameter value.
      */
-    public function setString($n, $val) {
+    public function setString($n, $val)
+    {
         if ($val instanceof TString) $val = $val->getValue();
         self::setValue($n, CAT("'", Strings::addSlashes($val), "'"));
     }
@@ -156,7 +165,8 @@ class PreparedStatement {
      * @param Integer $n Parameter number.
      * @param TString $val Parameter value.
      */
-    public function setDate($n, $val) {
+    public function setDate($n, $val)
+    {
         if ($val instanceof TString) $val = $val->getValue();
         self::setValue($n, CAT("'", DateTimes::format(DBConfig::SQL_DTS, DateTimes::getTime($val)), "'"));
     }
@@ -166,14 +176,16 @@ class PreparedStatement {
      * @param Integer $n Parameter number.
      * @param Double $val Parameter value.
      */
-    public function setFloat($n, $val) {
+    public function setFloat($n, $val)
+    {
         self::setValue($n, CAT($val));
     }
 
     /**
      * Close.
      */
-    public function close() {
+    public function close()
+    {
         $this->link = null;
     }
 
@@ -181,7 +193,8 @@ class PreparedStatement {
      * Set DB link.
      * @param Object $link
      */
-    public function setLink($link) {
+    public function setLink($link)
+    {
         $this->link = $link;
     }
 
@@ -189,7 +202,8 @@ class PreparedStatement {
      * Set SQL-query,
      * @param TString $sql
      */
-    public function setSql($sql) {
+    public function setSql($sql)
+    {
         $this->sql = $sql;
     }
 }

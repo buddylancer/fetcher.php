@@ -23,98 +23,95 @@ require_once("Bula/Fetcher/Model/DOItem.php");
 /**
  * Controller for View Item block.
  */
-class ViewItem extends Page {
-    /**
-     * Public default constructor.
-     * @param Context $context Context instance.
-     * /
-    public ViewItem(Context context) : base(context) { }
-    CS*/
+class ViewItem extends Page
+{
 
     /**
      * Fast check of input query parameters.
      * @return Hashtable Parsed parameters (or null in case of any error).
      */
-    public function check() {
-        $Prepare = new Hashtable();
+    public function check()
+    {
+        $prepare = new Hashtable();
         if (!Request::contains("id")) {
-            $Prepare->put("[#ErrMessage]", "Item ID is required!");
-            $this->write("Bula/Fetcher/View/error.html", $Prepare);
+            $prepare->put("[#ErrMessage]", "Item ID is required!");
+            $this->write("Bula/Fetcher/View/error.html", $prepare);
             return null;
         }
         $id = Request::get("id");
         if (!Request::isInteger($id)) {
-            $Prepare->put("[#ErrMessage]", "Item ID must be positive integer!");
-            $this->write("Bula/Fetcher/View/error.html", $Prepare);
+            $prepare->put("[#ErrMessage]", "Item ID must be positive integer!");
+            $this->write("Bula/Fetcher/View/error.html", $prepare);
             return null;
         }
 
-        $Pars = new Hashtable();
-        $Pars->put("id", $id);
-        return $Pars;
+        $pars = new Hashtable();
+        $pars->put("id", $id);
+        return $pars;
     }
 
     /** Execute main logic for View Item block. */
-    public function execute() {
-        $Pars = self::check();
-        if ($Pars == null)
+    public function execute()
+    {
+        $pars = self::check();
+        if ($pars == null)
             return;
 
-        $id = /*(TString)*/$Pars->get("id");
+        $id = /*(TString)*/$pars->get("id");
 
-        $Prepare = new Hashtable();
+        $prepare = new Hashtable();
 
         $doItem = new DOItem();
         $dsItems = $doItem->getById(INT($id));
         if ($dsItems == null || $dsItems->getSize() == 0) {
-            $Prepare->put("[#ErrMessage]", "Wrong item ID!");
-            $this->write("Bula/Fetcher/View/error.html", $Prepare);
+            $prepare->put("[#ErrMessage]", "Wrong item ID!");
+            $this->write("Bula/Fetcher/View/error.html", $prepare);
             return;
         }
 
         $oItem = $dsItems->getRow(0);
         $title = $oItem->get("s_Title");
-        $source_name = $oItem->get("s_SourceName");
+        $sourceName = $oItem->get("s_SourceName");
 
         $this->context->set("Page_Title", $title);
-        $left_width = "25%";
+        $leftWidth = "25%";
         if ($this->context->IsMobile)
-            $left_width = "20%";
+            $leftWidth = "20%";
 
-        $id_field = $doItem->getIdField();
-        $redirect_item = CAT(Config::TOP_DIR,
+        $idField = $doItem->getIdField();
+        $redirectItem = CAT(Config::TOP_DIR,
             ($this->context->FineUrls ? "redirect/item/" : CAT(Config::ACTION_PAGE, "?p=do_redirect_item&id=")),
-            $oItem->get($id_field));
-        $Prepare->put("[#RedirectLink]", $redirect_item);
-        $Prepare->put("[#LeftWidth]", $left_width);
-        $Prepare->put("[#Title]", Util::show($title));
-        $Prepare->put("[#InputTitle]", Util::safe($title));
+            $oItem->get($idField));
+        $prepare->put("[#RedirectLink]", $redirectItem);
+        $prepare->put("[#LeftWidth]", $leftWidth);
+        $prepare->put("[#Title]", Util::show($title));
+        $prepare->put("[#InputTitle]", Util::safe($title));
 
-        $redirect_source = CAT(
+        $redirectSource = CAT(
             Config::TOP_DIR,
             ($this->context->FineUrls ? "redirect/source/" : CAT(Config::ACTION_PAGE, "?p=do_redirect_source&source=")),
-            $source_name
+            $sourceName
         );
-        $Prepare->put("[#RedirectSource]", $redirect_source);
-        $Prepare->put("[#SourceName]", $source_name);
-        $Prepare->put("[#Date]", Util::showTime($oItem->get("d_Date")));
-        $Prepare->put("[#Creator]", $oItem->get("s_Creator"));
-        $Prepare->put("[#Description]", $oItem->containsKey("t_Description") ? Util::show($oItem->get("t_Description")) : "");
-        $Prepare->put("[#ItemID]", $oItem->get($id_field));
-        if ($this->context->contains("Name_Category")) $Prepare->put("[#Category]", $oItem->get("s_Category"));
-        if ($this->context->contains("Name_Custom1")) $Prepare->put("[#Custom1]", $oItem->get("s_Custom1"));
-        if ($this->context->contains("Name_Custom2")) $Prepare->put("[#Custom2]", $oItem->get("s_Custom2"));
+        $prepare->put("[#RedirectSource]", $redirectSource);
+        $prepare->put("[#SourceName]", $sourceName);
+        $prepare->put("[#Date]", Util::showTime($oItem->get("d_Date")));
+        $prepare->put("[#Creator]", $oItem->get("s_Creator"));
+        $prepare->put("[#Description]", $oItem->containsKey("t_Description") ? Util::show($oItem->get("t_Description")) : "");
+        $prepare->put("[#ItemID]", $oItem->get($idField));
+        if ($this->context->contains("Name_Category")) $prepare->put("[#Category]", $oItem->get("s_Category"));
+        if ($this->context->contains("Name_Custom1")) $prepare->put("[#Custom1]", $oItem->get("s_Custom1"));
+        if ($this->context->contains("Name_Custom2")) $prepare->put("[#Custom2]", $oItem->get("s_Custom2"));
 
         if ($this->context->Lang == "ru" && !$this->context->IsMobile)
-            $Prepare->put("[#Share]", 1);
+            $prepare->put("[#Share]", 1);
 
         $engine = $this->context->getEngine();
 
         if (Config::CACHE_PAGES)
-            $Prepare->put("[#Home]", Util::showFromCache($engine, $this->context->CacheFolder, "home", "Home", "p=home&from_view_item=1"));
+            $prepare->put("[#Home]", Util::showFromCache($engine, $this->context->CacheFolder, "home", "Home", "p=home&from_view_item=1"));
         else
-            $Prepare->put("[#Home]", $engine->includeTemplate("Bula/Fetcher/Controller/Pages/Home"));
+            $prepare->put("[#Home]", $engine->includeTemplate("Bula/Fetcher/Controller/Pages/Home"));
 
-        $this->write("Bula/Fetcher/View/Pages/view_item.html", $Prepare);
+        $this->write("Bula/Fetcher/View/Pages/view_item.html", $prepare);
     }
 }

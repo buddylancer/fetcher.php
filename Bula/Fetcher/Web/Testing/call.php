@@ -20,5 +20,5 @@ use Bula\Fetcher\Controller\Testing\CallMethod;
 
 error_reporting(E_ALL);
 date_default_timezone_set("UTC");
-$call_method = new CallMethod($context);
-$call_method->execute();
+$callMethod = new CallMethod($context);
+$callMethod->execute();
