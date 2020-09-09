@@ -86,4 +86,7 @@ class Config
 
     /** Show bottom blocks (Filtering and RSS) */
     const SHOW_BOTTOM = true;
+
+    const POWERED_BY = "Buddy Fetcher";
+    const GITHUB_REPO = "buddylancer/fetcher.php";
 }
