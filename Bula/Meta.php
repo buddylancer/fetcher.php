@@ -1,4 +1,12 @@
 <?php
+/**
+ * Buddy Fetcher: simple RSS-fetcher/aggregator.
+ *
+ * @author Buddy Lancer <http://www.buddylancer.com>
+ * @copyright 2020 Buddy Lancer
+ * @version 0.1
+ * @license MIT
+ */
 
 use Bula\Objects\TString;
 
@@ -11,11 +19,6 @@ const DIV = "|";
 function STOP($str)
 {
     die(CAT($str));
-}
-
-function /* void */ PR(/* TString */ $str)
-{
-    print $str;
 }
 
 // Common functions
