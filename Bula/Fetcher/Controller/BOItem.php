@@ -82,13 +82,13 @@ class BOItem
         $this->source = $source;
         $this->item = $item;
 
-        $this->link = /*(TString)*/$item->get("link");
+        $this->link = $item->get("link");
 
         // Pre-process full description & title
         // Trick to eliminate non-UTF-8 characters
-        $this->fullTitle = Regex::replace(/*(TString)*/$item->get("title"), "[\xF0-\xF7][\x80-\xBF]{3}", "");
+        $this->fullTitle = Regex::replace($item->get("title"), "[\xF0-\xF7][\x80-\xBF]{3}", "");
         if ($item->containsKey("description") && !BLANK($item->get("description")))
-            $this->fullDescription = Regex::replace(/*(TString)*/$item->get("description"), "[\xF0-\xF7][\x80-\xBF]{3}", "");
+            $this->fullDescription = Regex::replace($item->get("description"), "[\xF0-\xF7][\x80-\xBF]{3}", "");
 
         $this->preProcessLink();
     }
@@ -207,7 +207,7 @@ class BOItem
                 if (!BLANK($temp))
                     $categoriesNew->add($temp);
             }
-            $category = Strings::join(", ", /*(TString[])*/$categoriesNew->toArray());
+            $category = Strings::join(", ", $categoriesNew->toArray());
         }
 
         return $category;
@@ -270,7 +270,7 @@ class BOItem
                     $includeFlag |= true;
             }
             if ($includeFlag) {
-                $categoryTags = /*(TString[])*/ADD($categoryTags, $name);
+                $categoryTags = ADD($categoryTags, $name);
             }
         }
         if (SIZE($categoryTags) == 0)
@@ -295,7 +295,7 @@ class BOItem
             else if (!BLANK($this->item->get("source")))
                 $this->creator = $this->item->get("source");
             else if (!BLANK($this->item->get("dc"))) { //TODO implement [dc][creator]
-                $temp = /*(Hashtable)*/$this->item->get("dc");
+                $temp = $this->item->get("dc");
                 if (!BLANK($temp->get("creator")))
                     $this->creator = $temp->get("creator");
             }

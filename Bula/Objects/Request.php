@@ -64,10 +64,10 @@ class Request
      */
     public static function get($name)
     {
-        //return /*(TString)*/(self::$Vars->containsKey($name) ? self::$Vars->get($name) : null);
+        //return (self::$Vars->containsKey($name) ? self::$Vars->get($name) : null);
         if (!self::$Vars->containsKey($name))
             return null;
-        $value = /*(TString)*/self::$Vars->get($name);
+        $value = self::$Vars->get($name);
         if (NUL($value))
             $value = "";
         return $value;

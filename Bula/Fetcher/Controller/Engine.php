@@ -214,7 +214,7 @@ class Engine
         $repeatWhat = "";
         $content = new TString();
         for ($n = 0; $n < $template->count(); $n++) {
-            $line = /*(TString)*/$template->get($n);
+            $line = $template->get($n);
             $lineNoComments = self::trimComments($line);
             if ($ifMode > 0) {
                 if ($lineNoComments->indexOf("#if") == 0)
@@ -265,9 +265,9 @@ class Engine
                 if ($lineNoComments->indexOf("#end repeat") == 0) {
                     if ($repeatMode == 1) {
                         if ($hash->containsKey($repeatWhat)) {
-                            $rows = /*(ArrayList)*/$hash->get($repeatWhat);
+                            $rows = $hash->get($repeatWhat);
                             for ($r = 0; $r < $rows->count(); $r++)
-                                $content->concat(self::processTemplate($repeatBuf, /*(Hashtable)*/$rows->get($r)));
+                                $content->concat(self::processTemplate($repeatBuf, $rows->get($r)));
                             $hash->remove($repeatWhat);
                         }
                         $repeatBuf = new ArrayList();

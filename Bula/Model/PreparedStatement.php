@@ -119,7 +119,7 @@ class PreparedStatement
         $n = 1;
         $str = new TString($this->sql);
         while (($questionIndex = $str->indexOf("?", $startFrom)) != -1) {
-            $value = /*(TString)*/$this->pars->get($n);
+            $value = $this->pars->get($n);
             $before = $str->substring(0, $questionIndex);
             $after = $str->substring($questionIndex + 1);
             $str = $before; $str->concat($value); $startFrom = $str->length();

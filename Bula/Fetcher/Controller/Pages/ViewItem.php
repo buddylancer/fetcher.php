@@ -57,7 +57,7 @@ class ViewItem extends Page
         if ($pars == null)
             return;
 
-        $id = /*(TString)*/$pars->get("id");
+        $id = $pars->get("id");
 
         $prepare = new Hashtable();
 

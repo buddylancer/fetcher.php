@@ -87,7 +87,7 @@ class Util
             $ind = $format->indexOf($match);
             if ($ind == -1)
                 continue;
-            $output = $output->replace($match, /*(TString)*/$arr[$n]);
+            $output = $output->replace($match, $arr[$n]);
         }
         return $output;
     }

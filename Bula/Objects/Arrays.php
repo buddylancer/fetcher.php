@@ -55,10 +55,10 @@ class Arrays
         if ($extra == null)
             return $input;
 
-        $output = /*(Hashtable)*/$input->cloneMe();
+        $output = $input->cloneMe();
         $keys = $extra->keys();
         while ($keys->moveNext()) {
-            $key = /*(TString)*/$keys->current();
+            $key = $keys->current();
             $output->put($key, $extra->get($key));
         }
         return $output;
@@ -162,7 +162,7 @@ class Arrays
             return $output;
         $keys = Arrays::getArrayKeys($input);
         while ($keys->moveNext()) {
-            $key = /*(TString)*/$keys->current();
+            $key = $keys->current();
             if (is_string($key))
                 $output->put($key, Arrays::getArrayValue($input, $key));
         }
@@ -178,7 +178,7 @@ class Arrays
         $result = self::newArray($input->count());
         $keys = $input->keys();
         while ($keys->moveNext()) {
-            $key = /*(TString)*/$keys->current();
+            $key = $keys->current();
             $value = $input->get($key);
             if ($value instanceof TString) $value = $value->getValue();
             $result[$key] = $value;

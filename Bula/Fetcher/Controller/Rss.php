@@ -118,7 +118,7 @@ class Rss extends Page
         // Check that parameters contain only 'source' or/and 'filter'
         $keys = Request::getKeys();
         while ($keys->moveNext()) {
-            $key = /*(TString)*/$keys->current();
+            $key = $keys->current();
             if ($key != "source" && $key != "filter" && $key != "code" && $key != "count") {
                 if ($errorMessage->length() > 0)
                     $errorMessage->concat(" ");

@@ -101,7 +101,7 @@ class DOBase
         if ($pars != null && SIZE($pars) > 0) {
             $n = 1;
             for ($i = 0; $i < SIZE($pars); $i += 2) {
-                $type = /*(TString)*/$pars[$i];
+                $type = $pars[$i];
                 $value = $pars[$i+1];
                 CALL($oStmt, $type, ARR($n, $value));
                 $n++;
@@ -190,7 +190,7 @@ class DOBase
         if (SIZE($pars) > 0) {
             $n = 1;
             for ($i = 0; $i < SIZE($pars); $i += 2) {
-                $type = /*(TString)*/$pars[$i];
+                $type = $pars[$i];
                 $value = $pars[$i+1];
                 CALL($oStmt, $type, ARR($n, $value));
                 $n++;
@@ -347,7 +347,7 @@ class DOBase
         //$pars->setPullValues(true);
         $n = 0;
         while ($keys->moveNext()) {
-            $key = /*(TString)*/$keys->current();
+            $key = $keys->current();
             if ($n != 0) $fieldNames->concat(", ");
             if ($n != 0) $fieldValues->concat(", ");
             $fieldNames->concat($key);
@@ -376,7 +376,7 @@ class DOBase
         //$pars->setPullValues(true);
         $n = 0;
         while ($keys->moveNext()) {
-            $key = /*(TString)*/$keys->current();
+            $key = $keys->current();
             if ($key == $this->idField) //TODO PHP
                 continue;
             if ($n != 0)

@@ -138,7 +138,7 @@ class Strings
 		$result = new ArrayList();
         for ($n = 0; $n < SIZE($chunks); $n++)
 			$result->add($chunks[$n]);
-		return /*(TString[])*/$result->toArray();
+		return $result->toArray();
 	}
 
 	/**

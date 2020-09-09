@@ -123,7 +123,7 @@ class DataSet
             $keys = $row->keys();
             while ($keys->moveNext()) {
                 $level++; $spaces = $this->addSpaces($level);
-                $key = /*(TString)*/$keys->current();
+                $key = $keys->current();
                 $output->concat(CAT($spaces, "<Item Name=\"", $key, "\">"));
                 $output->concat($row->get($key));
                 $output->concat("</Item>\n");

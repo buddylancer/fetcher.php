@@ -47,7 +47,7 @@ class Context extends Config
      */
     public function get($name)
     {
-        return /*(TString)*/$this->Values[$name];
+        return $this->Values[$name];
     }
 
     /**
@@ -233,7 +233,7 @@ class Context extends Config
     {
         if ($this->EngineIndex == -1)
             return;
-        $engine = /*(Engine)*/$this->EngineInstances->get($this->EngineIndex);
+        $engine = $this->EngineInstances->get($this->EngineIndex);
         $engine->setPrintString(null);
         //TODO Dispose engine?
         $this->EngineIndex--;
@@ -242,6 +242,6 @@ class Context extends Config
     /** Get current engine */
     public function getEngine()
     {
-        return /*(Engine)*/$this->EngineInstances->get($this->EngineIndex);
+        return $this->EngineInstances->get($this->EngineIndex);
     }
 }

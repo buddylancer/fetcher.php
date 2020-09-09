@@ -104,10 +104,10 @@ class Items extends ItemsBase
         if ($pars == null)
             return;
 
-        $list = /*(TString)*/$pars->get("list");
+        $list = $pars->get("list");
         $listNumber = $list == null ? 1 : INT($list);
-        $sourceName = /*(TString)*/$pars->get("source_name");
-        $filterName = /*(TString)*/$pars->get("filter_name");
+        $sourceName = $pars->get("source_name");
+        $filterName = $pars->get("filter_name");
 
         $errorMessage = new TString();
         $filter = null;

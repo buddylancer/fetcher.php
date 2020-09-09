@@ -68,8 +68,8 @@ class Index extends Page
         if (!$pageInfo->containsKey("page"))
             Response::end("Error in parameters -- no page");
 
-        $pageName = /*(TString)*/$pageInfo->get("page");
-        $className = /*(TString)*/$pageInfo->get("class");
+        $pageName = $pageInfo->get("page");
+        $className = $pageInfo->get("class");
 
         Request::initialize();
         if (INT($pageInfo->get("post_required")) == 1)
