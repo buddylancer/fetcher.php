@@ -30,12 +30,12 @@ require_once("Bula/Model/DataSet.php");
 class DOSource extends DOBase
 {
     /** Public constructor (overrides base constructor) */
-	public function __construct()
+    public function __construct()
     {
-		parent::__construct();
-		$this->tableName = "sources";
-		$this->idField = "i_SourceId";
-	}
+        parent::__construct();
+        $this->tableName = "sources";
+        $this->idField = "i_SourceId";
+    }
 
     /**
      * Enumerates all sources.
@@ -43,48 +43,48 @@ class DOSource extends DOBase
      */
     public function enumSources()
     {
-		$query = Strings::concat(
-			" SELECT _this.* FROM ", $this->tableName, " _this ",
-			" where _this.b_SourceActive = 1 ",
-			" order by _this.s_SourceName asc"
-		);
-		$pars = array();
-		return $this->getDataSet($query, $pars);
-	}
+        $query = Strings::concat(
+            " SELECT _this.* FROM ", $this->tableName, " _this ",
+            " where _this.b_SourceActive = 1 ",
+            " order by _this.s_SourceName asc"
+        );
+        $pars = array();
+        return $this->getDataSet($query, $pars);
+    }
 
     /**
      * Enumerates sources, which are active for fetching.
      * @return DataSet Resulting data set.
      */
-	public function enumFetchedSources()
+    public function enumFetchedSources()
     {
-		$query = Strings::concat(
-			" SELECT _this.* FROM ", $this->tableName, " _this ",
-			" where _this.b_SourceFetched = 1 ",
-			" order by _this.s_SourceName asc"
-		);
-		$pars = array();
-		return $this->getDataSet($query, $pars);
-	}
+        $query = Strings::concat(
+            " SELECT _this.* FROM ", $this->tableName, " _this ",
+            " where _this.b_SourceFetched = 1 ",
+            " order by _this.s_SourceName asc"
+        );
+        $pars = array();
+        return $this->getDataSet($query, $pars);
+    }
 
     /**
      * Enumerates all sources with counters.
      * @return DataSet Resulting data set.
      */
-	public function enumSourcesWithCounters()
+    public function enumSourcesWithCounters()
     {
-		$query = Strings::concat(
-			" select _this.", $this->idField, ", _this.s_SourceName, ",
-			" count(p.i_SourceLink) as cntpro ",
-			" from ", $this->tableName, " _this ",
-			" left outer join items p on (p.i_SourceLink = _this.i_SourceId) ",
-			" where _this.b_SourceActive = 1 ",
-			" group by _this.i_SourceId ",
-			" order by _this.s_SourceName asc "
-		);
-		$pars = array();
-		return $this->getDataSet($query, $pars);
-	}
+        $query = Strings::concat(
+            " select _this.", $this->idField, ", _this.s_SourceName, ",
+            " count(p.i_SourceLink) as cntpro ",
+            " from ", $this->tableName, " _this ",
+            " left outer join items p on (p.i_SourceLink = _this.i_SourceId) ",
+            " where _this.b_SourceActive = 1 ",
+            " group by _this.i_SourceId ",
+            " order by _this.s_SourceName asc "
+        );
+        $pars = array();
+        return $this->getDataSet($query, $pars);
+    }
 
     /**
      * Get source by ID.
@@ -93,26 +93,26 @@ class DOSource extends DOBase
      */
     public function getSourceById($sourceid)
     {
-		if (!isset($sourceid) || $sourceid == null) return null;
+        if (!isset($sourceid) || $sourceid == null) return null;
         if ($sourceid <= 0) return null;
-		$query = Strings::concat("SELECT * FROM sources where i_SourceId = ?");
-		$pars = array("setInt", $sourceid);
-		return $this->getDataSet($query, $pars);
-	}
+        $query = Strings::concat("SELECT * FROM sources where i_SourceId = ?");
+        $pars = array("setInt", $sourceid);
+        return $this->getDataSet($query, $pars);
+    }
 
-	/**
+    /**
      * Get source by name.
      * @param TString $sourcename Source name.
      * @return DataSet Resulting data set.
      */
     public function getSourceByName($sourcename)
     {
-		if (!isset($sourcename)) return null;
+        if (!isset($sourcename)) return null;
         if ($sourcename == null || $sourcename == "") return null;
-		$query = Strings::concat("SELECT * FROM sources where s_SourceName = ?");
-		$pars = array("setString", $sourcename);
-		return $this->getDataSet($query, $pars);
-	}
+        $query = Strings::concat("SELECT * FROM sources where s_SourceName = ?");
+        $pars = array("setString", $sourcename);
+        return $this->getDataSet($query, $pars);
+    }
 
     /**
      * Check whether source exists.
@@ -122,17 +122,17 @@ class DOSource extends DOBase
      */
     public function checkSourceName($sourcename, &$source = null )
     {
-		$dsSources = $this->enumSources();
-		$sourceFound = false;
-		for ($n = 0; $n < $dsSources->getSize(); $n++) {
-			$oSource = $dsSources->getRow($n);
-			if (EQ($oSource->get("s_SourceName"), $sourcename)) {
-				$sourceFound = true;
-				if ($source != null)
+        $dsSources = $this->enumSources();
+        $sourceFound = false;
+        for ($n = 0; $n < $dsSources->getSize(); $n++) {
+            $oSource = $dsSources->getRow($n);
+            if (EQ($oSource->get("s_SourceName"), $sourcename)) {
+                $sourceFound = true;
+                if ($source != null)
                     $source[0] = $oSource;
-				break;
-			}
-		}
-		return $sourceFound;
-	}
+                break;
+            }
+        }
+        return $sourceFound;
+    }
 }

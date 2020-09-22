@@ -29,16 +29,16 @@ class GetFeed extends Page
     public function execute()
     {
         Request::initialize();
-		Request::extractAllVars();
+        Request::extractAllVars();
 
- 		// Check source
+         // Check source
         if (!Request::contains("source"))
-			Response::end("Source is required!");
-		$source = Request::get("source");
-		if (BLANK($source))
-			Response::end("Empty source!");
+            Response::end("Source is required!");
+        $source = Request::get("source");
+        if (BLANK($source))
+            Response::end("Empty source!");
 
         Response::writeHeader("Content-type", "text/xml; charset=UTF-8");
         Response::write(Helper::readAllText(CAT($this->context->LocalRoot->getValue(), "local/tests/input/U.S. News - ", $source, ".xml"))->getValue());
-	}
+    }
 }

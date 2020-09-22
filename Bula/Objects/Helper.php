@@ -21,7 +21,7 @@ class Helper
 {
     private static $lastError = null;
 
-	/**
+    /**
      * Get last error (if any).
      * @return TString Last error message.
      */
@@ -37,18 +37,18 @@ class Helper
      */
     public static function fileExists($path)
     {
-		return file_exists(CAT($path)) && self::isFile(CAT($path));
-	}
+        return file_exists(CAT($path)) && self::isFile(CAT($path));
+    }
 
-	/**
+    /**
      * Check whether file exists.
      * @param TString $path File name.
      * @return Boolean
      */
-	public static function dirExists($path)
+    public static function dirExists($path)
     {
-		return file_exists(CAT($path)) && self::isDir(CAT($path));
-	}
+        return file_exists(CAT($path)) && self::isDir(CAT($path));
+    }
 
     /**
      * Create directory.
@@ -57,29 +57,29 @@ class Helper
      */
     public static function createDir($path)
     {
-		return mkdir(CAT($path));
+        return mkdir(CAT($path));
 
-	}
+    }
 
-	/**
+    /**
      * Delete file.
      * @param TString $path File name.
      * @return Boolean True - OK, False - error.
      */
     public static function deleteFile($path)
     {
-		return unlink(CAT($path));
+        return unlink(CAT($path));
 
-	}
+    }
 
-	/**
+    /**
      * Delete directory (recursively).
      * @param TString $path Directory name.
      * @return Boolean True - OK, False - error.
      */
-	public static function deleteDir($path)
+    public static function deleteDir($path)
     {
-		if ($path instanceof TString) $path = $path->getValue();
+        if ($path instanceof TString) $path = $path->getValue();
 
         if (!self::dirExists($path))
             return false;
@@ -93,10 +93,10 @@ class Helper
             else if (self::isDir($entry))
                 self::deleteDir($entry);
         }
-		return self::removeDir($path);
-	}
+        return self::removeDir($path);
+    }
 
-	/**
+    /**
      * Remove directory.
      * @param TString $path Directory name.
      * @return Boolean True - OK, False - error.
@@ -107,7 +107,7 @@ class Helper
 
     }
 
-	/**
+    /**
      * Read all content of text file.
      * @param TString $filename File name.
      * @param TString $encoding Encoding name [optional].
@@ -115,10 +115,10 @@ class Helper
      */
     public static function readAllText($filename, $encoding = null)
     {
-		return new TString(file_get_contents(CAT($filename)));
-	}
+        return new TString(file_get_contents(CAT($filename)));
+    }
 
-  	/**
+      /**
      * Read all content of text file as list of lines.
      * @param TString $filename File name.
      * @param TString $encoding Encoding name [optional].
@@ -126,11 +126,11 @@ class Helper
      */
     public static function readAllLines($filename, $encoding = null)
     {
-		return file(CAT($filename));
+        return file(CAT($filename));
 
-	}
+    }
 
-	/**
+    /**
      * Write content to text file.
      * @param TString $filename File name.
      * @param TString $text Content to write.
@@ -141,7 +141,7 @@ class Helper
         return file_put_contents(CAT($filename), CAT($text)) !== false;
     }
 
-	/**
+    /**
      * Append content to text file.
      * @param TString $filename File name.
      * @param TString $text Content to append.
@@ -211,7 +211,7 @@ class Helper
      */
     public static function listDirEntries($path)
     {
-		if (($handle = opendir(CAT($path))) == null)
+        if (($handle = opendir(CAT($path))) == null)
             return null;
         $entries = new ArrayList();
         while (false !== ($file = readdir($handle))) {

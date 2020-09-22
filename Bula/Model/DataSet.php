@@ -22,28 +22,28 @@ require_once("Bula/Objects/TString.php");
  */
 class DataSet
 {
-	private $rows;
-	private $pageSize;
-	private $totalPages;
+    private $rows;
+    private $pageSize;
+    private $totalPages;
 
-	/** Default public constructor */
+    /** Default public constructor */
     public function __construct()
     {
-		$this->rows = new ArrayList();
-		$this->pageSize = 10;
-		$this->totalPages = 0;
-	}
+        $this->rows = new ArrayList();
+        $this->pageSize = 10;
+        $this->totalPages = 0;
+    }
 
     /**
      * Get the size (number of rows) of the DataSet.
      * @return Integer
      */
-	public function getSize()
+    public function getSize()
     {
         return $this->rows->count();
     }
 
-	/**
+    /**
      * Get a row from the DataSet.
      * @param Integer $n Number of the row.
      * @return Hashtable Required row or null.
@@ -53,7 +53,7 @@ class DataSet
         return $this->rows->get($n);
     }
 
-	/**
+    /**
      * Add new row into the DataSet.
      * @param Hashtable $row New row to add.
      */
@@ -62,7 +62,7 @@ class DataSet
         $this->rows->add($row);
     }
 
-	/**
+    /**
      * Get page size of the DataSet.
      * @return Integer Current page size.
      */
@@ -71,16 +71,16 @@ class DataSet
         return $this->pageSize;
     }
 
-	/**
+    /**
      * Set page size of the DataSet.
      * @param Integer page_size Current page size.
      */
-	public function setPageSize($pageSize)
+    public function setPageSize($pageSize)
     {
         $this->pageSize = $pageSize;
     }
 
-	/**
+    /**
      * Get total number of pages in the DataSet.
      * @return Integer Number of pages.
      */
@@ -89,7 +89,7 @@ class DataSet
         return $this->totalPages;
     }
 
-	/**
+    /**
      * Set total number of pages in the DataSet.
      * @param Integer $totalPages Number of pages.
      */

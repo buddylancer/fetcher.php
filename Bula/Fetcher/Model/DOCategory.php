@@ -97,17 +97,17 @@ class DOCategory extends DOBase
      */
     public function checkFilterName($filterName, &$category = null )
     {
-		$dsCategories = $this->select("_this.s_CatId, _this.s_Filter");
-		$filterFound = false;
-		for ($n = 0; $n < $dsCategories->getSize(); $n++) {
-			$oCategory = $dsCategories->getRow($n);
-			if (EQ($oCategory->get("s_CatId"), $filterName)) {
-				$filterFound = true;
-				if ($category != null)
+        $dsCategories = $this->select("_this.s_CatId, _this.s_Filter");
+        $filterFound = false;
+        for ($n = 0; $n < $dsCategories->getSize(); $n++) {
+            $oCategory = $dsCategories->getRow($n);
+            if (EQ($oCategory->get("s_CatId"), $filterName)) {
+                $filterFound = true;
+                if ($category != null)
                     $category[0] = $oCategory;
-				break;
-			}
-		}
-		return $filterFound;
-	}
+                break;
+            }
+        }
+        return $filterFound;
+    }
 }

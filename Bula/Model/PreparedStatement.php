@@ -43,7 +43,7 @@ class PreparedStatement
      */
     public $recordSet;
 
-	/** Default public constructor */
+    /** Default public constructor */
     public function __construct()
     {
         $this->pars = new ArrayList();

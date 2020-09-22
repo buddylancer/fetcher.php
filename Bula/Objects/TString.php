@@ -16,24 +16,24 @@ require_once("Bula/Meta.php");
  */
 class TString
 {
-	private $value = "";
-	private $isUtf = false;
+    private $value = "";
+    private $isUtf = false;
 
-	public function __construct($str = null)
+    public function __construct($str = null)
     {
-		$this->initialize($str);
-	}
+        $this->initialize($str);
+    }
 
-	public function set($str)
+    public function set($str)
     {
-		$this->initialize($str);
-	}
+        $this->initialize($str);
+    }
 
-	private function initialize($str)
+    private function initialize($str)
     {
-		if ($str == null) {
+        if ($str == null) {
             $this->value = "";
-			return;
+            return;
         }
         if ($str instanceof TString)
             $this->value = $str->value;
@@ -41,10 +41,10 @@ class TString
             $this->value = CAT($str);
 
         //$this->isUtf = (mb_detect_encoding($this->value) == "UTF-8"); //TODO
-		$this->isUtf = (preg_match("//u", $this->value) == 1);
-	}
+        $this->isUtf = (preg_match("//u", $this->value) == 1);
+    }
 
-	/**
+    /**
      * Get internal value.
      * @return string
      */
@@ -53,16 +53,16 @@ class TString
         return $this->value;
     }
 
-	/**
+    /**
      * Get string length.
      * @return Integer
      */
     public function length()
     {
-		return $this->isUtf ? mb_strlen($this->value) : strlen($this->value);
-	}
+        return $this->isUtf ? mb_strlen($this->value) : strlen($this->value);
+    }
 
-	/**
+    /**
      * Get first index of a substring.
      * @param TString $input Substring to search for.
      * @param type $offset Offset from beginning of a string [optional].
@@ -70,124 +70,124 @@ class TString
      */
     public function indexOf($input, $offset = 0)
     {
-		$str = $input instanceof TString ? $input->value : $input;
-		$pos = $this->isUtf ?
-			($offset == null ? mb_strpos($this->value, $str) : mb_strpos($this->value, $str, $offset)) :
-			($offset == null ? strpos($this->value, $str) : strpos($this->value, $str, $offset));
-		return $pos !== false ? $pos : -1;
-	}
+        $str = $input instanceof TString ? $input->value : $input;
+        $pos = $this->isUtf ?
+            ($offset == null ? mb_strpos($this->value, $str) : mb_strpos($this->value, $str, $offset)) :
+            ($offset == null ? strpos($this->value, $str) : strpos($this->value, $str, $offset));
+        return $pos !== false ? $pos : -1;
+    }
 
-	/**
+    /**
      * Get last index of a substring.
      * @param TString $input Substring to search for.
      * @return Integer Index found (or -1 if not found)
      */
-	public function lastIndexOf($input)
+    public function lastIndexOf($input)
     {
-		$str = $input instanceof TString ? $input->value : $input;
-		$pos = $this->isUtf ? mb_strrpos($this->value, $str) : strrpos($this->value, $str);
-		return $pos !== false ? $pos : -1;
-	}
+        $str = $input instanceof TString ? $input->value : $input;
+        $pos = $this->isUtf ? mb_strrpos($this->value, $str) : strrpos($this->value, $str);
+        return $pos !== false ? $pos : -1;
+    }
 
-	/**
+    /**
      * Get a char in a position.
      * @param Integer $n Position of a char.
      * @return TString Resulting 1-char string.
      */
     public function charAt($n)
     {
-		return $this->isUtf ? mb_substr($this->value, $n, 1) : substr($this->value, $n, 1);
-	}
+        return $this->isUtf ? mb_substr($this->value, $n, 1) : substr($this->value, $n, 1);
+    }
 
-	/**
+    /**
      * Concatenate a string to the end of this string.
      * @param TString $input TString to concatenate/append.
      * @return TString This string.
      */
     public function concat($input)
     {
-		if ($input == null)
-			return $this;
-		$newValue = CAT($this->value, $input);
-		$this->initialize($newValue);
-		return $this;
-	}
+        if ($input == null)
+            return $this;
+        $newValue = CAT($this->value, $input);
+        $this->initialize($newValue);
+        return $this;
+    }
 
-	/**
+    /**
      * Check whether this string equals to a string.
      * @param TString $input TString to compare.
      * @return Boolean True - are equal, False - are not equal.
      */
     public function equals($input)
     {
-		if ($input == null)
-			return false;
-		return EQ($this->value, $input);
-	}
+        if ($input == null)
+            return false;
+        return EQ($this->value, $input);
+    }
 
-	/**
+    /**
      * Check whether this string contains another string.
      * @param TString $input TString to check for.
      * @return Boolean True - this string contains another string, False - no.
      */
     public function contains($input)
     {
-		if ($input == null)
-			return false;
-		$str = $input instanceof TString ? $input->value : $input;
-		//if (strlen($str) > $this->length())
-		//	return false;
-		if ($this->indexOf($str) != -1)
-			return true;
-		return false;
-	}
+        if ($input == null)
+            return false;
+        $str = $input instanceof TString ? $input->value : $input;
+        //if (strlen($str) > $this->length())
+        //    return false;
+        if ($this->indexOf($str) != -1)
+            return true;
+        return false;
+    }
 
-	/**
+    /**
      * Check whether this string is empty.
      * @return Boolean
      */
     public function isEmpty()
     {
-		return $this->value == null || $this->value == "";
-	}
+        return $this->value == null || $this->value == "";
+    }
 
-	public static function compare($str1, TString $str2)
+    public static function compare($str1, TString $str2)
     {
-		//TODO
-	}
+        //TODO
+    }
 
-	/**
+    /**
      * Check whether this string starts with another string.
      * @param TString $input TString to check for.
      * @return Boolean
      */
     public function startsWith($input)
     {
-		if ($input == null)
-			return false;
-		$str = $input instanceof TString ? $input->value : $input;
-		if ($this->indexOf($str) == 0)
-			return true;
-		return false;
-	}
+        if ($input == null)
+            return false;
+        $str = $input instanceof TString ? $input->value : $input;
+        if ($this->indexOf($str) == 0)
+            return true;
+        return false;
+    }
 
-	/**
+    /**
      * Check whether this string ends with another string.
      * @param TString $input TString to check for.
      * @return Boolean
      */
     public function endsWith($input)
     {
-		if ($input == null)
-			return false;
-		if ($input instanceof TString) $input = $input->value;
-		$pos = $this->lastIndexOf($input);
-		if ($pos == -1)
-			return false;
-		if ($pos + LEN($input) == $this->length())
-			return true;
-		return false;
-	}
+        if ($input == null)
+            return false;
+        if ($input instanceof TString) $input = $input->value;
+        $pos = $this->lastIndexOf($input);
+        if ($pos == -1)
+            return false;
+        if ($pos + LEN($input) == $this->length())
+            return true;
+        return false;
+    }
 
     /**
      * Replace substring with another string.
@@ -222,7 +222,7 @@ class TString
         return $this->privateReplace(CAT(DIV, $regex, DIV), $to, 1);
     }
 
-	/**
+    /**
      * Internal replacing logic.
      * @param TString $from Substring to replace.
      * @param TString $to Replacement string.
@@ -231,26 +231,26 @@ class TString
      */
     private function privateReplace($from, $to, $limit = 0)
     {
-		$fromValue = CAT($from);
-		$toValue = CAT($to);
-		$hasPattern = strpos($fromValue, DIV) === 0 &&
+        $fromValue = CAT($from);
+        $toValue = CAT($to);
+        $hasPattern = strpos($fromValue, DIV) === 0 &&
             strrpos($fromValue, DIV, 1) === (strlen($fromValue) - 1);
         if ($limit != 0 || $hasPattern) {
             // Use preg_replace
             if (!$hasPattern)
                 $fromValue = CAT(DIV, $fromValue, DIV);
-			$result = $limit == 0 ?
-				preg_replace($fromValue, $toValue, $this->value) :
-				preg_replace($fromValue, $toValue, $this->value, $limit);
+            $result = $limit == 0 ?
+                preg_replace($fromValue, $toValue, $this->value) :
+                preg_replace($fromValue, $toValue, $this->value, $limit);
         }
         else {
             // Use str_replace
-			$result = str_replace($fromValue, $toValue, $this->value);
+            $result = str_replace($fromValue, $toValue, $this->value);
         }
-		return new TString($result);
-	}
+        return new TString($result);
+    }
 
-	/**
+    /**
      * Remove substring from a position of this string.
      * @param Integer $start Char position/index to remove from.
      * @param Integer $length Length to remove [optional].
@@ -258,15 +258,15 @@ class TString
      */
     public function remove($start, $length = 0)
     {
-		$count = $length == 0 ? 0 : INT($length);
-		if ($start < 0 || $count < 0 || $start + $count >= $this->length())
-			return null;
-		if ($count == 0)
-			return new TString(substr($this->value, 0, $start));
-		return CAT(substr($this->value, 0, $start), substr($this->value, $start + $count));
-	}
+        $count = $length == 0 ? 0 : INT($length);
+        if ($start < 0 || $count < 0 || $start + $count >= $this->length())
+            return null;
+        if ($count == 0)
+            return new TString(substr($this->value, 0, $start));
+        return CAT(substr($this->value, 0, $start), substr($this->value, $start + $count));
+    }
 
-	/**
+    /**
      * Get substring of this string.
      * @param type $start Char position/index to get substring from.
      * @param type $length Length of substring [optional].
@@ -274,41 +274,41 @@ class TString
      */
     public function substring($start, $length = 0)
     {
-		$line = $this->isUtf ?
-			($length == 0 ? mb_substr($this->value, $start) : mb_substr($this->value, $start, $length)) :
-			($length == 0 ? substr($this->value, $start) : substr($this->value, $start, $length));
-		return new TString($line);
-	}
+        $line = $this->isUtf ?
+            ($length == 0 ? mb_substr($this->value, $start) : mb_substr($this->value, $start, $length)) :
+            ($length == 0 ? substr($this->value, $start) : substr($this->value, $start, $length));
+        return new TString($line);
+    }
 
-	/**
+    /**
      * Trim this string.
      * @param TString $chars Which chars to trim [optional].
      * @return TString Resulting string.
      */
     public function trim($chars = null)
     {
-		$line = $chars == null ? trim($this->value) : trim($this->value, $chars);
-		return new TString($line);
-	}
+        $line = $chars == null ? trim($this->value) : trim($this->value, $chars);
+        return new TString($line);
+    }
 
-	public function trimEnd($chars = null)
+    public function trimEnd($chars = null)
     {
-		//TODO
-	}
+        //TODO
+    }
 
-	public function trimStart($chars = null)
+    public function trimStart($chars = null)
     {
-		//TODO
-	}
+        //TODO
+    }
 
-	/**
+    /**
      * Make a copy of this string.
      * @return TString Resulting string.
      */
     public function copy()
     {
-		return new TString($this->value);
-	}
+        return new TString($this->value);
+    }
 
     /**
      * Split this string using divider.
@@ -318,7 +318,7 @@ class TString
      */
     public function split($divider, $count = -1)
     {
-		$pattern = CAT(DIV, $divider, DIV);
+        $pattern = CAT(DIV, $divider, DIV);
         $chunks = preg_split($pattern, $this->value, $count, PREG_SPLIT_NO_EMPTY);
         $result = array();
         foreach ($chunks as $chunk)
@@ -326,21 +326,21 @@ class TString
         return $result;
     }
 
-	/**
+    /**
      * Convert this string to upper case.
      * @return TString Resulting string.
      */
     public function toUpperCase()
     {
-		return new TString(strtoupper($this->value));
-	}
+        return new TString(strtoupper($this->value));
+    }
 
-	/**
+    /**
      * Convert this string to lower case.
      * @return TString Resulting string.
      */
     public function toLowerCase()
     {
-		return new TString(strtolower($this->value));
-	}
+        return new TString(strtolower($this->value));
+    }
 }

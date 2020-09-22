@@ -21,9 +21,9 @@ require_once("TString.php");
  */
 class Hashtable extends Collection
 {
-	public function __construct()
+    public function __construct()
     {
-	}
+    }
 
     /**
      * Check whether collection contains an object.
@@ -88,7 +88,7 @@ class Hashtable extends Collection
     public function keys()
     {
         return new Enumerator(array_keys($this->collection));
-	}
+    }
 
     /**
      * Put an object into collection.
@@ -125,24 +125,24 @@ class Hashtable extends Collection
         return sizeof($this->collection);
     }
 
-	/**
+    /**
      * Get an array of values from collection.
      * @return Object[]
      */
     public function values()
     {
         return new Enumerator(array_values($this->collection));
-	}
+    }
 
     // Return string value of a key.
     protected function checkKey($key)
     {
-		if ($key == null)
-			return null;
-		$keyVar = $key instanceof TString ? $key->getValue() : $key;
-		if ($keyVar == "")
-			return null;
-		return $keyVar;
-	}
+        if ($key == null)
+            return null;
+        $keyVar = $key instanceof TString ? $key->getValue() : $key;
+        if ($keyVar == "")
+            return null;
+        return $keyVar;
+    }
 
 }

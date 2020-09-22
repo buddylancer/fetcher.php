@@ -138,7 +138,7 @@ class Arrays
      */
     public static function createArrayList($input)
     {
-		if ($input == null)
+        if ($input == null)
             return null;
         $output = new ArrayList();
         if (SIZE($input) == 0)
@@ -155,7 +155,7 @@ class Arrays
      */
     public static function createHashtable($input)
     {
-		if ($input == null || !is_array($input))
+        if ($input == null || !is_array($input))
             return null;
         $output = new Hashtable();
         if (SIZE($input) == 0)

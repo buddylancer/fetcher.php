@@ -28,7 +28,7 @@ class Strings
         return array();
     }
 
-	/**
+    /**
      * Convert first char of a string to upper case.
      * @param TString $input Input string.
      * @return TString Resulting string.
@@ -37,9 +37,9 @@ class Strings
     {
         $input = $input instanceof TString ? $input : new TString($input);
         return self::concat($input->substring(0, 1)->toUpperCase(), $input->substring(1));
-	}
+    }
 
-	/**
+    /**
      * Join an array of strings using divider,
      * @param TString $divider Divider (yes, may be empty).
      * @param TString[] $strings Array of strings.
@@ -56,7 +56,7 @@ class Strings
             $count++;
         }
         return $output;
-	}
+    }
 
     /**
      * Remove HTML tags from string except allowed ones.
@@ -68,29 +68,29 @@ class Strings
     {
         if ($except != null && $except instanceof TString) $except = $except->getValue();
         return new TString(strip_tags($input->getValue(), $except == null ? null : $except));
-	}
+    }
 
-	/**
+    /**
      * Add slashes to the string.
      * @param TString $input Input string.
      * @return TString Resulting string.
      */
     public static function addSlashes($input)
     {
-		return new TString(addslashes(CAT($input)));
-	}
+        return new TString(addslashes(CAT($input)));
+    }
 
-	/**
+    /**
      * remove slashes from the string.
      * @param TString $input Input string.
      * @return TString Resulting string.
      */
-	public static function stripSlashes($input)
+    public static function stripSlashes($input)
     {
-		return new TString(stripslashes(CAT($input)));
-	}
+        return new TString(stripslashes(CAT($input)));
+    }
 
-	/**
+    /**
      * Count substrings in the string.
      * @param TString $input Input string.
      * @param TString $chunk String to count.
@@ -98,32 +98,32 @@ class Strings
      */
     public static function countSubstrings($input, $chunk)
     {
-		if ($input->length() == 0)
-			return 0;
-		$replaced = $input->replace($chunk, "");
-		return $input->length() - $replaced->length();
-	}
+        if ($input->length() == 0)
+            return 0;
+        $replaced = $input->replace($chunk, "");
+        return $input->length() - $replaced->length();
+    }
 
-	/**
+    /**
      * Concatenate a number of strings to a single one.
      * @param Object[] $args Array of strings.
      * @return TString Resulting string.
      */
     public static function concat(/*...*/)
     {
-		$output = new TString();
-		$args = func_get_args();
-		if (SIZE($args) != 0) {
-			foreach ($args as $arg) {
+        $output = new TString();
+        $args = func_get_args();
+        if (SIZE($args) != 0) {
+            foreach ($args as $arg) {
                 if ($arg == null)
                     continue;
-				$output = $output->concat($arg);
-			}
-		}
-		return $output;
-	}
+                $output = $output->concat($arg);
+            }
+        }
+        return $output;
+    }
 
-	/**
+    /**
      * Split a string using divider/separator.
      * @param TString $divider Divider/separator.
      * @param TString $input Input string.
@@ -131,17 +131,17 @@ class Strings
      */
     public static function split($divider, $input)
     {
-		$divider = CAT(DIV, Regex::escape($divider), DIV);
+        $divider = CAT(DIV, Regex::escape($divider), DIV);
         if ($input instanceof TString) $input = $input->getValue();
-		$chunks =
+        $chunks =
             preg_split($divider, $input, -1, PREG_SPLIT_NO_EMPTY);
-		$result = new ArrayList();
+        $result = new ArrayList();
         for ($n = 0; $n < SIZE($chunks); $n++)
-			$result->add($chunks[$n]);
-		return $result->toArray();
-	}
+            $result->add($chunks[$n]);
+        return $result->toArray();
+    }
 
-	/**
+    /**
      * Replace a number of substring(s) from a string.
      * @param TString $from Substring to replace.
      * @param TString $to Replacement string.
@@ -156,22 +156,22 @@ class Strings
         if (!$isObject) $input = new TString($input);
         if (!$from instanceof TString) $from = new TString($from);
         if (!$to instanceof TString) $to = new TString($to);
-		$hasPattern = $from->length() > 1 && $from->startsWith(DIV) && $from->endsWith(DIV);
+        $hasPattern = $from->length() > 1 && $from->startsWith(DIV) && $from->endsWith(DIV);
         $result = null;
         if ($limit != 0 || $hasPattern) {
             // Use preg_replace
             if (!$hasPattern) $from = self::concat(DIV, $from, DIV);
-			if ($limit == 0)
-				$result = preg_replace($from->getValue(), $to->getValue(), $input->getValue());
+            if ($limit == 0)
+                $result = preg_replace($from->getValue(), $to->getValue(), $input->getValue());
             else
-				$result = preg_replace($from->getValue(), $to->getValue(), $input->getValue(), $limit);
+                $result = preg_replace($from->getValue(), $to->getValue(), $input->getValue(), $limit);
         }
         else {
             // Use str_replace
-			$result = str_replace($from->getValue(), $to->getValue(), $input->getValue());
+            $result = str_replace($from->getValue(), $to->getValue(), $input->getValue());
         }
-		return $isObject ? new TString($result) : $result;
-	}
+        return $isObject ? new TString($result) : $result;
+    }
 
     /**
      * Replace all substrings using regular expressions.

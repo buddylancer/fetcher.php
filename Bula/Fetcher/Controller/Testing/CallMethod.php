@@ -37,64 +37,64 @@ class CallMethod extends Page
     public function execute()
     {
         Request::initialize();
-		Request::extractAllVars();
+        Request::extractAllVars();
 
         // Check security code
-		if (!Request::contains("code"))
-			Response::end("Code is required!");
-		$code = Request::get("code");
-		if (!EQ($code, Config::SECURITY_CODE))
-			Response::end("Incorrect code!");
+        if (!Request::contains("code"))
+            Response::end("Code is required!");
+        $code = Request::get("code");
+        if (!EQ($code, Config::SECURITY_CODE))
+            Response::end("Incorrect code!");
 
-		// Check package
+        // Check package
         if (!Request::contains("package"))
-			Response::end("Package is required!");
-		$package = Request::get("package");
-		if (BLANK($package))
-			Response::end("Empty package!");
+            Response::end("Package is required!");
+        $package = Request::get("package");
+        if (BLANK($package))
+            Response::end("Empty package!");
         $packageChunks = Strings::split("-", $package);
         for ($n = 0; $n < SIZE($packageChunks); $n++)
             $packageChunks[$n] = Strings::firstCharToUpper($packageChunks[$n]);
-		$package = Strings::join("/", $packageChunks);
+        $package = Strings::join("/", $packageChunks);
 
-		// Check class
+        // Check class
         if (!Request::contains("class"))
-			Response::end("Class is required!");
-		$className = Request::get("class");
-		if (BLANK($className))
-			Response::end("Empty class!");
+            Response::end("Class is required!");
+        $className = Request::get("class");
+        if (BLANK($className))
+            Response::end("Empty class!");
 
-		// Check method
+        // Check method
         if (!Request::contains("method"))
-			Response::end("Method is required!");
-		$method = Request::get("method");
-		if (BLANK($method))
-			Response::end("Empty method!");
+            Response::end("Method is required!");
+        $method = Request::get("method");
+        if (BLANK($method))
+            Response::end("Empty method!");
 
-		// Fill array with parameters
+        // Fill array with parameters
         $count = 0;
-		$pars = new ArrayList();
-		for ($n = 1; $n <= 6; $n++) {
-			$parName = CAT("par", $n);
-			if (!Request::contains($parName))
-				break;
-			$parValue = Request::get($parName);
-			if (EQ($parValue, "_"))
-				$parValue = "";
-			//$parsArray[] = $parValue;
+        $pars = new ArrayList();
+        for ($n = 1; $n <= 6; $n++) {
+            $parName = CAT("par", $n);
+            if (!Request::contains($parName))
+                break;
+            $parValue = Request::get($parName);
+            if (EQ($parValue, "_"))
+                $parValue = "";
+            //$parsArray[] = $parValue;
             $pars->add($parValue);
-			$count++;
-		}
+            $count++;
+        }
 
         $buffer = null;
         $result = null;
 
         $fullClass = CAT($package, "/", $className);
-		$classFile = CAT($fullClass, ".php");
-		require_once($classFile);
-		$fullClass = Strings::replace("/", "\\", $fullClass);
-		$doClass = new $fullClass;
-		if ($doClass == null)
+        $classFile = CAT($fullClass, ".php");
+        require_once($classFile);
+        $fullClass = Strings::replace("/", "\\", $fullClass);
+        $doClass = new $fullClass;
+        if ($doClass == null)
             Response::end("Can not instantiate class!");
         $reflectionMethod = new \ReflectionMethod($fullClass, $method);
         $parameters = $reflectionMethod->getParameters();
@@ -116,5 +116,5 @@ class CallMethod extends Page
         else
             $buffer = STR($result);
         Response::write($buffer);
-	}
+    }
 }

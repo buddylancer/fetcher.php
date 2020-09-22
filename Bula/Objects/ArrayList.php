@@ -16,10 +16,10 @@ require_once("Collection.php");
  */
 class ArrayList extends Collection
 {
-	public function __construct(/*...*/)
+    public function __construct(/*...*/)
     {
         $this->collection[] = "_A"; // Zero element marks that this is ArrayList, not Hashtable
-		$args = func_get_args();
+        $args = func_get_args();
         if (SIZE($args) > 0)
             $this->pullValues = true;
         foreach ($args as $arg) {
@@ -28,7 +28,7 @@ class ArrayList extends Collection
             else
                 $this->add($arg);
         }
-	}
+    }
 
     /**
      * Add object to collection.

@@ -19,10 +19,10 @@ require_once("Bula/Model/DOBase.php");
 class DOTime extends DOBase
 {
     /** Public constructor (overrides base constructor) */
-	public function __construct()
+    public function __construct()
     {
-		parent::__construct();
-		$this->tableName = "as_of_time";
-		$this->idField = "i_Id";
-	}
+        parent::__construct();
+        $this->tableName = "as_of_time";
+        $this->idField = "i_Id";
+    }
 }

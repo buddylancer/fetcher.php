@@ -21,7 +21,7 @@ require_once("TString.php");
 class Regex
 {
 
-	/**
+    /**
      * Check whether input string matches a pattern.
      * @param TString $input Input string to check.
      * @param TString $pattern Pattern to check.
@@ -31,13 +31,13 @@ class Regex
     public static function isMatch($input, $pattern, $options = 0 )
     {
         $inputValue = CAT($input);
-		$patternValue = CAT(DIV, $pattern, DIV,
-			((INT($options) & RegexOptions::IgnoreCase) != 0) ? "i" : null);
-		$result = preg_match($patternValue, $inputValue);
-		if ($result === false)
+        $patternValue = CAT(DIV, $pattern, DIV,
+            ((INT($options) & RegexOptions::IgnoreCase) != 0) ? "i" : null);
+        $result = preg_match($patternValue, $inputValue);
+        if ($result === false)
            return false;
-		return $result == 1;
-	}
+        return $result == 1;
+    }
 
     /**
      * Replace pattern.
@@ -49,12 +49,12 @@ class Regex
      */
     public static function replace($input, $pattern, $replacement, $options = 0)
     {
-		$patternValue = CAT(DIV, $pattern, DIV,
-			((INT($options) & RegexOptions::IgnoreCase) != 0) ?	"i" : null);
-		return new TString(preg_replace($patternValue, CAT($replacement), $input->getValue()));
-	}
+        $patternValue = CAT(DIV, $pattern, DIV,
+            ((INT($options) & RegexOptions::IgnoreCase) != 0) ?    "i" : null);
+        return new TString(preg_replace($patternValue, CAT($replacement), $input->getValue()));
+    }
 
-	/**
+    /**
      * Split a string using pattern.
      * @param TString $input Input string to process.
      * @param TString $pattern Pattern to split by.
@@ -63,16 +63,16 @@ class Regex
      */
     public static function split($input, $pattern, $options = null )
     {
-		$patternValue = CAT(DIV, self::escape($pattern), DIV,
-			((INT($options) & RegexOptions::IgnoreCase) != 0) ? "i" : null);
+        $patternValue = CAT(DIV, self::escape($pattern), DIV,
+            ((INT($options) & RegexOptions::IgnoreCase) != 0) ? "i" : null);
         $pregArray = preg_split($patternValue, $input->getValue(), -1, PREG_SPLIT_NO_EMPTY);
-		$outArray = array();
+        $outArray = array();
         foreach ($pregArray as $pregItem)
             $outArray[] = new TString($pregItem);
         return $outArray;
-	}
+    }
 
-	/**
+    /**
      * Get matching strings.
      * @param TString $input Input string to process.
      * @param TString $pattern Pattern to search for.
@@ -81,14 +81,14 @@ class Regex
      */
     public static function getMatches($input, $pattern, $options = null )
     {
-		$patternValue = CAT(DIV, self::escape($pattern), DIV, "u",
-			((INT($options) & RegexOptions::IgnoreCase) != 0) ? "i" : null);
-		$outArray = array();
-		$result = new ArrayList();
-		if (preg_match($patternValue, $input->getValue(), $outArray) > 0)
-			$result = new ArrayList($outArray);
-		return $result->toArray();
-	}
+        $patternValue = CAT(DIV, self::escape($pattern), DIV, "u",
+            ((INT($options) & RegexOptions::IgnoreCase) != 0) ? "i" : null);
+        $outArray = array();
+        $result = new ArrayList();
+        if (preg_match($patternValue, $input->getValue(), $outArray) > 0)
+            $result = new ArrayList($outArray);
+        return $result->toArray();
+    }
 
     /**
      * Get quoted string/pattern.
