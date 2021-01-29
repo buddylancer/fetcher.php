@@ -2,7 +2,7 @@ This test configuration/scripts are for classic WAMP installation.
 You are welcome to implement testing for LAMP installation :)
 
 0. Prerequisites
-Microsoft Windows, Apache httpd server, MySQL database, PHP scripting.
+Microsoft Windows, Apache httpd server (port 8000), MySQL database, PHP scripting.
 
 Following PHP extensions are required (edit PHP.ini configuration file):
 extension=php_curl.dll
@@ -11,12 +11,16 @@ extension=php_mbstring.dll
 
 
 1. Local test website
-Configure local test website to be hosted on www.ff.com (main) and m.ff.com (mobile)
+Configure local test website to be hosted on www.ff.com:8000 (main) and m.ff.com:8000 (mobile)
 
-Uncomment "Virtual hosts" support in httpd.conf.
+Uncomment "Virtual hosts" support in httpd.conf:
+Include conf/extra/httpd-vhosts.conf
+
+Uncomment URL rewriting module in httpd.conf:
+LoadModule rewrite_module modules/mod_rewrite.so
 
 Add configuration section into your Apache extra/httpd-vhosts.conf:
-<VirtualHost *:80>
+<VirtualHost *:8000>
     ServerAdmin webmaster@ff.com
     DocumentRoot "[Your Directory]/fetcher.php/Bula/Fetcher/Web/"
     ServerName ff.com
@@ -45,7 +49,7 @@ Download and copy wget (for Windows) and its dependencies into ./bin folder
 
 
 3. WinMerge application
-Download and install WinMerge for Windows into C:\Program Files\WinMerge
+Download and install WinMerge for Windows into C:\Program Files (x86)\WinMerge
 
 
 4. Configure

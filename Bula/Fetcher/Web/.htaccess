@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /ff/
+RewriteBase /
 ErrorDocument 404 /page404.html
 RewriteRule ^images/$ page404.html
 
