@@ -40,36 +40,52 @@ class CallMethod extends Page
         Request::extractAllVars();
 
         // Check security code
-        if (!Request::contains("code"))
+        if (!Request::contains("code")) {
             Response::end("Code is required!");
+            return;
+        }
         $code = Request::get("code");
-        if (!EQ($code, Config::SECURITY_CODE))
+        if (!EQ($code, Config::SECURITY_CODE)) {
             Response::end("Incorrect code!");
+            return;
+        }
 
         // Check package
-        if (!Request::contains("package"))
+        if (!Request::contains("package")) {
             Response::end("Package is required!");
+            return;
+        }
         $package = Request::get("package");
-        if (BLANK($package))
+        if (BLANK($package)) {
             Response::end("Empty package!");
+            return;
+        }
         $packageChunks = Strings::split("-", $package);
         for ($n = 0; $n < SIZE($packageChunks); $n++)
             $packageChunks[$n] = Strings::firstCharToUpper($packageChunks[$n]);
         $package = Strings::join("/", $packageChunks);
 
         // Check class
-        if (!Request::contains("class"))
+        if (!Request::contains("class")) {
             Response::end("Class is required!");
+            return;
+        }
         $className = Request::get("class");
-        if (BLANK($className))
+        if (BLANK($className)) {
             Response::end("Empty class!");
+            return;
+        }
 
         // Check method
-        if (!Request::contains("method"))
+        if (!Request::contains("method")) {
             Response::end("Method is required!");
+            return;
+        }
         $method = Request::get("method");
-        if (BLANK($method))
+        if (BLANK($method)) {
             Response::end("Empty method!");
+            return;
+        }
 
         // Fill array with parameters
         $count = 0;
@@ -94,8 +110,10 @@ class CallMethod extends Page
         require_once($classFile);
         $fullClass = Strings::replace("/", "\\", $fullClass);
         $doClass = new $fullClass;
-        if ($doClass == null)
+        if ($doClass == null) {
             Response::end("Can not instantiate class!");
+            return;
+        }
         $reflectionMethod = new \ReflectionMethod($fullClass, $method);
         $parameters = $reflectionMethod->getParameters();
         $countRequired = 0;

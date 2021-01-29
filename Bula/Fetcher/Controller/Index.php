@@ -65,8 +65,10 @@ class Index extends Page
         $pageInfo = Request::testPage(self::$pagesArray, "home");
 
         // Test action name
-        if (!$pageInfo->containsKey("page"))
+        if (!$pageInfo->containsKey("page")) {
             Response::end("Error in parameters -- no page");
+            return;
+        }
 
         $pageName = $pageInfo->get("page");
         $className = $pageInfo->get("class");

@@ -32,11 +32,15 @@ class GetFeed extends Page
         Request::extractAllVars();
 
          // Check source
-        if (!Request::contains("source"))
+        if (!Request::contains("source")) {
             Response::end("Source is required!");
+            return;
+        }
         $source = Request::get("source");
-        if (BLANK($source))
+        if (BLANK($source)) {
             Response::end("Empty source!");
+            return;
+        }
 
         Response::writeHeader("Content-type", "text/xml; charset=UTF-8");
         Response::write(Helper::readAllText(CAT($this->context->LocalRoot->getValue(), "local/tests/input/U.S. News - ", $source, ".xml"))->getValue());

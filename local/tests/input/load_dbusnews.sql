@@ -1,11 +1,11 @@
 ﻿delete from sources;
 /* DO NOT change IDs after initial load */
-insert into sources values (10, 'education.usnews.com', 1, 1,	'http://www.usnews.com/education',	'http://www.ff.com/testing/feed.php?source=Education');
-insert into sources values (20, 'health.usnews.com', 1, 1,	'http://health.usnews.com',		'http://www.ff.com/testing/feed.php?source=Health');
-insert into sources values (30, 'money.usnews.com', 1, 1,	'http://money.usnews.com',		'http://www.ff.com/testing/feed.php?source=Money');
-insert into sources values (40, 'news.usnews.com', 1, 1,	'http://www.usnews.com/news',		'http://www.ff.com/testing/feed.php?source=News');
-insert into sources values (50, 'opinion.usnews.com', 1, 1,	'http://www.usnews.com/opinion',	'http://www.ff.com/testing/feed.php?source=Opinion');
-insert into sources values (60, 'travel.usnews.com', 1, 1,	'http://travel.usnews.com',		'http://www.ff.com/testing/feed.php?source=Travel');
+insert into sources values (10, 'education.usnews.com', 1, 1,	'http://www.usnews.com/education',	'http://www.ff.com:8000/testing/feed.php?source=Education');
+insert into sources values (20, 'health.usnews.com', 1, 1,	'http://health.usnews.com',		'http://www.ff.com:8000/testing/feed.php?source=Health');
+insert into sources values (30, 'money.usnews.com', 1, 1,	'http://money.usnews.com',		'http://www.ff.com:8000/testing/feed.php?source=Money');
+insert into sources values (40, 'news.usnews.com', 1, 1,	'http://www.usnews.com/news',		'http://www.ff.com:8000/testing/feed.php?source=News');
+insert into sources values (50, 'opinion.usnews.com', 1, 1,	'http://www.usnews.com/opinion',	'http://www.ff.com:8000/testing/feed.php?source=Opinion');
+insert into sources values (60, 'travel.usnews.com', 1, 1,	'http://travel.usnews.com',		'http://www.ff.com:8000/testing/feed.php?source=Travel');
 
 delete from categories;
 /*insert into categories values ('US', 'United States', ' US.| US;| US,|U.S.|USA|U.S.A.|United States', 0);*/

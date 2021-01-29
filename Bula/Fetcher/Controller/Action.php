@@ -55,12 +55,16 @@ class Action extends Page
         $actionInfo = Request::testPage(self::$actionsArray);
 
         // Test action name
-        if (!$actionInfo->containsKey("page"))
+        if (!$actionInfo->containsKey("page")) {
             Response::end("Error in parameters -- no page");
+            return;
+        }
 
         // Test action context
-        if (INT($actionInfo->get("post_required")) == 1 && INT($actionInfo->get("from_post")) == 0)
+        if (INT($actionInfo->get("post_required")) == 1 && INT($actionInfo->get("from_post")) == 0) {
             Response::end("Error in parameters -- inconsistent pars");
+            return;
+        }
 
         Request::initialize();
         if (INT($actionInfo->get("post_required")) == 1)
@@ -73,8 +77,10 @@ class Action extends Page
         //    err404();
 
         if (INT($actionInfo->get("code_required")) == 1) {
-            if (!Request::contains("code") || !EQ(Request::get("code"), Config::SECURITY_CODE)) //TODO -- hardcoded!!!
+            if (!Request::contains("code") || !EQ(Request::get("code"), Config::SECURITY_CODE)) { //TODO -- hardcoded!!!
                 Response::end("No access.");
+                return;
+            }
         }
 
         $actionClass = CAT("Bula/Fetcher/Controller/Actions/", $actionInfo->get("class"));

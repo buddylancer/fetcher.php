@@ -7,8 +7,8 @@ goto :END
 :WGET_OK
 
 rem Set your test site (local) info:
-set site=http://www.ff.com
-set mobile=http://m.ff.com
+set site=http://www.ff.com:8000
+set mobile=http://m.ff.com:8000
 
 rem Set security code exactly the same as in Config!
 set code=1234
@@ -24,7 +24,7 @@ set log=%output%\log.txt
 echo > %log%
 
 rem Just for debugging -- remove on production!!!
-rem goto :METHODS
+rem goto :PAGES
 
 :CREATE
 echo *** Starting 1_create.bat >> %log%
