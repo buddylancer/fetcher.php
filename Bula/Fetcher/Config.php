@@ -30,9 +30,9 @@ class Config
     const FINE_URLS = false;
 
     /** Cache Web-pages */
-    const CACHE_PAGES = true;
+    const CACHE_PAGES = false;
     /** Cache RSS-feeds */
-    const CACHE_RSS = true;
+    const CACHE_RSS = false;
     /** Show what source an item is originally from */
     const SHOW_FROM = false;
     /** Show an item or immediately redirect to external source item */
@@ -87,6 +87,8 @@ class Config
     /** Show bottom blocks (Filtering and RSS) */
     const SHOW_BOTTOM = true;
 
+    /** Powered By string */
     const POWERED_BY = "Buddy Fetcher";
+    /** GitHub repository */
     const GITHUB_REPO = "buddylancer/fetcher.php";
 }

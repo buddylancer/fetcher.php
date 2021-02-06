@@ -87,7 +87,7 @@ set package=
 goto :EOF
 
 :check
-set "query=call.php?code=%code%&package=%package%&class=%class%"
+set "query=call%ext%?code=%code%&package=%package%&class=%class%"
 if not "%2"=="" set "query=%query%&method=%2"
 if not "%3"=="" set "query=%query%&par1=%3"
 if not "%4"=="" set "query=%query%&par2=%4"

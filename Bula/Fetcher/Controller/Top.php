@@ -35,6 +35,6 @@ class Top extends Page
         else
             $prepare->put("[#Date]", Util::showTime(DateTimes::gmtFormat(Config::SQL_DTS)));
 
-        $this->write("Bula/Fetcher/View/top.html", $prepare);
+        $this->write("top", $prepare);
     }
 }

@@ -37,11 +37,11 @@ abstract class DoRedirect extends Page
         if (!NUL($errorMessage)) {
             $prepare->put("[#Title]", "Error");
             $prepare->put("[#ErrMessage]", $errorMessage);
-            $templateName = "Bula/Fetcher/View/error_alone.html";
+            $templateName = "error_alone";
         }
         else if (!BLANK($linkToRedirect)) {
             $prepare->put("[#Link]", $linkToRedirect);
-            $templateName = "Bula/Fetcher/View/redirect.html";
+            $templateName = "redirect";
         }
 
         $engine = $this->context->pushEngine(true);

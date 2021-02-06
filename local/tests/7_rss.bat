@@ -3,7 +3,7 @@
 echo *** Starting 7_rss.bat ...
 
 rem Query templates
-rem /rss.php?source=something
+rem /rss%ext%?source=something
 rem /rss/something.xml
 
 set folder=7_rss
@@ -49,7 +49,7 @@ exit /b
 
 rem -------------------------------------
 :check_full
-set query=%2.php
+set query=%2%ext%
 if not "%3"=="" set "query=%query%?%3"
 if not "%4"=="" set "query=%query%=%4"
 if not "%5"=="" set "query=%query%&%5"

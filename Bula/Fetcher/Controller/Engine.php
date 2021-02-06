@@ -104,14 +104,15 @@ class Engine
     public function includeTemplate($className, $defaultMethod = "execute")
     {
         $engine = $this->context->pushEngine(false);
+        $prefix = "Bula/Fetcher/Controller/";
         $fileName =
-            CAT($className, ".php");
+            CAT($prefix, $className, ".php");
 
         $content = null;
         if (Helper::fileExists(CAT($this->context->LocalRoot, $fileName))) {
             require_once($fileName);
             $args0 = new ArrayList(); $args0->add($this->context);
-            Internal::callMethod($className, $args0, $defaultMethod, null);
+            Internal::callMethod(CAT($prefix, $className), $args0, $defaultMethod, null);
             $content = $engine->getPrintString();
         }
         else
@@ -122,18 +123,23 @@ class Engine
 
     /**
      * Show template content by merging template and data.
-     * @param TString $filename Template file to use for merging.
+     * @param TString $id Template ID to use for merging.
      * @param Hashtable $hash Data in the form of Hashtable to use for merging.
      * @return TString Resulting content.
      */
-    public function showTemplate($filename, $hash = null)
+    public function showTemplate($id, $hash = null)
     {
+        $ext = BLANK($this->context->Api) ? ".html" : ".txt";
+        $filename =
+                CAT("Bula/Fetcher/View/", (BLANK($this->context->Api) ? "Html/" : "Rest/"), $id, $ext);
         $template = $this->getTemplate($filename);
 
         $content = new TString();
-        $content->concat(CAT("\n<!-- BEGIN ", Strings::replace("Bula/Fetcher/", "", $filename), " -->\n"));
+        if (BLANK($this->context->Api))
+            $content->concat(CAT("\n<!-- BEGIN ", Strings::replace("Bula/Fetcher/View/Html", "View", $filename), " -->\n"));
         $content->concat($this->processTemplate($template, $hash));
-        $content->concat(CAT("<!-- END ", Strings::replace("Bula/Fetcher/", "", $filename), " -->\n"));
+        if (BLANK($this->context->Api))
+            $content->concat(CAT("<!-- END ", Strings::replace("Bula/Fetcher/View/Html", "View", $filename), " -->\n"));
         return $content;
     }
 
@@ -174,7 +180,7 @@ class Engine
      * @param TString $str Input string.
      * @return TString Resulting string.
      */
-    private static function trimComments($str)
+    private static function trimComments($str, $trim = true)
     {
         $line = new TString($str);
         $trimmed = false;
@@ -187,7 +193,8 @@ class Engine
             $line = $line->replace("//#", "#");
             $trimmed = true;
         }
-        $line = $line->trim();
+        if ($trim)
+            $line = $line->trim();
         return $line;
     }
 
@@ -215,7 +222,7 @@ class Engine
         $content = new TString();
         for ($n = 0; $n < $template->count(); $n++) {
             $line = $template->get($n);
-            $lineNoComments = self::trimComments($line);
+            $lineNoComments = self::trimComments($line); //, BLANK($this->context->Api)); //TODO
             if ($ifMode > 0) {
                 if ($lineNoComments->indexOf("#if") == 0)
                     $ifMode++;

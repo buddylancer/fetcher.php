@@ -20,7 +20,7 @@ body, table, td { font-family:Verdanda, Arial; font-size:12pt; color:#666; }
 .shade { background-color:#dfd; }
 .hover { background-color:#9f9; }
 .myshade { background-color:#efe; }
-.featured { background-color:#f99;	font:bold; }
+.featured { background-color:#f99; font:bold; }
 .name { padding-left:8pt; padding-right:2pt; font-weight:bold; text-align:right; vertical-align:top; }
 .value { padding-left:2pt; padding-right:8pt; text-align:left; vertical-align:top; }
 .big { font-size:14pt; font-weight:bold; text-align:left; vertical-align:middle; padding-left:2pt; padding-right:8pt; }

@@ -1,0 +1,20 @@
+"Page" : "View [#Name_Item]",
+"Comment" : "View this [#Name_Item] in detail",
+"Redirect Link" : "[#RedirectLink]",
+"[#Name_Item] title" : "[#Title]",
+"Hidden title" : "[#InputTitle]",
+"Posted by" : "External item from [#SourceName]",
+"Redirect Source" : "[#RedirectSource]",
+"Published" : "[#Date]",
+"[#Name_Creator]" : "[#Creator]",
+"Description" : "[#Description]"
+"Item ID" : "[#ItemID]",
+<!--#if [#Category]-->
+"[#Name_Categories]" : "[#Category]",
+ <!--#end if-->
+<!--#if [#Custom2]-->
+"[#Name_Custom2]" : "#Custom2]",
+<!--#end if-->
+<!--#if [#Custom1]-->
+"[#Name_Custom1]" : "[#Custom1]",
+ <!--#end if-->

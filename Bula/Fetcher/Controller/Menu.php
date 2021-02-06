@@ -81,7 +81,7 @@ class Menu extends Page
 
         $prepare = new Hashtable();
         $prepare->put("[#MenuItems]", $menuItems);
-        $this->write("Bula/Fetcher/View/menu.html", $prepare);
+        $this->write("menu", $prepare);
     }
 }
 

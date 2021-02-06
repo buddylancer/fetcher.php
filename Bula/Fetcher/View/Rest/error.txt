@@ -1,0 +1,13 @@
+<!--#if [#Alone]-->
+{
+    "Title" : "[#Title]",
+    "Keywords" : "[#Keywords]",
+    "Description" : "[#Description]",
+    "Copyright" : "Copyright (c) 2020-2021 [#Site_Name]",
+    "Powered By" : "[#Powered_By]",
+    "Powered Link" : "https://github.com/[#Github_Repo]",
+<!--#end if-->
+    "Error" : [#ErrMessage],
+<!--#if [#Alone]-->
+}
+<!--#end if-->

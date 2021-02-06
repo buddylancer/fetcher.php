@@ -25,11 +25,16 @@ class Enumerator
 
     public function moveNext()
     {
-        if ($this->pointer < sizeof($this->collection) - 1) {
+        if ($this->pointer < SIZE($this->collection) - 1) {
             $this->pointer++;
             return true;
         }
         return false;
+    }
+
+    public function hasMoreElements()
+    {
+        return ($this->pointer < SIZE($this->collection) - 1);
     }
 
     public function current()
@@ -37,5 +42,11 @@ class Enumerator
         if ($this->pointer >= 0)
             return $this->collection[$this->pointer];
         return null;
+    }
+
+    public function nextElement()
+    {
+        moveNext();
+        return current();
     }
 }

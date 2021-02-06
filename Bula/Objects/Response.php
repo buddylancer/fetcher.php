@@ -14,6 +14,7 @@ namespace Bula\Objects;
  */
 class Response
 {
+
     /**
      * Write text to current response.
      * @param TString $input Text to write.

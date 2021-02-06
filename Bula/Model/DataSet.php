@@ -36,7 +36,7 @@ class DataSet
 
     /**
      * Get the size (number of rows) of the DataSet.
-     * @return Integer
+     * @return Integer DataSet size.
      */
     public function getSize()
     {
@@ -73,7 +73,7 @@ class DataSet
 
     /**
      * Set page size of the DataSet.
-     * @param Integer page_size Current page size.
+     * @param Integer pageSize Current page size.
      */
     public function setPageSize($pageSize)
     {

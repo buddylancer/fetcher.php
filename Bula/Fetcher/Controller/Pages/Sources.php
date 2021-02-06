@@ -74,6 +74,6 @@ class Sources extends ItemsBase
         }
         $prepare->put("[#Sources]", $sources);
 
-        $this->write("Bula/Fetcher/View/Pages/sources.html", $prepare);
+        $this->write("Pages/sources", $prepare);
     }
 }

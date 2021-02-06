@@ -131,7 +131,7 @@ class Util
         }
         else {
             $prefix = EQ($pageName, "bottom") ? null : "Pages/";
-            $content = $engine->includeTemplate(CAT("Bula/Fetcher/Controller/", $prefix, $className));
+            $content = $engine->includeTemplate(CAT($prefix, $className));
 
             Helper::testFileFolder($fileName);
             Helper::writeText($fileName, $content);

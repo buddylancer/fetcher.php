@@ -30,7 +30,7 @@ class DoTestItems extends Page
     private static $BOTTOM = null;
 
     /** Initialize TOP and BOTTOM blocks. */
-    private static function initialize()
+    public static function initialize()
     {
         self::$TOP = CAT(
             "<!DOCTYPE html>\r\n",
@@ -90,3 +90,4 @@ class DoTestItems extends Page
         Response::write(self::$BOTTOM);
     }
 }
+DoTestItems::initialize();

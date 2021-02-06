@@ -1,12 +1,18 @@
 @echo off
 
-echo *** Starting 6_view.bat ...
+echo *** Starting 6_view.bat %1...
 
 rem Query templates
-rem /index.php?p=view_item&id=1[&title=something]
+rem /index%ext%?p=view_item&id=1[&title=something]
 rem /item/1[/title/something]
 
 set folder=6_view
+set full_api=?
+set fine_api=
+if "%1"=="rest" set full_api=?api=Rest&
+if "%1"=="rest" set fine_api=api/
+
+call 97_working.bat %1
 
 rem Positive
 call	:check	view-item-id-1	item id 1
@@ -31,6 +37,7 @@ set agent=
 set query=
 set mode=
 set folder=
+call 97_working.bat
 
 goto :EOF
 
@@ -44,8 +51,8 @@ exit /b
 rem -------------------------------------
 :check_full
 
-set query=index.php
-if not "%2"=="" set "query=%query%?p=view_%2"
+set "query=%index_page%%full_api%"
+if not "%2"=="" set "query=%query%p=view_%2"
 if not "%3"=="" set "query=%query%&%3="
 if not "%4"=="" set "query=%query%%4"
 set agent=TestFull
@@ -57,7 +64,7 @@ exit /b
 
 rem -------------------------------------
 :check_fine
-set query=
+set query=%fine_api%
 if not "%2"=="" set "query=%query%%2"
 if not "%4"=="" set "query=%query%/%4"
 set agent=TestFine
@@ -69,7 +76,7 @@ exit /b
 
 rem -------------------------------------
 :check_direct
-set query=
+set query=%fine_api%
 if not "%2"=="" set "query=%query%%2"
 if not "%4"=="" set "query=%query%/%4"
 set agent=TestDirect

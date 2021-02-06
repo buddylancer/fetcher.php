@@ -63,6 +63,6 @@ class Home extends ItemsBase
         }
         $prepare->put("[#Items]", $items);
 
-        $this->write("Bula/Fetcher/View/Pages/home.html", $prepare);
+        $this->write("Pages/home", $prepare);
     }
 }

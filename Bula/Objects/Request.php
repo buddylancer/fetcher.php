@@ -14,6 +14,7 @@ use Bula\Objects\Enumerator;
 use Bula\Objects\Hashtable;
 use Bula\Objects\Regex;
 
+require_once("RequestBase.php");
 require_once("Arrays.php");
 require_once("Enumerator.php");
 require_once("Hashtable.php");
@@ -22,7 +23,7 @@ require_once("Regex.php");
 /**
  * Helper class for processing query/form request.
  */
-class Request
+class Request extends RequestBase
 {
     /** Internal storage for GET/POST variables */
     private static $Vars = null;
@@ -234,6 +235,13 @@ class Request
         $page = null;
         $pageInfo->put("from_get", 0);
         $pageInfo->put("from_post", 0);
+
+        $apiValue = self::getVar(INPUT_GET, "api");
+        if ($apiValue != null) {
+            if (EQ($apiValue, "rest")) // Only Rest for now
+                $pageInfo->put("api", $apiValue);
+        }
+
         $pValue = self::getVar(INPUT_GET, "p");
         if ($pValue != null) {
             $page = $pValue;
@@ -250,10 +258,10 @@ class Request
         $pageInfo->remove("page");
         for ($n = 0; $n < SIZE($pages); $n += 4) {
             if (EQ($pages[$n], $page)) {
-                $pageInfo->put("page", $pages[$n+0]);
-                $pageInfo->put("class", $pages[$n+1]);
-                $pageInfo->put("post_required", $pages[$n+2]);
-                $pageInfo->put("code_required", $pages[$n+3]);
+                $pageInfo->put("page", $pages[$n + 0]);
+                $pageInfo->put("class", $pages[$n + 1]);
+                $pageInfo->put("post_required", $pages[$n + 2]);
+                $pageInfo->put("code_required", $pages[$n + 3]);
                 break;
             }
         }
@@ -289,36 +297,5 @@ class Request
     {
         return Regex::isMatch($input, "^[1-9]+[0-9]*$");
     }
-
-    /**
-     * Get all variables of given type.
-     * @param Integer $type Required type.
-     * @return Hashtable Requested variables.
-     */
-
-    public static function getVars($type)
-    {
-        $output = Arrays::newHashtable();
-        $vars = filter_input_array($type);
-        if ($vars === false || $vars == null)
-            return $output;
-        foreach ($vars as $key => $value)
-            $output->put($key, $value == null ? "" : $value);
-        return $output;
-    }
-
-    /**
-     * Get a single variable of given type.
-     * @param Integer $type Required type.
-     * @param TString $name Variable name.
-     * @return TString Requested variable.
-     */
-
-    public static function getVar($type, $name)
-    {
-        $var = filter_input($type, $name);
-        return $var == null ? null : new TString($var);
-    }
-
 }
 Request::initialize();

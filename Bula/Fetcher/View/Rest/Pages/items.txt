@@ -1,0 +1,25 @@
+<!--#if [#List]-->
+"Page" : "[#List] from [#List_Total]",
+<!--#end if-->
+"[#Name_Items]" : [
+<!--#repeat [#Rows]-->
+    {
+    "[#Name_Item]" : "[#Title]",
+    "Date" : "[#Date]",
+    "Link" : "[#Link]",
+    "From" : "[#Source]",
+    <!--#if [#Category]-->
+    "[#Name_Categories]" : "[#Category]",
+    <!--#end if-->
+    <!--#if [#Custom2]-->
+    "[#Name_Custom2]" : "[#Custom2]",
+    <!--#end if-->
+    <!--#if [#Custom1]-->
+    "[#Name_Custom1]" : "[#Custom1]",
+    <!--#end if-->
+    <!--#if [#Creator]-->
+    "[#Name_Creator]":"[#Creator]",
+    <!--#end if-->
+    },
+<!--#end repeat-->
+]

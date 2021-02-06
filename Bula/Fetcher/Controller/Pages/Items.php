@@ -83,7 +83,7 @@ class Items extends ItemsBase
         if ($errorMessage->length() > 0) {
             $prepare = new Hashtable();
             $prepare->put("[#ErrMessage]", $errorMessage);
-            $this->write("Bula/Fetcher/View/error.html", $prepare);
+            $this->write("error", $prepare);
             return null;
         }
 
@@ -138,12 +138,12 @@ class Items extends ItemsBase
         $prepare = new Hashtable();
         if ($errorMessage->length() > 0) {
             $prepare->put("[#ErrMessage]", $errorMessage);
-            $this->write("Bula/Fetcher/View/error.html", $prepare);
+            $this->write("error", $prepare);
             return;
         }
 
         // Uncomment to enable filtering by source and/or category
-        $prepare->put("[#FilterItems]", $engine->includeTemplate("Bula/Fetcher/Controller/Pages/FilterItems"));
+        $prepare->put("[#FilterItems]", $engine->includeTemplate("Pages/FilterItems"));
 
         $s_Title = CAT(
             "Browse ",
@@ -163,7 +163,7 @@ class Items extends ItemsBase
         $listTotal = $dsItems->getTotalPages();
         if ($listNumber > $listTotal) {
             $prepare->put("[#ErrMessage]", "List number is too large!");
-            $this->write("Bula/Fetcher/View/error.html", $prepare);
+            $this->write("error", $prepare);
             return;
         }
         if ($listTotal > 1) {
@@ -233,6 +233,6 @@ class Items extends ItemsBase
             $prepare->put("[#Pages]", $pages);
         }
 
-        $this->write("Bula/Fetcher/View/Pages/items.html", $prepare);
+        $this->write("Pages/items", $prepare);
     }
 }

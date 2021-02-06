@@ -35,13 +35,13 @@ class ViewItem extends Page
         $prepare = new Hashtable();
         if (!Request::contains("id")) {
             $prepare->put("[#ErrMessage]", "Item ID is required!");
-            $this->write("Bula/Fetcher/View/error.html", $prepare);
+            $this->write("error", $prepare);
             return null;
         }
         $id = Request::get("id");
         if (!Request::isInteger($id)) {
             $prepare->put("[#ErrMessage]", "Item ID must be positive integer!");
-            $this->write("Bula/Fetcher/View/error.html", $prepare);
+            $this->write("error", $prepare);
             return null;
         }
 
@@ -65,7 +65,7 @@ class ViewItem extends Page
         $dsItems = $doItem->getById(INT($id));
         if ($dsItems == null || $dsItems->getSize() == 0) {
             $prepare->put("[#ErrMessage]", "Wrong item ID!");
-            $this->write("Bula/Fetcher/View/error.html", $prepare);
+            $this->write("error", $prepare);
             return;
         }
 
@@ -79,7 +79,9 @@ class ViewItem extends Page
             $leftWidth = "20%";
 
         $idField = $doItem->getIdField();
-        $redirectItem = CAT(Config::TOP_DIR,
+        $redirectItem = CAT(
+            (BLANK($this->context->Api) ? "" : $this->context->Site),
+            Config::TOP_DIR,
             ($this->context->FineUrls ? "redirect/item/" : CAT(Config::ACTION_PAGE, "?p=do_redirect_item&id=")),
             $oItem->get($idField));
         $prepare->put("[#RedirectLink]", $redirectItem);
@@ -88,6 +90,7 @@ class ViewItem extends Page
         $prepare->put("[#InputTitle]", Util::safe($title));
 
         $redirectSource = CAT(
+            (BLANK($this->context->Api) ? "" : $this->context->Site),
             Config::TOP_DIR,
             ($this->context->FineUrls ? "redirect/source/" : CAT(Config::ACTION_PAGE, "?p=do_redirect_source&source=")),
             $sourceName
@@ -110,8 +113,8 @@ class ViewItem extends Page
         if (Config::CACHE_PAGES)
             $prepare->put("[#Home]", Util::showFromCache($engine, $this->context->CacheFolder, "home", "Home", "p=home&from_view_item=1"));
         else
-            $prepare->put("[#Home]", $engine->includeTemplate("Bula/Fetcher/Controller/Pages/Home"));
+            $prepare->put("[#Home]", $engine->includeTemplate("Pages/Home"));
 
-        $this->write("Bula/Fetcher/View/Pages/view_item.html", $prepare);
+        $this->write("Pages/view_item", $prepare);
     }
 }

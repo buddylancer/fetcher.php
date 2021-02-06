@@ -79,6 +79,8 @@ class Context extends Config
     public $Site;
     /** Is request for mobile version? */
     public $IsMobile;
+    /** Optional -- API used. Currently can be blank for HTML or "rest" (for REST API) */
+    public $Api;
     /** Current language */
     public $Lang;
 

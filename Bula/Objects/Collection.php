@@ -86,4 +86,9 @@ abstract class Collection
     {
         return "Not implemented!";
     }
+
+    public function toArray()
+    {
+        return $this->collection;
+    }
 }

@@ -1,12 +1,19 @@
 @echo off
 
-echo *** Starting 4_pages.bat ...
+echo *** Starting 4_pages.bat %1...
 
 rem Query templates
-rem /index.php?p=items&source=something&list=2
+rem /index%ext%?p=items&source=something&list=2
 rem /items/source/something/list/2
 
 set folder=4_pages
+
+set "full_prefix=?"
+set fine_prefix=
+if "%1"=="rest" set "full_prefix=?api=rest&"
+if "%1"=="rest" set fine_prefix=api/
+
+call 97_working.bat %1%
 
 rem Positive
 call	:check	home
@@ -53,6 +60,7 @@ set file=
 set agent=
 set query=
 set folder=
+call 97_working.bat
 
 goto :EOF
 
@@ -66,8 +74,8 @@ exit /b
 rem -------------------------------------
 :check_full
 
-set query=index.php
-if not "%2"=="" set "query=%query%?p=%2"
+set "query=%index_page%%full_prefix%"
+if not "%2"=="" set "query=%query%p=%2"
 if not "%3"=="" set "query=%query%&%3="
 if not "%4"=="" set "query=%query%%4"
 if not "%5"=="" set "query=%query%&%5="
@@ -80,7 +88,7 @@ exit /b
 
 rem -------------------------------------
 :check_fine
-set query=
+set query=%fine_prefix%
 if not "%2"=="" set "query=%query%%2"
 if not "%3"=="" set "query=%query%/%3"
 if not "%4"=="" set "query=%query%/%4"
@@ -94,7 +102,7 @@ exit /b
 
 rem -------------------------------------
 :check_direct
-set query=
+set query=%fine_prefix%
 if not "%2"=="" set "query=%query%%2"
 if not "%3"=="" set "query=%query%/%3"
 if not "%4"=="" set "query=%query%/%4"

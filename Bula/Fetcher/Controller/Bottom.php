@@ -94,6 +94,6 @@ class Bottom extends Page
             }
             $prepare->put("[#RssBlocks]", $rssBlocks);
         }
-        $this->write("Bula/Fetcher/View/bottom.html", $prepare);
+        $this->write("bottom", $prepare);
     }
 }

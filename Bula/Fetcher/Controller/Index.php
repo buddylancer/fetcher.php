@@ -81,6 +81,9 @@ class Index extends Page
         //echo "In Index -- " . print_r($this, true);
         $this->context->set("Page", $pageName);
 
+        $apiName = $pageInfo->get("api");
+        $this->context->Api = BLANK($apiName) ? "" : $apiName; // Blank (html) or "rest" for now
+
         $engine = $this->context->pushEngine(true);
 
         $prepare = new Hashtable();
@@ -98,11 +101,11 @@ class Index extends Page
                 ($this->context->TestRun ? null : Config::TOP_DIR),
                 $this->context->IsMobile ? "styles2" : "styles"));
         $prepare->put("[#ContentType]", "text/html; charset=UTF-8");
-        $prepare->put("[#Top]", $engine->includeTemplate("Bula/Fetcher/Controller/Top"));
-        $prepare->put("[#Menu]", $engine->includeTemplate("Bula/Fetcher/Controller/Menu"));
+        $prepare->put("[#Top]", $engine->includeTemplate("Top"));
+        $prepare->put("[#Menu]", $engine->includeTemplate("Menu"));
 
         // Get included page either from cache or build it from the scratch
-        $errorContent = $engine->includeTemplate(CAT("Bula/Fetcher/Controller/Pages/", $className), "check");
+        $errorContent = $engine->includeTemplate(CAT("Pages/", $className), "check");
         if (!BLANK($errorContent)) {
             $prepare->put("[#Page]", $errorContent);
         }
@@ -110,7 +113,7 @@ class Index extends Page
             if (Config::CACHE_PAGES/* && !Config::$DontCache->contains($pageName)*/) //TODO!!!
                 $prepare->put("[#Page]", Util::showFromCache($engine, $this->context->CacheFolder, $pageName, $className));
             else
-                $prepare->put("[#Page]", $engine->includeTemplate(CAT("Bula/Fetcher/Controller/Pages/", $className)));
+                $prepare->put("[#Page]", $engine->includeTemplate(CAT("Pages/", $className)));
         }
 
         if (/*Config::$RssAllowed != null && */Config::SHOW_BOTTOM) {
@@ -118,10 +121,10 @@ class Index extends Page
             if (Config::CACHE_PAGES)
                 $prepare->put("[#Bottom]", Util::showFromCache($engine, $this->context->CacheFolder, "bottom", "Bottom"));
             else
-                $prepare->put("[#Bottom]", $engine->includeTemplate("Bula/Fetcher/Controller/Bottom"));
+                $prepare->put("[#Bottom]", $engine->includeTemplate("Bottom"));
         }
 
-        $this->write("Bula/Fetcher/View/index.html", $prepare);
+        $this->write("index", $prepare);
 
         // Fix <title>
         //TODO -- comment for now

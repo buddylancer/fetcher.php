@@ -36,7 +36,7 @@ abstract class ItemsBase extends Page
             if (!Request::isInteger(Request::get("list"))) {
                 $prepare = new Hashtable();
                 $prepare->put("[#ErrMessage]", "Incorrect list number!");
-                $this->write("Bula/Fetcher/View/error.html", $prepare);
+                $this->write("error", $prepare);
                 return false;
             }
         }
@@ -64,7 +64,7 @@ abstract class ItemsBase extends Page
 
         $prepare = new Hashtable();
         $prepare->put("[#ErrMessage]", $errMessage);
-        $this->write("Bula/Fetcher/View/error.html", $prepare);
+        $this->write("error", $prepare);
         return false;
     }
 
@@ -112,8 +112,10 @@ abstract class ItemsBase extends Page
         $d_Date = Util::showTime($oItem->get("d_Date"));
         if ($this->context->IsMobile)
             $d_Date = Strings::replace("-", " ", $d_Date);
-        else
-            $d_Date = Strings::replaceFirst(" ", "<br/>", $d_Date);
+        else {
+            if (BLANK($this->context->Api))
+                $d_Date = Strings::replaceFirst(" ", "<br/>", $d_Date);
+        }
         $row->put("[#Date]", $d_Date);
         return $row;
     }
@@ -127,6 +129,7 @@ abstract class ItemsBase extends Page
     public function getRedirectItemLink($itemId, $urlTitle = null)
     {
         return CAT(
+            (!BLANK($this->context->Api) ? $this->context->Site : ""),
             Config::TOP_DIR,
             ($this->context->FineUrls ? "redirect/item/" : CAT(Config::ACTION_PAGE, "?p=do_redirect_item&id=")), $itemId,
             ($urlTitle != null ? CAT($this->context->FineUrls ? "/" : "&title=", $urlTitle) : null)
@@ -142,6 +145,7 @@ abstract class ItemsBase extends Page
     public function getViewItemLink($itemId, $urlTitle = null)
     {
         return CAT(
+            (!BLANK($this->context->Api) ? $this->context->Site : ""),
             Config::TOP_DIR,
             ($this->context->FineUrls ? "item/" : CAT(Config::INDEX_PAGE, "?p=view_item&id=")), $itemId,
             ($urlTitle != null ? CAT($this->context->FineUrls ? "/" : "&title=", $urlTitle) : null)
@@ -156,6 +160,7 @@ abstract class ItemsBase extends Page
     protected function getPageLink($listNo)
     {
         $href = CAT(
+            (!BLANK($this->context->Api) ? $this->context->Site : ""),
             Config::TOP_DIR,
             ($this->context->FineUrls ?
                 "items" : CAT(Config::INDEX_PAGE, "?p=items")),

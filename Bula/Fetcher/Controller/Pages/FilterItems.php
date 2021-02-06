@@ -58,6 +58,6 @@ class FilterItems extends Page
             $options->add($option);
         }
         $prepare->put("[#Options]", $options);
-        $this->write("Bula/Fetcher/View/Pages/filter_items.html", $prepare);
+        $this->write("Pages/filter_items", $prepare);
     }
 }

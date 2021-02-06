@@ -3,8 +3,8 @@
 echo *** Starting 5_actions.bat ...
 
 rem Query templates
-rem /action.php?p=do_redirect_item&id=1
-rem /action.php?p=do_redirect_source&id=some_source
+rem /action%ext%?p=do_redirect_item&id=1
+rem /action%ext%?p=do_redirect_source&id=some_source
 rem /redirect/item/1
 rem /redirect/source/some_source
 
@@ -45,7 +45,7 @@ exit /b
 rem -------------------------------------
 :check_full
 
-set query=action.php
+set query=%action_page%
 if not "%2"=="" set "query=%query%?p=do_redirect_%2"
 if "%2"=="item" goto :ITEM
 if not "%3"=="" set "query=%query%&source=%3"

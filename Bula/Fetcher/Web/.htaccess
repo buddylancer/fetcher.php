@@ -22,12 +22,29 @@ RewriteRule ^items/filter/([A-Za-z0-9\.]*)[/]*$ index.php?p=items&filter=$1
 RewriteRule ^items/list/([0-9]*)[/]*$ index.php?p=items&list=$1
 RewriteRule ^items[/]*$ index.php?p=items
 
+RewriteRule ^api/items/source/([A-Za-z0-9\.]*)/filter/([A-Za-z0-9\.]*)/list/([0-9]*)[/]*$ index.php?api=rest&p=items&source=$1&filter=$2&list=$3
+RewriteRule ^api/items/filter/([A-Za-z0-9\.]*)/source/([A-Za-z0-9\.]*)/list/([0-9]*)[/]*$ index.php?api=rest&p=items&filter=$1&source=$2&list=$3
+RewriteRule ^api/items/source/([A-Za-z0-9\.]*)/filter/([A-Za-z0-9\.]*)[/]*$ index.php?api=rest&p=items&source=$1&filter=$2
+RewriteRule ^api/items/filter/([A-Za-z0-9\.]*)/source/([A-Za-z0-9\.]*)[/]*$ index.php?api=rest&p=items&filter=$1&source=$2
+RewriteRule ^api/items/source/([A-Za-z0-9\.]*)/list/([0-9]*)[/]*$ index.php?api=rest&p=items&source=$1&list=$2
+RewriteRule ^api/items/source/([A-Za-z0-9\.]*)[/]*$ index.php?api=rest&p=items&source=$1
+RewriteRule ^api/items/filter/([A-Za-z0-9\.]*)/list/([0-9]*)[/]*$ index.php?api=rest&p=items&filter=$1&list=$2
+RewriteRule ^api/items/filter/([A-Za-z0-9\.]*)[/]*$ index.php?api=rest&p=items&filter=$1
+RewriteRule ^api/items/list/([0-9]*)[/]*$ index.php?api=rest&p=items&list=$1
+RewriteRule ^api/items[/]*$ index.php?api=rest&p=items
+RewriteRule ^api[/]*$ index.php?api=rest
+
 RewriteRule ^sources[/]*$ index.php?p=sources
+RewriteRule ^api/sources[/]*$ index.php?api=rest&p=sources
 
 RewriteRule ^item/([0-9]*)/([A-Za-z0-9\-\.]*)[/]*$ index.php?p=view_item&id=$1&title=$2
 RewriteRule ^item/([0-9]*)[/]*$ index.php?p=view_item&id=$1
 
+RewriteRule ^api/item/([0-9]*)/([A-Za-z0-9\-\.]*)[/]*$ index.php?api=rest&p=view_item&id=$1&title=$2
+RewriteRule ^api/item/([0-9]*)[/]*$ index.php?api=rest&p=view_item&id=$1
+
 RewriteRule ^redirect/item/([0-9]*)[/]*$ action.php?p=do_redirect_item&id=$1
 RewriteRule ^redirect/item/([0-9]*)/([A-Za-z0-9\-\.]*)[/]*$ action.php?p=do_redirect_item&id=$1&title=$2
 RewriteRule ^redirect/source/([A-Za-z0-9\.]*)[/]*$ action.php?p=do_redirect_source&source=$1
+
 </IfModule>
