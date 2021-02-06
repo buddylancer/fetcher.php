@@ -3,7 +3,7 @@
  * Buddy Fetcher: simple RSS-fetcher/aggregator.
  *
  * @author Buddy Lancer <http://www.buddylancer.com>
- * @copyright 2020 Buddy Lancer
+ * @copyright 2020-2021 Buddy Lancer
  * @version 0.1
  * @license MIT
  */
@@ -151,7 +151,6 @@ class Strings
      */
     public static function replace($from, $to, $input, $limit= 0)
     {
-//if php
         $isObject = $input instanceof TString;
         if (!$isObject) $input = new TString($input);
         if (!$from instanceof TString) $from = new TString($from);
@@ -210,5 +209,4 @@ class Strings
         return $content = strtr($template, Arrays::toArray($hash));
 
     }
-
 }

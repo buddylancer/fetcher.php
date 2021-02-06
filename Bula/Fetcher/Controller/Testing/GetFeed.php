@@ -3,7 +3,7 @@
  * Buddy Fetcher: simple RSS-fetcher/aggregator.
  *
  * @author Buddy Lancer <http://www.buddylancer.com>
- * @copyright 2020 Buddy Lancer
+ * @copyright 2020-2021 Buddy Lancer
  * @version 0.1
  * @license MIT
  */
@@ -31,7 +31,7 @@ class GetFeed extends Page
         Request::initialize();
         Request::extractAllVars();
 
-         // Check source
+        // Check source
         if (!Request::contains("source")) {
             Response::end("Source is required!");
             return;
@@ -44,5 +44,6 @@ class GetFeed extends Page
 
         Response::writeHeader("Content-type", "text/xml; charset=UTF-8");
         Response::write(Helper::readAllText(CAT($this->context->LocalRoot->getValue(), "local/tests/input/U.S. News - ", $source, ".xml"))->getValue());
+        Response::end("");
     }
 }

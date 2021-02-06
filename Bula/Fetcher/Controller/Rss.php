@@ -3,7 +3,7 @@
  * Buddy Fetcher: simple RSS-fetcher/aggregator.
  *
  * @author Buddy Lancer <http://www.buddylancer.com>
- * @copyright 2020 Buddy Lancer
+ * @copyright 2020-2021 Buddy Lancer
  * @version 0.1
  * @license MIT
  */
@@ -108,8 +108,11 @@ class Rss extends Page
                     else {
                         if ($anyFilter)
                             $filter = $filterName;
-                        else
+                        else {
+                            if ($errorMessage->length() > 0)
+                                $errorMessage->concat(" ");
                             $errorMessage->concat(CAT("Incorrect filter '", $filterName, "'!"));
+                        }
                     }
                 }
             }
@@ -295,8 +298,7 @@ class Rss extends Page
             "</rss>\r\n"));
 
         // Save content to cache (if applicable)
-        if (Config::CACHE_RSS && !$countSet)
-        {
+        if (Config::CACHE_RSS && !$countSet) {
             Helper::testFileFolder($cachedFile);
             //Helper::writeText($cachedFile, Strings::concat("\xEF\xBB\xBF", $xmlContent));
             Helper::writeText($cachedFile, $xmlContent);

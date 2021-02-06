@@ -3,7 +3,7 @@
  * Buddy Fetcher: simple RSS-fetcher/aggregator.
  *
  * @author Buddy Lancer <http://www.buddylancer.com>
- * @copyright 2020 Buddy Lancer
+ * @copyright 2020-2021 Buddy Lancer
  * @version 0.1
  * @license MIT
  */

@@ -3,7 +3,7 @@
  * Buddy Fetcher: simple RSS-fetcher/aggregator.
  *
  * @author Buddy Lancer <http://www.buddylancer.com>
- * @copyright 2020 Buddy Lancer
+ * @copyright 2020-2021 Buddy Lancer
  * @version 0.1
  * @license MIT
  */
@@ -142,7 +142,7 @@ class Context extends Config
         //------------------------------------------------------------------------------
         // You can change something below this line if you know what are you doing :)
         $rootDir = Request::getVar(/*[Request::]*/INPUT_SERVER, "DOCUMENT_ROOT");
-		// Regarding that we have the ordinary local website (not virtual directory)
+        // Regarding that we have the ordinary local website (not virtual directory)
         for ($n = 0; $n <= 2; $n++) {
             $lastSlashIndex = $rootDir->lastIndexOf("/");
             $rootDir = $rootDir->substring(0, $lastSlashIndex);
