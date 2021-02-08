@@ -1,0 +1,22 @@
+<Page>View [#Name_Item]</Page>
+<Comment>View this [#Name_Item] in detail</Comment>
+<RedirectLink>[#RedirectLink]</RedirectLink>
+<Title>[#Title]</Title>
+<HiddenTitle>[#InputTitle]</HiddenTitle>
+<PostedBy>External item from [#SourceName]</PostedBy>
+<RedirectSource>[#RedirectSource]</RedirectSource>
+<Published>[#Date]</Published>
+<Description>[#Description]</Description>
+<ItemID>[#ItemID]</ItemID>
+<!--#if [#Category]-->
+<[#Name_Categories]>[#Category]</[#Name_Categories]>
+<!--#end if-->
+<!--#if [#Custom2]-->
+<[#Name_Custom2]>[#Custom2]</[#Name_Custom2]>
+<!--#end if-->
+<!--#if [#Custom1]-->
+<[#Name_Custom1]>[#Custom1]</[#Name_Custom1]>
+<!--#end if-->
+<!--#if [#Creator]-->
+<[#Name_Creator]>[#Creator]</[#Name_Creator]>
+<!--#end if-->

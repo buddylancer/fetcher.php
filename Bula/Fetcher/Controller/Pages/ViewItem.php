@@ -79,23 +79,11 @@ class ViewItem extends Page
             $leftWidth = "20%";
 
         $idField = $doItem->getIdField();
-        $redirectItem = CAT(
-            (BLANK($this->context->Api) ? "" : $this->context->Site),
-            Config::TOP_DIR,
-            ($this->context->FineUrls ? "redirect/item/" : CAT(Config::ACTION_PAGE, "?p=do_redirect_item&id=")),
-            $oItem->get($idField));
-        $prepare->put("[#RedirectLink]", $redirectItem);
+        $prepare->put("[#RedirectLink]", $this->getLink(Config::ACTION_PAGE, "?p=do_redirect_item&id=", "redirect/item/", $oItem->get($idField)));
         $prepare->put("[#LeftWidth]", $leftWidth);
         $prepare->put("[#Title]", Util::show($title));
         $prepare->put("[#InputTitle]", Util::safe($title));
-
-        $redirectSource = CAT(
-            (BLANK($this->context->Api) ? "" : $this->context->Site),
-            Config::TOP_DIR,
-            ($this->context->FineUrls ? "redirect/source/" : CAT(Config::ACTION_PAGE, "?p=do_redirect_source&source=")),
-            $sourceName
-        );
-        $prepare->put("[#RedirectSource]", $redirectSource);
+        $prepare->put("[#RedirectSource]", $this->getLink(Config::ACTION_PAGE, "?p=do_redirect_source&source=", "redirect/source/", $sourceName));
         $prepare->put("[#SourceName]", $sourceName);
         $prepare->put("[#Date]", Util::showTime($oItem->get("d_Date")));
         $prepare->put("[#Creator]", $oItem->get("s_Creator"));

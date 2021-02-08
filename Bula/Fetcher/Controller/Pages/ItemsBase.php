@@ -80,7 +80,8 @@ abstract class ItemsBase extends Page
         $row = new Hashtable();
         $itemId = INT($oItem->get($idField));
         $urlTitle = $oItem->get("s_Url");
-        $itemHref = $this->context->ImmediateRedirect ? self::getRedirectItemLink($itemId, $urlTitle) :
+        $itemHref = $this->context->ImmediateRedirect ?
+                self::getRedirectItemLink($itemId, $urlTitle) :
                 self::getViewItemLink($itemId, $urlTitle);
         $row->put("[#Link]", $itemHref);
         if (($count % 2) == 0)
@@ -128,12 +129,10 @@ abstract class ItemsBase extends Page
      */
     public function getRedirectItemLink($itemId, $urlTitle = null)
     {
-        return CAT(
-            (!BLANK($this->context->Api) ? $this->context->Site : ""),
-            Config::TOP_DIR,
-            ($this->context->FineUrls ? "redirect/item/" : CAT(Config::ACTION_PAGE, "?p=do_redirect_item&id=")), $itemId,
-            ($urlTitle != null ? CAT($this->context->FineUrls ? "/" : "&title=", $urlTitle) : null)
-        );
+        $link = $this->getLink(Config::ACTION_PAGE, "?p=do_redirect_item&id=", "redirect/item/", $itemId);
+        if (!BLANK($urlTitle))
+            $link = $this->appendLink($link, "&title=", "/", $urlTitle);
+        return $link;
     }
 
     /**
@@ -144,12 +143,10 @@ abstract class ItemsBase extends Page
      */
     public function getViewItemLink($itemId, $urlTitle = null)
     {
-        return CAT(
-            (!BLANK($this->context->Api) ? $this->context->Site : ""),
-            Config::TOP_DIR,
-            ($this->context->FineUrls ? "item/" : CAT(Config::INDEX_PAGE, "?p=view_item&id=")), $itemId,
-            ($urlTitle != null ? CAT($this->context->FineUrls ? "/" : "&title=", $urlTitle) : null)
-        );
+        $link = $this->getLink(Config::INDEX_PAGE, "?p=view_item&id=", "item/", $itemId);
+        if (!BLANK($urlTitle))
+            $link = $this->appendLink($link, "&title=", "/", $urlTitle);
+        return $link;
     }
 
     /**
@@ -159,19 +156,14 @@ abstract class ItemsBase extends Page
      */
     protected function getPageLink($listNo)
     {
-        $href = CAT(
-            (!BLANK($this->context->Api) ? $this->context->Site : ""),
-            Config::TOP_DIR,
-            ($this->context->FineUrls ?
-                "items" : CAT(Config::INDEX_PAGE, "?p=items")),
-            (BLANK(Request::get("source")) ? null :
-                CAT(($this->context->FineUrls ? "/source/" : "&amp;source="), Request::get("source"))),
-            (!$this->context->contains("filter") || BLANK($this->context->get("filter")) ? null :
-                CAT(($this->context->FineUrls ? "/filter/" : "&amp;filter="), $this->context->get("filter"))),
-            ($listNo == 1 ? null :
-                CAT(($this->context->FineUrls ? "/list/" : "&list="), $listNo))
-        );
-        return $href;
+        $link = $this->getLink(Config::INDEX_PAGE, "?p=items", "items");
+        if (Request::contains("source") && !BLANK(Request::get("source")))
+            $link = $this->appendLink($link, "&source=", "/source/", Request::get("source"));
+        if ($this->context->contains("filter") && !BLANK($this->context->get("filter")))
+            $link = $this->appendLink($link, "&amp;filter=", "/filter/", $this->context->get("filter"));
+        if ($listNo > 1)
+            $link = $this->appendLink($link, "&list=", "/list/", $listNo);
+        return $link;
     }
 
     //abstract function execute();

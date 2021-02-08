@@ -232,18 +232,15 @@ abstract class RssBase extends Page
             else {
                 $url = $oItem->get("s_Url");
                 $idField = $doItem->getIdField();
-                $link = CAT(
-                    $this->context->Site, Config::TOP_DIR,
-                    ($this->context->FineUrls ? "item/" : CAT(Config::INDEX_PAGE, "?p=view_item&amp;id=")),
-                    $oItem->get($idField),
-                    (BLANK($url) ? null : CAT(($this->context->FineUrls ? "/" : "&amp;title="), $url))
-                );
+                $link = $this->getAbsoluteLink(Config::INDEX_PAGE, "?p=view_item&amp;id=", "item/", $oItem->get($idField));
+                if (!BLANK($url))
+                    $link = $this->appendLink($link, "&amp;title=", "/", $url);
             }
 
             $args = array(7);
             $args[0] = $link;
             $args[1] = $itemTitle;
-            $args[2] = CAT($this->context->Site, Config::TOP_DIR, Config::ACTION_PAGE, "?p=do_redirect_source&amp;source=", $sourceName);
+            $args[2] = $this->getAbsoluteLink(Config::ACTION_PAGE, "?p=do_redirect_source&amp;source=", "redirect/source/", $sourceName);
             $args[3] = $sourceName;
             $args[4] = DateTimes::format(Config::XML_DTS, DateTimes::getTime($date));
             $additional = CAT(

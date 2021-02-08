@@ -31,9 +31,6 @@ class Bottom extends Page
     {
         $prepare = new Hashtable();
 
-        $filterLink = CAT(Config::TOP_DIR,
-            ($this->context->FineUrls ? "items/filter/" : CAT(Config::INDEX_PAGE, "?p=items&filter=")));
-
         $doCategory = new DOCategory();
         $dsCategory = $doCategory->enumAll("_this.i_Counter <> 0");
         $size = $dsCategory->getSize();
@@ -53,8 +50,7 @@ class Bottom extends Page
                 $key = $oCategory->get("s_CatId");
                 $name = $oCategory->get("s_Name");
                 $row = new Hashtable();
-                $href = CAT($filterLink, $key);
-                $row->put("[#Link]", $href);
+                $row->put("[#Link]", $this->getLink(Config::INDEX_PAGE, "?p=items&filter=", "items/filter/", $key));
                 $row->put("[#LinkText]", $name);
                 //if ($counter > 0)
                     $row->put("[#Counter]", $counter);
@@ -66,8 +62,6 @@ class Bottom extends Page
         $prepare->put("[#FilterBlocks]", $filterBlocks);
 
         if (!$this->context->IsMobile) {
-            $filterLink = CAT(Config::TOP_DIR,
-                ($this->context->FineUrls ? "rss/" : CAT(Config::RSS_PAGE, "?filter=")));
             $dsCategory = $doCategory->enumAll();
             $size = $dsCategory->getSize(); //50
             $size3 = $size % 3; //2
@@ -84,8 +78,7 @@ class Bottom extends Page
                     $name = $oCategory->get("s_Name");
                     //$counter = INT($oCategory->get("i_Counter"));
                     $row = new Hashtable();
-                    $href = CAT($filterLink, $key, ($this->context->FineUrls ? ".xml" : null));
-                    $row->put("[#Link]", $href);
+                    $row->put("[#Link]", $this->getLink(Config::RSS_PAGE, "?filter=", "rss/", CAT($key, ($this->context->FineUrls ? ".xml" : null))));
                     $row->put("[#LinkText]", $name);
                     $rows->add($row);
                 }

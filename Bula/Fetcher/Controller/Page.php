@@ -49,4 +49,36 @@ abstract class Page
         $engine = $this->context->getEngine();
         $engine->write($engine->showTemplate($template, $prepare));
     }
+
+    public function getLink($page, $ordinaryUrl, $fineUrl, $extraData = null)
+    {
+        if (!BLANK($this->context->Api))
+            return $this->getAbsoluteLink($page, $ordinaryUrl, $fineUrl, $extraData);
+        else
+            return $this->getRelativeLink($page, $ordinaryUrl, $fineUrl, $extraData);
+    }
+
+    public function getRelativeLink($page, $ordinaryUrl, $fineUrl, $extraData = null)
+    {
+        $link = CAT(
+            Config::TOP_DIR,
+            ($this->context->FineUrls ? $fineUrl : CAT($page, $this->quoteLink($ordinaryUrl))),
+            $extraData);
+        return $link;
+    }
+
+    public function getAbsoluteLink($page, $ordinaryUrl, $fineUrl, $extraData = null)
+    {
+        return CAT($this->context->Site, $this->getRelativeLink($page, $ordinaryUrl, $fineUrl, $extraData));
+    }
+
+    public function appendLink($link, $ordinaryUrl, $fineUrl, $extraData = null)
+    {
+        return CAT($link, ($this->context->FineUrls ? $fineUrl : $this->quoteLink($ordinaryUrl)), $extraData);
+    }
+
+    public function quoteLink($link)
+    {
+        return !BLANK($this->context->Api) && EQ(Config::API_FORMAT, "Xml") ? Util::safe($link) : $link;
+    }
 }

@@ -129,15 +129,16 @@ class Engine
      */
     public function showTemplate($id, $hash = null)
     {
-        $ext = BLANK($this->context->Api) ? ".html" : ".txt";
+        $ext = BLANK($this->context->Api) ? ".html" : (Config::API_FORMAT == "Xml"? ".xml" : ".txt");
         $filename =
-                CAT("Bula/Fetcher/View/", (BLANK($this->context->Api) ? "Html/" : "Rest/"), $id, $ext);
+                CAT("Bula/Fetcher/View/", (BLANK($this->context->Api) ? "Html/" : (Config::API_FORMAT == "Xml"? "Xml/" : "Rest/")), $id, $ext);
         $template = $this->getTemplate($filename);
 
         $content = new TString();
         if (BLANK($this->context->Api))
             $content->concat(CAT("\n<!-- BEGIN ", Strings::replace("Bula/Fetcher/View/Html", "View", $filename), " -->\n"));
-        $content->concat($this->processTemplate($template, $hash));
+        if (!BLANK($template))
+            $content->concat($this->processTemplate($template, $hash));
         if (BLANK($this->context->Api))
             $content->concat(CAT("<!-- END ", Strings::replace("Bula/Fetcher/View/Html", "View", $filename), " -->\n"));
         return $content;
@@ -156,7 +157,7 @@ class Engine
         }
         else {
             $temp = new ArrayList();
-            $temp->add(CAT("File nor found -- '", $filename, "'<hr/>"));
+            $temp->add(CAT("File not found -- '", $filename, "'<hr/>"));
             return $temp;
         }
     }

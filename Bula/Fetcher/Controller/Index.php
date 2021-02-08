@@ -92,7 +92,7 @@ class Index extends Page
         $idFromVars = Request::contains("id") ? Request::get("id") : null;
         $title = Config::SITE_NAME;
         if ($pFromVars != "home")
-            $title = CAT($title, " :: ", $pFromVars, (!NUL($idFromVars)? CAT(" :: ", $idFromVars) : null));
+            $title = CAT($title, " :: ", $pFromVars, (!NUL($idFromVars) ? CAT(" :: ", $idFromVars) : null));
 
         $prepare->put("[#Title]", $title); //TODO -- need unique title on each page
         $prepare->put("[#Keywords]", Config::SITE_KEYWORDS);
@@ -124,6 +124,9 @@ class Index extends Page
                 $prepare->put("[#Bottom]", $engine->includeTemplate("Bottom"));
         }
 
+        Response::writeHeader("Content-type", CAT(
+            (BLANK($apiName) ? "text/html" : Config::API_CONTENT), "; charset=UTF-8")
+        );
         $this->write("index", $prepare);
 
         // Fix <title>
@@ -133,6 +136,7 @@ class Index extends Page
         //    $content = Regex::replace($content, "<title>(.*?)</title>", CAT("<title>", Config::SITE_NAME, " -- ", $newTitle, "</title>"), RegexOptions::IgnoreCase);
 
         Response::write($engine->getPrintString());
+        Response::end("");
 
         if (DBConfig::$Connection != null) {
             DBConfig::$Connection->close();

@@ -1,0 +1,13 @@
+<!--#if [#Alone]-->
+<Response>
+<Title>[#Title]</Title>
+<Keywords>[#Keywords]</Keywords>
+<Description>[#Description]</Description>
+<Copyright>Copyright (c) 2020-2021 [#Site_Name]</Copyright>
+<PoweredBy>[#Powered_By]</PoweredBy>
+<PoweredLink>https://github.com/[#Github_Repo]</PoweredLink>
+<!--#end if-->
+<Error>[#ErrMessage]</Error>
+<!--#if [#Alone]-->
+</Response>
+<!--#end if-->

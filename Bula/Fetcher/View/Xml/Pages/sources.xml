@@ -1,0 +1,31 @@
+<Page>List of active sources</Page>
+<Sources>
+<!--#repeat [#Sources]-->
+    <Source>
+        <Comments>Latest [#Name_Items] from [#SourceName]</Comments>
+        <[#Name_Items]>
+        <!--#repeat [#Items]-->
+            <[#Name_Item]>
+                <Title>[#Title]</Title>
+                <Date>[#Date]</Date>
+                <Link>[#Link]</Link>
+                <From>[#Source]</From>
+                <!--#if [#Category]-->
+                <[#Name_Categories]>[#Category]</[#Name_Categories]>
+                <!--#end if-->
+                <!--#if [#Custom2]-->
+                <[#Name_Custom2]>[#Custom2]</[#Name_Custom2]>
+                <!--#end if-->
+                <!--#if [#Custom1]-->
+                <[#Name_Custom1]>[#Custom1]</[#Name_Custom1]>
+                <!--#end if-->
+                <!--#if [#Creator]-->
+                <[#Name_Creator]>[#Creator]</[#Name_Creator]>
+                <!--#end if-->
+            </[#Name_Item]>
+        <!--#end repeat-->
+        </[#Name_Items]>
+    </Source>
+<!--#end repeat-->
+</Sources>
+

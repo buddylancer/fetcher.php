@@ -68,9 +68,7 @@ class Menu extends Page
                 if (EQ($page->substring(0, 1), "#"))
                     $href = $page;
                 else {
-                    $href = CAT(Config::TOP_DIR, Config::INDEX_PAGE, "?p=", $page);
-                    if ($this->context->FineUrls)
-                        $href = CAT(Config::TOP_DIR, $page);
+                    $href = $this->getLink(Config::INDEX_PAGE, "?p=", null, $page);
                 }
             }
             $row->put("[#Link]", $href);

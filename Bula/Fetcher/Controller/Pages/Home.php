@@ -45,9 +45,7 @@ class Home extends ItemsBase
 
         $doItem = new DOItem();
 
-        $allItemsHref =
-            CAT(Config::TOP_DIR, ($this->context->FineUrls ? null : CAT(Config::INDEX_PAGE, "?p=")), "items");
-        $prepare->put("[#BrowseItemsLink]", $allItemsHref);
+        $prepare->put("[#BrowseItemsLink]", $this->getLink(Config::INDEX_PAGE, "?p=", null, "items"));
 
         $source = null;
         $search = null;

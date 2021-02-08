@@ -56,8 +56,7 @@ class Sources extends ItemsBase
             //$sourceRow["[#RedirectSource]"] = Config::TOP_DIR .
             //    (Config::FINE_URLS ? "redirect/source/" : "action.php?p=do_redirect_source&source=") .
             //        $oSource["s_SourceName"];
-            $sourceRow->put("[#RedirectSource]", CAT(Config::TOP_DIR,
-                ($this->context->FineUrls ? "items/source/" : CAT(Config::INDEX_PAGE, "?p=items&source=")), $sourceName));
+            $sourceRow->put("[#RedirectSource]", $this->getLink(Config::INDEX_PAGE, "?p=items&source=", "items/source/", $sourceName));
 
             $dsItems = $doItem->enumItemsFromSource(null, $sourceName, null, 3);
             $items = new ArrayList();

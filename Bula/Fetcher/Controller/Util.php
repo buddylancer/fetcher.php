@@ -42,6 +42,7 @@ class Util
         $output = Strings::stripSlashes($input);
         $output = $output->replace("<", "&lt;");
         $output = $output->replace(">", "&gt;");
+        $output = $output->replace("&", "&amp;");
         $output = $output->replace("\"", "&quot;");
         return $output;
     }

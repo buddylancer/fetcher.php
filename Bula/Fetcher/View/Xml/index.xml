@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<Response>
+<Title>[#Title]</Title>
+<Keywords>[#Keywords]</Keywords>
+<Description>[#Description]</Description>
+<Copyright>Copyright (c) 2020-2021 [#Site_Name]</Copyright>
+<PoweredBy>[#Powered_By]</PoweredBy>
+<PoweredLink>https://github.com/[#Github_Repo]</PoweredLink>
+[#Top]
+[#Page]
+<!--#if [#Bottom]-->
+[#Bottom]
+<!--#end if-->
+</Response>

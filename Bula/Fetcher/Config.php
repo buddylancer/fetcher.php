@@ -22,6 +22,10 @@ class Config
     const ACTION_PAGE = "action.php";
     /** RSS-feeds page name */
     const RSS_PAGE = "rss.php";
+    /** Current API output format (can be "Json" or "Xml" for now) */
+    const API_FORMAT = "Json";
+    /** Current API output content type (can be "application/json" or "text/xml" for now) */
+    const API_CONTENT = "application/json";
 
     /** Security code */
     const SECURITY_CODE = "1234";
