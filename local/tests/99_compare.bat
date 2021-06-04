@@ -1,6 +1,6 @@
 @echo off
 
-set winmerge=C:\Program Files (x86)\WinMerge\WinMergeU.exe
+set winmerge=C:\Program Files\WinMerge\WinMergeU.exe
 
 rem %1 is file with extension
 

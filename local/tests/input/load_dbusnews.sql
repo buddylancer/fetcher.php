@@ -1,4 +1,6 @@
-﻿delete from sources;
+﻿set names 'utf8';
+
+delete from sources;
 /* DO NOT change IDs after initial load */
 insert into sources values (10, 'education.usnews.com', 1, 1,	'http://www.usnews.com/education',	'http://www.ff.com:8000/testing/feed.php?source=Education');
 insert into sources values (20, 'health.usnews.com', 1, 1,	'http://health.usnews.com',		'http://www.ff.com:8000/testing/feed.php?source=Health');

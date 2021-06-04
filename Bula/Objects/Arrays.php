@@ -181,6 +181,9 @@ class Arrays
             $key = $keys->current();
             $value = $input->get($key);
             if ($value instanceof TString) $value = $value->getValue();
+			//else if ($value instanceof ArrayList) {
+			//	$value = "???";
+			//}
             $result[$key] = $value;
         }
         return $result;

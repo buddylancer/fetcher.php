@@ -5,12 +5,12 @@ echo *** Starting 1_create.bat...
 set folder=1_create
 call 98_folders.bat %folder%
 
-set mysql=c:\mysql5\bin\mysql.exe
+set mysql=C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe
 set dbname=dbusnews
 set dbuser=dbusnews
 set dbpass=dbusnews
 
-set mysql_with_user=%mysql% --user=%dbuser% --password=%dbpass%
+set mysql_with_user="%mysql%" --user=%dbuser% --password=%dbpass%
 
 set result=%folder%\log.txt
 set log1=%output%\%result%

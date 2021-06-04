@@ -194,6 +194,10 @@ CREATE TABLE `items` (
 --------------
 
 --------------
+set names 'utf8'
+--------------
+
+--------------
 delete from sources
 --------------
 

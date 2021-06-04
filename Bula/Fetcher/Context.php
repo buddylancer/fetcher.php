@@ -144,6 +144,7 @@ class Context extends Config
         //------------------------------------------------------------------------------
         // You can change something below this line if you know what are you doing :)
         $rootDir = Request::getVar(/*[Request::]*/INPUT_SERVER, "DOCUMENT_ROOT");
+		$rootDir = $rootDir->replace("\\", "/"); // Fix for IIS
         // Regarding that we have the ordinary local website (not virtual directory)
         for ($n = 0; $n <= 2; $n++) {
             $lastSlashIndex = $rootDir->lastIndexOf("/");

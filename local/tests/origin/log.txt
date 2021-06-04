@@ -6,7 +6,7 @@ bin\wget.exe -q -nv -a output\log.txt -O output\2_fetch\log.html "_SITE_/action.
 "bin\wget.exe" -q -nv -a output\log.txt -O "output\3_styles\styles.css" "_SITE_/styles.css" 
 "bin\wget.exe" -q -nv -a output\log.txt -O "output\3_styles\styles2.css" "_SITE_/styles2.css" 
 *** Starting 4_pages.bat 
-"bin\wget.exe" -U TestFull -q -nv -a output\log.txt -O "output\4_pages\full\home.html" "_SITE_/index.php" 
+"bin\wget.exe" -U TestFull -q -nv -a output\log.txt -O "output\4_pages\full\home.html" "_SITE_/index.php?" 
 "bin\wget.exe" -U TestFine -q -nv -a output\log.txt -O "output\4_pages\fine\home.html" "_SITE_/" 
 "bin\wget.exe" -U TestDirect -q -nv -a output\log.txt -O "output\4_pages\direct\home.html" "_SITE_/" 
 "bin\wget.exe" -U TestFull -q -nv -a output\log.txt -O "output\4_pages\full\items.html" "_SITE_/index.php?p=items" 
@@ -112,7 +112,7 @@ bin\wget.exe -q -nv -a output\log.txt -O output\2_fetch\log.html "_SITE_/action.
 "bin\wget.exe" -U TestFine -q -nv -a output\log.txt -O "output\4_pages\fine\err-items-filter-inject.html" "_SITE_/items/filter/'select+true'" 
 "bin\wget.exe" -U TestDirect -q -nv -a output\log.txt -O "output\4_pages\direct\err-items-filter-inject.html" "_SITE_/items/filter/'select+true'" 
 *** Starting 4_pages.bat for mobile 
-"bin\wget.exe" -U TestFull -q -nv -a output\log.txt -O "output\mobile\4_pages\full\home.html" "_SITE_/index.php" 
+"bin\wget.exe" -U TestFull -q -nv -a output\log.txt -O "output\mobile\4_pages\full\home.html" "_SITE_/index.php?" 
 "bin\wget.exe" -U TestFine -q -nv -a output\log.txt -O "output\mobile\4_pages\fine\home.html" "_SITE_/" 
 "bin\wget.exe" -U TestDirect -q -nv -a output\log.txt -O "output\mobile\4_pages\direct\home.html" "_SITE_/" 
 "bin\wget.exe" -U TestFull -q -nv -a output\log.txt -O "output\mobile\4_pages\full\items.html" "_SITE_/index.php?p=items" 
