@@ -136,11 +136,11 @@ class Engine
 
         $content = new TString();
         if (BLANK($this->context->Api))
-            $content->concat(CAT("\n<!-- BEGIN ", Strings::replace("Bula/Fetcher/View/Html", "View", $filename), " -->\n"));
+            $content->concat(CAT(EOL, "<!-- BEGIN ", Strings::replace("Bula/Fetcher/View/Html", "View", $filename), " -->", EOL));
         if (!BLANK($template))
             $content->concat($this->processTemplate($template, $hash));
         if (BLANK($this->context->Api))
-            $content->concat(CAT("<!-- END ", Strings::replace("Bula/Fetcher/View/Html", "View", $filename), " -->\n"));
+            $content->concat(CAT("<!-- END ", Strings::replace("Bula/Fetcher/View/Html", "View", $filename), " -->", EOL));
         return $content;
     }
 
@@ -213,7 +213,7 @@ class Engine
             $hash->put("[#Is_Mobile]", 1);
         }
         $trimLine = true;
-        $trimEnd = "\n";
+        $trimEnd = EOL;
         $ifMode = 0;
         $repeatMode = 0;
         $ifBuf = new ArrayList();

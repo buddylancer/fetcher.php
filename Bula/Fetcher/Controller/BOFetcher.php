@@ -106,20 +106,20 @@ class BOFetcher
         if (Request::contains("m") && !$source->equals(Request::get("m")))
             return null;
 
-        $this->oLogger->output("<br/>\r\nStarted ");
+        $this->oLogger->output(CAT("<br/>", EOL, "Started "));
 
         //if ($url->indexOf("https") != -1) {
         //    $encUrl = $url->replace("?", "%3F");
         //    $encUrl = $encUrl->replace("&", "%26");
         //    $url = Strings::concat(Config::$Site, "/get_ssl_rss.php?url=", $encUrl);
         //}
-        $this->oLogger->output(CAT("[[[", $url, "]]]<br/>\r\n"));
+        $this->oLogger->output(CAT("[[[", $url, "]]]<br/>", EOL));
         $rss = Internal::fetchRss($url->getValue());
         if ($rss == null) {
-            $this->oLogger->output("-- problems --<br/>\r\n");
+            $this->oLogger->output(CAT("-- problems --<br/>", EOL));
             //$problems++;
             //if ($problems == 5) {
-            //    $this->oLogger->output("<br/>\r\nToo many problems... Stopped.<br/>\r\n");
+            //    $this->oLogger->output(CAT("<br/>", EOL, "Too many problems... Stopped.<br/>", EOL));
             //    break;
             //}
             return null;
@@ -187,7 +187,7 @@ class BOFetcher
      */
     public function fetchFromSources()
     {
-        $this->oLogger->output("Start logging<br/>\r\n");
+        $this->oLogger->output(CAT("Start logging<br/>", EOL));
 
         //TODO -- Purge old items
         //$doItem = new DOItem();
@@ -202,7 +202,7 @@ class BOFetcher
         $dsSources = $doSource->enumFetchedSources();
 
         $totalCounter = 0;
-        $this->oLogger->output(CAT("<br/>\r\nChecking ", $dsSources->getSize(), " sources..."));
+        $this->oLogger->output(CAT("<br/>", EOL, "Checking ", $dsSources->getSize(), " sources..."));
 
         // Loop through sources
         for ($n = 0; $n < $dsSources->getSize(); $n++) {
@@ -234,13 +234,13 @@ class BOFetcher
                 DBConfig::$Connection = null;
             }
 
-            $this->oLogger->output(CAT(" (", $itemsCounter, " items) end<br/>\r\n"));
+            $this->oLogger->output(CAT(" (", $itemsCounter, " items) end<br/>", EOL));
         }
 
         // Re-count categories
         $this->recountCategories();
 
-        $this->oLogger->output(CAT("<hr/>Total items added - ", $totalCounter, "<br/>\r\n"));
+        $this->oLogger->output(CAT("<hr/>Total items added - ", $totalCounter, "<br/>", EOL));
 
         if (Config::CACHE_PAGES && $totalCounter > 0) {
             $doCleanCache = new DoCleanCache($this->context);
@@ -253,7 +253,7 @@ class BOFetcher
      */
     private function recountCategories()
     {
-        $this->oLogger->output(CAT("Recount categories ... <br/>\r\n"));
+        $this->oLogger->output(CAT("Recount categories ... <br/>", EOL));
         $doCategory = new DOCategory();
         $dsCategories = $doCategory->enumCategories();
         for ($n = 0; $n < $dsCategories->getSize(); $n++) {
@@ -267,8 +267,8 @@ class BOFetcher
             $fields->put("i_Counter", $dsItems->getSize());
             $result = $doCategory->updateById($id, $fields);
             if ($result < 0)
-                $this->oLogger->output("-- problems --<br/>\r\n");
+                $this->oLogger->output(CAT("-- problems --<br/>", EOL));
         }
-        $this->oLogger->output(CAT(" ... Done<br/>\r\n"));
+        $this->oLogger->output(CAT(" ... Done<br/>", EOL));
     }
 }

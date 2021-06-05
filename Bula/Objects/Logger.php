@@ -60,6 +60,6 @@ class Logger
      */
     public function time($text)
     {
-        $this->output(CAT($text, " -- ", DateTimes::format("H:i:s"), "<br/>\r\n"));
+        $this->output(CAT($text, " -- ", DateTimes::format("H:i:s"), "<br/>", EOL));
     }
 }

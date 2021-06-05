@@ -3,6 +3,7 @@
 use Bula\Objects\TString;
 
 const DIV = "|";
+const EOL = "\r\n";
 
 /**
  * Stop executing.

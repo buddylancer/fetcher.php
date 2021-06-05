@@ -33,19 +33,19 @@ class DoTestItems extends Page
     public static function initialize()
     {
         self::$TOP = CAT(
-            "<!DOCTYPE html>\r\n",
-            "<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n",
-            "    <head>\r\n",
-            "        <title>Buddy Fetcher -- Test for new items</title>\r\n",
-            "        <meta name=\"keywords\" content=\"Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL\" />\r\n",
-            "        <meta name=\"description\" content=\"Buddy Fetcher is a simple RSS Fetcher/aggregator written in PHP/MySQL\" />\r\n",
-            "        <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\" />\r\n",
-            "    </head>\r\n",
-            "    <body>\r\n"
+            "<!DOCTYPE html>", EOL,
+            "<html xmlns=\"http://www.w3.org/1999/xhtml\">", EOL,
+            "    <head>", EOL,
+            "        <title>Buddy Fetcher -- Test for new items</title>", EOL,
+            "        <meta name=\"keywords\" content=\"Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL\" />", EOL,
+            "        <meta name=\"description\" content=\"Buddy Fetcher is a simple RSS Fetcher/aggregator written in PHP/MySQL\" />", EOL,
+            "        <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\" />", EOL,
+            "    </head>", EOL,
+            "    <body>", EOL
         );
         self::$BOTTOM = CAT(
-            "    </body>\r\n",
-            "</html>\r\n"
+            "    </body>", EOL,
+            "</html>", EOL
         );
     }
 
@@ -70,7 +70,7 @@ class DoTestItems extends Page
 
         Response::write(self::$TOP);
         if ($updateRequired || $insertRequired) {
-            Response::write("Fetching new items... Please wait...<br/>\r\n");
+            Response::write(CAT("Fetching new items... Please wait...<br/>", EOL));
 
             $boFetcher = new BOFetcher($this->context);
             $boFetcher->fetchFromSources();
@@ -86,7 +86,7 @@ class DoTestItems extends Page
                 $doTime->updateById(1, $fields);
         }
         else
-            Response::write("<hr/>Fetch is not required<br/>\r\n");
+            Response::write(CAT("<hr/>Fetch is not required<br/>", EOL));
         Response::write(self::$BOTTOM);
     }
 }

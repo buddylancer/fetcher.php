@@ -50,11 +50,11 @@ class DoCleanCache extends Page
             $entry = new TString($entries->current());
 
             if (Helper::isFile($entry) && $entry->endsWith($ext)) {
-                $oLogger->output(CAT("Deleting of ", $entry, " ...<br/>\r\n"));
+                $oLogger->output(CAT("Deleting of ", $entry, " ...<br/>", EOL));
                 Helper::deleteFile($entry);
             }
             else if (Helper::isDir($entry)) {
-                $oLogger->output(CAT("Drilling to ", $entry, " ...<br/>\r\n"));
+                $oLogger->output(CAT("Drilling to ", $entry, " ...<br/>", EOL));
                 self::cleanCacheFolder($oLogger, $entry, $ext);
             }
             //unlink($pathName); //Comment for now -- dangerous operation!!!
@@ -67,16 +67,16 @@ class DoCleanCache extends Page
     public function cleanCache($oLogger)
     {
         // Clean cached rss content
-        $oLogger->output(CAT("Cleaning Rss Folder ", $this->context->RssFolderRoot, " ...<br/>\r\n"));
+        $oLogger->output(CAT("Cleaning Rss Folder ", $this->context->RssFolderRoot, " ...<br/>", EOL));
         $rssFolder = Strings::concat($this->context->RssFolderRoot);
         $this->cleanCacheFolder($oLogger, $rssFolder, ".xml");
 
         // Clean cached pages content
-        $oLogger->output(CAT("Cleaning Cache Folder ", $this->context->CacheFolderRoot,  "...<br/>\r\n"));
+        $oLogger->output(CAT("Cleaning Cache Folder ", $this->context->CacheFolderRoot,  "...<br/>", EOL));
         $cacheFolder = Strings::concat($this->context->CacheFolderRoot);
         $this->cleanCacheFolder($oLogger, $cacheFolder, ".cache");
 
-        $oLogger->output("<br/>... Done.<br/>\r\n");
+        $oLogger->output(CAT("<br/>... Done.<br/>", EOL));
     }
 
 }

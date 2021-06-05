@@ -57,7 +57,7 @@ class Util
         if ($input == null)
             return null;
         $output = self::safe($input);
-        $output = $output->replace("\n", "<br/>");
+        $output = $output->replace(EOL, "<br/>");
         return $output;
     }
 

@@ -115,24 +115,24 @@ class DataSet
         $level = 0;
         $spaces = null;
         $output = new TString();
-        $output->concat(CAT("<DataSet Rows=\"", $this->rows->count(), "\">\n"));
+        $output->concat(CAT("<DataSet Rows=\"", $this->rows->count(), "\">", EOL));
         for ($n = 0; $n < $this->getSize(); $n++) {
             $row = $this->getRow($n);
             $level++; $spaces = $this->addSpaces($level);
-            $output->concat(CAT($spaces, "<Row>\n"));
+            $output->concat(CAT($spaces, "<Row>", EOL));
             $keys = $row->keys();
             while ($keys->moveNext()) {
                 $level++; $spaces = $this->addSpaces($level);
                 $key = $keys->current();
                 $output->concat(CAT($spaces, "<Item Name=\"", $key, "\">"));
                 $output->concat($row->get($key));
-                $output->concat("</Item>\n");
+                $output->concat(CAT("</Item>", EOL));
                 $level--; $spaces = $this->addSpaces($level);
             }
-            $output->concat(CAT($spaces, "</Row>\n"));
+            $output->concat(CAT($spaces, "</Row>", EOL));
             $level--; $spaces = $this->addSpaces($level);
         }
-        $output->concat("</DataSet>\n");
+        $output->concat(CAT("</DataSet>", EOL));
         return $output;
     }
 }

@@ -28,7 +28,7 @@ class Rss extends RssBase
     public function writeErrorMessage($errorMessage)
     {
         Response::writeHeader("Content-type", "text/xml; charset=UTF-8");
-        Response::write("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n");
+        Response::write(CAT("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>", EOL));
         Response::write(CAT("<data>", $errorMessage, "</data>"));
     }
 
@@ -40,18 +40,18 @@ class Rss extends RssBase
         );
         $xmlContent = Strings::concat(
             "<rss version=\"2.0\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\r\n",
-            "<channel>\r\n",
-            //"<title>" . Config::SITE_NAME . "</title>\r\n",
-            "<title>", $rssTitle, "</title>\r\n",
-            "<link>", $this->context->Site, Config::TOP_DIR, "</link>\r\n",
-            "<description>", $rssTitle, "</description>\r\n",
-            ($this->context->Lang == "ru" ? "<language>ru-RU</language>\r\n" : "<language>en-US</language>\r\n"),
-            "<pubDate>", $pubDate, "</pubDate>\r\n",
-            "<lastBuildDate>", $pubDate, "</lastBuildDate>\r\n",
-            "<generator>", Config::SITE_NAME, "</generator>\r\n"
+            "<channel>", EOL,
+            //"<title>" . Config::SITE_NAME . "</title>", EOL,
+            "<title>", $rssTitle, "</title>", EOL,
+            "<link>", $this->context->Site, Config::TOP_DIR, "</link>", EOL,
+            "<description>", $rssTitle, "</description>", EOL,
+            ($this->context->Lang == "ru" ? "<language>ru-RU</language>\r\n" : "<language>en-US</language>"), EOL,
+            "<pubDate>", $pubDate, "</pubDate>", EOL,
+            "<lastBuildDate>", $pubDate, "</lastBuildDate>", EOL,
+            "<generator>", Config::SITE_NAME, "</generator>", EOL
         );
         Response::writeHeader("Content-type", "text/xml; charset=UTF-8");
-        Response::write("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n");
+        Response::write(CAT("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>", EOL));
         Response::write($xmlContent->getValue());
         return $xmlContent;
     }
@@ -59,8 +59,8 @@ class Rss extends RssBase
     public function writeEnd()
     {
         $xmlContent = Strings::concat(
-            "</channel>\r\n",
-            "</rss>\r\n");
+            "</channel>", EOL,
+            "</rss>", EOL);
         Response::write($xmlContent->getValue());
         Response::end("");
         return $xmlContent;
@@ -69,14 +69,14 @@ class Rss extends RssBase
     public function writeItem($args)
     {
         $xmlTemplate = Strings::concat(
-            "<item>\r\n",
-            "<title><![CDATA[{1}]]></title>\r\n",
-            "<link>{0}</link>\r\n",
-            "<pubDate>{4}</pubDate>\r\n",
-            BLANK($args[5]) ? null : "<description><![CDATA[{5}]]></description>\r\n",
-            BLANK($args[6]) ? null : "<category><![CDATA[{6}]]></category>\r\n",
-            "<guid>{0}</guid>\r\n",
-            "</item>\r\n"
+            "<item>", EOL,
+            "<title><![CDATA[{1}]]></title>", EOL,
+            "<link>{0}</link>", EOL,
+            "<pubDate>{4}</pubDate>", EOL,
+            BLANK($args[5]) ? null : CAT("<description><![CDATA[{5}]]></description>", EOL),
+            BLANK($args[6]) ? null : CAT("<category><![CDATA[{6}]]></category>", EOL),
+            "<guid>{0}</guid>", EOL,
+            "</item>", EOL
         );
         $itemContent = Util::formatString($xmlTemplate, $args);
         Response::write($itemContent->getValue());
