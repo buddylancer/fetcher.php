@@ -46,7 +46,7 @@ class GetFeed extends Page
         }
 
         $this->context->Response->writeHeader("Content-type", "text/xml; charset=UTF-8");
-        $this->context->Response->write(Helper::readAllText(CAT($this->context->LocalRoot->getValue(), "local/tests/input/U.S. News - ", $source, ".xml"))->getValue());
+        $this->context->Response->write(Helper::readAllText(CAT($this->context->LocalRoot->getValue(), "local/tests/input/U.S. News - ", $source, ".xml"), "UTF-8")->getValue());
         $this->context->Response->end();
     }
 }

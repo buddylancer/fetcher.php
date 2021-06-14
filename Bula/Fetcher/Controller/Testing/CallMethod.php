@@ -40,6 +40,8 @@ class CallMethod extends Page
         //$this->context->Request->initialize();
         $this->context->Request->extractAllVars();
 
+        $this->context->Response->writeHeader("Content-type", "text/html; charset=UTF-8");
+
         // Check security code
         if (!$this->context->Request->contains("code")) {
             $this->context->Response->end("Code is required!");
@@ -135,5 +137,6 @@ class CallMethod extends Page
         else
             $buffer = STR($result);
         $this->context->Response->write($buffer);
+        $this->context->Response->end();
     }
 }

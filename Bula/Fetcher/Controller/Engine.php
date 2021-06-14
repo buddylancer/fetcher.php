@@ -138,12 +138,15 @@ class Engine
         $template = $this->getTemplate($filename);
 
         $content = new TString();
+        $short_name = Strings::replace("Bula/Fetcher/View/Html", "View", $filename);
+        if (!BLANK(Config::FILE_PREFIX))
+            $short_name = Strings::replace(Config::FILE_PREFIX, "", $short_name);
         if (BLANK($this->context->Api))
-            $content->concat(CAT(EOL, "<!-- BEGIN ", Strings::replace("Bula/Fetcher/View/Html", "View", $filename), " -->", EOL));
+            $content->concat(CAT(EOL, "<!-- BEGIN ", $short_name, " -->", EOL));
         if (!BLANK($template))
             $content->concat($this->processTemplate($template, $hash));
         if (BLANK($this->context->Api))
-            $content->concat(CAT("<!-- END ", Strings::replace("Bula/Fetcher/View/Html", "View", $filename), " -->", EOL));
+            $content->concat(CAT("<!-- END ", $short_name, " -->", EOL));
         return $content;
     }
 
