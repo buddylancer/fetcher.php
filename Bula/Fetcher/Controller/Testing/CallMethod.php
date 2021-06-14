@@ -10,6 +10,7 @@
 namespace Bula\Fetcher\Controller\Testing;
 
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 use Bula\Fetcher\Controller\Page;
 use Bula\Objects\ArrayList;
 use Bula\Objects\TString;
@@ -36,28 +37,28 @@ class CallMethod extends Page
     /** Execute method using parameters from request. */
     public function execute()
     {
-        Request::initialize();
-        Request::extractAllVars();
+        //$this->context->Request->initialize();
+        $this->context->Request->extractAllVars();
 
         // Check security code
-        if (!Request::contains("code")) {
-            Response::end("Code is required!");
+        if (!$this->context->Request->contains("code")) {
+            $this->context->Response->end("Code is required!");
             return;
         }
-        $code = Request::get("code");
+        $code = $this->context->Request->get("code");
         if (!EQ($code, Config::SECURITY_CODE)) {
-            Response::end("Incorrect code!");
+            $this->context->Response->end("Incorrect code!");
             return;
         }
 
         // Check package
-        if (!Request::contains("package")) {
-            Response::end("Package is required!");
+        if (!$this->context->Request->contains("package")) {
+            $this->context->Response->end("Package is required!");
             return;
         }
-        $package = Request::get("package");
+        $package = $this->context->Request->get("package");
         if (BLANK($package)) {
-            Response::end("Empty package!");
+            $this->context->Response->end("Empty package!");
             return;
         }
         $packageChunks = Strings::split("-", $package);
@@ -66,24 +67,24 @@ class CallMethod extends Page
         $package = Strings::join("/", $packageChunks);
 
         // Check class
-        if (!Request::contains("class")) {
-            Response::end("Class is required!");
+        if (!$this->context->Request->contains("class")) {
+            $this->context->Response->end("Class is required!");
             return;
         }
-        $className = Request::get("class");
+        $className = $this->context->Request->get("class");
         if (BLANK($className)) {
-            Response::end("Empty class!");
+            $this->context->Response->end("Empty class!");
             return;
         }
 
         // Check method
-        if (!Request::contains("method")) {
-            Response::end("Method is required!");
+        if (!$this->context->Request->contains("method")) {
+            $this->context->Response->end("Method is required!");
             return;
         }
-        $method = Request::get("method");
+        $method = $this->context->Request->get("method");
         if (BLANK($method)) {
-            Response::end("Empty method!");
+            $this->context->Response->end("Empty method!");
             return;
         }
 
@@ -92,9 +93,9 @@ class CallMethod extends Page
         $pars = new ArrayList();
         for ($n = 1; $n <= 6; $n++) {
             $parName = CAT("par", $n);
-            if (!Request::contains($parName))
+            if (!$this->context->Request->contains($parName))
                 break;
-            $parValue = Request::get($parName);
+            $parValue = $this->context->Request->get($parName);
             if (EQ($parValue, "_"))
                 $parValue = "";
             //$parsArray[] = $parValue;
@@ -111,7 +112,7 @@ class CallMethod extends Page
         $fullClass = Strings::replace("/", "\\", $fullClass);
         $doClass = new $fullClass;
         if ($doClass == null) {
-            Response::end("Can not instantiate class!");
+            $this->context->Response->end("Can not instantiate class!");
             return;
         }
         $reflectionMethod = new \ReflectionMethod($fullClass, $method);
@@ -121,7 +122,7 @@ class CallMethod extends Page
             $p = new \ReflectionParameter(array($fullClass, $method), $n);
             if (!$p->isOptional()) $countRequired++;
         }
-        if ($pars->count() < $countRequired)
+        if ($pars->size() < $countRequired)
             $result = null;
         else
             $result = $reflectionMethod->invokeArgs($doClass, $pars->toArray());
@@ -130,9 +131,9 @@ class CallMethod extends Page
         if ($result == null)
             $buffer = "NULL";
         else if ($result instanceof DataSet)
-            $buffer = $result->toXml();
+            $buffer = $result->toXml(EOL);
         else
             $buffer = STR($result);
-        Response::write($buffer);
+        $this->context->Response->write($buffer);
     }
 }

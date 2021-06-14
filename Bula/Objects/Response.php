@@ -14,12 +14,17 @@ namespace Bula\Objects;
  */
 class Response
 {
+    /** Current response */
+
+    public function __construct($response)
+    {
+    }
 
     /**
      * Write text to current response.
      * @param TString $input Text to write.
      */
-    public static function write($input)
+    public function write($input)
     {
         print CAT($input);
     }
@@ -29,7 +34,7 @@ class Response
      * @param TString $name Header name.
      * @param TString $value Header value.
      */
-    public static function writeHeader($name, $value)
+    public function writeHeader($name, $value)
     {
         header(CAT($name, ": ", $value));
     }
@@ -38,9 +43,10 @@ class Response
      * End current response.
      * @param TString $input Text to write before ending response.
      */
-    public static function end($input)
+    public function end($input= null)
     {
-        self::write($input);
+        if (!NUL($input))
+            self::write($input);
         die();
     }
 }

@@ -22,6 +22,15 @@ require_once("Hashtable.php");
  */
 class RequestBase
 {
+    /** Current Http request */
+    /** Current response */
+    public $response = null;
+
+    public function __construct($currentRequest= null)
+    {
+        if (NUL($currentRequest))
+            return;
+    }
 
     /**
      * Get all variables of given type.
@@ -29,7 +38,7 @@ class RequestBase
      * @return Hashtable Requested variables.
      */
 
-    public static function getVars($type)
+    public function getVars($type)
     {
         $output = Arrays::newHashtable();
         $vars = filter_input_array($type);
@@ -47,7 +56,7 @@ class RequestBase
      * @return TString Requested variable.
      */
 
-    public static function getVar($type, $name)
+    public function getVar($type, $name)
     {
         $var = filter_input($type, $name);
         return $var == null ? null : new TString($var);

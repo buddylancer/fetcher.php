@@ -9,10 +9,13 @@
  */
 namespace Bula\Fetcher\Controller\Testing;
 
+use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
+use Bula\Fetcher\Controller\Page;
+
 use Bula\Objects\Helper;
 use Bula\Objects\Request;
 use Bula\Objects\Response;
-use Bula\Fetcher\Controller\Page;
 
 require_once("Bula/Objects/Helper.php");
 require_once("Bula/Objects/Request.php");
@@ -28,22 +31,22 @@ class GetFeed extends Page
     /** Get test feed using parameters from request. */
     public function execute()
     {
-        Request::initialize();
-        Request::extractAllVars();
+        //$this->context->Request->initialize();
+        $this->context->Request->extractAllVars();
 
         // Check source
-        if (!Request::contains("source")) {
-            Response::end("Source is required!");
+        if (!$this->context->Request->contains("source")) {
+            $this->context->Response->end("Source is required!");
             return;
         }
-        $source = Request::get("source");
+        $source = $this->context->Request->get("source");
         if (BLANK($source)) {
-            Response::end("Empty source!");
+            $this->context->Response->end("Empty source!");
             return;
         }
 
-        Response::writeHeader("Content-type", "text/xml; charset=UTF-8");
-        Response::write(Helper::readAllText(CAT($this->context->LocalRoot->getValue(), "local/tests/input/U.S. News - ", $source, ".xml"))->getValue());
-        Response::end("");
+        $this->context->Response->writeHeader("Content-type", "text/xml; charset=UTF-8");
+        $this->context->Response->write(Helper::readAllText(CAT($this->context->LocalRoot->getValue(), "local/tests/input/U.S. News - ", $source, ".xml"))->getValue());
+        $this->context->Response->end();
     }
 }

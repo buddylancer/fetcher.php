@@ -10,11 +10,25 @@
 namespace Bula;
 
 use Bula\Objects\ArrayList;
+use Bula\Objects\TString;
 
 require_once("Bula/Objects/ArrayList.php");
+require_once("Bula/Objects/TString.php");
 
 class Internal
 {
+    /**
+     * Remove HTML tags from string except allowed ones.
+     * @param TString $input Input string.
+     * @param TString $except List of allowed tags (do not remove).
+     * @return TString Resulting string.
+     */
+    public static function removeTags($input, $except= null )
+    {
+        if ($except != null && $except instanceof TString) $except = $except->getValue();
+        return new TString(strip_tags($input->getValue(), $except == null ? null : $except));
+    }
+
     /**
      * Call static method of given class using provided arguments.
      * @param TString $className Class name.
@@ -25,7 +39,7 @@ class Internal
     public static function callStaticMethod($className, $methodName, $args = null)
     {
         $className = "\\" . str_replace("/", "\\", $className);
-        if ($args != null && $args->count() > 0) {
+        if ($args != null && $args->size() > 0) {
             //return $className::$methodName($args->toArray());
             $reflectionMethod = new \ReflectionMethod($className, $methodName);
             return $reflectionMethod->invokeArgs(null, $args->toArray());

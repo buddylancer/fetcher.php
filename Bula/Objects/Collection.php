@@ -76,11 +76,11 @@ abstract class Collection
         return $input;
     }
 
-    //public abstract function isEmpty();
+    //abstract function isEmpty();
 
-    public abstract function count();
+    abstract function size();
 
-    //public abstract function toArray();
+    //abstract function toArray();
 
     public function toString()
     {

@@ -10,6 +10,7 @@
 namespace Bula\Fetcher\Controller\Actions;
 
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 
 use Bula\Objects\Response;
 use Bula\Objects\Hashtable;
@@ -45,6 +46,6 @@ abstract class DoRedirect extends Page
         }
 
         $engine = $this->context->pushEngine(true);
-        Response::write($engine->showTemplate($templateName, $prepare)->getValue());
+        $this->context->Response->write($engine->showTemplate($templateName, $prepare)->getValue());
     }
 }

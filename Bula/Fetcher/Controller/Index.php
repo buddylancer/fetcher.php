@@ -60,24 +60,24 @@ class Index extends Page
         if (self::$pagesArray == null)
             self::initialize();
 
-        DataAccess::setErrorDelegate("Bula\Objects\Response::end");
+        DataAccess::setErrorDelegate("Bula\Objects\Response\end");
 
-        $pageInfo = Request::testPage(self::$pagesArray, "home");
+        $pageInfo = $this->context->Request->testPage(self::$pagesArray, "home");
 
         // Test action name
         if (!$pageInfo->containsKey("page")) {
-            Response::end("Error in parameters -- no page");
+            $this->context->Response->end("Error in parameters -- no page");
             return;
         }
 
         $pageName = $pageInfo->get("page");
         $className = $pageInfo->get("class");
 
-        Request::initialize();
+        //$this->context->Request->initialize();
         if (INT($pageInfo->get("post_required")) == 1)
-            Request::extractPostVars();
+            $this->context->Request->extractPostVars();
         else
-            Request::extractAllVars();
+            $this->context->Request->extractAllVars();
         //echo "In Index -- " . print_r($this, true);
         $this->context->set("Page", $pageName);
 
@@ -88,8 +88,8 @@ class Index extends Page
 
         $prepare = new Hashtable();
         $prepare->put("[#Site_Name]", Config::SITE_NAME);
-        $pFromVars = Request::contains("p") ? Request::get("p") : "home";
-        $idFromVars = Request::contains("id") ? Request::get("id") : null;
+        $pFromVars = $this->context->Request->contains("p") ? $this->context->Request->get("p") : "home";
+        $idFromVars = $this->context->Request->contains("id") ? $this->context->Request->get("id") : null;
         $title = Config::SITE_NAME;
         if ($pFromVars != "home")
             $title = CAT($title, " :: ", $pFromVars, (!NUL($idFromVars) ? CAT(" :: ", $idFromVars) : null));
@@ -124,7 +124,7 @@ class Index extends Page
                 $prepare->put("[#Bottom]", $engine->includeTemplate("Bottom"));
         }
 
-        Response::writeHeader("Content-type", CAT(
+        $this->context->Response->writeHeader("Content-type", CAT(
             (BLANK($apiName) ? "text/html" : Config::API_CONTENT), "; charset=UTF-8")
         );
         $this->write("index", $prepare);
@@ -135,8 +135,8 @@ class Index extends Page
         //if (!BLANK($newTitle))
         //    $content = Regex::replace($content, "<title>(.*?)</title>", CAT("<title>", Config::SITE_NAME, " -- ", $newTitle, "</title>"), RegexOptions::IgnoreCase);
 
-        Response::write($engine->getPrintString());
-        Response::end("");
+        $this->context->Response->write($engine->getPrintString());
+        $this->context->Response->end();
 
         if (DBConfig::$Connection != null) {
             DBConfig::$Connection->close();

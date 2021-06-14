@@ -10,6 +10,7 @@
 namespace Bula\Fetcher\Controller;
 
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 
 use Bula\Objects\ArrayList;
 use Bula\Objects\Hashtable;
@@ -44,6 +45,8 @@ class Bottom extends Page
             $rows = new ArrayList();
             for ($n = INT($nn[$td]); $n < INT($nn[$td+1]); $n++) {
                 $oCategory = $dsCategory->getRow($n);
+                if (NUL($oCategory))
+                    continue;
                 $counter = INT($oCategory->get("i_Counter"));
                 if (INT($counter) == 0)
                     continue;
@@ -74,6 +77,8 @@ class Bottom extends Page
                 $rows = new ArrayList();
                 for ($n = INT($nn[$td]); $n < INT($nn[$td+1]); $n++) {
                     $oCategory = $dsCategory->getRow($n);
+                    if (NUL($oCategory))
+                        continue;
                     $key = $oCategory->get("s_CatId");
                     $name = $oCategory->get("s_Name");
                     //$counter = INT($oCategory->get("i_Counter"));

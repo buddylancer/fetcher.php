@@ -26,26 +26,29 @@ require_once("Regex.php");
 class Request extends RequestBase
 {
     /** Internal storage for GET/POST variables */
-    private static $Vars = null;
+    private $Vars = null;
     /** Internal storage for SERVER variables */
-    private static $ServerVars = null;
+    private $ServerVars = null;
+
+    public function __construct($currentRequest)
+    { $this->initialize(); }
 
     /** Initialize internal variables for new request. */
-    public static function initialize()
+    private function initialize()
     {
-        self::$Vars = Arrays::newHashtable();
-        self::$Vars->setPullValues(true);
-        self::$ServerVars = Arrays::newHashtable();
-        self::$ServerVars->setPullValues(true);
+        $this->Vars = Arrays::newHashtable();
+        $this->Vars->setPullValues(true);
+        $this->ServerVars = Arrays::newHashtable();
+        $this->ServerVars->setPullValues(true);
     }
 
     /**
      * Get private variables.
      * @return Hashtable
      */
-     public static function getPrivateVars()
+    public function getPrivateVars()
     {
-        return self::$Vars;
+        return $this->Vars;
     }
 
     /**
@@ -53,9 +56,9 @@ class Request extends RequestBase
      * @param TString $name Variable name.
      * @return Boolean True - variable exists, False - not exists.
      */
-    public static function contains($name)
+    public function contains($name)
     {
-        return self::$Vars->containsKey($name);
+        return $this->Vars->containsKey($name);
     }
 
     /**
@@ -63,12 +66,12 @@ class Request extends RequestBase
      * @param TString $name Variable name.
      * @return TString Variable value.
      */
-    public static function get($name)
+    public function get($name)
     {
         //return (self::$Vars->containsKey($name) ? self::$Vars->get($name) : null);
-        if (!self::$Vars->containsKey($name))
+        if (!$this->Vars->containsKey($name))
             return null;
-        $value = self::$Vars->get($name);
+        $value = $this->Vars->get($name);
         if (NUL($value))
             $value = "";
         return $value;
@@ -79,40 +82,40 @@ class Request extends RequestBase
      * @param TString $name Variable name.
      * @param TString $value Variable value.
      */
-    public static function set($name, $value)
+    public function set($name, $value)
     {
-        self::$Vars->put($name, $value);
+        $this->Vars->put($name, $value);
     }
 
     /**
      * Get all variable keys from request.
      * @return Enumeration All keys enumeration.
      */
-    public static function getKeys()
+    public function getKeys()
     {
-        return self::$Vars->keys();
+        return $this->Vars->keys();
     }
 
     /** Extract all POST variables into internal variables. */
-    public static function extractPostVars()
+    public function extractPostVars()
     {
-        $vars = self::getVars(INPUT_POST);
-        self::$Vars = Arrays::mergeHashtable(self::$Vars, $vars);
+        $vars = $this->getVars(INPUT_POST);
+        $this->Vars = Arrays::mergeHashtable($this->Vars, $vars);
     }
 
     /** Extract all SERVER variables into internal storage. */
-    public static function extractServerVars()
+    public function extractServerVars()
     {
-        $vars = self::getVars(INPUT_SERVER);
-        self::$Vars = Arrays::mergeHashtable(self::$ServerVars, $vars);
+        $vars = $this->getVars(INPUT_SERVER);
+        $this->Vars = Arrays::mergeHashtable($this->ServerVars, $vars);
     }
 
     /** Extract all GET and POST variables into internal storage. */
-    public static function extractAllVars()
+    public function extractAllVars()
     {
-        $vars = self::getVars(INPUT_GET);
-        self::$Vars = Arrays::mergeHashtable(self::$Vars, $vars);
-        self::extractPostVars();
+        $vars = $this->getVars(INPUT_GET);
+        $this->Vars = Arrays::mergeHashtable($this->Vars, $vars);
+        $this->extractPostVars();
     }
 
     /**
@@ -120,10 +123,10 @@ class Request extends RequestBase
      * @param TString $text Text to check.
      * @return Boolean True - referer contains provided text, False - not contains.
      */
-    public static function checkReferer($text)
+    public function checkReferer($text)
     {
         //return true; //TODO
-        $httpReferer = self::getVar(INPUT_SERVER, "HTTP_REFERER");
+        $httpReferer = $this->getVar(INPUT_SERVER, "HTTP_REFERER");
         if ($httpReferer == null)
             return false;
         return $httpReferer->indexOf($text) != -1;
@@ -133,9 +136,9 @@ class Request extends RequestBase
      * Check that request was originated from test script.
      * @return Boolean True - from test script, False - from ordinary user agent.
      */
-    public static function checkTester()
+    public function checkTester()
     {
-        $httpTester = self::getVar(INPUT_SERVER, "HTTP_USER_AGENT");
+        $httpTester = $this->getVar(INPUT_SERVER, "HTTP_USER_AGENT");
         if ($httpTester == null)
             return false;
         return $httpTester->indexOf("Wget") != -1;
@@ -146,13 +149,15 @@ class Request extends RequestBase
      * @param TString $name Parameter name.
      * @return TString Resulting value.
      */
-    public static function getRequiredParameter($name)
+    public function getRequiredParameter($name)
     {
         $val = null;
-        if (self::contains($name))
-            $val = self::get($name);
-        else
-            STOP(CAT("Parameter '", $name, "' is required!"));
+        if ($this->contains($name))
+            $val = $this->get($name);
+        else {
+            $error = CAT("Parameter '", $name, "' is required!");
+            $this->response->end($error);
+        }
         return $val;
     }
 
@@ -161,11 +166,11 @@ class Request extends RequestBase
      * @param TString $name Parameter name.
      * @return TString Resulting value or null.
      */
-    public static function getOptionalParameter($name)
+    public function getOptionalParameter($name)
     {
         $val = null;
-        if (self::contains($name))
-            $val = self::get($name);
+        if ($this->contains($name))
+            $val = $this->get($name);
         return $val;
     }
 
@@ -174,11 +179,13 @@ class Request extends RequestBase
      * @param TString $name Parameter name.
      * @return Integer Resulting value.
      */
-    public static function getRequiredInteger($name)
+    public function getRequiredInteger($name)
     {
-        $str = self::getRequiredParameter($name);
-        if ($str == "" || !self::isInteger($str))
-            STOP(CAT("Error in parameter '", $name, "'!"));
+        $str = $this->getRequiredParameter($name);
+        if ($str == "" || !self::isInteger($str)) {
+            $error = CAT("Error in parameter '", $name, "'!");
+            $this->response->end($error);
+        }
         return INT($str);
     }
 
@@ -187,15 +194,17 @@ class Request extends RequestBase
      * @param TString $name Parameter name.
      * @return Integer Resulting value or null.
      */
-    public static function getOptionalInteger($name)
+    public function getOptionalInteger($name)
     {
-        $val = self::getOptionalParameter($name);
+        $val = $this->getOptionalParameter($name);
         if ($val == null)
             return null;
 
         $str = STR($val);
-        if ($str == "" || !self::isInteger($str))
-            STOP(CAT("Error in parameter '", $name, "'!"));
+        if ($str == "" || !self::isInteger($str)) {
+            $error = CAT("Error in parameter '", $name, "'!");
+            $this->response->end($error);
+        }
         return INT($val);
     }
 
@@ -204,9 +213,9 @@ class Request extends RequestBase
      * @param TString $name Parameter name.
      * @return TString Resulting value.
      */
-    public static function getRequiredString($name)
+    public function getRequiredString($name)
     {
-        $val = self::getRequiredParameter($name);
+        $val = $this->getRequiredParameter($name);
         return $val;
     }
 
@@ -215,9 +224,9 @@ class Request extends RequestBase
      * @param TString $name Parameter name.
      * @return TString Resulting value or null.
      */
-    public static function getOptionalString($name)
+    public function getOptionalString($name)
     {
-        $val = self::getOptionalParameter($name);
+        $val = $this->getOptionalParameter($name);
         return $val;
     }
 
@@ -227,7 +236,7 @@ class Request extends RequestBase
      * @param TString $defaultPage Default page to use for testing.
      * @return Hashtable Resulting page parameters.
      */
-    public static function testPage($pages, $defaultPage = null)
+    public function testPage($pages, $defaultPage = null)
     {
         $pageInfo = new Hashtable();
 
@@ -236,18 +245,18 @@ class Request extends RequestBase
         $pageInfo->put("from_get", 0);
         $pageInfo->put("from_post", 0);
 
-        $apiValue = self::getVar(INPUT_GET, "api");
+        $apiValue = $this->getVar(INPUT_GET, "api");
         if ($apiValue != null) {
             if (EQ($apiValue, "rest")) // Only Rest for now
                 $pageInfo->put("api", $apiValue);
         }
 
-        $pValue = self::getVar(INPUT_GET, "p");
+        $pValue = $this->getVar(INPUT_GET, "p");
         if ($pValue != null) {
             $page = $pValue;
             $pageInfo->put("from_get", 1);
         }
-        $pValue = self::getVar(INPUT_POST, "p");
+        $pValue = $this->getVar(INPUT_POST, "p");
         if ($pValue != null) {
             $page = $pValue;
             $pageInfo->put("from_post", 1);
@@ -298,4 +307,3 @@ class Request extends RequestBase
         return Regex::isMatch($input, "^[1-9]+[0-9]*$");
     }
 }
-Request::initialize();

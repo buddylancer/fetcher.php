@@ -10,6 +10,7 @@
 namespace Bula\Fetcher\Controller\Actions;
 
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 
 use Bula\Objects\Request;
 use Bula\Objects\TString;
@@ -31,10 +32,10 @@ class DoRedirectSource extends DoRedirect
     {
         $errorMessage = null;
         $linkToRedirect = null;
-        if (!Request::contains("source"))
+        if (!$this->context->Request->contains("source"))
             $errorMessage = "Source name is required!";
         else {
-            $sourceName = Request::get("source");
+            $sourceName = $this->context->Request->get("source");
             if (!Request::isDomainName($sourceName))
                 $errorMessage = "Incorrect source name!";
             else {

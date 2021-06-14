@@ -10,6 +10,7 @@
 namespace Bula\Fetcher\Controller;
 
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 
 use Bula\Objects\Response;
 use Bula\Objects\Strings;
@@ -25,13 +26,24 @@ require_once("Bula/Fetcher/Controller/RssBase.php");
 class Rss extends RssBase
 {
 
+    /**
+     * Write error message.
+     * @param TString $errorMessage Error message.
+     */
     public function writeErrorMessage($errorMessage)
     {
-        Response::writeHeader("Content-type", "text/xml; charset=UTF-8");
-        Response::write(CAT("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>", EOL));
-        Response::write(CAT("<data>", $errorMessage, "</data>"));
+        $this->context->Response->writeHeader("Content-type", "text/xml; charset=UTF-8");
+        $this->context->Response->write(CAT("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>", EOL));
+        $this->context->Response->write(CAT("<data>", $errorMessage, "</data>"));
     }
 
+    /**
+     * Write starting block of RSS-feed.
+     * @param TString $source RSS-feed source name.
+     * @param TString $filterName RSS-feed 'filtered by' value.
+     * @param TString $pubDate Publication date.
+     * @return TString Resulting XML-content of starting block.
+     */
     public function writeStart($source, $filterName, $pubDate)
     {
         $rssTitle = CAT(
@@ -50,22 +62,30 @@ class Rss extends RssBase
             "<lastBuildDate>", $pubDate, "</lastBuildDate>", EOL,
             "<generator>", Config::SITE_NAME, "</generator>", EOL
         );
-        Response::writeHeader("Content-type", "text/xml; charset=UTF-8");
-        Response::write(CAT("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>", EOL));
-        Response::write($xmlContent->getValue());
+        $this->context->Response->writeHeader("Content-type", "text/xml; charset=UTF-8");
+        $this->context->Response->write(CAT("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>", EOL));
+        $this->context->Response->write($xmlContent->getValue());
         return $xmlContent;
     }
 
+    /**
+     * Write ending block of RSS-feed.
+     */
     public function writeEnd()
     {
         $xmlContent = Strings::concat(
             "</channel>", EOL,
             "</rss>", EOL);
-        Response::write($xmlContent->getValue());
-        Response::end("");
+        $this->context->Response->write($xmlContent->getValue());
+        $this->context->Response->end();
         return $xmlContent;
     }
 
+    /**
+     * Write an item of RSS-feed.
+     * @param Object[] $args Array of item parameters.
+     * @return TString Resulting XML-content of an item.
+     */
     public function writeItem($args)
     {
         $xmlTemplate = Strings::concat(
@@ -79,7 +99,7 @@ class Rss extends RssBase
             "</item>", EOL
         );
         $itemContent = Util::formatString($xmlTemplate, $args);
-        Response::write($itemContent->getValue());
+        $this->context->Response->write($itemContent->getValue());
         return $itemContent;
     }
 }

@@ -11,6 +11,7 @@ namespace Bula\Fetcher\Controller;
 
 use Bula\Internal;
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 use Bula\Objects\Request;
 use Bula\Objects\Response;
 use Bula\Objects\ArrayList;
@@ -52,33 +53,33 @@ class Action extends Page
         if (self::$actionsArray == null)
             self::initialize();
 
-        $actionInfo = Request::testPage(self::$actionsArray);
+        $actionInfo = $this->context->Request->testPage(self::$actionsArray);
 
         // Test action name
         if (!$actionInfo->containsKey("page")) {
-            Response::end("Error in parameters -- no page");
+            $this->context->Response->end("Error in parameters -- no page");
             return;
         }
 
         // Test action context
         if (INT($actionInfo->get("post_required")) == 1 && INT($actionInfo->get("from_post")) == 0) {
-            Response::end("Error in parameters -- inconsistent pars");
+            $this->context->Response->end("Error in parameters -- inconsistent pars");
             return;
         }
 
-        Request::initialize();
+        //$this->context->Request->initialize();
         if (INT($actionInfo->get("post_required")) == 1)
-            Request::extractPostVars();
+            $this->context->Request->extractPostVars();
         else
-            Request::extractAllVars();
+            $this->context->Request->extractAllVars();
 
         //TODO!!!
-        //if (!Request::CheckReferer(Config::$Site))
+        //if (!$this->context->Request->CheckReferer(Config::$Site))
         //    err404();
 
         if (INT($actionInfo->get("code_required")) == 1) {
-            if (!Request::contains("code") || !EQ(Request::get("code"), Config::SECURITY_CODE)) { //TODO -- hardcoded!!!
-                Response::end("No access.");
+            if (!$this->context->Request->contains("code") || !EQ($this->context->Request->get("code"), Config::SECURITY_CODE)) { //TODO -- hardcoded!!!
+                $this->context->Response->end("No access.");
                 return;
             }
         }

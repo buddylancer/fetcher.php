@@ -10,6 +10,7 @@
 namespace Bula\Fetcher\Model;
 
 use Bula\Fetcher\Config;
+use Bula\Objects\DateTimes;
 use Bula\Objects\Hashtable;
 use Bula\Objects\TString;
 use Bula\Objects\Strings;
@@ -38,7 +39,7 @@ class DOItem extends DOBase
      * @param Integer $itemid ID of the item.
      * @return DataSet Resulting data set.
      */
-    public function getById($itemid)
+    public  function getById($itemid)
     { // overloaded
         if (!isset($itemid) || $itemid == null) return null;
         if ($itemid <= 0) return null;
@@ -144,7 +145,7 @@ class DOItem extends DOBase
             if ($n != 0)
                 $inList->concat(", ");
             $id = $o->get($this->idField);
-            $inList->concat($id);
+            $inList->concat(STR($id));
         }
 
         $query2 = Strings::concat(
@@ -198,7 +199,7 @@ class DOItem extends DOBase
             (BLANK($source) ? null : Strings::concat(" AND s.s_SourceName = '", $source, "' ")),
             (BLANK($realFilter) ? null : Strings::concat(" AND (", $realFilter, ") ")),
             " ORDER BY _this.d_Date DESC, _this.", $this->idField, " DESC ",
-            " LIMIT ", $maxItems
+            " LIMIT ", STR($maxItems)
         );
         $pars1 = array();
         $ds1 = $this->getDataSet($query1, $pars1);
@@ -213,7 +214,7 @@ class DOItem extends DOBase
             " AND _this.d_Date > ? ",
             (BLANK($realFilter) ? null : Strings::concat(" AND (", $realFilter, ") ")),
             " ORDER BY _this.d_Date DESC, _this.", $this->idField, " DESC ",
-            " LIMIT ", $maxItems
+            " LIMIT ", STR($maxItems)
         );
         $pars2 = array("setDate", $fromDate);
         $ds2 = $this->getDataSet($query2, $pars2);

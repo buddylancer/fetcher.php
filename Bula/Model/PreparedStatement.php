@@ -168,7 +168,7 @@ class PreparedStatement
     public function setDate($n, $val)
     {
         if ($val instanceof TString) $val = $val->getValue();
-        self::setValue($n, CAT("'", DateTimes::format(DBConfig::SQL_DTS, DateTimes::getTime($val)), "'"));
+        self::setValue($n, CAT("'", DateTimes::format(DateTimes::SQL_DTS, DateTimes::getTime($val)), "'"));
     }
 
     /**

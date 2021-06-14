@@ -12,6 +12,7 @@ namespace Bula\Fetcher\Controller;
 use Bula\Internal;
 
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 
 use Bula\Objects\ArrayList;
 use Bula\Objects\Hashtable;
@@ -35,7 +36,7 @@ require_once("Bula/Objects/TString.php");
  */
 class Engine
 {
-    private $context = null;
+    public $context = null;
     private $printFlag = false;
     private $printString = "";
 
@@ -90,21 +91,21 @@ class Engine
     public function write($val)
     {
         if ($this->printFlag)
-            Response::write($val);
+            $this->context->Response->write($val);
         else
             $this->printString .= $val->getValue();
     }
 
     /**
-     * Include file with class and generate content by calling method execute().
+     * Include file with class and generate content by calling method.
      * @param TString $className Class name to include.
      * @param TString $defaultMethod Default method to call.
      * @return TString Resulting content.
      */
-    public function includeTemplate($className, $defaultMethod = "execute")
+    public function includeTemplate($className, $defaultMethod= "execute")
     {
         $engine = $this->context->pushEngine(false);
-        $prefix = "Bula/Fetcher/Controller/";
+        $prefix = CAT(Config::FILE_PREFIX, "Bula/Fetcher/Controller/");
         $fileName =
             CAT($prefix, $className, ".php");
 
@@ -130,8 +131,10 @@ class Engine
     public function showTemplate($id, $hash = null)
     {
         $ext = BLANK($this->context->Api) ? ".html" : (Config::API_FORMAT == "Xml"? ".xml" : ".txt");
+        $prefix = CAT(Config::FILE_PREFIX, "Bula/Fetcher/View/");
+
         $filename =
-                CAT("Bula/Fetcher/View/", (BLANK($this->context->Api) ? "Html/" : (Config::API_FORMAT == "Xml"? "Xml/" : "Rest/")), $id, $ext);
+                CAT($prefix, (BLANK($this->context->Api) ? "Html/" : (Config::API_FORMAT == "Xml"? "Xml/" : "Rest/")), $id, $ext);
         $template = $this->getTemplate($filename);
 
         $content = new TString();
@@ -172,8 +175,9 @@ class Engine
     {
         if ($hash == null)
             $hash = new Hashtable();
-        $content = Strings::replaceInTemplate($template, $hash);
-        return Strings::replaceInTemplate($content, $this->context->GlobalConstants);
+        $content1 = Strings::replaceInTemplate($template, $hash);
+        $content2 = Strings::replaceInTemplate($content1, $this->context->GlobalConstants);
+        return $content2;
     }
 
     /**
@@ -181,7 +185,14 @@ class Engine
      * @param TString $str Input string.
      * @return TString Resulting string.
      */
-    private static function trimComments($str, $trim = true)
+
+    /**
+     * Trim comments from input string.
+     * @param TString $str Input string.
+     * @param Boolean $trim Whether to trim spaces in resulting string.
+     * @return TString Resulting string.
+     */
+    private static function trimComments($str, $trim= true)
     {
         $line = new TString($str);
         $trimmed = false;
@@ -221,7 +232,7 @@ class Engine
         $ifWhat = "";
         $repeatWhat = "";
         $content = new TString();
-        for ($n = 0; $n < $template->count(); $n++) {
+        for ($n = 0; $n < $template->size(); $n++) {
             $line = $template->get($n);
             $lineNoComments = self::trimComments($line); //, BLANK($this->context->Api)); //TODO
             if ($ifMode > 0) {
@@ -274,7 +285,7 @@ class Engine
                     if ($repeatMode == 1) {
                         if ($hash->containsKey($repeatWhat)) {
                             $rows = $hash->get($repeatWhat);
-                            for ($r = 0; $r < $rows->count(); $r++)
+                            for ($r = 0; $r < $rows->size(); $r++)
                                 $content->concat(self::processTemplate($repeatBuf, $rows->get($r)));
                             $hash->remove($repeatWhat);
                         }

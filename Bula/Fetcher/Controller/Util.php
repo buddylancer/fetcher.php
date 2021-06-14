@@ -68,7 +68,7 @@ class Util
      */
     public static function showTime($input)
     {
-        return DateTimes::format(Config::GMT_DTS, DateTimes::getTime($input));
+        return DateTimes::format(DateTimes::GMT_DTS, DateTimes::getTime($input));
     }
 
     /**
@@ -108,7 +108,7 @@ class Util
             $query = $pageName;
         else {
             if ($query == null)
-                $query = Request::getVar(INPUT_SERVER, "QUERY_STRING");
+                $query = $engine->context->Request->getVar(INPUT_SERVER, "QUERY_STRING");
             if (BLANK($query))
                 $query = "p=home";
         }
@@ -153,7 +153,7 @@ class Util
      * @param TString $to Substring to extract info "To".
      * @return TString Resulting string.
      */
-    public static function extractInfo($source, $after, $to = null)
+    public static function extractInfo($source, $after, $to= null)
     {
         $result = null;
         if (!NUL($source)) {
@@ -185,7 +185,7 @@ class Util
      * @param TString $to Substring to remove "To".
      * @return TString Resulting string.
      */
-    public static function removeInfo($source, $from, $to = null)
+    public static function removeInfo($source, $from, $to= null)
     {
         $result = null;
         $index1 = $from == null ? 0 : $source->indexOf($from);

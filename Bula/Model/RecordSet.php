@@ -163,7 +163,7 @@ class RecordSet
     /**
      * Get real value from the record.
      * @param Integer $par Number of value.
-     * @return Double
+     * @return Float
      */
     public function getFloat($par)
     {

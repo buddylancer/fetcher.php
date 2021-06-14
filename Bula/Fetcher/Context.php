@@ -10,6 +10,7 @@
 namespace Bula\Fetcher;
 
 use Bula\Objects\Request;
+use Bula\Objects\Response;
 use Bula\Objects\Arrays;
 use Bula\Objects\Strings;
 
@@ -21,6 +22,7 @@ use Bula\Fetcher\Controller\Engine;
 require_once("Bula/Meta.php");
 require_once("Bula/Fetcher/Config.php");
 require_once("Bula/Objects/Request.php");
+require_once("Bula/Objects/Response.php");
 require_once("Bula/Objects/Arrays.php");
 require_once("Bula/Objects/ArrayList.php");
 require_once("Bula/Objects/Hashtable.php");
@@ -31,11 +33,24 @@ require_once("Bula/Objects/Strings.php");
  */
 class Context extends Config
 {
-    /** Default constructor. */
-    public function __construct()
+
+    /**
+     * Constructor for injecting Request and Response.
+     * @param Object $request Current request.
+     * @param Object $response Current response.
+     */
+    public function __construct(Object $request= null, Object $response= null)
     {
+        $this->Request = new Request($request);
+        $this->Response = new Response($response);
+        $this->Request->response = $this->Response;
         $this->initialize();
     }
+
+    /** Current request */
+    public $Request = null;
+    /** Current response */
+    public $Response = null;
 
     /** Storage for internal variables */
     protected $Values = array();
@@ -113,7 +128,7 @@ class Context extends Config
      */
     public function checkTestRun()
     {
-        $httpTester = Request::getVar(/*[Request::]*/INPUT_SERVER, "HTTP_USER_AGENT");
+        $httpTester = $this->Request->getVar(/*[Request::]*/INPUT_SERVER, "HTTP_USER_AGENT");
         if ($httpTester == null)
             return;
         if (EQ($httpTester, "TestFull")) {
@@ -143,8 +158,8 @@ class Context extends Config
     {
         //------------------------------------------------------------------------------
         // You can change something below this line if you know what are you doing :)
-        $rootDir = Request::getVar(/*[Request::]*/INPUT_SERVER, "DOCUMENT_ROOT");
-		$rootDir = $rootDir->replace("\\", "/"); // Fix for IIS
+        $rootDir = $this->Request->getVar(/*[$Request->]*/INPUT_SERVER, "DOCUMENT_ROOT");
+        $rootDir = $rootDir->replace("\\", "/"); // Fix for IIS
         // Regarding that we have the ordinary local website (not virtual directory)
         for ($n = 0; $n <= 2; $n++) {
             $lastSlashIndex = $rootDir->lastIndexOf("/");
@@ -153,7 +168,7 @@ class Context extends Config
         $this->LocalRoot = $rootDir->concat("/");
         set_include_path($this->LocalRoot->getValue());
 
-        $this->Host = Request::getVar(/*[Request::]*/INPUT_SERVER, "HTTP_HOST");
+        $this->Host = $this->Request->getVar(/*[Request::]*/INPUT_SERVER, "HTTP_HOST");
         $this->Site = Strings::concat("http://", $this->Host);
         $this->IsMobile = $this->Host->indexOf("m.") == 0;
         $this->Lang = $this->Host->lastIndexOf(".ru") != -1 ? "ru" : "en";
@@ -225,7 +240,7 @@ class Context extends Config
         $this->EngineIndex++;
         if ($this->EngineInstances == null)
             $this->EngineInstances = new ArrayList();
-        if ($this->EngineInstances->count() <= $this->EngineIndex)
+        if ($this->EngineInstances->size() <= $this->EngineIndex)
             $this->EngineInstances->add($engine);
         else
             $this->EngineInstances->set($this->EngineIndex, $engine);

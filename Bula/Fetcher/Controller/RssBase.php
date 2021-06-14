@@ -10,8 +10,10 @@
 namespace Bula\Fetcher\Controller;
 
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 
 use Bula\Objects\ArrayList;
+use Bula\Objects\Enumerator;
 use Bula\Objects\Hashtable;
 use Bula\Objects\Regex;
 use Bula\Objects\RegexOptions;
@@ -62,13 +64,13 @@ abstract class RssBase extends Page
      */
     public function execute()
     {
-        Request::initialize();
-        Request::extractAllVars();
+        //$this->context->Request->initialize();
+        $this->context->Request->extractAllVars();
 
         $errorMessage = new TString();
 
         // Check source
-        $source = Request::get("source");
+        $source = $this->context->Request->get("source");
         if (!NUL($source)) {
             if (BLANK($source))
                 $errorMessage->concat("Empty source!");
@@ -82,8 +84,8 @@ abstract class RssBase extends Page
         }
 
         $anyFilter = false;
-        if (Request::contains("code")) {
-            if (EQ(Request::get("code"), Config::SECURITY_CODE))
+        if ($this->context->Request->contains("code")) {
+            if (EQ($this->context->Request->get("code"), Config::SECURITY_CODE))
                 $anyFilter = true;
         }
 
@@ -93,7 +95,7 @@ abstract class RssBase extends Page
         $doCategory = new DOCategory();
         $dsCategories = $doCategory->enumCategories();
         if ($dsCategories->getSize() > 0) {
-            $filterName = Request::get("filter");
+            $filterName = $this->context->Request->get("filter");
             if (!NUL($filterName)) {
                 if (BLANK($filterName)) {
                     if ($errorMessage->length() > 0)
@@ -119,10 +121,14 @@ abstract class RssBase extends Page
         }
 
         // Check that parameters contain only 'source' or/and 'filter'
-        $keys = Request::getKeys();
+        $keys = $this->context->Request->getKeys();
         while ($keys->moveNext()) {
             $key = $keys->current();
-            if ($key != "source" && $key != "filter" && $key != "code" && $key != "count") {
+            if (EQ($key, "source") || EQ($key, "filter") || EQ($key, "code") || EQ($key, "count")) {
+                //OK
+            }
+            else {
+                //Not OK
                 if ($errorMessage->length() > 0)
                     $errorMessage->concat(" ");
                 $errorMessage->concat(CAT("Incorrect parameter '", $key, "'!"));
@@ -135,14 +141,14 @@ abstract class RssBase extends Page
         }
 
         $fullTitle = false;
-        if (Request::contains("title") && Request::get("title") == "full")
+        if ($this->context->Request->contains("title") && $this->context->Request->get("title") == "full")
             $fullTitle = true;
 
         $count = Config::MAX_RSS_ITEMS;
         $countSet = false;
-        if (Request::contains("count")) {
-            if (INT(Request::get("count")) > 0) {
-                $count = INT(Request::get("count"));
+        if ($this->context->Request->contains("count")) {
+            if (INT($this->context->Request->get("count")) > 0) {
+                $count = INT($this->context->Request->get("count"));
                 if ($count < Config::MIN_RSS_ITEMS)
                     $count = Config::MIN_RSS_ITEMS;
                 if ($count > Config::MAX_RSS_ITEMS)
@@ -160,10 +166,10 @@ abstract class RssBase extends Page
                 (BLANK($filterName) ? null : CAT("-f=", $filterName)),
                 ($fullTitle ? "-full" : null), ".xml");
             if (Helper::fileExists($cachedFile)) {
-                Response::writeHeader("Content-type", "text/xml; charset=UTF-8");
+                $this->context->Response->writeHeader("Content-type", "text/xml; charset=UTF-8");
                 $tempContent = Helper::readAllText($cachedFile);
-                //Response::write($tempContent->substring(3)); //TODO -- BOM?
-                Response::write($tempContent); //TODO -- BOM?
+                //$this->context->Response->write($tempContent->substring(3)); //TODO -- BOM?
+                $this->context->Response->write($tempContent); //TODO -- BOM?
                 return;
             }
         }
@@ -178,9 +184,10 @@ abstract class RssBase extends Page
         // 5 - description
         // 6 - category
 
-        $pubDate = DateTimes::format(Config::XML_DTS);
-        $nowTime = DateTimes::getTime($pubDate);
-        $fromDate = DateTimes::gmtFormat(Config::XML_DTS, $nowTime - 6*60*60);
+        $pubDate = DateTimes::format(DateTimes::XML_DTS);
+        $nowDate = DateTimes::format(DateTimes::SQL_DTS);
+        $nowTime = DateTimes::getTime($nowDate);
+        $fromDate = DateTimes::gmtFormat(DateTimes::SQL_DTS, $nowTime - 6*60*60);
         $dsItems = $doItem->enumItemsFromSource($fromDate, $source, $filter, $count);
         $current = 0;
 
@@ -196,7 +203,7 @@ abstract class RssBase extends Page
 
             if ($current == 0) {
                 // Get puDate from the first item and write starting block
-                $pubDate = DateTimes::format(Config::XML_DTS, DateTimes::getTime($date));
+                $pubDate = DateTimes::format(DateTimes::XML_DTS, DateTimes::getTime($date));
                 $contentToCache = $this->writeStart($source, $filterName, $pubDate);
             }
 
@@ -242,7 +249,7 @@ abstract class RssBase extends Page
             $args[1] = $itemTitle;
             $args[2] = $this->getAbsoluteLink(Config::ACTION_PAGE, "?p=do_redirect_source&amp;source=", "redirect/source/", $sourceName);
             $args[3] = $sourceName;
-            $args[4] = DateTimes::format(Config::XML_DTS, DateTimes::getTime($date));
+            $args[4] = DateTimes::format(DateTimes::XML_DTS, DateTimes::getTime($date));
             $additional = CAT(
                 (BLANK($creator) ? null : CAT($this->context->get("Name_Creator"), ": ", $creator, "<br/>")),
                 (BLANK($category) ? null : CAT($this->context->get("Name_Categories"), ": ", $category, "<br/>")),
@@ -289,7 +296,7 @@ abstract class RssBase extends Page
      * Write error message.
      * @param TString $errorMessage Error message.
      */
-    public abstract function writeErrorMessage($errorMessage);
+    abstract function writeErrorMessage($errorMessage);
 
     /**
      * Write start block (header) of an RSS-feed.
@@ -297,16 +304,16 @@ abstract class RssBase extends Page
      * @param TString $filterName Filter name selected (or empty).
      * @param TString $pubDate Date shown in the header.
      */
-    public abstract function writeStart($source, $filterName, $pubDate);
+    abstract function writeStart($source, $filterName, $pubDate);
 
     /**
      * Write end block of an RSS-feed.
      */
-    public abstract function writeEnd();
+    abstract function writeEnd();
 
     /**
      * Write RSS-feed item.
      * @param Object[] $args Parameters to fill an item.
      */
-    public abstract function writeItem($args);
+    abstract function writeItem($args);
 }

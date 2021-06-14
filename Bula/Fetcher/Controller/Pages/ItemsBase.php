@@ -13,6 +13,7 @@ use Bula\Objects\Hashtable;
 use Bula\Objects\Regex;
 
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 use Bula\Objects\Request;
 use Bula\Objects\Strings;
 use Bula\Objects\TString;
@@ -32,8 +33,8 @@ abstract class ItemsBase extends Page
      */
     public function checkList()
     {
-        if (Request::contains("list")) {
-            if (!Request::isInteger(Request::get("list"))) {
+        if ($this->context->Request->contains("list")) {
+            if (!Request::isInteger($this->context->Request->get("list"))) {
                 $prepare = new Hashtable();
                 $prepare->put("[#ErrMessage]", "Incorrect list number!");
                 $this->write("error", $prepare);
@@ -41,7 +42,7 @@ abstract class ItemsBase extends Page
             }
         }
         else
-            Request::set("list", "1");
+            $this->context->Request->set("list", "1");
         return true;
     }
 
@@ -52,8 +53,8 @@ abstract class ItemsBase extends Page
     public function checkSource()
     {
         $errMessage = new TString();
-        if (Request::contains("source")) {
-            $source = Request::get("source");
+        if ($this->context->Request->contains("source")) {
+            $source = $this->context->Request->get("source");
             if (BLANK($source))
                 $errMessage->concat("Empty source name!<br/>");
             else if (!Request::isDomainName("source"))
@@ -157,8 +158,8 @@ abstract class ItemsBase extends Page
     protected function getPageLink($listNo)
     {
         $link = $this->getLink(Config::INDEX_PAGE, "?p=items", "items");
-        if (Request::contains("source") && !BLANK(Request::get("source")))
-            $link = $this->appendLink($link, "&source=", "/source/", Request::get("source"));
+        if ($this->context->Request->contains("source") && !BLANK($this->context->Request->get("source")))
+            $link = $this->appendLink($link, "&source=", "/source/", $this->context->Request->get("source"));
         if ($this->context->contains("filter") && !BLANK($this->context->get("filter")))
             $link = $this->appendLink($link, "&amp;filter=", "/filter/", $this->context->get("filter"));
         if ($listNo > 1)

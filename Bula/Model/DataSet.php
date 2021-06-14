@@ -10,10 +10,12 @@
 namespace Bula\Model;
 
 use Bula\Objects\ArrayList;
+use Bula\Objects\Enumerator;
 use Bula\Objects\Hashtable;
 use Bula\Objects\TString;
 
 require_once("Bula/Objects/ArrayList.php");
+require_once("Bula/Objects/Enumerator.php");
 require_once("Bula/Objects/Hashtable.php");
 require_once("Bula/Objects/TString.php");
 
@@ -40,7 +42,7 @@ class DataSet
      */
     public function getSize()
     {
-        return $this->rows->count();
+        return $this->rows->size();
     }
 
     /**
@@ -110,29 +112,30 @@ class DataSet
      * Get serialized (XML) representation of the DataSet.
      * @return TString Resulting representation.
      */
-    public function toXml()
+    public function toXml($EOL)
     {
         $level = 0;
         $spaces = null;
         $output = new TString();
-        $output->concat(CAT("<DataSet Rows=\"", $this->rows->count(), "\">", EOL));
+        $output->concat(CAT("<DataSet Rows=\"", $this->rows->size(), "\">", $EOL));
         for ($n = 0; $n < $this->getSize(); $n++) {
             $row = $this->getRow($n);
             $level++; $spaces = $this->addSpaces($level);
-            $output->concat(CAT($spaces, "<Row>", EOL));
-            $keys = $row->keys();
+            $output->concat(CAT($spaces, "<Row>", $EOL));
+            $keys =
+                    $row->keys();
             while ($keys->moveNext()) {
                 $level++; $spaces = $this->addSpaces($level);
                 $key = $keys->current();
                 $output->concat(CAT($spaces, "<Item Name=\"", $key, "\">"));
                 $output->concat($row->get($key));
-                $output->concat(CAT("</Item>", EOL));
+                $output->concat(CAT("</Item>", $EOL));
                 $level--; $spaces = $this->addSpaces($level);
             }
-            $output->concat(CAT($spaces, "</Row>", EOL));
+            $output->concat(CAT($spaces, "</Row>", $EOL));
             $level--; $spaces = $this->addSpaces($level);
         }
-        $output->concat(CAT("</DataSet>", EOL));
+        $output->concat(CAT("</DataSet>", $EOL));
         return $output;
     }
 }

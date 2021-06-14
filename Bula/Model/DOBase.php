@@ -208,7 +208,7 @@ class DOBase
      * @param Integer $id Unique ID.
      * @return DataSet Resulting data set.
      */
-    public function getById($id)
+    public  function getById($id)
     {
         $query = Strings::concat(
             " select * from ", $this->tableName,
@@ -340,7 +340,8 @@ class DOBase
      */
     public function insert(Hashtable $fields)
     {
-        $keys = $fields->keys();
+        $keys =
+            $fields->keys();
         $fieldNames = new TString();
         $fieldValues = new TString();
         $pars = array();
@@ -370,7 +371,8 @@ class DOBase
      */
     public function updateById($id, Hashtable $fields)
     {
-        $keys = $fields->keys();
+        $keys =
+            $fields->keys();
         $setValues = new TString();
         $pars = array();
         //$pars->setPullValues(true);

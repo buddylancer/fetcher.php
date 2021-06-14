@@ -10,6 +10,7 @@
 namespace Bula\Fetcher\Controller\Pages;
 
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 
 use Bula\Objects\ArrayList;
 use Bula\Objects\Hashtable;
@@ -44,7 +45,7 @@ class Items extends ItemsBase
     {
         $errorMessage = new TString();
 
-        $list = Request::get("list");
+        $list = $this->context->Request->get("list");
         if (!NUL($list)) {
             if (BLANK($list))
                 $errorMessage->concat("Empty list number!");
@@ -52,7 +53,7 @@ class Items extends ItemsBase
                 $errorMessage->concat("Incorrect list number!");
         }
 
-        $sourceName = Request::get("source");
+        $sourceName = $this->context->Request->get("source");
         if (!NUL($sourceName)) {
             if (BLANK($sourceName)) {
                 if ($errorMessage->length() > 0)
@@ -66,7 +67,7 @@ class Items extends ItemsBase
             }
         }
 
-        $filterName = Request::get("filter");
+        $filterName = $this->context->Request->get("filter");
         if (!NUL($filterName)) {
             if (BLANK($filterName)) {
                 if ($errorMessage->length() > 0)

@@ -18,9 +18,15 @@ require_once("TString.php");
  */
 class DateTimes
 {
-    /**
-     * Format of date/time in RSS-feeds.
-     */
+    /** Date/time format for processing GMT date/times */
+    const GMT_DTS = "d-M-Y H:i \G\M\T";
+    /** Date/time format for RSS operations */
+    const XML_DTS = "D, d M Y H:i:s \G\M\T";
+    /** Date/time format for DB operations */
+    const SQL_DTS = "Y-m-d H:i:s";
+    /** Format of log-file name. */
+    const LOG_DTS = "Y-m-d_H-i-s";
+    /** Format of date/time in RSS-feeds. */
     const RSS_DTS = "ddd, dd MMM yyyy HH:mm:ss zzz";
 
     /**

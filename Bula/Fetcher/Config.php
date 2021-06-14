@@ -26,6 +26,8 @@ class Config
     const API_FORMAT = "Json";
     /** Current API output content type (can be "application/json" or "text/xml" for now) */
     const API_CONTENT = "application/json";
+    /** File prefix for constructing real path */
+    const FILE_PREFIX = "";
 
     /** Security code */
     const SECURITY_CODE = "1234";
@@ -54,13 +56,6 @@ class Config
     const DB_HOME_ROWS = 15;
     /** Default number of rows on "Items" page */
     const DB_ITEMS_ROWS = 25;
-    /** Date/time format for processing GMT date/times */
-    const GMT_DTS = "d-M-Y H:i \G\M\T";
-    /** Date/time format for RSS operations */
-    const XML_DTS = "D, d M Y H:i:s \G\M\T";
-    /** Date/time format for DB operations */
-    const SQL_DTS = "Y-m-d H:i:s";
-    const LOG_DTS = "Y-m-d_H-i-s";
 
     // Fill these fields by your site data
     /** Site name */

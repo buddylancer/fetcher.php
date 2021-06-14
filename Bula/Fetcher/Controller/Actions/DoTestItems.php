@@ -13,7 +13,9 @@ use Bula\Objects\Response;
 use Bula\Objects\DateTimes;
 use Bula\Objects\Hashtable;
 use Bula\Model\DataSet;
+
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 use Bula\Fetcher\Model\DOTime;
 use Bula\Fetcher\Controller\Page;
 use Bula\Fetcher\Controller\BOFetcher;
@@ -26,6 +28,7 @@ require_once("Bula/Fetcher/Controller/BOFetcher.php");
  */
 class DoTestItems extends Page
 {
+
     private static $TOP = null;
     private static $BOTTOM = null;
 
@@ -68,16 +71,16 @@ class DoTestItems extends Page
         else
             $insertRequired = true;
 
-        Response::write(self::$TOP);
+        $this->context->Response->write(self::$TOP);
         if ($updateRequired || $insertRequired) {
-            Response::write(CAT("Fetching new items... Please wait...<br/>", EOL));
+            $this->context->Response->write(CAT("Fetching new items... Please wait...<br/>", EOL));
 
             $boFetcher = new BOFetcher($this->context);
             $boFetcher->fetchFromSources();
 
             $doTime = new DOTime(); // Need for DB reopen
             $fields = new Hashtable();
-            $fields->put("d_Time", DateTimes::format(Config::SQL_DTS, DateTimes::getTime()));
+            $fields->put("d_Time", DateTimes::format(DateTimes::SQL_DTS, DateTimes::getTime()));
             if ($insertRequired) {
                 $fields->put("i_Id", 1);
                 $doTime->insert($fields);
@@ -86,8 +89,8 @@ class DoTestItems extends Page
                 $doTime->updateById(1, $fields);
         }
         else
-            Response::write(CAT("<hr/>Fetch is not required<br/>", EOL));
-        Response::write(self::$BOTTOM);
+            $this->context->Response->write(CAT("<hr/>Fetch is not required<br/>", EOL));
+        $this->context->Response->write(self::$BOTTOM);
     }
 }
 DoTestItems::initialize();

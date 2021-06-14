@@ -10,6 +10,7 @@
 namespace Bula\Objects;
 
 use Bula\Objects\ArrayList;
+use Bula\Objects\Enumerator;
 use Bula\Objects\Hashtable;
 
 /**
@@ -56,7 +57,8 @@ class Arrays
             return $input;
 
         $output = $input->cloneMe();
-        $keys = $extra->keys();
+        $keys =
+            $extra->keys();
         while ($keys->moveNext()) {
             $key = $keys->current();
             $output->put($key, $extra->get($key));
@@ -160,6 +162,7 @@ class Arrays
         $output = new Hashtable();
         if (SIZE($input) == 0)
             return $output;
+
         $keys = Arrays::getArrayKeys($input);
         while ($keys->moveNext()) {
             $key = $keys->current();
@@ -175,7 +178,7 @@ class Arrays
      */
     public static function toArray($input)
     {
-        $result = self::newArray($input->count());
+        $result = self::newArray($input->size());
         $keys = $input->keys();
         while ($keys->moveNext()) {
             $key = $keys->current();

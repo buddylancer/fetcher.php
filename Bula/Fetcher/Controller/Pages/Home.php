@@ -10,6 +10,7 @@
 namespace Bula\Fetcher\Controller\Pages;
 
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 use Bula\Objects\ArrayList;
 use Bula\Objects\Hashtable;
 use Bula\Model\DataSet;

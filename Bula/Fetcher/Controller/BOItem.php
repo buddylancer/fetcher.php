@@ -12,6 +12,7 @@ namespace Bula\Fetcher\Controller;
 use Bula\Fetcher\Config;
 
 use Bula\Objects\ArrayList;
+use Bula\Objects\Arrays;
 use Bula\Objects\Hashtable;
 use Bula\Objects\Regex;
 use Bula\Objects\RegexOptions;
@@ -271,7 +272,7 @@ class BOItem
             }
             if ($includeFlag) {
                 $categoryTags = ADD($categoryTags, $name);
-            }
+             }
         }
         if (SIZE($categoryTags) == 0)
             return;
@@ -316,7 +317,7 @@ class BOItem
      *    will become
      * "officials-fireworks-spark-utah-wildfire-evacuations"
      */
-    public function getUrlTitle($translit = false)
+    public function getUrlTitle($translit= false)
     {
         $title = Strings::addSlashes($this->title);
 

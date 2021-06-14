@@ -166,7 +166,7 @@ class ArrayList extends Collection
      * Get size of the list.
      * @return Integer
      */
-    public function count()
+    public function size()
     {
         return SIZE($this->collection) - 1;
     }

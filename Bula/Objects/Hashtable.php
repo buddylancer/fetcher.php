@@ -120,7 +120,7 @@ class Hashtable extends Collection
      * Get size of collection.
      * @return Integer
      */
-    public function count()
+    public function size()
     {
         return sizeof($this->collection);
     }

@@ -10,6 +10,7 @@
 namespace Bula\Fetcher\Controller\Pages;
 
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 use Bula\Objects\Request;
 use Bula\Objects\ArrayList;
 use Bula\Objects\Hashtable;
@@ -32,13 +33,13 @@ class FilterItems extends Page
         $doSource = new DOSource();
 
         $source = null;
-        if (Request::contains("source"))
-            $source = Request::get("source");
+        if ($this->context->Request->contains("source"))
+            $source = $this->context->Request->get("source");
 
         $prepare = new Hashtable();
         if ($this->context->FineUrls)
             $prepare->put("[#Fine_Urls]", 1);
-        $prepare->put("[#Selected]", BLANK($source) ? " selected=\"selected\" " : null);
+        $prepare->put("[#Selected]", BLANK($source) ? " selected=\"selected\" " : "");
         $dsSources = null;
         //TODO -- This can be too long on big databases... Switch off counters for now.
         $useCounters = true;

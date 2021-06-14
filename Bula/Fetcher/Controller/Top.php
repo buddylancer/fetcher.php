@@ -12,6 +12,7 @@ namespace Bula\Fetcher\Controller;
 use Bula\Objects\Hashtable;
 
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 use Bula\Objects\TString;
 use Bula\Objects\DateTimes;
 
@@ -33,7 +34,7 @@ class Top extends Page
         if ($this->context->TestRun)
             $prepare->put("[#Date]", "28-Jun-2020 16:49 GMT");
         else
-            $prepare->put("[#Date]", Util::showTime(DateTimes::gmtFormat(Config::SQL_DTS)));
+            $prepare->put("[#Date]", Util::showTime(DateTimes::gmtFormat(DateTimes::SQL_DTS)));
 
         $this->write("top", $prepare);
     }

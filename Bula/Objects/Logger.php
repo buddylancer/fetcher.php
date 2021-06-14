@@ -20,18 +20,31 @@ use Bula\Objects\TString;
 class Logger
 {
     private $fileName = null;
+    private $response = null;
 
     /**
      * Initialize logging into file.
      * @param TString $filename Log file name.
      */
-    public function init($filename)
+    public function initFile($filename)
     {
+        $this->response = null;
         $this->fileName = $filename;
         if (!$filename->isEmpty()) {
             if (Helper::fileExists($filename))
                 Helper::deleteFile($filename);
         }
+    }
+
+    /**
+     * Initialize logging into file.
+     * @param TString $filename Log file name.
+     */
+    public function initResponse($response)
+    {
+        $this->fileName = null;
+        if (!NUL($response))
+            $this->response = $response;
     }
 
     /**
@@ -42,7 +55,7 @@ class Logger
     {
         if ($this->fileName == null) {
             if ($text instanceof TString) $buffer = $buffer->getValue();
-            Response::write($text);
+            $this->response->write($text);
             return;
         }
         if (Helper::fileExists($this->fileName))

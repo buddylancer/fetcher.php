@@ -9,8 +9,10 @@
  */
 namespace Bula\Objects;
 
+use Bula\Internal;
 use Bula\Objects\ArrayList;
 use Bula\Objects\TString;
+use Bula\Objects\Hashtable;
 
 require_once("TString.php");
 
@@ -117,7 +119,7 @@ class Strings
             foreach ($args as $arg) {
                 if ($arg == null)
                     continue;
-                $output = $output->concat($arg);
+                $output->concat($arg);
             }
         }
         return $output;

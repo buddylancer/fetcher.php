@@ -10,6 +10,7 @@
 namespace Bula\Fetcher\Controller;
 
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 use Bula\Objects\TString;
 use Bula\Objects\ArrayList;
 use Bula\Objects\Hashtable;
@@ -57,7 +58,7 @@ class Menu extends Page
         }
 
         $menuItems = new ArrayList();
-        for ($n = 0; $n < $publicPages->count(); $n += 2) {
+        for ($n = 0; $n < $publicPages->size(); $n += 2) {
             $row = new Hashtable();
             $title = $publicPages->get($n+0);
             $page = $publicPages->get($n+1);

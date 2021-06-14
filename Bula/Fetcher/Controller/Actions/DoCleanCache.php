@@ -9,11 +9,18 @@
  */
 namespace Bula\Fetcher\Controller\Actions;
 
+use Bula\Objects\DateTimes;
+use Bula\Objects\Enumerator;
 use Bula\Objects\Helper;
 use Bula\Objects\Logger;
+use Bula\Objects\Request;
 use Bula\Objects\Strings;
 use Bula\Objects\TString;
+
+use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 use Bula\Fetcher\Controller\Page;
+use Bula\Fetcher\Controller\Util;
 
 /**
  * Action for cleaning cache.
@@ -25,12 +32,14 @@ class DoCleanCache extends Page
     public function execute()
     {
         $oLogger = new Logger();
-        $log = Request::getOptionalInteger("log");
+        $log = $this->context->Request->getOptionalInteger("log");
         if (!NUL($log) && $log != -99999) {
             $filenameTemplate = new TString("C:/Temp/Log_{0}_{1}.html");
-            $filename = Util::formatString($filenameTemplate, ARR("do_clean_cache", DateTimes::format(Config::SQL_DTS)));
-            $oLogger->init($filename);
+            $filename = Util::formatString($filenameTemplate, ARR("do_clean_cache", DateTimes::format(DateTimes::SQL_DTS)));
+            $oLogger->initFile($filename);
         }
+        else
+            $oLogger->initResponse($this->context->Response);
         $this->cleanCache($oLogger);
     }
 

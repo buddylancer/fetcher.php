@@ -12,6 +12,7 @@ namespace Bula\Fetcher\Controller;
 use Bula\Objects\Hashtable;
 
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 use Bula\Objects\TString;
 use Bula\Objects\DateTimes;
 
@@ -50,7 +51,23 @@ abstract class Page
         $engine->write($engine->showTemplate($template, $prepare));
     }
 
-    public function getLink($page, $ordinaryUrl, $fineUrl, $extraData = null)
+    /**
+     * Get link for the page.
+     * @param TString $page Page to get link for.
+     * @param TString $ordinaryUrl Url portion of full Url.
+     * @param TString $fineUrl Url portion of fine Url.
+     * @return TString Resulting link.
+     */
+
+    /**
+     * Get link for the page.
+     * @param TString $page Page to get link for.
+     * @param TString $ordinaryUrl Url portion of full Url.
+     * @param TString $fineUrl Url portion of fine Url.
+     * @param TString $extraData Optional prefix.
+     * @return TString Resulting link.
+     */
+    public function getLink($page, $ordinaryUrl, $fineUrl, $extraData= null)
     {
         if (!BLANK($this->context->Api))
             return $this->getAbsoluteLink($page, $ordinaryUrl, $fineUrl, $extraData);
@@ -58,7 +75,23 @@ abstract class Page
             return $this->getRelativeLink($page, $ordinaryUrl, $fineUrl, $extraData);
     }
 
-    public function getRelativeLink($page, $ordinaryUrl, $fineUrl, $extraData = null)
+    /**
+     * Get relative link for the page.
+     * @param TString $page Page to get link for.
+     * @param TString $ordinaryUrl Url portion of full Url.
+     * @param TString $fineUrl Url portion of fine Url.
+     * @return TString Resulting relative link.
+     */
+
+    /**
+     * Get relative link for the page.
+     * @param TString $page Page to get link for.
+     * @param TString $ordinaryUrl Url portion of full Url.
+     * @param TString $fineUrl Url portion of fine Url.
+     * @param TString $extraData Optional prefix.
+     * @return TString Resulting relative link.
+     */
+     public function getRelativeLink($page, $ordinaryUrl, $fineUrl, $extraData= null)
     {
         $link = CAT(
             Config::TOP_DIR,
@@ -67,16 +100,53 @@ abstract class Page
         return $link;
     }
 
-    public function getAbsoluteLink($page, $ordinaryUrl, $fineUrl, $extraData = null)
+    /**
+     * Get absolute link for the page.
+     * @param TString $page Page to get link for.
+     * @param TString $ordinaryUrl Url portion of full Url.
+     * @param TString $fineUrl Url portion of fine Url.
+     * @return TString Resulting absolute link.
+     */
+
+    /**
+     * Get absolute link for the page.
+     * @param TString $page Page to get link for.
+     * @param TString $ordinaryUrl Url portion of full Url.
+     * @param TString $fineUrl Url portion of fine Url.
+     * @param TString $extraData Optional prefix.
+     * @return TString Resulting absolute link.
+     */
+     public function getAbsoluteLink($page, $ordinaryUrl, $fineUrl, $extraData= null)
     {
         return CAT($this->context->Site, $this->getRelativeLink($page, $ordinaryUrl, $fineUrl, $extraData));
     }
 
-    public function appendLink($link, $ordinaryUrl, $fineUrl, $extraData = null)
+    /**
+     * Append info to a link.
+     * @param TString $link Link to append info to.
+     * @param TString $ordinaryUrl Url portion of full Url.
+     * @param TString $fineUrl Url portion of fine Url.
+     * @return TString Resulting link.
+     */
+
+    /**
+     * Append info to a link.
+     * @param TString $link Link to append info to.
+     * @param TString $ordinaryUrl Url portion of full Url.
+     * @param TString $fineUrl Url portion of fine Url.
+     * @param TString $extraData Optional prefix.
+     * @return TString Resulting link.
+     */
+    public function appendLink($link, $ordinaryUrl, $fineUrl, $extraData= null)
     {
         return CAT($link, ($this->context->FineUrls ? $fineUrl : $this->quoteLink($ordinaryUrl)), $extraData);
     }
 
+    /**
+     * Quote (escape special characters) a link.
+     * @param TString $link Source link.
+     * @return TString Target (quoted) link.
+     */
     public function quoteLink($link)
     {
         return !BLANK($this->context->Api) && EQ(Config::API_FORMAT, "Xml") ? Util::safe($link) : $link;

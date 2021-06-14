@@ -10,6 +10,7 @@
 namespace Bula\Fetcher\Controller\Actions;
 
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 
 use Bula\Objects\Hashtable;
 use Bula\Objects\Request;
@@ -32,10 +33,10 @@ class DoRedirectItem extends DoRedirect
     {
         $errorMessage = null;
         $linkToRedirect = null;
-        if (!Request::contains("id"))
+        if (!$this->context->Request->contains("id"))
             $errorMessage = "Item ID is required!";
         else {
-            $id = Request::get("id");
+            $id = $this->context->Request->get("id");
             if (!Request::isInteger($id) || INT($id) <= 0)
                 $errorMessage = "Incorrect item ID!";
             else {

@@ -12,22 +12,21 @@ namespace Bula\Fetcher\Controller;
 use Bula\Internal;
 
 use Bula\Fetcher\Config;
-
-use Bula\Objects\Request;
+use Bula\Fetcher\Context;
 
 use Bula\Objects\Arrays;
 use Bula\Objects\DateTimes;
-use Bula\Objects\Helper;
-use Bula\Objects\TString;
-use Bula\Objects\Strings;
-
 use Bula\Objects\Enumerator;
 use Bula\Objects\Hashtable;
+use Bula\Objects\Helper;
+use Bula\Objects\Logger;
+use Bula\Objects\Request;
+use Bula\Objects\Strings;
+use Bula\Objects\TString;
 
 use Bula\Model\DBConfig;
 use Bula\Model\DataSet;
 
-use Bula\Objects\Logger;
 use Bula\Fetcher\Model\DOCategory;
 use Bula\Fetcher\Model\DOSource;
 use Bula\Fetcher\Model\DOItem;
@@ -74,12 +73,14 @@ class BOFetcher
     {
         $this->oLogger = new Logger();
         $this->context->set("Log_Object", $this->oLogger);
-        $log = Request::getOptionalInteger("log");
+        $log = $this->context->Request->getOptionalInteger("log");
         if (!NUL($log) && $log != -99999) { //TODO
             $filenameTemplate = new TString(CAT($this->context->LocalRoot, "local/logs/{0}_{1}.html"));
-            $filename = Util::formatString($filenameTemplate, ARR("fetch_items", DateTimes::format(Config::LOG_DTS)));
-            $this->oLogger->init($filename);
+            $filename = Util::formatString($filenameTemplate, ARR("fetch_items", DateTimes::format(DateTimes::LOG_DTS)));
+            $this->oLogger->initFile($filename);
         }
+        else
+            $this->oLogger->initResponse($this->context->Response);
     }
 
     /**
@@ -103,7 +104,7 @@ class BOFetcher
             return null;
 
         $source = $oSource->get("s_SourceName");
-        if (Request::contains("m") && !$source->equals(Request::get("m")))
+        if ($this->context->Request->contains("m") && !$source->equals($this->context->Request->get("m")))
             return null;
 
         $this->oLogger->output(CAT("<br/>", EOL, "Started "));
@@ -140,8 +141,8 @@ class BOFetcher
         $sourceName = $oSource->get("s_SourceName");
         $sourceId = INT($oSource->get("i_SourceId"));
         $boItem = new BOItem($sourceName, $item);
-        $pubdate = $item->get("pubdate");
-        $date = DateTimes::format(Config::SQL_DTS, DateTimes::fromRss($pubdate));
+        $pubDate = $item->get("pubdate");
+        $date = DateTimes::format(DateTimes::SQL_DTS, DateTimes::fromRss($pubDate));
 
         // Check whether item with the same link exists already
         $doItem = new DOItem();

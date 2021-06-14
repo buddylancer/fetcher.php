@@ -10,6 +10,7 @@
 namespace Bula\Fetcher\Controller\Pages;
 
 use Bula\Fetcher\Config;
+use Bula\Fetcher\Context;
 use Bula\Objects\Request;
 use Bula\Objects\Hashtable;
 use Bula\Model\DataSet;
@@ -33,12 +34,12 @@ class ViewItem extends Page
     public function check()
     {
         $prepare = new Hashtable();
-        if (!Request::contains("id")) {
+        if (!$this->context->Request->contains("id")) {
             $prepare->put("[#ErrMessage]", "Item ID is required!");
             $this->write("error", $prepare);
             return null;
         }
-        $id = Request::get("id");
+        $id = $this->context->Request->get("id");
         if (!Request::isInteger($id)) {
             $prepare->put("[#ErrMessage]", "Item ID must be positive integer!");
             $this->write("error", $prepare);
