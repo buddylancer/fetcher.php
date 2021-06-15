@@ -22,10 +22,10 @@ set code=1234
 
 set input=input
 set output=output
-set origin=origin
+set origin_folder=origin
 
 if not exist %output% mkdir %output%
-if not exist %origin% mkdir %origin%
+if not exist %origin_folder% mkdir %origin_folder%
 
 set log=%output%\log.txt
 echo > %log%
@@ -86,7 +86,7 @@ call 99_compare.bat log.txt
 
 rem Clean variables
 set log=
-set origin=
+set origin_folder=
 set output=
 set input=
 set wget=

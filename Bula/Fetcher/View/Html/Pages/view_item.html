@@ -20,149 +20,165 @@
                         </div>
                     </td>
                 </tr>
-                <!--#if ![#Is_Mobile]-->
-                <tr style="height:28pt">
-                    <td class="name" style="width:25%; vertical-align:middle">
-                <!--#end if-->
-                <!--#if [#Is_Mobile]-->
+<!--#if [#Show_Images]-->
                 <tr>
-                    <td class="name" style="vertical-align:middle">
-                <!--#end if-->
-                        [#Name_Item] title:
+                    <!--#if ![#Is_Mobile]-->
+                    <td width="5%">
+                        <a href="[#SourceLink]"><img src="Images/[#SourceName].gif" title="[#SourceName]" /></a>
                     </td>
-                    <!--#if [#Is_Mobile]-->
-                    </tr><tr>
                     <!--#end if-->
-                    <td class="big" style="vertical-align:middle">
-                        [#Title]
-                        <input type="hidden" name="s_Title" value="[#InputTitle]" />
-                    </td>
-                </tr>
 
-                <tr>
-                    <td class="name">
-                        Posted by:
-                    </td>
-                <!--#if [#Is_Mobile]-->
-                </tr>
-                <tr>
-                <!--#end if-->
-                    <td class="value">
-                        External item from
-                        <a style="font-weight:bold" href="[#RedirectSource]">
-                            [#SourceName]</a>
-                    </td>
-                </tr>
+                    <td width="95%">
+                        <table class="m" cellpadding="0" style="width:100%; border:0; border-spacing:0">
+<!--#end if-->
+                            <!--#if ![#Is_Mobile]-->
+                            <tr style="height:28pt">
+                                <td class="name" style="width:25%; vertical-align:middle">
+                            <!--#end if-->
+                            <!--#if [#Is_Mobile]-->
+                            <tr>
+                                <td class="name" style="vertical-align:middle">
+                            <!--#end if-->
+                                    [#Name_Item] title:
+                                </td>
+                                <!--#if [#Is_Mobile]-->
+                                </tr><tr>
+                                <!--#end if-->
+                                <td class="big" style="vertical-align:middle">
+                                    [#Title]
+                                    <input type="hidden" name="s_Title" value="[#InputTitle]" />
+                                </td>
+                            </tr>
 
-                <tr>
-                    <td class="name">
-                        Published:
-                    </td>
-                <!--#if [#Is_Mobile]-->
-                </tr>
-                <tr>
-                <!--#end if-->
-                    <td class="value">
-                        [#Date]
-                    </td>
-                </tr>
+                            <tr>
+                                <td class="name">
+                                    Posted by:
+                                </td>
+                            <!--#if [#Is_Mobile]-->
+                            </tr>
+                            <tr>
+                            <!--#end if-->
+                                <td class="value">
+                                    External item from
+                                    <a style="font-weight:bold" href="[#RedirectSource]">
+                                        [#SourceName]</a>
+                                </td>
+                            </tr>
 
-                <tr>
-                    <td class="name">
-                        [#Name_Creator]:
-                    </td>
-                <!--#if [#Is_Mobile]-->
-                </tr>
-                <tr>
-                <!--#end if-->
-                    <td class="value">
-                        [#Creator]
-                    </td>
-                </tr>
+                            <tr>
+                                <td class="name">
+                                    Published:
+                                </td>
+                            <!--#if [#Is_Mobile]-->
+                            </tr>
+                            <tr>
+                            <!--#end if-->
+                                <td class="value">
+                                    [#Date]
+                                </td>
+                            </tr>
 
-                <tr>
-                    <td class="name">
-                        Description:
-                    </td>
-                <!--#if [#Is_Mobile]-->
-                </tr>
-                <tr>
-                <!--#end if-->
-                    <td class="value">
-                        [#Description]
-                    </td>
-                </tr>
+                            <tr>
+                                <td class="name">
+                                    [#Name_Creator]:
+                                </td>
+                            <!--#if [#Is_Mobile]-->
+                            </tr>
+                            <tr>
+                            <!--#end if-->
+                                <td class="value">
+                                    [#Creator]
+                                </td>
+                            </tr>
 
-                <tr>
-                    <td class="name">
-                        Item ID:
-                    </td>
-                <!--#if [#Is_Mobile]-->
-                </tr>
-                <tr>
-                <!--#end if-->
-                    <td class="value">
-                        [#ItemID]
-                    </td>
-                </tr>
+                            <tr>
+                                <td class="name">
+                                    Description:
+                                </td>
+                            <!--#if [#Is_Mobile]-->
+                            </tr>
+                            <tr>
+                            <!--#end if-->
+                                <td class="value">
+                                    [#Description]
+                                </td>
+                            </tr>
 
-                <!--#if [#Category]-->
-                <tr>
-                    <td class="name">
-                        [#Name_Categories]:
-                    </td>
-                <!--#if [#Is_Mobile]-->
-                </tr>
-                <tr>
-                <!--#end if-->
-                    <td class="value">
-                        [#Category]
-                    </td>
-                </tr>
-                <!--#end if-->
+                            <tr>
+                                <td class="name">
+                                    Item ID:
+                                </td>
+                            <!--#if [#Is_Mobile]-->
+                            </tr>
+                            <tr>
+                            <!--#end if-->
+                                <td class="value">
+                                    [#ItemID]
+                                </td>
+                            </tr>
 
-                <!--#if [#Custom2]-->
-                <tr>
-                    <td class="name">
-                        [#Name_Custom2]:
-                    </td>
-                <!--#if [#Is_Mobile]-->
-                </tr>
-                <tr>
-                <!--#end if-->
-                    <td class="value">
-                        [#Custom2]
-                    </td>
-                </tr>
-                <!--#end if-->
+                            <!--#if [#Category]-->
+                            <tr>
+                                <td class="name">
+                                    [#Name_Categories]:
+                                </td>
+                            <!--#if [#Is_Mobile]-->
+                            </tr>
+                            <tr>
+                            <!--#end if-->
+                                <td class="value">
+                                    [#Category]
+                                </td>
+                            </tr>
+                            <!--#end if-->
 
-                <!--#if [#Custom1]-->
-                <tr>
-                    <td class="name">
-                        [#Name_Custom1]:
-                    </td>
-                <!--#if [#Is_Mobile]-->
-                </tr>
-                <tr>
-                <!--#end if-->
-                    <td class="value">
-                        [#Custom1]
-                    </td>
-                </tr>
-                <!--#end if-->
+                            <!--#if [#Custom2]-->
+                            <tr>
+                                <td class="name">
+                                    [#Name_Custom2]:
+                                </td>
+                            <!--#if [#Is_Mobile]-->
+                            </tr>
+                            <tr>
+                            <!--#end if-->
+                                <td class="value">
+                                    [#Custom2]
+                                </td>
+                            </tr>
+                            <!--#end if-->
 
-                <!--#if [#Share]-->
-                <tr>
-                    <td align="center" colspan="2" style="font-size:larger">
-                        <div style="text-align:right; padding-top:8pt; height:24pt;">
-                            <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
-                            <!--div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="button" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,moimir,lj"></div-->
-                            <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="button" data-yashareQuickServices=""></div>
-                        </div>
+                            <!--#if [#Custom1]-->
+                            <tr>
+                                <td class="name">
+                                    [#Name_Custom1]:
+                                </td>
+                            <!--#if [#Is_Mobile]-->
+                            </tr>
+                            <tr>
+                            <!--#end if-->
+                                <td class="value">
+                                    [#Custom1]
+                                </td>
+                            </tr>
+                            <!--#end if-->
+
+                            <!--#if [#Share]-->
+                            <tr>
+                                <td align="center" colspan="2" style="font-size:larger">
+                                    <div style="text-align:right; padding-top:8pt; height:24pt;">
+                                        <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+                                        <!--div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="button" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,moimir,lj"></div-->
+                                        <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="button" data-yashareQuickServices=""></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!--#end if-->
+
+<!--#if [#Show_Images]-->
+                        </table>
                     </td>
                 </tr>
-                <!--#end if-->
-
+<!--#end if-->                
                 <tr>
                     <td colspan="2" style="text-align:center; font-size:larger;">
                         <div class="view">

@@ -47,6 +47,8 @@ class Home extends ItemsBase
         $doItem = new DOItem();
 
         $prepare->put("[#BrowseItemsLink]", $this->getLink(Config::INDEX_PAGE, "?p=", null, "items"));
+        if (Config::SHOW_IMAGES)
+            $prepare->put("[#Show_Images]", 1);
 
         $source = null;
         $search = null;

@@ -14,7 +14,13 @@
         <td>
             <table class="m" cellpadding="2" style="width:100%; border:0; border-spacing:0">
                 <tr class="column">
+                    <!--#if [#Show_Images]-->
+                    <td style="width:5%; text-align:center"></td>
+                    <td style="width:65%; text-align:center">[#Name_Item]</td>
+                    <!--#end if-->
+                    <!--#if ![#Show_Images]-->
                     <td style="width:70%; text-align:left">[#Name_Item]</td>
+                    <!--#end if-->
                     <td style="width:18%; text-align:center">[#Name_Creator]</td>
                     <td style="width:12%; text-align:center">Date</td>
                 </tr>
@@ -26,13 +32,18 @@
                 <!--#if ![#Shade]-->
                 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
                 <!--#end if-->
+                    <!--#if [#Show_Images]-->
+                    <td class="item" style="text-align:center">
+                        <a href="[#SourceLink]"><img src="Images/[#SourceName].gif" title="[#SourceName]" /></a>
+                    </td>
+                    <!--#end if-->
                     <td class="item" style="vertical-align:middle; height:32pt">
                         <strong>
-                            <a style="font-size:larger" href="[#Link]" title="From [#Source]">
+                            <a style="font-size:larger" href="[#Link]" title="From [#SourceName]">
                                 [#Title]</a>
                         </strong>
                         <!--#if [#Show_From]==1-->
-                            [<a href="[#Top_Dir]action.php?p=do_redirect_source&amp;source=[#Source]">[#Source]</a>]
+                            [<a href="[#Top_Dir]action.php?p=do_redirect_source&amp;source=[#SourceName]">[#Source]</a>]
                         <!--#end if-->
                         <!--#if [#Category]-->
                             <br/><strong>[#Name_Categories]</strong>: [#Category]

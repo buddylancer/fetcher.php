@@ -4,7 +4,7 @@
     <Title>[#Title]</Title>
     <Date>[#Date]</Date>
     <Link>[#Link]</Link>
-    <From>[#Source]</From>
+    <From>[#SourceName]</From>
     <!--#if [#Category]-->
     <[#Name_Categories]>[#Category]</[#Name_Categories]>
     <!--#end if-->

@@ -41,6 +41,8 @@ class Sources extends ItemsBase
     public function execute()
     {
         $prepare = new Hashtable();
+        if (Config::SHOW_IMAGES)
+            $prepare->put("[#Show_Images]", 1);
 
         $doSource = new DOSource();
         $doItem = new DOItem();
@@ -53,6 +55,7 @@ class Sources extends ItemsBase
             $sourceName = $oSource->get("s_SourceName");
 
             $sourceRow = new Hashtable();
+            $sourceRow->put("[#ColSpan]", Config::SHOW_IMAGES ? 4 : 3);
             $sourceRow->put("[#SourceName]", $sourceName);
             //$sourceRow["[#RedirectSource]"] = Config::TOP_DIR .
             //    (Config::FINE_URLS ? "redirect/source/" : "action.php?p=do_redirect_source&source=") .
@@ -64,7 +67,10 @@ class Sources extends ItemsBase
             $itemCount = 0;
             for ($ni = 0; $ni < $dsItems->getSize(); $ni++) {
                 $oItem = $dsItems->getRow($ni);
-                $items->add(parent::fillItemRow($oItem, $doItem->getIdField(), $itemCount));
+                $item = parent::fillItemRow($oItem, $doItem->getIdField(), $itemCount);
+                if (Config::SHOW_IMAGES)
+                    $item->put("[#Show_Images]", 1);
+                $items->add($item);
                 $itemCount++;
             }
             $sourceRow->put("[#Items]", $items);

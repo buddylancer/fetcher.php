@@ -80,12 +80,15 @@ class ViewItem extends Page
             $leftWidth = "20%";
 
         $idField = $doItem->getIdField();
+        if (Config::SHOW_IMAGES)
+            $prepare->put("[#Show_Images]", 1);
         $prepare->put("[#RedirectLink]", $this->getLink(Config::ACTION_PAGE, "?p=do_redirect_item&id=", "redirect/item/", $oItem->get($idField)));
         $prepare->put("[#LeftWidth]", $leftWidth);
         $prepare->put("[#Title]", Util::show($title));
         $prepare->put("[#InputTitle]", Util::safe($title));
         $prepare->put("[#RedirectSource]", $this->getLink(Config::ACTION_PAGE, "?p=do_redirect_source&source=", "redirect/source/", $sourceName));
         $prepare->put("[#SourceName]", $sourceName);
+        $prepare->put("[#SourceLink]", $this->getLink(Config::INDEX_PAGE, "?p=items&source=", "items/source/", $sourceName));
         $prepare->put("[#Date]", Util::showTime($oItem->get("d_Date")));
         $prepare->put("[#Creator]", $oItem->get("s_Creator"));
         $prepare->put("[#Description]", $oItem->containsKey("t_Description") ? Util::show($oItem->get("t_Description")) : "");

@@ -143,6 +143,9 @@ class Items extends ItemsBase
             return;
         }
 
+        if (Config::SHOW_IMAGES)
+            $prepare->put("[#Show_Images]", 1);
+
         // Uncomment to enable filtering by source and/or category
         $prepare->put("[#FilterItems]", $engine->includeTemplate("Pages/FilterItems"));
 

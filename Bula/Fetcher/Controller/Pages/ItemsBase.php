@@ -90,8 +90,12 @@ abstract class ItemsBase extends Page
 
         if (Config::SHOW_FROM)
             $row->put("[#Show_From]", 1);
-        $row->put("[#Source]", $oItem->get("s_SourceName"));
+        if (Config::SHOW_IMAGES)
+            $row->put("[#Show_Images]", 1);
+        $sourceName = $oItem->get("s_SourceName");
+        $row->put("[#SourceName]", $sourceName);
         $row->put("[#Title]", Util::show($oItem->get("s_Title")));
+        $row->put("[#SourceLink]", $this->getLink(Config::INDEX_PAGE, "?p=items&source=", "items/source/", $sourceName));
 
         if ($this->context->contains("Name_Category") && $oItem->containsKey("s_Category") && $oItem->get("s_Category") != "")
             $row->put("[#Category]", $oItem->get("s_Category"));

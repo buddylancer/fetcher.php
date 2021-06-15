@@ -8,19 +8,19 @@ if "%1"=="rest" goto :REST
 :WEBSITE
 set site=%website%
 set output=output
-set origin=origin
+set origin=%origin_folder%
 goto :CHECK_FOLDERS
 
 :MOBILE
 set site=%mobile%
 set output=output\mobile
-set origin=origin\mobile
+set origin=%origin_folder%\mobile
 goto :CHECK_FOLDERS
 
 :REST
 set site=%website%
 set output=output\rest
-set origin=origin\rest
+set origin=%origin_folder%\rest
 goto :CHECK_FOLDERS
 
 :CHECK_FOLDERS

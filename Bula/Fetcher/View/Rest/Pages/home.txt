@@ -4,7 +4,7 @@
     "[#Name_Item]" : "[#Title]",
     "Date" : "[#Date]",
     "Link" : "[#Link]",
-    "From" : "[#Source]",
+    "From" : "[#SourceName]",
     <!--#if [#Category]-->
     "[#Name_Categories]" : "[#Category]",
     <!--#end if-->

@@ -9,7 +9,7 @@ rem /item/1[/title/something]
 set folder=6_view
 set full_api=?
 set fine_api=
-if "%1"=="rest" set full_api=?api=Rest&
+if "%1"=="rest" set full_api=?api=rest&
 if "%1"=="rest" set fine_api=api/
 
 call 97_working.bat %1

@@ -208,7 +208,16 @@ class Strings
      */
     public static function replaceInTemplate($template, $hash)
     {
-        return $content = strtr($template, Arrays::toArray($hash));
+
+        $hash2 = Arrays::newHashtable();
+        $keys = $hash->keys();
+        while ($keys->nextElement()) {
+            $key = $keys->current;
+            $value = $hash->get($key);
+            if ($value instanceof TString || is_integer($value) || is_string($value))
+                $hash2->put($key, $value);
+        }
+        return strtr($template, Arrays::toArray($hash2));
 
     }
 }

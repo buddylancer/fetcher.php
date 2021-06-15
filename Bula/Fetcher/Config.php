@@ -41,6 +41,8 @@ class Config
     const CACHE_RSS = false;
     /** Show what source an item is originally from */
     const SHOW_FROM = false;
+    /** Whether to show images for sources */
+    const SHOW_IMAGES = false;
     /** Show an item or immediately redirect to external source item */
     const IMMEDIATE_REDIRECT = false;
     /** How much items to show on "Sources" page */

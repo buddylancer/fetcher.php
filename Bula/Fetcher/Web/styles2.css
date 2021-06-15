@@ -1,5 +1,5 @@
 /* Styles for mobile site */
-body, table, td { font-family:Verdanda, Arial; font-size:12pt; color:#666; }
+body, table, td { font-family:Verdanda, Arial; font-size:10pt; color:#666; }
 .center { text-align: center; }
 .left { text-align: left; }
 .right { text-align: right; }
@@ -21,8 +21,8 @@ body, table, td { font-family:Verdanda, Arial; font-size:12pt; color:#666; }
 .hover { background-color:#9f9; }
 .myshade { background-color:#efe; }
 .featured { background-color:#f99; font:bold; }
-.name { padding-right:2pt; font-weight:bold; text-align:right; vertical-align:top; }
-.value { padding-left:2pt; padding-right:2pt; text-align:left; vertical-align:top; }
+.name { padding:1pt; font-weight:bold; text-align:right; vertical-align:top; }
+.value { padding:1pt; text-align:left; vertical-align:top; }
 .big { font-size:10pt; font-weight:bold; text-align:left; vertical-align:middle; padding-left:2pt; padding-right:8pt; }
 .item { padding:4pt; }
 .view { border-style:dotted; border-color:#080; background-color:#9f9; padding:5pt; margin:0pt }
