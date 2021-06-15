@@ -1,0 +1,41 @@
+/* Styles for ordinary site */
+body, table, td { font-family:Verdanda, Arial; font-size:12pt; color:#666; }
+.center { text-align: center; }
+.left { text-align: left; }
+.right { text-align: right; }
+.top { vertical-align: top; }
+.middle { vertical-align: middle; }
+
+.out { color:#666; background-color:#fff; }
+.m { color:#666; background-color:#efe; }
+.header { height:24pt; font-size:14pt; background-color:#ada; color:#fff; font-weight:bold; text-align:center; letter-spacing:2pt; border-top:dotted 2pt #cec; border-bottom:dotted 2pt #cec; }
+.home { vertical-align:top; font-size:larger; }
+.home1 { font-size:18pt; font-weight:bold; }
+.home2 { font-size:16pt; }
+.column { font-weight:bold; background-color:#ada; text-align:center; height:24pt; border-top:dotted 2pt #ece; }
+.column td { padding:8pt; }
+.menu { height:28pt; padding:4pt; color:#080; background-color:#ada; font-size:14pt; font-weight:bold; text-align:center; letter-spacing:1pt; }
+.row { background-color:#eee; }
+.my { background-color:#efe; }
+.shade { background-color:#dfd; }
+.hover { background-color:#9f9; }
+.myshade { background-color:#efe; }
+.featured { background-color:#f99; font:bold; }
+.name { padding:2pt; padding-left:8pt; font-weight:bold; text-align:right; vertical-align:top; }
+.value { padding:2pt; padding-right:8pt; text-align:left; vertical-align:top; }
+.big { font-size:14pt; font-weight:bold; text-align:left; vertical-align:middle; padding:4pt; padding-right:8pt; }
+.item { padding:8pt; }
+.view { border-style:dotted; border-color:#080; background-color:#9f9; padding:5pt; margin:0pt }
+.red { font-weight:bold; color:red; text-align:center; }
+.green { font-weight:bold; color:green; text-align:center; }
+.blue { font-weight:bold; color:blue; text-align:center; }
+.orange { font-weight:bold; color:orange; text-align:center; }
+.black { font-weight:bold; text-align:center; }
+.error { font-weight:bold; color:red; text-align:center; }
+a:link { color:#080; text-decoration:none; }
+a:visited { color:#080; text-decoration:none; }
+a:hover { color:#f00; text-decoration:underline; }
+.header a:link { color:#fff; text-decoration:underline; }
+.header a:visited { color:#fff; text-decoration:underline; }
+.header a:hover { color:#6f6; text-decoration:none; }
+.bb { border-left:dotted 1pt #000; }

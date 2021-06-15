@@ -1,0 +1,177 @@
+
+<!-- BEGIN View/index.html -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Buddy Fetcher :: view_item :: xxx1</title>
+<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL" />
+<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in PHP/MySQL" />
+<link  rel="styleSheet" type="text/css" href="styles2.css" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+
+<body class="out" style="padding-top:1pt; padding-left:1pt;">
+<table class="out" cellpadding="0" style="border:0; width:100%; margin-left:0; margin-right:0; padding:0;">
+<tr>
+<td class="center top">
+
+<!-- BEGIN View/top.html -->
+<table class="out" style="width:100%; border:0; border-spacing:0;">
+<tr>
+<td class="left top" style="padding:2pt; white-space:nowrap;">
+<a style="font-variant:small-caps; font-size:30pt; font-weight:bold" href="/">
+<span>Buddy</span> <span class="red">Fetcher</span></a><br/>
+<strong>Latest Items</strong>
+</td>
+</tr>
+</table>
+
+<!-- END View/top.html -->
+
+</td>
+</tr>
+<tr>
+<td class="top" style="width:100%; height:100%">
+<table cellpadding="0" style="width:100%; height:100%; border-spacing:0">
+<tr>
+<td class="top">
+
+<!-- BEGIN View/menu.html -->
+<table style="width:100%; border:0; border-spacing:0;">
+<tr>
+<td class="menu center" style="padding:2pt; white-space:nowrap;">
+ <a href="/">Home</a>
+ &bull; <a href="/?p=items">Items</a>
+ &bull; <a href="#items_by_skills">By Categories</a>
+ &bull; <a href="/?p=sources">Sources</a>
+</td>
+</tr>
+</table>
+<!-- END View/menu.html -->
+
+</td>
+</tr>
+
+<tr class="m">
+<td class="top" style="height:100%">
+
+<!-- BEGIN View/error.html -->
+
+<table cellpadding="0" style="width:100%; height:100%; border-spacing:0">
+<tr>
+<td class="header">
+Error Page
+</td>
+</tr>
+
+<tr>
+<td class="m" style="text-align:center; vertical-align:top">
+<br/>
+<br/>
+<div class="red">
+Item ID must be positive integer!
+</div>
+<br/>
+<br/>
+Please, select links from menu...<br/>
+<br/>
+<br/>
+... or start from <a href="/">Home page</a>.<br/>
+<br/>
+<br/>
+</td>
+</tr>
+</table>
+<!-- END View/error.html -->
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="center">
+
+<!-- BEGIN View/bottom.html -->
+<table class="m" cellpadding="0" style="border:0; width:100%; border-spacing:0">
+<tr>
+<td class="header" colspan="3" id="items_by_skills">
+Items by Categories
+</td>
+</tr>
+
+<tr>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/?p=items&filter=AL"><strong>Alabama</strong></a><br/>
+<a href="/?p=items&filter=AK"><strong>Alaska</strong></a><br/>
+<a href="/?p=items&filter=AZ"><strong>Arizona</strong></a><br/>
+<a href="/?p=items&filter=AR"><strong>Arkansas</strong></a><br/>
+<a href="/?p=items&filter=CA"><strong>California</strong></a><br/>
+<a href="/?p=items&filter=CO"><strong>Colorado</strong></a><br/>
+<a href="/?p=items&filter=CT"><strong>Connecticut</strong></a><br/>
+<a href="/?p=items&filter=DE"><strong>Delaware</strong></a><br/>
+<a href="/?p=items&filter=FL"><strong>Florida</strong></a><br/>
+<a href="/?p=items&filter=GA"><strong>Georgia</strong></a><br/>
+<a href="/?p=items&filter=HI"><strong>Hawaii</strong></a><br/>
+<a href="/?p=items&filter=IL"><strong>Illinois</strong></a><br/>
+<a href="/?p=items&filter=IN"><strong>Indiana</strong></a><br/>
+<a href="/?p=items&filter=IA"><strong>Iowa</strong></a><br/>
+<a href="/?p=items&filter=KS"><strong>Kansas</strong></a><br/>
+<a href="/?p=items&filter=KY"><strong>Kentucky</strong></a><br/>
+<a href="/?p=items&filter=LA"><strong>Louisiana</strong></a><br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/?p=items&filter=MA"><strong>Massachusetts</strong></a><br/>
+<a href="/?p=items&filter=MI"><strong>Michigan</strong></a><br/>
+<a href="/?p=items&filter=MN"><strong>Minnesota</strong></a><br/>
+<a href="/?p=items&filter=MS"><strong>Mississippi</strong></a><br/>
+<a href="/?p=items&filter=MO"><strong>Missouri</strong></a><br/>
+<a href="/?p=items&filter=NV"><strong>Nevada</strong></a><br/>
+<a href="/?p=items&filter=NM"><strong>New Mexico</strong></a><br/>
+<a href="/?p=items&filter=NY"><strong>New York</strong></a><br/>
+<a href="/?p=items&filter=NC"><strong>North Carolina</strong></a><br/>
+<a href="/?p=items&filter=OH"><strong>Ohio</strong></a><br/>
+<a href="/?p=items&filter=OK"><strong>Oklahoma</strong></a><br/>
+<a href="/?p=items&filter=OR"><strong>Oregon</strong></a><br/>
+<a href="/?p=items&filter=TN"><strong>Tennessee</strong></a><br/>
+<a href="/?p=items&filter=TX"><strong>Texas</strong></a><br/>
+<a href="/?p=items&filter=UT"><strong>Utah</strong></a><br/>
+<a href="/?p=items&filter=VA"><strong>Virginia</strong></a><br/>
+<a href="/?p=items&filter=WA"><strong>Washington</strong></a><br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/?p=items&filter=WI"><strong>Wisconsin</strong></a><br/>
+<a href="/?p=items&filter=WY"><strong>Wyoming</strong></a><br/>
+<a href="/?p=items&filter=PR"><strong>Puerto Rico</strong></a><br/>
+<a href="/?p=items&filter=Britain"><strong>World - Britain</strong></a><br/>
+<a href="/?p=items&filter=Canada"><strong>World - Canada</strong></a><br/>
+<a href="/?p=items&filter=China"><strong>World - China</strong></a><br/>
+<a href="/?p=items&filter=Czechia"><strong>World - Czech Republic</strong></a><br/>
+<a href="/?p=items&filter=France"><strong>World - France</strong></a><br/>
+<a href="/?p=items&filter=Germany"><strong>World - Germany</strong></a><br/>
+<a href="/?p=items&filter=Iran"><strong>World - Iran</strong></a><br/>
+<a href="/?p=items&filter=Mexico"><strong>World - Mexico</strong></a><br/>
+<a href="/?p=items&filter=Netherlands"><strong>World - Netherlands</strong></a><br/>
+<a href="/?p=items&filter=Poland"><strong>World - Poland</strong></a><br/>
+<a href="/?p=items&filter=Russia"><strong>World - Russia</strong></a><br/>
+<a href="/?p=items&filter=South Korea"><strong>World - South Korea</strong></a><br/>
+<a href="/?p=items&filter=Scotland"><strong>World - Scotland</strong></a><br/>
+</td>
+</tr>
+
+</table>
+<!-- END View/bottom.html -->
+
+</td>
+</tr>
+
+<tr>
+<td class="header center middle" style="padding:4pt">
+Copyright &copy; 2020-2021 <strong><a href="/">Buddy Fetcher</a></strong><br/>
+<small>Powered by <a href="https://github.com/buddylancer/fetcher.php">Buddy Fetcher</a></small>
+</td>
+</tr>
+</table>
+</body>
+</html>
+<!-- END View/index.html -->

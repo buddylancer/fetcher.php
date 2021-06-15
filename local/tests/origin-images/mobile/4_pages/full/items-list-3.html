@@ -1,0 +1,654 @@
+
+<!-- BEGIN View/index.html -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Buddy Fetcher :: items</title>
+<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL" />
+<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in PHP/MySQL" />
+<link  rel="styleSheet" type="text/css" href="styles2.css" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+
+<body class="out" style="padding-top:1pt; padding-left:1pt;">
+<table class="out" cellpadding="0" style="border:0; width:100%; margin-left:0; margin-right:0; padding:0;">
+<tr>
+<td class="center top">
+
+<!-- BEGIN View/top.html -->
+<table class="out" style="width:100%; border:0; border-spacing:0;">
+<tr>
+<td class="left top" style="padding:2pt; white-space:nowrap;">
+<a style="font-variant:small-caps; font-size:30pt; font-weight:bold" href="/">
+<span>Buddy</span> <span class="red">Fetcher</span></a><br/>
+<strong>Latest Items</strong>
+</td>
+</tr>
+</table>
+
+<!-- END View/top.html -->
+
+</td>
+</tr>
+<tr>
+<td class="top" style="width:100%; height:100%">
+<table cellpadding="0" style="width:100%; height:100%; border-spacing:0">
+<tr>
+<td class="top">
+
+<!-- BEGIN View/menu.html -->
+<table style="width:100%; border:0; border-spacing:0;">
+<tr>
+<td class="menu center" style="padding:2pt; white-space:nowrap;">
+ <a href="/">Home</a>
+ &bull; <a href="/?p=items">Items</a>
+ &bull; <a href="#items_by_skills">By Categories</a>
+ &bull; <a href="/?p=sources">Sources</a>
+</td>
+</tr>
+</table>
+<!-- END View/menu.html -->
+
+</td>
+</tr>
+
+<tr class="m">
+<td class="top" style="height:100%">
+
+<!-- BEGIN View/Pages/items.html -->
+<table class="m" style="border:0; width:100%; border-spacing:0" cellpadding="0">
+<!-- Uncomment to enable filtering by source and/or category -->
+<tr>
+<td>
+<table style="border:0; width:100%; border-spacing:0">
+
+<!-- BEGIN View/Pages/filter_items.html -->
+<tr class="m">
+<td style="text-align:center; padding:8pt">
+<form name="page_submit">
+Filter by source:
+<br/>
+<select name="source">
+<option value="0"  selected="selected" >-- Show All --</option>
+<option value="education.usnews.com"  >
+education.usnews.com
+[47]
+</option>
+<option value="health.usnews.com"  >
+health.usnews.com
+[99]
+</option>
+<option value="money.usnews.com"  >
+money.usnews.com
+[100]
+</option>
+<option value="news.usnews.com"  >
+news.usnews.com
+[99]
+</option>
+<option value="opinion.usnews.com"  >
+opinion.usnews.com
+[100]
+</option>
+<option value="travel.usnews.com"  >
+travel.usnews.com
+[100]
+</option>
+</select>
+<!--
+Time period:
+<select name="time">
+<option value="0">-- Show All--</option>
+<option value="6">Last 6 hours</option>
+<option value="12">Last 12 hours</option>
+<option value="24">Last 24 hours</option>
+<option value="w">Last week</option>
+<option value="m">Last month</option>
+</select>
+-->
+<input type="button" value=" >> " onclick="return func_submit();"/>
+
+</form>
+<script>
+function func_submit() {
+var frm = document.forms['page_submit'];
+if (frm['source'].selectedIndex == 0) {
+window.location.assign('/?p=items');
+return false;
+}
+var source = frm['source'].options[frm['source'].selectedIndex].value;
+window.location.assign('/?p=items&source=' + source);
+return false;
+}
+</script>
+</td>
+</tr>
+<!-- END View/Pages/filter_items.html -->
+
+</table>
+</td>
+</tr>
+<!-- -->
+<tr>
+<td class="header">
+Browse Items<br/>
+<input type="hidden" name="s_Title" value="Browse Items<br/>" />
+</td>
+</tr>
+
+<tr>
+<td>
+<table cellpadding="2" style="border:0; width:100%; border-spacing:0">
+<tr class="m">
+<td colspan="3" style="text-align:center; padding:8pt" >
+Page <strong>3</strong> from <strong>22</strong>
+</td>
+</tr>
+<tr class="column">
+<td style="width:5%; text-align:center"></td>
+<td style="width:65%; text-align:center">Item</td>
+<td style="width:18%; text-align:center">Creator</td>
+<td style="width:12%; text-align:center">Published</td>
+</tr>
+
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=295&title=dustin-poirier-win-decision-over-dan-hooker-in-ufc-thriller" title="From news.usnews.com">Dustin Poirier Win Decision Over Dan Hooker in UFC Thriller</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 03:53 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=294&title=1-fatally-shot-at-breonna-taylor-protest-park-in-kentucky" title="From news.usnews.com">1 Fatally Shot at Breonna Taylor Protest Park in Kentucky</a></strong>
+<br/><strong>Categories</strong>: Kentucky
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 03:50 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=293&title=louisville-kentucky-police-say-1-dead-1-injured-in-shooting-at-park-hosting-protests-over-breonna-taylor-s-death" title="From news.usnews.com">Louisville, Kentucky, Police Say 1 Dead, 1 Injured in Shooting at Park Hosting Protests Over Breonna Taylor's Death</a></strong>
+<br/><strong>Categories</strong>: Kentucky
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 03:42 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=292&title=democrats-want-john-wayne-s-name-statue-taken-off-airport" title="From news.usnews.com">Democrats Want John Wayne's Name, Statue Taken off Airport</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 03:37 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=291&title=1-year-old-boy-killed-mom-wounded-in-chicago-shooting" title="From news.usnews.com">1-Year-Old Boy Killed, Mom Wounded in Chicago Shooting</a></strong>
+<br/><strong>Categories</strong>: Illinois
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 03:27 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=290&title=opposition-wins-historic-rerun-of-malawi-s-presidential-vote" title="From news.usnews.com">Opposition Wins Historic Rerun of Malawi's Presidential Vote</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 03:24 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=289&title=coroner-3rd-illinois-shooting-victim-dies-2-identified" title="From news.usnews.com">Coroner: 3rd Illinois Shooting Victim Dies, 2 Identified</a></strong>
+<br/><strong>Categories</strong>: Illinois
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 03:08 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=288&title=the-latest-south-korea-still-coping-with-new-virus-clusters" title="From news.usnews.com">The Latest: South Korea Still Coping With New Virus Clusters</a></strong>
+<br/><strong>Categories</strong>: World - South Korea
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 02:53 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=287&title=ireland-to-keep-its-14-day-quarantine-on-british-travellers-sunday-times" title="From news.usnews.com">Ireland to Keep Its 14-Day Quarantine on British Travellers: Sunday Times</a></strong>
+<br/><strong>Categories</strong>: World - Britain
+</td>
+<td class="item" style="text-align:center">
+Reuters
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 02:50 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=286&title=nwsl-players-kneel-during-the-national-anthem" title="From news.usnews.com">NWSL Players Kneel During the National Anthem</a></strong>
+<br/><strong>Categories</strong>: North Carolina, Utah
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 02:44 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=285&title=4-men-charged-in-attack-on-jackson-statue-near-white-house" title="From news.usnews.com">4 Men Charged in Attack on Jackson Statue Near White House</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 02:31 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=284&title=asia-today-south-korea-reports-62-new-cases-china-has-17" title="From news.usnews.com">Asia Today: South Korea Reports 62 New Cases, China Has 17</a></strong>
+<br/><strong>Categories</strong>: World - China, World - South Korea
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 02:21 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=283&title=four-arrested-for-damage-to-andrew-jackson-statue-near-white-house" title="From news.usnews.com">Four Arrested for Damage to Andrew Jackson Statue Near White House</a></strong>
+<br/><strong>Categories</strong>: Washington
+</td>
+<td class="item" style="text-align:center">
+Reuters
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 02:00 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=282&title=st-patrick-s-cathedral-to-resume-indoor-sunday-mass" title="From news.usnews.com">St. Patrick's Cathedral to Resume Indoor Sunday Mass</a></strong>
+<br/><strong>Categories</strong>: New York
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 01:56 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=281&title=hospital-says-2-people-were-killed-4-are-in-fair-condition-after-shooting-at-walmart-distribution-center-in-california" title="From news.usnews.com">Hospital Says 2 People Were Killed, 4 Are in Fair Condition After Shooting at Walmart Distribution Center in California</a></strong>
+<br/><strong>Categories</strong>: California
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 01:46 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=280&title=uk-pm-johnson-to-oust-top-civil-servant-in-whitehall-revolution-telegraph" title="From news.usnews.com">UK PM Johnson to Oust Top Civil Servant in Whitehall Revolution: Telegraph</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Reuters
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 00:55 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=279&title=late-scratch-harvick-knocks-off-pocono-from-winless-list" title="From news.usnews.com">Late Scratch: Harvick Knocks off Pocono From Winless List</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 00:52 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=278&title=ap-source-yankees-vs-champ-nationals-in-dc-on-opening-day" title="From news.usnews.com">AP Source: Yankees Vs Champ Nationals in DC on Opening Day</a></strong>
+<br/><strong>Categories</strong>: New York, Washington
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 00:46 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=277&title=global-coronavirus-cases-exceed-10-million" title="From news.usnews.com">Global Coronavirus Cases Exceed 10 Million</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Reuters
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 00:43 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=276&title=biden-criticizes-trump-for-inaction-over-reported-russian-bounties" title="From news.usnews.com">Biden Criticizes Trump for Inaction Over Reported Russian Bounties</a></strong>
+<br/><strong>Categories</strong>: World - Russia, Washington
+</td>
+<td class="item" style="text-align:center">
+Reuters
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 00:30 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=275&title=ap-interview-delhi-minister-says-city-faces-virus-challenge" title="From news.usnews.com">AP Interview: Delhi Minister Says City Faces Virus Challenge</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 00:26 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=274&title=wearing-face-masks-french-voters-return-to-delayed-municipal-elections" title="From news.usnews.com">Wearing Face Masks, French Voters Return to Delayed Municipal Elections</a></strong>
+<br/><strong>Categories</strong>: World - France
+</td>
+<td class="item" style="text-align:center">
+Reuters
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 00:24 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=273&title=mississippi-takes-step-toward-dropping-rebel-image-from-flag" title="From news.usnews.com">Mississippi Takes Step Toward Dropping Rebel Image From Flag</a></strong>
+<br/><strong>Categories</strong>: Mississippi
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 00:22 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=272&title=satellite-images-show-buildup-on-disputed-india-china-border" title="From news.usnews.com">Satellite Images Show Buildup on Disputed India-China Border</a></strong>
+<br/><strong>Categories</strong>: World - China
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 00:08 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=news.usnews.com"><img src="/Images/news.usnews.com.gif" title="news.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=271&title=biden-campaign-says-36-of-senior-staff-are-people-of-color" title="From news.usnews.com">Biden Campaign Says 36% of Senior Staff Are People of Color</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Associated Press
+</td>
+<td class="item" style="text-align:center">
+28 Jun 2020 00:06 GMT
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr class="m">
+<td style="padding:8pt; font-size:larger; text-align:center">
+Pages:
+[<strong><a href="/?p=items">&nbsp;1&nbsp;</a></strong>]
+[<strong><a href="/?p=items&list=2">&nbsp;2&nbsp;</a></strong>]
+<strong>=3=</strong>
+[<strong><a href="/?p=items&list=4">&nbsp;4&nbsp;</a></strong>]
+[<strong><a href="/?p=items&list=5">&nbsp;5&nbsp;</a></strong>]
+<strong> ... </strong>
+[<strong><a href="/?p=items&list=22">&nbsp;22&nbsp;</a></strong>]
+</td>
+</tr>
+</table>
+<!-- END View/Pages/items.html -->
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="center">
+
+<!-- BEGIN View/bottom.html -->
+<table class="m" cellpadding="0" style="border:0; width:100%; border-spacing:0">
+<tr>
+<td class="header" colspan="3" id="items_by_skills">
+Items by Categories
+</td>
+</tr>
+
+<tr>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/?p=items&filter=AL"><strong>Alabama</strong></a><br/>
+<a href="/?p=items&filter=AK"><strong>Alaska</strong></a><br/>
+<a href="/?p=items&filter=AZ"><strong>Arizona</strong></a><br/>
+<a href="/?p=items&filter=AR"><strong>Arkansas</strong></a><br/>
+<a href="/?p=items&filter=CA"><strong>California</strong></a><br/>
+<a href="/?p=items&filter=CO"><strong>Colorado</strong></a><br/>
+<a href="/?p=items&filter=CT"><strong>Connecticut</strong></a><br/>
+<a href="/?p=items&filter=DE"><strong>Delaware</strong></a><br/>
+<a href="/?p=items&filter=FL"><strong>Florida</strong></a><br/>
+<a href="/?p=items&filter=GA"><strong>Georgia</strong></a><br/>
+<a href="/?p=items&filter=HI"><strong>Hawaii</strong></a><br/>
+<a href="/?p=items&filter=IL"><strong>Illinois</strong></a><br/>
+<a href="/?p=items&filter=IN"><strong>Indiana</strong></a><br/>
+<a href="/?p=items&filter=IA"><strong>Iowa</strong></a><br/>
+<a href="/?p=items&filter=KS"><strong>Kansas</strong></a><br/>
+<a href="/?p=items&filter=KY"><strong>Kentucky</strong></a><br/>
+<a href="/?p=items&filter=LA"><strong>Louisiana</strong></a><br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/?p=items&filter=MA"><strong>Massachusetts</strong></a><br/>
+<a href="/?p=items&filter=MI"><strong>Michigan</strong></a><br/>
+<a href="/?p=items&filter=MN"><strong>Minnesota</strong></a><br/>
+<a href="/?p=items&filter=MS"><strong>Mississippi</strong></a><br/>
+<a href="/?p=items&filter=MO"><strong>Missouri</strong></a><br/>
+<a href="/?p=items&filter=NV"><strong>Nevada</strong></a><br/>
+<a href="/?p=items&filter=NM"><strong>New Mexico</strong></a><br/>
+<a href="/?p=items&filter=NY"><strong>New York</strong></a><br/>
+<a href="/?p=items&filter=NC"><strong>North Carolina</strong></a><br/>
+<a href="/?p=items&filter=OH"><strong>Ohio</strong></a><br/>
+<a href="/?p=items&filter=OK"><strong>Oklahoma</strong></a><br/>
+<a href="/?p=items&filter=OR"><strong>Oregon</strong></a><br/>
+<a href="/?p=items&filter=TN"><strong>Tennessee</strong></a><br/>
+<a href="/?p=items&filter=TX"><strong>Texas</strong></a><br/>
+<a href="/?p=items&filter=UT"><strong>Utah</strong></a><br/>
+<a href="/?p=items&filter=VA"><strong>Virginia</strong></a><br/>
+<a href="/?p=items&filter=WA"><strong>Washington</strong></a><br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/?p=items&filter=WI"><strong>Wisconsin</strong></a><br/>
+<a href="/?p=items&filter=WY"><strong>Wyoming</strong></a><br/>
+<a href="/?p=items&filter=PR"><strong>Puerto Rico</strong></a><br/>
+<a href="/?p=items&filter=Britain"><strong>World - Britain</strong></a><br/>
+<a href="/?p=items&filter=Canada"><strong>World - Canada</strong></a><br/>
+<a href="/?p=items&filter=China"><strong>World - China</strong></a><br/>
+<a href="/?p=items&filter=Czechia"><strong>World - Czech Republic</strong></a><br/>
+<a href="/?p=items&filter=France"><strong>World - France</strong></a><br/>
+<a href="/?p=items&filter=Germany"><strong>World - Germany</strong></a><br/>
+<a href="/?p=items&filter=Iran"><strong>World - Iran</strong></a><br/>
+<a href="/?p=items&filter=Mexico"><strong>World - Mexico</strong></a><br/>
+<a href="/?p=items&filter=Netherlands"><strong>World - Netherlands</strong></a><br/>
+<a href="/?p=items&filter=Poland"><strong>World - Poland</strong></a><br/>
+<a href="/?p=items&filter=Russia"><strong>World - Russia</strong></a><br/>
+<a href="/?p=items&filter=South Korea"><strong>World - South Korea</strong></a><br/>
+<a href="/?p=items&filter=Scotland"><strong>World - Scotland</strong></a><br/>
+</td>
+</tr>
+
+</table>
+<!-- END View/bottom.html -->
+
+</td>
+</tr>
+
+<tr>
+<td class="header center middle" style="padding:4pt">
+Copyright &copy; 2020-2021 <strong><a href="/">Buddy Fetcher</a></strong><br/>
+<small>Powered by <a href="https://github.com/buddylancer/fetcher.php">Buddy Fetcher</a></small>
+</td>
+</tr>
+</table>
+</body>
+</html>
+<!-- END View/index.html -->

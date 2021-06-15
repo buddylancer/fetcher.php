@@ -25,10 +25,10 @@ set output=output
 
 rem Set for ordinary testing (images OFF)
 rem Set SHOW_IMAGES=false in Config also
-rem set origin_folder=origin
+set origin_folder=origin
 rem Set for images testing (images ON)
 rem Set SHOW_IMAGES=true in Config also
-set origin_folder=origin-images
+rem set origin_folder=origin-images
 
 if not exist %output% mkdir %output%
 if not exist %origin_folder% mkdir %origin_folder%

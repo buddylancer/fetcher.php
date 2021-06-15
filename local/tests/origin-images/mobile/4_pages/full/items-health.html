@@ -1,0 +1,636 @@
+
+<!-- BEGIN View/index.html -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Buddy Fetcher :: items</title>
+<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL" />
+<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in PHP/MySQL" />
+<link  rel="styleSheet" type="text/css" href="styles2.css" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+
+<body class="out" style="padding-top:1pt; padding-left:1pt;">
+<table class="out" cellpadding="0" style="border:0; width:100%; margin-left:0; margin-right:0; padding:0;">
+<tr>
+<td class="center top">
+
+<!-- BEGIN View/top.html -->
+<table class="out" style="width:100%; border:0; border-spacing:0;">
+<tr>
+<td class="left top" style="padding:2pt; white-space:nowrap;">
+<a style="font-variant:small-caps; font-size:30pt; font-weight:bold" href="/">
+<span>Buddy</span> <span class="red">Fetcher</span></a><br/>
+<strong>Latest Items</strong>
+</td>
+</tr>
+</table>
+
+<!-- END View/top.html -->
+
+</td>
+</tr>
+<tr>
+<td class="top" style="width:100%; height:100%">
+<table cellpadding="0" style="width:100%; height:100%; border-spacing:0">
+<tr>
+<td class="top">
+
+<!-- BEGIN View/menu.html -->
+<table style="width:100%; border:0; border-spacing:0;">
+<tr>
+<td class="menu center" style="padding:2pt; white-space:nowrap;">
+ <a href="/">Home</a>
+ &bull; <a href="/?p=items">Items</a>
+ &bull; <a href="#items_by_skills">By Categories</a>
+ &bull; <a href="/?p=sources">Sources</a>
+</td>
+</tr>
+</table>
+<!-- END View/menu.html -->
+
+</td>
+</tr>
+
+<tr class="m">
+<td class="top" style="height:100%">
+
+<!-- BEGIN View/Pages/items.html -->
+<table class="m" style="border:0; width:100%; border-spacing:0" cellpadding="0">
+<!-- Uncomment to enable filtering by source and/or category -->
+<tr>
+<td>
+<table style="border:0; width:100%; border-spacing:0">
+
+<!-- BEGIN View/Pages/filter_items.html -->
+<tr class="m">
+<td style="text-align:center; padding:8pt">
+<form name="page_submit">
+Filter by source:
+<br/>
+<select name="source">
+<option value="0" >-- Show All --</option>
+<option value="education.usnews.com"  >
+education.usnews.com
+[47]
+</option>
+<option value="health.usnews.com" selected="selected">
+health.usnews.com
+[99]
+</option>
+<option value="money.usnews.com"  >
+money.usnews.com
+[100]
+</option>
+<option value="news.usnews.com"  >
+news.usnews.com
+[99]
+</option>
+<option value="opinion.usnews.com"  >
+opinion.usnews.com
+[100]
+</option>
+<option value="travel.usnews.com"  >
+travel.usnews.com
+[100]
+</option>
+</select>
+<!--
+Time period:
+<select name="time">
+<option value="0">-- Show All--</option>
+<option value="6">Last 6 hours</option>
+<option value="12">Last 12 hours</option>
+<option value="24">Last 24 hours</option>
+<option value="w">Last week</option>
+<option value="m">Last month</option>
+</select>
+-->
+<input type="button" value=" >> " onclick="return func_submit();"/>
+
+</form>
+<script>
+function func_submit() {
+var frm = document.forms['page_submit'];
+if (frm['source'].selectedIndex == 0) {
+window.location.assign('/?p=items');
+return false;
+}
+var source = frm['source'].options[frm['source'].selectedIndex].value;
+window.location.assign('/?p=items&source=' + source);
+return false;
+}
+</script>
+</td>
+</tr>
+<!-- END View/Pages/filter_items.html -->
+
+</table>
+</td>
+</tr>
+<!-- -->
+<tr>
+<td class="header">
+Browse Items<br/> ... from 'health.usnews.com'
+<input type="hidden" name="s_Title" value="Browse Items<br/> ... from 'health.usnews.com'" />
+</td>
+</tr>
+
+<tr>
+<td>
+<table cellpadding="2" style="border:0; width:100%; border-spacing:0">
+<tr class="m">
+<td colspan="3" style="text-align:center; padding:8pt" >
+Page <strong>1</strong> from <strong>4</strong>
+</td>
+</tr>
+<tr class="column">
+<td style="width:5%; text-align:center"></td>
+<td style="width:65%; text-align:center">Item</td>
+<td style="width:18%; text-align:center">Creator</td>
+<td style="width:12%; text-align:center">Published</td>
+</tr>
+
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=146&title=7-myths-about-caregiving-costs" title="From health.usnews.com">7 Myths About Caregiving Costs</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Rachel Hartman
+</td>
+<td class="item" style="text-align:center">
+12 Dec 2018 15:29 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=145&title=what-is-a-health-savings-account" title="From health.usnews.com">What Is a Health Savings Account?</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Rachel Hartman
+</td>
+<td class="item" style="text-align:center">
+05 Dec 2018 15:30 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=144&title=here-s-the-difference-between-flexibility-and-mobility-and-why-it-matters" title="From health.usnews.com">Here's the Difference Between Flexibility and Mobility – and Why It Matters</a></strong>
+</td>
+<td class="item" style="text-align:center">
+K. Aleisha Fetters
+</td>
+<td class="item" style="text-align:center">
+29 May 2018 14:41 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=143&title=how-the-health-care-debate-is-impacting-medicare" title="From health.usnews.com">How the Health Care Debate Is Impacting Medicare</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Lisa Zamosky
+</td>
+<td class="item" style="text-align:center">
+16 Oct 2017 13:51 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=142&title=3-ways-to-track-your-body-composition-that-are-better-than-bmi" title="From health.usnews.com">3 Ways to Track Your Body Composition That Are Better Than BMI</a></strong>
+</td>
+<td class="item" style="text-align:center">
+K. Aleisha Fetters
+</td>
+<td class="item" style="text-align:center">
+21 Apr 2017 20:08 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=141&title=how-much-do-steps-per-day-really-matter" title="From health.usnews.com">How Much Do Steps Per Day Really Matter?</a></strong>
+</td>
+<td class="item" style="text-align:center">
+K. Aleisha Fetters
+</td>
+<td class="item" style="text-align:center">
+14 Apr 2017 13:30 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=140&title=is-your-running-habit-deserving-of-a-beer" title="From health.usnews.com">Is Your Running Habit Deserving of a Beer?</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Michael O. Schroeder
+</td>
+<td class="item" style="text-align:center">
+25 Oct 2016 13:00 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=139&title=abdominal-aortic-aneurysm-emergency-or-not" title="From health.usnews.com">Abdominal Aortic Aneurysm: Emergency or Not?</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Lisa Esposito
+</td>
+<td class="item" style="text-align:center">
+02 Aug 2016 13:18 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=138&title=high-performing-hospitals-in-9-procedures-and-conditions" title="From health.usnews.com">High Performing Hospitals in 9 Procedures and Conditions</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Avery Comarow
+</td>
+<td class="item" style="text-align:center">
+01 Aug 2016 22:36 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=137&title=what-to-know-before-undergoing-heart-valve-replacement-surgery" title="From health.usnews.com">What to Know Before Undergoing Heart Valve Replacement Surgery</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Anna Medaris Miller
+</td>
+<td class="item" style="text-align:center">
+01 Aug 2016 20:10 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=136&title=everything-you-wanted-to-know-about-recovering-from-colorectal-surgery" title="From health.usnews.com">Everything You Wanted to Know About Recovering from Colorectal Surgery</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Anna Medaris Miller
+</td>
+<td class="item" style="text-align:center">
+01 Aug 2016 20:07 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=135&title=what-to-look-for-in-a-hospital-if-you-need-lung-cancer-surgery" title="From health.usnews.com">What to Look for in a Hospital if You Need Lung Cancer Surgery</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Lisa Esposito
+</td>
+<td class="item" style="text-align:center">
+01 Aug 2016 20:01 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=134&title=abdominal-aortic-aneurysm-when-it-s-surgery-time" title="From health.usnews.com">Abdominal Aortic Aneurysm: When It's Surgery Time</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Lisa Esposito
+</td>
+<td class="item" style="text-align:center">
+01 Aug 2016 19:49 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=133&title=the-best-ways-for-nursing-home-residents-to-stay-active" title="From health.usnews.com">The Best Ways for Nursing Home Residents to Stay Active</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Michael O. Schroeder
+</td>
+<td class="item" style="text-align:center">
+19 Jul 2016 16:00 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=132&title=how-children-s-hospitals-are-helping-kids-with-cancer-be-kids" title="From health.usnews.com">How Children's Hospitals Are Helping Kids With Cancer Be Kids</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Anna Medaris Miller
+</td>
+<td class="item" style="text-align:center">
+21 Jun 2016 04:01 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=131&title=i-survived-childhood-cancer-now-what" title="From health.usnews.com">I Survived Childhood Cancer. Now What?</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Michael O. Schroeder
+</td>
+<td class="item" style="text-align:center">
+21 Jun 2016 04:01 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=130&title=proton-beam-radiation-a-family-decision" title="From health.usnews.com">Proton Beam Radiation: a Family Decision</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Lisa Esposito
+</td>
+<td class="item" style="text-align:center">
+21 Jun 2016 04:01 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=129&title=the-promise-and-limits-of-pediatric-proton-radiation" title="From health.usnews.com">The Promise (and Limits) of Pediatric Proton Radiation</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Lisa Esposito
+</td>
+<td class="item" style="text-align:center">
+21 Jun 2016 04:01 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=128&title=infographic-cancer-in-our-children-by-the-numbers" title="From health.usnews.com">Infographic: Cancer in Our Children – By the Numbers</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Michael O. Schroeder
+</td>
+<td class="item" style="text-align:center">
+21 Jun 2016 04:01 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=127&title=infographic-why-do-kids-even-get-cancer" title="From health.usnews.com">Infographic: Why Do Kids Even Get Cancer?</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Anna Medaris Miller
+</td>
+<td class="item" style="text-align:center">
+21 Jun 2016 04:01 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=126&title=hospital-groups-debate-how-to-grade-quality-of-care" title="From health.usnews.com">Hospital Groups Debate How to Grade Quality of Care</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Steve Sternberg
+</td>
+<td class="item" style="text-align:center">
+08 Apr 2016 21:04 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=125&title=study-some-hospitals-are-better-at-reacting-to-cardiac-arrest-than-others" title="From health.usnews.com">Study: Some Hospitals Are Better at Reacting to Cardiac Arrest Than Others</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kimberly Leonard
+</td>
+<td class="item" style="text-align:center">
+24 Feb 2016 20:14 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=124&title=amid-international-emergency-u-s-hospitals-prepare-for-zika" title="From health.usnews.com">Amid International Emergency, U.S. Hospitals Prepare for Zika</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kimberly Leonard
+</td>
+<td class="item" style="text-align:center">
+12 Feb 2016 20:39 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=123&title=op-ed-how-hospitals-can-succeed-with-episode-based-bundled-payments" title="From health.usnews.com">Op-ed: How Hospitals Can Succeed With Episode-Based Bundled Payments</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Stephanie Hines
+</td>
+<td class="item" style="text-align:center">
+08 Feb 2016 18:46 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="text-align:center">
+<a href="/?p=items&source=health.usnews.com"><img src="/Images/health.usnews.com.gif" title="health.usnews.com" /></a>
+</td>
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=122&title=testing-genetically-modified-mitochondrial-dna-permitted" title="From health.usnews.com">Testing Genetically Modified Mitochondrial DNA Permitted</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Allyson Chiu
+</td>
+<td class="item" style="text-align:center">
+04 Feb 2016 20:41 GMT
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr class="m">
+<td style="padding:8pt; font-size:larger; text-align:center">
+Pages:
+<strong>=1=</strong>
+[<strong><a href="/?p=items&source=health.usnews.com&list=2">&nbsp;2&nbsp;</a></strong>]
+[<strong><a href="/?p=items&source=health.usnews.com&list=3">&nbsp;3&nbsp;</a></strong>]
+<strong> ... </strong>
+[<strong><a href="/?p=items&source=health.usnews.com&list=4">&nbsp;4&nbsp;</a></strong>]
+</td>
+</tr>
+</table>
+<!-- END View/Pages/items.html -->
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="center">
+
+<!-- BEGIN View/bottom.html -->
+<table class="m" cellpadding="0" style="border:0; width:100%; border-spacing:0">
+<tr>
+<td class="header" colspan="3" id="items_by_skills">
+Items by Categories
+</td>
+</tr>
+
+<tr>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/?p=items&filter=AL"><strong>Alabama</strong></a><br/>
+<a href="/?p=items&filter=AK"><strong>Alaska</strong></a><br/>
+<a href="/?p=items&filter=AZ"><strong>Arizona</strong></a><br/>
+<a href="/?p=items&filter=AR"><strong>Arkansas</strong></a><br/>
+<a href="/?p=items&filter=CA"><strong>California</strong></a><br/>
+<a href="/?p=items&filter=CO"><strong>Colorado</strong></a><br/>
+<a href="/?p=items&filter=CT"><strong>Connecticut</strong></a><br/>
+<a href="/?p=items&filter=DE"><strong>Delaware</strong></a><br/>
+<a href="/?p=items&filter=FL"><strong>Florida</strong></a><br/>
+<a href="/?p=items&filter=GA"><strong>Georgia</strong></a><br/>
+<a href="/?p=items&filter=HI"><strong>Hawaii</strong></a><br/>
+<a href="/?p=items&filter=IL"><strong>Illinois</strong></a><br/>
+<a href="/?p=items&filter=IN"><strong>Indiana</strong></a><br/>
+<a href="/?p=items&filter=IA"><strong>Iowa</strong></a><br/>
+<a href="/?p=items&filter=KS"><strong>Kansas</strong></a><br/>
+<a href="/?p=items&filter=KY"><strong>Kentucky</strong></a><br/>
+<a href="/?p=items&filter=LA"><strong>Louisiana</strong></a><br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/?p=items&filter=MA"><strong>Massachusetts</strong></a><br/>
+<a href="/?p=items&filter=MI"><strong>Michigan</strong></a><br/>
+<a href="/?p=items&filter=MN"><strong>Minnesota</strong></a><br/>
+<a href="/?p=items&filter=MS"><strong>Mississippi</strong></a><br/>
+<a href="/?p=items&filter=MO"><strong>Missouri</strong></a><br/>
+<a href="/?p=items&filter=NV"><strong>Nevada</strong></a><br/>
+<a href="/?p=items&filter=NM"><strong>New Mexico</strong></a><br/>
+<a href="/?p=items&filter=NY"><strong>New York</strong></a><br/>
+<a href="/?p=items&filter=NC"><strong>North Carolina</strong></a><br/>
+<a href="/?p=items&filter=OH"><strong>Ohio</strong></a><br/>
+<a href="/?p=items&filter=OK"><strong>Oklahoma</strong></a><br/>
+<a href="/?p=items&filter=OR"><strong>Oregon</strong></a><br/>
+<a href="/?p=items&filter=TN"><strong>Tennessee</strong></a><br/>
+<a href="/?p=items&filter=TX"><strong>Texas</strong></a><br/>
+<a href="/?p=items&filter=UT"><strong>Utah</strong></a><br/>
+<a href="/?p=items&filter=VA"><strong>Virginia</strong></a><br/>
+<a href="/?p=items&filter=WA"><strong>Washington</strong></a><br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+<a href="/?p=items&filter=WI"><strong>Wisconsin</strong></a><br/>
+<a href="/?p=items&filter=WY"><strong>Wyoming</strong></a><br/>
+<a href="/?p=items&filter=PR"><strong>Puerto Rico</strong></a><br/>
+<a href="/?p=items&filter=Britain"><strong>World - Britain</strong></a><br/>
+<a href="/?p=items&filter=Canada"><strong>World - Canada</strong></a><br/>
+<a href="/?p=items&filter=China"><strong>World - China</strong></a><br/>
+<a href="/?p=items&filter=Czechia"><strong>World - Czech Republic</strong></a><br/>
+<a href="/?p=items&filter=France"><strong>World - France</strong></a><br/>
+<a href="/?p=items&filter=Germany"><strong>World - Germany</strong></a><br/>
+<a href="/?p=items&filter=Iran"><strong>World - Iran</strong></a><br/>
+<a href="/?p=items&filter=Mexico"><strong>World - Mexico</strong></a><br/>
+<a href="/?p=items&filter=Netherlands"><strong>World - Netherlands</strong></a><br/>
+<a href="/?p=items&filter=Poland"><strong>World - Poland</strong></a><br/>
+<a href="/?p=items&filter=Russia"><strong>World - Russia</strong></a><br/>
+<a href="/?p=items&filter=South Korea"><strong>World - South Korea</strong></a><br/>
+<a href="/?p=items&filter=Scotland"><strong>World - Scotland</strong></a><br/>
+</td>
+</tr>
+
+</table>
+<!-- END View/bottom.html -->
+
+</td>
+</tr>
+
+<tr>
+<td class="header center middle" style="padding:4pt">
+Copyright &copy; 2020-2021 <strong><a href="/">Buddy Fetcher</a></strong><br/>
+<small>Powered by <a href="https://github.com/buddylancer/fetcher.php">Buddy Fetcher</a></small>
+</td>
+</tr>
+</table>
+</body>
+</html>
+<!-- END View/index.html -->
