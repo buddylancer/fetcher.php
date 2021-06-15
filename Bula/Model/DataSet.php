@@ -127,9 +127,15 @@ class DataSet
             while ($keys->moveNext()) {
                 $level++; $spaces = $this->addSpaces($level);
                 $key = $keys->current();
-                $output->concat(CAT($spaces, "<Item Name=\"", $key, "\">"));
-                $output->concat($row->get($key));
-                $output->concat(CAT("</Item>", $EOL));
+                $value = $row->get($key);
+                if (NUL($value)) {
+                    $output->concat(CAT($spaces, "<Item Name=\"", $key, "\" IsNull=\"True\" />", EOL));
+                }
+                else {
+                    $output->concat(CAT($spaces, "<Item Name=\"", $key, "\">"));
+                    $output->concat($row->get($key));
+                    $output->concat(CAT("</Item>", $EOL));
+                }
                 $level--; $spaces = $this->addSpaces($level);
             }
             $output->concat(CAT($spaces, "</Row>", $EOL));

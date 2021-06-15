@@ -3,6 +3,7 @@
 echo *** Starting 1_create.bat...
 
 set folder=1_create
+call 97_working.bat
 call 98_folders.bat %folder%
 
 set mysql=C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe

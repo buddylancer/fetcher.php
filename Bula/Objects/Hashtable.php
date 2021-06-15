@@ -97,8 +97,8 @@ class Hashtable extends Collection
      */
     public function put($key, $input)
     {
-        if (NUL($input))
-            return;
+        //if (NUL($input))
+        //    return;
         $keyVar = $this->checkKey($key);
         $this->collection[$keyVar] = $this->pushValue($input);
     }

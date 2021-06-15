@@ -21,9 +21,9 @@ body, table, td { font-family:Verdanda, Arial; font-size:12pt; color:#666; }
 .hover { background-color:#9f9; }
 .myshade { background-color:#efe; }
 .featured { background-color:#f99; font:bold; }
-.name { padding-left:8pt; padding-right:2pt; font-weight:bold; text-align:right; vertical-align:top; }
-.value { padding-left:2pt; padding-right:8pt; text-align:left; vertical-align:top; }
-.big { font-size:14pt; font-weight:bold; text-align:left; vertical-align:middle; padding-left:2pt; padding-right:8pt; }
+.name { padding:2pt; padding-left:8pt; font-weight:bold; text-align:right; vertical-align:top; }
+.value { padding:2pt; padding-right:8pt; text-align:left; vertical-align:top; }
+.big { font-size:14pt; font-weight:bold; text-align:left; vertical-align:middle; padding:4pt; padding-right:8pt; }
 .item { padding:8pt; }
 .view { border-style:dotted; border-color:#080; background-color:#9f9; padding:5pt; margin:0pt }
 .red { font-weight:bold; color:red; text-align:center; }

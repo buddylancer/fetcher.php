@@ -4,6 +4,7 @@ echo *** Starting 2_fetch.bat ...
 
 
 set folder=2_fetch
+call 97_working.bat
 call 98_folders.bat %folder%
 call 98_folders.bat ..\..\cache feed
 

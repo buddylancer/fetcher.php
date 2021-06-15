@@ -22,7 +22,13 @@ set code=1234
 
 set input=input
 set output=output
-set origin_folder=origin
+
+rem Set for ordinary testing (images OFF)
+rem Set SHOW_IMAGES=false in Config also
+rem set origin_folder=origin
+rem Set for images testing (images ON)
+rem Set SHOW_IMAGES=true in Config also
+set origin_folder=origin-images
 
 if not exist %output% mkdir %output%
 if not exist %origin_folder% mkdir %origin_folder%
@@ -31,7 +37,7 @@ set log=%output%\log.txt
 echo > %log%
 
 rem Just for debugging -- remove on production!!!
-rem goto :PAGES
+rem goto :STYLES
 
 :CREATE
 echo *** Starting 1_create.bat >> %log%

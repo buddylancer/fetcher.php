@@ -9,6 +9,7 @@ rem /redirect/item/1
 rem /redirect/source/some_source
 
 set folder=5_actions
+call 97_working.bat
 
 rem Positive
 call	:check	redirect-item-1			item 1

@@ -7,6 +7,7 @@ rem /rss%ext%?source=something
 rem /rss/something.xml
 
 set folder=7_rss
+call 97_working.bat
 
 rem Positive
 call	:check	rss			rss

@@ -3,6 +3,7 @@
 echo *** Starting 3_styles.bat ...
 
 set folder=3_styles
+call 97_working.bat
 call 98_folders.bat %folder%
 
 call	:check		styles

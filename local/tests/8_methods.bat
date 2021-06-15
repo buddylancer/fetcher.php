@@ -8,6 +8,7 @@ rem (1)		getById	1
 
 
 set folder=8_methods
+call 97_working.bat
 
 rem -----------------------------------------------
 set package=bula-fetcher-model

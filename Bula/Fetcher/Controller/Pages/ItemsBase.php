@@ -97,10 +97,10 @@ abstract class ItemsBase extends Page
         $row->put("[#Title]", Util::show($oItem->get("s_Title")));
         $row->put("[#SourceLink]", $this->getLink(Config::INDEX_PAGE, "?p=items&source=", "items/source/", $sourceName));
 
-        if ($this->context->contains("Name_Category") && $oItem->containsKey("s_Category") && $oItem->get("s_Category") != "")
+        if ($this->context->contains("Name_Category") && $oItem->containsKey("s_Category") && !NUL($oItem->get("s_Category")))
             $row->put("[#Category]", $oItem->get("s_Category"));
 
-        if ($this->context->contains("Name_Creator") && $oItem->containsKey("s_Creator") && $oItem->get("s_Creator") != "") {
+        if ($this->context->contains("Name_Creator") && $oItem->containsKey("s_Creator") && !NUL($oItem->get("s_Creator"))) {
             $s_Creator = $oItem->get("s_Creator");
             if ($s_Creator != null) {
                 if ($s_Creator->indexOf("(") != -1)
@@ -110,9 +110,9 @@ abstract class ItemsBase extends Page
                 $s_Creator = new TString(" "); //TODO -- "" doesn't works somehow, need to investigate
             $row->put("[#Creator]", $s_Creator);
         }
-        if ($this->context->contains("Name_Custom1") && $oItem->contains("s_Custom1") && $oItem->get("s_Custom1") != "")
+        if ($this->context->contains("Name_Custom1") && $oItem->contains("s_Custom1") && !NUL($oItem->get("s_Custom1")))
             $row->put("[#Custom1]", $oItem->get("s_Custom1"));
-        if ($this->context->contains("Name_Custom2") && $oItem->contains("s_Custom2") && $oItem->get("s_Custom2") != "")
+        if ($this->context->contains("Name_Custom2") && $oItem->contains("s_Custom2") && !NUL($oItem->get("s_Custom2")))
             $row->put("[#Custom2]", $oItem->get("s_Custom2"));
 
         $d_Date = Util::showTime($oItem->get("d_Date"));
