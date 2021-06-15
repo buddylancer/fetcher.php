@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <channel>
 <title>Items for ALL sources</title>
-<link>http://www.test.com/</link>
+<link>http://www.ff.com:8000/</link>
 <description>Items for ALL sources</description>
 <language>en-US</language>
 <pubDate>Sun, 28 Jun 2020 12:20:01 GMT</pubDate>
