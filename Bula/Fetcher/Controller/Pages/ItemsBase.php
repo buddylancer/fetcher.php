@@ -94,6 +94,7 @@ abstract class ItemsBase extends Page
             $row->put("[#Show_Images]", 1);
         $sourceName = $oItem->get("s_SourceName");
         $row->put("[#SourceName]", $sourceName);
+        $row->put("[#ExtImages]", Config::EXT_IMAGES);
         $row->put("[#Title]", Util::show($oItem->get("s_Title")));
         $row->put("[#SourceLink]", $this->getLink(Config::INDEX_PAGE, "?p=items&source=", "items/source/", $sourceName));
 
@@ -164,8 +165,8 @@ abstract class ItemsBase extends Page
         $link = $this->getLink(Config::INDEX_PAGE, "?p=items", "items");
         if ($this->context->Request->contains("source") && !BLANK($this->context->Request->get("source")))
             $link = $this->appendLink($link, "&source=", "/source/", $this->context->Request->get("source"));
-        if ($this->context->contains("filter") && !BLANK($this->context->get("filter")))
-            $link = $this->appendLink($link, "&amp;filter=", "/filter/", $this->context->get("filter"));
+        if ($this->context->Request->contains("filter") && !BLANK($this->context->Request->get("filter")))
+            $link = $this->appendLink($link, "&amp;filter=", "/filter/", $this->context->Request->get("filter"));
         if ($listNo > 1)
             $link = $this->appendLink($link, "&list=", "/list/", $listNo);
         return $link;

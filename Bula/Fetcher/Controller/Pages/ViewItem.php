@@ -88,18 +88,19 @@ class ViewItem extends Page
         $prepare->put("[#InputTitle]", Util::safe($title));
         $prepare->put("[#RedirectSource]", $this->getLink(Config::ACTION_PAGE, "?p=do_redirect_source&source=", "redirect/source/", $sourceName));
         $prepare->put("[#SourceName]", $sourceName);
+        $prepare->put("[#ExtImages]", Config::EXT_IMAGES);
         $prepare->put("[#SourceLink]", $this->getLink(Config::INDEX_PAGE, "?p=items&source=", "items/source/", $sourceName));
         $prepare->put("[#Date]", Util::showTime($oItem->get("d_Date")));
-        $prepare->put("[#Creator]", $oItem->get("s_Creator"));
+        if (!NUL($oItem->get("s_Creator")))
+        	$prepare->put("[#Creator]", $oItem->get("s_Creator"));
         $prepare->put("[#Description]", $oItem->containsKey("t_Description") ? Util::show($oItem->get("t_Description")) : "");
         $prepare->put("[#ItemID]", $oItem->get($idField));
-        if ($this->context->contains("Name_Category")) {
-            $category = $oItem->get("s_Category");
-            if (!BLANK($category))
-                $prepare->put("[#Category]", $category);
-        }
-        if ($this->context->contains("Name_Custom1")) $prepare->put("[#Custom1]", $oItem->get("s_Custom1"));
-        if ($this->context->contains("Name_Custom2")) $prepare->put("[#Custom2]", $oItem->get("s_Custom2"));
+        if ($this->context->contains("Name_Category") && !NUL($oItem->get("s_Category")))
+            $prepare->put("[#Category]", $oItem->get("s_Category"));
+        if ($this->context->contains("Name_Custom1") && !NUL($oItem->get("s_Custom1")))
+            $prepare->put("[#Custom1]", $oItem->get("s_Custom1"));
+        if ($this->context->contains("Name_Custom2") && !NUL($oItem->get("s_Custom2")))
+            $prepare->put("[#Custom2]", $oItem->get("s_Custom2"));
 
         if ($this->context->Lang == "ru" && !$this->context->IsMobile)
             $prepare->put("[#Share]", 1);

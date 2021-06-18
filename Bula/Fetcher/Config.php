@@ -43,6 +43,8 @@ class Config
     const SHOW_FROM = false;
     /** Whether to show images for sources */
     const SHOW_IMAGES = false;
+    /** File extension for images */
+    const EXT_IMAGES = "gif";
     /** Show an item or immediately redirect to external source item */
     const IMMEDIATE_REDIRECT = false;
     /** How much items to show on "Sources" page */

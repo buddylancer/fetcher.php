@@ -20,17 +20,6 @@
                         </div>
                     </td>
                 </tr>
-<!--#if [#Show_Images]-->
-                <tr>
-                    <!--#if ![#Is_Mobile]-->
-                    <td width="5%">
-                        <a href="[#SourceLink]"><img src="[#Top_Dir]Images/[#SourceName].gif" title="[#SourceName]" /></a>
-                    </td>
-                    <!--#end if-->
-
-                    <td width="95%">
-                        <table class="m" cellpadding="0" style="width:100%; border:0; border-spacing:0">
-<!--#end if-->
                             <!--#if ![#Is_Mobile]-->
                             <tr style="height:28pt">
                                 <td class="name" style="width:25%; vertical-align:middle">
@@ -61,7 +50,11 @@
                                 <td class="value">
                                     External item from
                                     <a style="font-weight:bold" href="[#RedirectSource]">
-                                        [#SourceName]</a>
+                                    [#SourceName]</a>
+                                    <!--#if [#Show_Images]-->
+                                    <br/>
+                                    <a href="[#SourceLink]"><img src="[#Top_Dir]Images/[#SourceName].[#ExtImages]" title="[#SourceName]" /></a>
+                                    <!--#end if-->
                                 </td>
                             </tr>
 
@@ -78,6 +71,7 @@
                                 </td>
                             </tr>
 
+                <!--#if [#Creator]-->
                             <tr>
                                 <td class="name">
                                     [#Name_Creator]:
@@ -90,6 +84,7 @@
                                     [#Creator]
                                 </td>
                             </tr>
+                <!--#end if-->
 
                             <tr>
                                 <td class="name">
@@ -174,11 +169,6 @@
                             </tr>
                             <!--#end if-->
 
-<!--#if [#Show_Images]-->
-                        </table>
-                    </td>
-                </tr>
-<!--#end if-->                
                 <tr>
                     <td colspan="2" style="text-align:center; font-size:larger;">
                         <div class="view">

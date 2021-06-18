@@ -142,7 +142,7 @@ class BOFetcher
         $sourceId = INT($oSource->get("i_SourceId"));
         $boItem = new BOItem($sourceName, $item);
         $pubDate = $item->get("pubdate");
-        $date = DateTimes::format(DateTimes::SQL_DTS, DateTimes::fromRss($pubDate));
+        $date = DateTimes::gmtFormat(DateTimes::SQL_DTS, DateTimes::fromRss($pubDate));
 
         // Check whether item with the same link exists already
         $doItem = new DOItem();

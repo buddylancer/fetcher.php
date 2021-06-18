@@ -205,10 +205,14 @@ class BOItem
             $categoriesNew = new ArrayList();
             for ($c = 0; $c < SIZE($categoriesArr); $c++) {
                 $temp = $categoriesArr[$c];
-                if (!BLANK($temp))
-                    $categoriesNew->add($temp);
+                if (BLANK($temp->trim()))
+                    continue;
+                $temp = Strings::firstCharToUpper($temp);
+                if ($category == null)
+                    $category = $temp;
+                else
+                    $category->concat(CAT(", ", $temp));
             }
-            $category = Strings::join(", ", $categoriesNew->toArray());
         }
 
         return $category;
@@ -268,7 +272,7 @@ class BOItem
                 if (!BLANK($this->description) && Regex::isMatch($this->description, $excludeChunk, RegexOptions::IgnoreCase))
                     $includeFlag &= false;
                 if (Regex::isMatch($this->title, $excludeChunk, RegexOptions::IgnoreCase))
-                    $includeFlag |= true;
+                    $includeFlag &= false;
             }
             if ($includeFlag) {
                 $categoryTags = ADD($categoryTags, $name);

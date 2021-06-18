@@ -1,5 +1,6 @@
 /* Styles for ordinary site */
 body, table, td { font-family:Verdanda, Arial; font-size:12pt; color:#666; }
+img { padding:4px; margin:4px; border:1px; border-style:dotted; }
 .center { text-align: center; }
 .left { text-align: left; }
 .right { text-align: right; }

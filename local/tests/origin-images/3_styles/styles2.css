@@ -1,5 +1,6 @@
 /* Styles for mobile site */
 body, table, td { font-family:Verdanda, Arial; font-size:10pt; color:#666; }
+img { padding:2px; margin:2px; border:1px; border-style:dotted; }
 .center { text-align: center; }
 .left { text-align: left; }
 .right { text-align: right; }
