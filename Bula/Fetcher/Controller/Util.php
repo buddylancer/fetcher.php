@@ -11,8 +11,8 @@ namespace Bula\Fetcher\Controller;
 
 use Bula\Fetcher\Config;
 
-use Bula\Objects\ArrayList;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataList;
+use Bula\Objects\DataRange;
 
 use Bula\Objects\Request;
 use Bula\Objects\DateTimes;
@@ -20,9 +20,9 @@ use Bula\Objects\Helper;
 use Bula\Objects\TString;
 use Bula\Objects\Strings;
 
-require_once("Bula/Objects/ArrayList.php");
+require_once("Bula/Objects/DataList.php");
 require_once("Bula/Objects/DateTimes.php");
-require_once("Bula/Objects/Hashtable.php");
+require_once("Bula/Objects/DataRange.php");
 require_once("Bula/Objects/Helper.php");
 require_once("Bula/Objects/TString.php");
 require_once("Bula/Objects/Strings.php");

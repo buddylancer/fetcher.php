@@ -14,8 +14,8 @@ use Bula\Internal;
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
 
-use Bula\Objects\ArrayList;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataList;
+use Bula\Objects\DataRange;
 
 use Bula\Objects\Arrays;
 use Bula\Objects\Helper;
@@ -25,9 +25,9 @@ use Bula\Objects\Response;
 
 require_once("Bula/Internal.php");
 require_once("Bula/Objects/Arrays.php");
-require_once("Bula/Objects/ArrayList.php");
+require_once("Bula/Objects/DataList.php");
 require_once("Bula/Objects/Helper.php");
-require_once("Bula/Objects/Hashtable.php");
+require_once("Bula/Objects/DataRange.php");
 require_once("Bula/Objects/Strings.php");
 require_once("Bula/Objects/TString.php");
 
@@ -112,7 +112,7 @@ class Engine
         $content = null;
         if (Helper::fileExists(CAT($this->context->LocalRoot, $fileName))) {
             require_once($fileName);
-            $args0 = new ArrayList(); $args0->add($this->context);
+            $args0 = new DataList(); $args0->add($this->context);
             Internal::callMethod(CAT($prefix, $className), $args0, $defaultMethod, null);
             $content = $engine->getPrintString();
         }
@@ -125,7 +125,7 @@ class Engine
     /**
      * Show template content by merging template and data.
      * @param TString $id Template ID to use for merging.
-     * @param Hashtable $hash Data in the form of Hashtable to use for merging.
+     * @param DataRange $hash Data in the form of DataRange to use for merging.
      * @return TString Resulting content.
      */
     public function showTemplate($id, $hash = null)
@@ -153,16 +153,16 @@ class Engine
     /**
      * Get template as the list of lines.
      * @param TString $filename File name.
-     * @return ArrayList Resulting array with lines.
+     * @return DataList Resulting array with lines.
      */
     private function getTemplate($filename)
     {
         if (Helper::fileExists(CAT($this->context->LocalRoot, $filename))) {
             $lines = Helper::readAllLines(CAT($this->context->LocalRoot, $filename));
-            return Arrays::createArrayList($lines);
+            return Arrays::createDataList($lines);
         }
         else {
-            $temp = new ArrayList();
+            $temp = new DataList();
             $temp->add(CAT("File not found -- '", $filename, "'<hr/>"));
             return $temp;
         }
@@ -171,13 +171,13 @@ class Engine
     /**
      * Do actual merging of template and data.
      * @param TString $template Template content.
-     * @param Hashtable $hash Data for merging with template.
+     * @param DataRange $hash Data for merging with template.
      * @return TString Resulting content.
      */
-    public function formatTemplate($template, Hashtable $hash)
+    public function formatTemplate($template, DataRange $hash)
     {
         if ($hash == null)
-            $hash = new Hashtable();
+            $hash = new DataRange();
         $content1 = Strings::replaceInTemplate($template, $hash);
         $content2 = Strings::replaceInTemplate($content1, $this->context->GlobalConstants);
         return $content2;
@@ -215,23 +215,23 @@ class Engine
 
     /**
      * Execute template processing.
-     * @param ArrayList $template Template in form of the list of lines.
-     * @param Hashtable $hash Data for merging with template.
+     * @param DataList $template Template in form of the list of lines.
+     * @param DataRange $hash Data for merging with template.
      * @return TString Resulting content.
      */
-    private function processTemplate(ArrayList $template, Hashtable $hash = null)
+    private function processTemplate(DataList $template, DataRange $hash = null)
     {
         if ($this->context->IsMobile) {
             if ($hash == null)
-                $hash = new Hashtable();
+                $hash = new DataRange();
             $hash->put("[#Is_Mobile]", 1);
         }
         $trimLine = true;
         $trimEnd = EOL;
         $ifMode = 0;
         $repeatMode = 0;
-        $ifBuf = new ArrayList();
-        $repeatBuf = new ArrayList();
+        $ifBuf = new DataList();
+        $repeatBuf = new DataList();
         $ifWhat = "";
         $repeatWhat = "";
         $content = new TString();
@@ -272,7 +272,7 @@ class Engine
 
                         if ($processFlag)
                             $content->concat(self::processTemplate($ifBuf, $hash));
-                        $ifBuf = new ArrayList();
+                        $ifBuf = new DataList();
                     }
                     else
                         $ifBuf->add($line);
@@ -292,7 +292,7 @@ class Engine
                                 $content->concat(self::processTemplate($repeatBuf, $rows->get($r)));
                             $hash->remove($repeatWhat);
                         }
-                        $repeatBuf = new ArrayList();
+                        $repeatBuf = new DataList();
                     }
                     else
                         $repeatBuf->add($line);
@@ -309,7 +309,7 @@ class Engine
                 else if ($lineNoComments->indexOf("#repeat") == 0) {
                     $repeatMode++;
                     $repeatWhat = $lineNoComments->substring(8)->trim();
-                    $repeatBuf = new ArrayList();
+                    $repeatBuf = new DataList();
                 }
                 else {
                     if ($trimLine) {

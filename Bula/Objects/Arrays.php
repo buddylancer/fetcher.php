@@ -9,9 +9,9 @@
  */
 namespace Bula\Objects;
 
-use Bula\Objects\ArrayList;
+use Bula\Objects\DataList;
 use Bula\Objects\Enumerator;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataRange;
 
 /**
  * Helper class for manipulating with arrays.
@@ -19,18 +19,18 @@ use Bula\Objects\Hashtable;
 class Arrays
 {
     /** Create new array list. */
-    public static function newArrayList()
+    public static function newDataList()
     {
-        return new ArrayList();
+        return new DataList();
     }
 
     /**
      * Create new hash table.
-     * @return Hashtable New hash table.
+     * @return DataRange New hash table.
      */
-    public static function newHashtable()
+    public static function newDataRange()
     {
-        return new Hashtable();
+        return new DataRange();
     }
 
     /**
@@ -45,11 +45,11 @@ class Arrays
 
     /**
      * Merge hash tables.
-     * @param Hashtable $input Original hash table.
-     * @param Hashtable $extra Hash table to merge with original one.
-     * @return Hashtable Merged hash table.
+     * @param DataRange $input Original hash table.
+     * @param DataRange $extra Hash table to merge with original one.
+     * @return DataRange Merged hash table.
      */
-    public static function mergeHashtable($input, $extra)
+    public static function mergeDataRange($input, $extra)
     {
         if ($input == null)
             return null;
@@ -68,18 +68,18 @@ class Arrays
 
     /**
      * Merge array lists.
-     * @param ArrayList $input Original array list.
-     * @param ArrayList $extra Array list to merge with original one.
-     * @return ArrayList Resulting array list.
+     * @param DataList $input Original array list.
+     * @param DataList $extra Array list to merge with original one.
+     * @return DataList Resulting array list.
      */
-    public static function mergeArrayList($input, $extra)
+    public static function mergeDataList($input, $extra)
     {
         if ($input == null)
             return null;
         if ($extra == null)
             return $input;
 
-        $output = self::newArrayList();
+        $output = self::newDataList();
         for ($n = 0; $n < SIZE($input); $n++)
             $output->add($input->get($n));
         for ($n = 0; $n < SIZE($extra); $n++)
@@ -136,13 +136,13 @@ class Arrays
     /**
      * Create array list from array of objects.
      * @param Object[] $input Array of objects.
-     * @return ArrayList Resulting array list.
+     * @return DataList Resulting array list.
      */
-    public static function createArrayList($input)
+    public static function createDataList($input)
     {
         if ($input == null)
             return null;
-        $output = new ArrayList();
+        $output = new DataList();
         if (SIZE($input) == 0)
             return $output;
         foreach ($input as $obj)
@@ -153,13 +153,13 @@ class Arrays
     /**
      * Create hash table from associative array.
      * @param Array $input Input array.
-     * @return Hashtable Resulting hash table.
+     * @return DataRange Resulting hash table.
      */
-    public static function createHashtable($input)
+    public static function createDataRange($input)
     {
         if ($input == null || !is_array($input))
             return null;
-        $output = new Hashtable();
+        $output = new DataRange();
         if (SIZE($input) == 0)
             return $output;
 

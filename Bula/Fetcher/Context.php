@@ -14,8 +14,8 @@ use Bula\Objects\Response;
 use Bula\Objects\Arrays;
 use Bula\Objects\Strings;
 
-use Bula\Objects\ArrayList;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataList;
+use Bula\Objects\DataRange;
 
 use Bula\Fetcher\Controller\Engine;
 
@@ -24,8 +24,8 @@ require_once("Bula/Fetcher/Config.php");
 require_once("Bula/Objects/Request.php");
 require_once("Bula/Objects/Response.php");
 require_once("Bula/Objects/Arrays.php");
-require_once("Bula/Objects/ArrayList.php");
-require_once("Bula/Objects/Hashtable.php");
+require_once("Bula/Objects/DataList.php");
+require_once("Bula/Objects/DataRange.php");
 require_once("Bula/Objects/Strings.php");
 
 /**
@@ -192,7 +192,7 @@ class Context extends Config
      */
     private function defineConstants()
     {
-        $this->GlobalConstants = new Hashtable();
+        $this->GlobalConstants = new DataRange();
         $this->GlobalConstants->put("[#Site_Name]", Config::SITE_NAME);
         $this->GlobalConstants->put("[#Site_Comments]", Config::SITE_COMMENTS);
         $this->GlobalConstants->put("[#Top_Dir]", Config::TOP_DIR);
@@ -239,7 +239,7 @@ class Context extends Config
         $engine->setPrintFlag($printFlag);
         $this->EngineIndex++;
         if ($this->EngineInstances == null)
-            $this->EngineInstances = new ArrayList();
+            $this->EngineInstances = new DataList();
         if ($this->EngineInstances->size() <= $this->EngineIndex)
             $this->EngineInstances->add($engine);
         else

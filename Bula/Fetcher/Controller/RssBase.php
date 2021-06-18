@@ -12,9 +12,9 @@ namespace Bula\Fetcher\Controller;
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
 
-use Bula\Objects\ArrayList;
+use Bula\Objects\DataList;
 use Bula\Objects\Enumerator;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataRange;
 use Bula\Objects\Regex;
 use Bula\Objects\RegexOptions;
 
@@ -39,10 +39,10 @@ use Bula\Fetcher\Controller\Page;
 require_once("Bula/Meta.php");
 require_once("Bula/Objects/Request.php");
 require_once("Bula/Objects/Response.php");
-require_once("Bula/Objects/ArrayList.php");
+require_once("Bula/Objects/DataList.php");
 require_once("Bula/Objects/DateTimes.php");
 require_once("Bula/Objects/Helper.php");
-require_once("Bula/Objects/Hashtable.php");
+require_once("Bula/Objects/DataRange.php");
 require_once("Bula/Objects/Regex.php");
 require_once("Bula/Objects/RegexOptions.php");
 require_once("Bula/Objects/TString.php");
@@ -77,7 +77,7 @@ abstract class RssBase extends Page
             else {
                 $doSource = new DOSource();
                 $oSource =
-                    ARR(new Hashtable());
+                    ARR(new DataRange());
                 if (!$doSource->checkSourceName($source, $oSource))
                     $errorMessage->concat(CAT("Incorrect source '", $source, "'!"));
             }
@@ -104,7 +104,7 @@ abstract class RssBase extends Page
                 }
                 else {
                     $oCategory =
-                        ARR(new Hashtable());
+                        ARR(new DataRange());
                     if ($doCategory->checkFilterName($filterName, $oCategory))
                         $filter = $oCategory[0]->get("s_Filter");
                     else {

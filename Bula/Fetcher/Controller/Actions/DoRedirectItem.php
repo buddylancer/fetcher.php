@@ -12,7 +12,7 @@ namespace Bula\Fetcher\Controller\Actions;
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
 
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataRange;
 use Bula\Objects\Request;
 use Bula\Objects\TString;
 

@@ -17,7 +17,7 @@ use Bula\Fetcher\Context;
 use Bula\Objects\Arrays;
 use Bula\Objects\DateTimes;
 use Bula\Objects\Enumerator;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataRange;
 use Bula\Objects\Helper;
 use Bula\Objects\Logger;
 use Bula\Objects\Request;
@@ -37,7 +37,7 @@ require_once("Bula/Objects/Arrays.php");
 require_once("Bula/Objects/DateTimes.php");
 require_once("Bula/Objects/Enumerator.php");
 require_once("Bula/Objects/Helper.php");
-require_once("Bula/Objects/Hashtable.php");
+require_once("Bula/Objects/DataRange.php");
 require_once("Bula/Objects/Logger.php");
 require_once("Bula/Objects/TString.php");
 require_once("Bula/Objects/Strings.php");
@@ -94,7 +94,7 @@ class BOFetcher
 
     /**
      * Fetch data from the source.
-     * @param Hashtable $oSource Source object.
+     * @param DataRange $oSource Source object.
      * @return Object[] Resulting items.
      */
     private function fetchFromSource($oSource)
@@ -130,8 +130,8 @@ class BOFetcher
 
     /**
      * Parse data from the item.
-     * @param Hashtable $oSource Source object.
-     * @param Hashtable $item Item object.
+     * @param DataRange $oSource Source object.
+     * @param DataRange $item Item object.
      * @return Integer Result of executing SQL-query.
      */
     private function parseItemData($oSource, $item)
@@ -159,7 +159,7 @@ class BOFetcher
         $boItem->addStandardCategories($this->dsCategories, $this->context->Lang);
 
         $url = $boItem->getUrlTitle(true); //TODO -- Need to pass true if transliteration is required
-        $fields = new Hashtable();
+        $fields = new DataRange();
         $fields->put("s_Link", $boItem->link);
         $fields->put("s_Title", $boItem->title);
         $fields->put("s_FullTitle", $boItem->fullTitle);
@@ -219,7 +219,7 @@ class BOFetcher
             $itemsCounter = 0;
             // Loop through fetched items and parse their data
             for ($i = SIZE($itemsArray) - 1; $i >= 0; $i--) {
-                $hash = Arrays::createHashtable($itemsArray[$i]);
+                $hash = Arrays::createDataRange($itemsArray[$i]);
                 if (BLANK($hash->get("link")))
                     continue;
                 $itemid = $this->parseItemData($oSource, $hash);
@@ -264,7 +264,7 @@ class BOFetcher
             $doItem = new DOItem();
             $sqlFilter = $doItem->buildSqlFilter($filter);
             $dsItems = $doItem->enumIds($sqlFilter);
-            $fields = new Hashtable();
+            $fields = new DataRange();
             $fields->put("i_Counter", $dsItems->getSize());
             $result = $doCategory->updateById($id, $fields);
             if ($result < 0)

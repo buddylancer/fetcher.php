@@ -9,14 +9,14 @@
  */
 namespace Bula\Model;
 
-use Bula\Objects\ArrayList;
+use Bula\Objects\DataList;
 use Bula\Objects\Enumerator;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataRange;
 use Bula\Objects\TString;
 
-require_once("Bula/Objects/ArrayList.php");
+require_once("Bula/Objects/DataList.php");
 require_once("Bula/Objects/Enumerator.php");
-require_once("Bula/Objects/Hashtable.php");
+require_once("Bula/Objects/DataRange.php");
 require_once("Bula/Objects/TString.php");
 
 /**
@@ -31,7 +31,7 @@ class DataSet
     /** Default public constructor */
     public function __construct()
     {
-        $this->rows = new ArrayList();
+        $this->rows = new DataList();
         $this->pageSize = 10;
         $this->totalPages = 0;
     }
@@ -48,7 +48,7 @@ class DataSet
     /**
      * Get a row from the DataSet.
      * @param Integer $n Number of the row.
-     * @return Hashtable Required row or null.
+     * @return DataRange Required row or null.
      */
     public function getRow($n)
     {
@@ -57,7 +57,7 @@ class DataSet
 
     /**
      * Add new row into the DataSet.
-     * @param Hashtable $row New row to add.
+     * @param DataRange $row New row to add.
      */
     public function addRow($row)
     {

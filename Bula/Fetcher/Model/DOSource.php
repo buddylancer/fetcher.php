@@ -10,15 +10,15 @@
 namespace Bula\Fetcher\Model;
 
 use Bula\Fetcher\Config;
-use Bula\Objects\ArrayList;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataList;
+use Bula\Objects\DataRange;
 use Bula\Objects\TString;
 use Bula\Objects\Strings;
 use Bula\Model\DOBase;
 use Bula\Model\DataSet;
 
-require_once("Bula/Objects/ArrayList.php");
-require_once("Bula/Objects/Hashtable.php");
+require_once("Bula/Objects/DataList.php");
+require_once("Bula/Objects/DataRange.php");
 require_once("Bula/Objects/TString.php");
 require_once("Bula/Objects/Strings.php");
 require_once("Bula/Model/DOBase.php");

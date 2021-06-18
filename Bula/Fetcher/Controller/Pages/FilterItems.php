@@ -12,8 +12,8 @@ namespace Bula\Fetcher\Controller\Pages;
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
 use Bula\Objects\Request;
-use Bula\Objects\ArrayList;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataList;
+use Bula\Objects\DataRange;
 use Bula\Model\DataSet;
 use Bula\Fetcher\Model\DOSource;
 use Bula\Fetcher\Controller\Engine;
@@ -36,7 +36,7 @@ class FilterItems extends Page
         if ($this->context->Request->contains("source"))
             $source = $this->context->Request->get("source");
 
-        $prepare = new Hashtable();
+        $prepare = new DataRange();
         if ($this->context->FineUrls)
             $prepare->put("[#Fine_Urls]", 1);
         $prepare->put("[#Selected]", BLANK($source) ? " selected=\"selected\" " : "");
@@ -47,10 +47,10 @@ class FilterItems extends Page
             $dsSources = $doSource->enumSourcesWithCounters();
         else
             $dsSources = $doSource->enumSources();
-        $options = new ArrayList();
+        $options = new DataList();
         for ($n = 0; $n < $dsSources->getSize(); $n++) {
             $oSource = $dsSources->getRow($n);
-            $option = new Hashtable();
+            $option = new DataRange();
             $option->put("[#Selected]", ($oSource->get("s_SourceName")->equals($source) ? "selected=\"selected\"" : " "));
             $option->put("[#Id]", $oSource->get("s_SourceName"));
             $option->put("[#Name]", $oSource->get("s_SourceName"));

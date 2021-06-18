@@ -9,7 +9,7 @@
  */
 namespace Bula\Fetcher\Controller\Pages;
 
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataRange;
 use Bula\Objects\Regex;
 
 use Bula\Fetcher\Config;
@@ -35,7 +35,7 @@ abstract class ItemsBase extends Page
     {
         if ($this->context->Request->contains("list")) {
             if (!Request::isInteger($this->context->Request->get("list"))) {
-                $prepare = new Hashtable();
+                $prepare = new DataRange();
                 $prepare->put("[#ErrMessage]", "Incorrect list number!");
                 $this->write("error", $prepare);
                 return false;
@@ -63,7 +63,7 @@ abstract class ItemsBase extends Page
         if ($errMessage->isEmpty())
             return true;
 
-        $prepare = new Hashtable();
+        $prepare = new DataRange();
         $prepare->put("[#ErrMessage]", $errMessage);
         $this->write("error", $prepare);
         return false;
@@ -71,14 +71,14 @@ abstract class ItemsBase extends Page
 
     /**
      * Fill Row from Item.
-     * @param Hashtable $oItem Original Item.
+     * @param DataRange $oItem Original Item.
      * @param TString $idField Name of ID field.
      * @param Integer $count The number of inserted Row in HTML table.
-     * @return Hashtable Resulting Row.
+     * @return DataRange Resulting Row.
      */
-    protected function fillItemRow(Hashtable $oItem, $idField, $count)
+    protected function fillItemRow(DataRange $oItem, $idField, $count)
     {
-        $row = new Hashtable();
+        $row = new DataRange();
         $itemId = INT($oItem->get($idField));
         $urlTitle = $oItem->get("s_Url");
         $itemHref = $this->context->ImmediateRedirect ?

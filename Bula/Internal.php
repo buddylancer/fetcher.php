@@ -9,10 +9,12 @@
  */
 namespace Bula;
 
-use Bula\Objects\ArrayList;
+use Bula\Objects\DataList;
+use Bula\Objects\DataRange;
 use Bula\Objects\TString;
 
-require_once("Bula/Objects/ArrayList.php");
+require_once("Bula/Objects/DataList.php");
+require_once("Bula/Objects/DataRange.php");
 require_once("Bula/Objects/TString.php");
 
 class Internal
@@ -33,7 +35,7 @@ class Internal
      * Call static method of given class using provided arguments.
      * @param TString $className Class name.
      * @param TString $methodName Method name.
-     * @param ArrayList $args List of arguments.
+     * @param DataList $args List of arguments.
      * @return Object Result of method execution.
      */
     public static function callStaticMethod($className, $methodName, $args = null)
@@ -52,7 +54,7 @@ class Internal
      * Call method of given class using provided arguments.
      * @param TString $className Class name.
      * @param TString $methodName Method name.
-     * @param ArrayList $args List of arguments.
+     * @param DataList $args List of arguments.
      * @return Object Result of method execution.
      */
     public static function callMethod($className, $conArgs, $methodName, $exeArgs = null)

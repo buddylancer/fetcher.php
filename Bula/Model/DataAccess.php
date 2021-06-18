@@ -92,9 +92,9 @@ class DataAccess
     }
 
     /**
-     * Get next row (as Hashtable) for last query.
+     * Get next row (as DataRange) for last query.
      * @return Object Result of query execution.
-     * @return Hashtable Next row or null.
+     * @return DataRange Next row or null.
      */
     public static function fetchArray($result)
     {

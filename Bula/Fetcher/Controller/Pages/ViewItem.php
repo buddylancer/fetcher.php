@@ -12,7 +12,7 @@ namespace Bula\Fetcher\Controller\Pages;
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
 use Bula\Objects\Request;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataRange;
 use Bula\Model\DataSet;
 use Bula\Fetcher\Model\DOItem;
 use Bula\Fetcher\Controller\Util;
@@ -29,11 +29,11 @@ class ViewItem extends Page
 
     /**
      * Fast check of input query parameters.
-     * @return Hashtable Parsed parameters (or null in case of any error).
+     * @return DataRange Parsed parameters (or null in case of any error).
      */
     public function check()
     {
-        $prepare = new Hashtable();
+        $prepare = new DataRange();
         if (!$this->context->Request->contains("id")) {
             $prepare->put("[#ErrMessage]", "Item ID is required!");
             $this->write("error", $prepare);
@@ -46,7 +46,7 @@ class ViewItem extends Page
             return null;
         }
 
-        $pars = new Hashtable();
+        $pars = new DataRange();
         $pars->put("id", $id);
         return $pars;
     }
@@ -60,7 +60,7 @@ class ViewItem extends Page
 
         $id = $pars->get("id");
 
-        $prepare = new Hashtable();
+        $prepare = new DataRange();
 
         $doItem = new DOItem();
         $dsItems = $doItem->getById(INT($id));
@@ -92,7 +92,7 @@ class ViewItem extends Page
         $prepare->put("[#SourceLink]", $this->getLink(Config::INDEX_PAGE, "?p=items&source=", "items/source/", $sourceName));
         $prepare->put("[#Date]", Util::showTime($oItem->get("d_Date")));
         if (!NUL($oItem->get("s_Creator")))
-        	$prepare->put("[#Creator]", $oItem->get("s_Creator"));
+            $prepare->put("[#Creator]", $oItem->get("s_Creator"));
         $prepare->put("[#Description]", $oItem->containsKey("t_Description") ? Util::show($oItem->get("t_Description")) : "");
         $prepare->put("[#ItemID]", $oItem->get($idField));
         if ($this->context->contains("Name_Category") && !NUL($oItem->get("s_Category")))

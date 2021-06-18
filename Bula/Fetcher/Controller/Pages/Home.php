@@ -11,8 +11,8 @@ namespace Bula\Fetcher\Controller\Pages;
 
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
-use Bula\Objects\ArrayList;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataList;
+use Bula\Objects\DataRange;
 use Bula\Model\DataSet;
 use Bula\Fetcher\Model\DOItem;
 use Bula\Fetcher\Controller\Engine;
@@ -28,11 +28,11 @@ class Home extends ItemsBase
 
     /**
      * Fast check of input query parameters.
-     * @return Hashtable Parsed parameters (or null in case of any error).
+     * @return DataRange Parsed parameters (or null in case of any error).
      */
     public function check()
     {
-        return new Hashtable();
+        return new DataRange();
     }
 
     /** Execute main logic for Home block. */
@@ -42,7 +42,7 @@ class Home extends ItemsBase
         if ($pars == null)
             return;
 
-        $prepare = new Hashtable();
+        $prepare = new DataRange();
 
         $doItem = new DOItem();
 
@@ -55,7 +55,7 @@ class Home extends ItemsBase
         $maxRows = Config::DB_HOME_ROWS;
         $dsItems = $doItem->enumItems($source, $search, 1, $maxRows);
         $rowCount = 1;
-        $items = new ArrayList();
+        $items = new DataList();
         for ($n = 0; $n < $dsItems->getSize(); $n++) {
             $oItem = $dsItems->getRow($n);
             $row = parent::fillItemRow($oItem, $doItem->getIdField(), $rowCount);

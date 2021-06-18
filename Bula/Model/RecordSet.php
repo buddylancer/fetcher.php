@@ -9,14 +9,14 @@
  */
 namespace Bula\Model;
 
-use Bula\Objects\ArrayList;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataList;
+use Bula\Objects\DataRange;
 
 use Bula\Objects\Arrays;
 
 require_once("Bula/Objects/Arrays.php");
-require_once("Bula/Objects/ArrayList.php");
-require_once("Bula/Objects/Hashtable.php");
+require_once("Bula/Objects/DataList.php");
+require_once("Bula/Objects/DataRange.php");
 
 /**
  * Implement operations with record sets.
@@ -113,7 +113,7 @@ class RecordSet
         $arr = DataAccess::fetchArray($this->result);
 
         if ($arr != null) {
-            $this->record = Arrays::createHashtable($arr);
+            $this->record = Arrays::createDataRange($arr);
             return 1;
         }
         else

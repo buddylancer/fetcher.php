@@ -11,8 +11,8 @@ namespace Bula\Fetcher\Controller;
 
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
-use Bula\Objects\ArrayList;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataList;
+use Bula\Objects\DataRange;
 use Bula\Objects\Regex;
 use Bula\Objects\RegexOptions;
 use Bula\Objects\Request;
@@ -24,8 +24,8 @@ use Bula\Fetcher\Controller\Engine;
 
 require_once("Bula/Meta.php");
 require_once("Bula/Model/DBConfig.php");
-require_once("Bula/Objects/ArrayList.php");
-require_once("Bula/Objects/Hashtable.php");
+require_once("Bula/Objects/DataList.php");
+require_once("Bula/Objects/DataRange.php");
 require_once("Bula/Objects/Regex.php");
 require_once("Bula/Objects/RegexOptions.php");
 require_once("Bula/Objects/TString.php");
@@ -86,7 +86,7 @@ class Index extends Page
 
         $engine = $this->context->pushEngine(true);
 
-        $prepare = new Hashtable();
+        $prepare = new DataRange();
         $prepare->put("[#Site_Name]", Config::SITE_NAME);
         $pFromVars = $this->context->Request->contains("p") ? $this->context->Request->get("p") : "home";
         $idFromVars = $this->context->Request->contains("id") ? $this->context->Request->get("id") : null;

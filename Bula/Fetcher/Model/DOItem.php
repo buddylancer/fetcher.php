@@ -11,7 +11,7 @@ namespace Bula\Fetcher\Model;
 
 use Bula\Fetcher\Config;
 use Bula\Objects\DateTimes;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataRange;
 use Bula\Objects\TString;
 use Bula\Objects\Strings;
 use Bula\Model\DBConfig;
@@ -150,7 +150,7 @@ class DOItem extends DOBase
 
         $query2 = Strings::concat(
             " SELECT _this.", $this->idField, ", s.s_SourceName, _this.s_Title, _this.s_Url, _this.d_Date, _this.s_Category, ",
-            " _this.s_Creator, _this.s_Custom1, _this.s_Custom2, s.s_SourceName ",
+            " _this.s_Creator, _this.s_Custom1, _this.s_Custom2 ",
             " FROM ", $this->tableName, " _this ",
             " LEFT JOIN sources s ON (s.i_SourceId = _this.i_SourceLink ) ",
             " WHERE _this.", $this->idField, " IN (", $inList, ") ",

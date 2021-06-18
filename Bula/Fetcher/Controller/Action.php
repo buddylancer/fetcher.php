@@ -14,15 +14,15 @@ use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
 use Bula\Objects\Request;
 use Bula\Objects\Response;
-use Bula\Objects\ArrayList;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataList;
+use Bula\Objects\DataRange;
 use Bula\Model\DBConfig;
 
 require_once("Bula/Meta.php");
 require_once("Bula/Internal.php");
 require_once("Bula/Model/DBConfig.php");
-require_once("Bula/Objects/ArrayList.php");
-require_once("Bula/Objects/Hashtable.php");
+require_once("Bula/Objects/DataList.php");
+require_once("Bula/Objects/DataRange.php");
 require_once("Bula/Objects/TString.php");
 require_once("Bula/Objects/Request.php");
 require_once("Bula/Objects/Response.php");
@@ -86,7 +86,7 @@ class Action extends Page
 
         $actionClass = CAT("Bula/Fetcher/Controller/Actions/", $actionInfo->get("class"));
         //Config::includeFile(CAT($actionClass, ".php"));
-        $args0 = new ArrayList(); $args0->add($this->context);
+        $args0 = new DataList(); $args0->add($this->context);
         Internal::callMethod($actionClass, $args0, "execute", null);
 
         if (DBConfig::$Connection != null) {

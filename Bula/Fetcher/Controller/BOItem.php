@@ -11,9 +11,9 @@ namespace Bula\Fetcher\Controller;
 
 use Bula\Fetcher\Config;
 
-use Bula\Objects\ArrayList;
+use Bula\Objects\DataList;
 use Bula\Objects\Arrays;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataRange;
 use Bula\Objects\Regex;
 use Bula\Objects\RegexOptions;
 
@@ -21,8 +21,8 @@ use Bula\Objects\TString;
 use Bula\Objects\Strings;
 use Bula\Model\DataSet;
 
-require_once("Bula/Objects/ArrayList.php");
-require_once("Bula/Objects/Hashtable.php");
+require_once("Bula/Objects/DataList.php");
+require_once("Bula/Objects/DataRange.php");
 require_once("Bula/Objects/TString.php");
 require_once("Bula/Objects/Strings.php");
 require_once("Bula/Objects/Regex.php");
@@ -75,10 +75,10 @@ class BOItem
 
     /**
      * Initialize this BOItem.
-     * @param Hashtable $source Current processed source.
-     * @param Hashtable $item Current processed RSS-item from given source.
+     * @param DataRange $source Current processed source.
+     * @param DataRange $item Current processed RSS-item from given source.
      */
-    private function initialize($source, Hashtable $item)
+    private function initialize($source, DataRange $item)
     {
         $this->source = $source;
         $this->item = $item;
@@ -202,7 +202,7 @@ class BOItem
         $category = null;
         if (!$categoryItem->isEmpty()) {
             $categoriesArr = $categoryItem->replace(",&,", " & ")->split(",");
-            $categoriesNew = new ArrayList();
+            $categoriesNew = new DataList();
             for ($c = 0; $c < SIZE($categoriesArr); $c++) {
                 $temp = $categoriesArr[$c];
                 if (BLANK($temp->trim()))

@@ -213,7 +213,7 @@ class Helper
     {
         if (($handle = opendir(CAT($path))) == null)
             return null;
-        $entries = new ArrayList();
+        $entries = new DataList();
         while (false !== ($file = readdir($handle))) {
             if ($file == "." || $file == "..")
                 continue;

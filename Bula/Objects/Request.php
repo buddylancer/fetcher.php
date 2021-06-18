@@ -11,13 +11,13 @@ namespace Bula\Objects;
 
 use Bula\Objects\Arrays;
 use Bula\Objects\Enumerator;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataRange;
 use Bula\Objects\Regex;
 
 require_once("RequestBase.php");
 require_once("Arrays.php");
 require_once("Enumerator.php");
-require_once("Hashtable.php");
+require_once("DataRange.php");
 require_once("Regex.php");
 
 /**
@@ -36,15 +36,15 @@ class Request extends RequestBase
     /** Initialize internal variables for new request. */
     private function initialize()
     {
-        $this->Vars = Arrays::newHashtable();
+        $this->Vars = Arrays::newDataRange();
         $this->Vars->setPullValues(true);
-        $this->ServerVars = Arrays::newHashtable();
+        $this->ServerVars = Arrays::newDataRange();
         $this->ServerVars->setPullValues(true);
     }
 
     /**
      * Get private variables.
-     * @return Hashtable
+     * @return DataRange
      */
     public function getPrivateVars()
     {
@@ -100,21 +100,21 @@ class Request extends RequestBase
     public function extractPostVars()
     {
         $vars = $this->getVars(INPUT_POST);
-        $this->Vars = Arrays::mergeHashtable($this->Vars, $vars);
+        $this->Vars = Arrays::mergeDataRange($this->Vars, $vars);
     }
 
     /** Extract all SERVER variables into internal storage. */
     public function extractServerVars()
     {
         $vars = $this->getVars(INPUT_SERVER);
-        $this->Vars = Arrays::mergeHashtable($this->ServerVars, $vars);
+        $this->Vars = Arrays::mergeDataRange($this->ServerVars, $vars);
     }
 
     /** Extract all GET and POST variables into internal storage. */
     public function extractAllVars()
     {
         $vars = $this->getVars(INPUT_GET);
-        $this->Vars = Arrays::mergeHashtable($this->Vars, $vars);
+        $this->Vars = Arrays::mergeDataRange($this->Vars, $vars);
         $this->extractPostVars();
     }
 
@@ -234,11 +234,11 @@ class Request extends RequestBase
      * Test (match) a page request with array of allowed pages.
      * @param Object[] $pages Array of allowed pages (and their parameters).
      * @param TString $defaultPage Default page to use for testing.
-     * @return Hashtable Resulting page parameters.
+     * @return DataRange Resulting page parameters.
      */
     public function testPage($pages, $defaultPage = null)
     {
-        $pageInfo = new Hashtable();
+        $pageInfo = new DataRange();
 
         // Get page name
         $page = null;

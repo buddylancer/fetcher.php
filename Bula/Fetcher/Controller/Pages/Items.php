@@ -12,8 +12,8 @@ namespace Bula\Fetcher\Controller\Pages;
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
 
-use Bula\Objects\ArrayList;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataList;
+use Bula\Objects\DataRange;
 
 use Bula\Objects\Request;
 use Bula\Objects\TString;
@@ -39,7 +39,7 @@ class Items extends ItemsBase
 
     /**
      * Fast check of input query parameters.
-     * @return Hashtable Parsed parameters (or null in case of any error).
+     * @return DataRange Parsed parameters (or null in case of any error).
      */
     public function check()
     {
@@ -82,13 +82,13 @@ class Items extends ItemsBase
         }
 
         if ($errorMessage->length() > 0) {
-            $prepare = new Hashtable();
+            $prepare = new DataRange();
             $prepare->put("[#ErrMessage]", $errorMessage);
             $this->write("error", $prepare);
             return null;
         }
 
-        $pars = new Hashtable();
+        $pars = new DataRange();
         if (!NUL($list))
             $pars->put("list", $list);
         if (!NUL($sourceName))
@@ -116,7 +116,7 @@ class Items extends ItemsBase
         if (!NUL($filterName)) {
             $doCategory = new DOCategory();
             $oCategory =
-                ARR(new Hashtable());
+                ARR(new DataRange());
             if (!$doCategory->checkFilterName($filterName, $oCategory))
                 $errorMessage->concat("Non-existing filter name!");
             else
@@ -126,7 +126,7 @@ class Items extends ItemsBase
         if (!NUL($sourceName)) {
             $doSource = new DOSource();
             $oSource =
-                ARR(new Hashtable());
+                ARR(new DataRange());
             if (!$doSource->checkSourceName($sourceName, $oSource)) {
                 if ($errorMessage->length() > 0)
                     $errorMessage->concat("<br/>");
@@ -136,7 +136,7 @@ class Items extends ItemsBase
 
         $engine = $this->context->getEngine();
 
-        $prepare = new Hashtable();
+        $prepare = new DataRange();
         if ($errorMessage->length() > 0) {
             $prepare->put("[#ErrMessage]", $errorMessage);
             $this->write("error", $prepare);
@@ -176,7 +176,7 @@ class Items extends ItemsBase
         }
 
         $count = 1;
-        $rows = new ArrayList();
+        $rows = new DataList();
         for ($n = 0; $n < $dsItems->getSize(); $n++) {
             $oItem = $dsItems->getRow($n);
             $row = parent::fillItemRow($oItem, $doItem->getIdField(), $count);
@@ -190,16 +190,16 @@ class Items extends ItemsBase
             $before = false;
             $after = false;
 
-            $pages = new ArrayList();
+            $pages = new DataList();
             for ($n = 1; $n <= $listTotal; $n++) {
-                $page = new Hashtable();
+                $page = new DataRange();
                 if ($n < $listNumber - $chunk) {
                     if (!$before) {
                         $before = true;
                         $page->put("[#Text]", "1");
                         $page->put("[#Link]", parent::getPageLink(1));
                         $pages->add($page);
-                        $page = new Hashtable();
+                        $page = new DataRange();
                         $page->put("[#Text]", " ... ");
                         //$row->remove("[#Link]");
                         $pages->add($page);
@@ -211,7 +211,7 @@ class Items extends ItemsBase
                         $after = true;
                         $page->put("[#Text]", " ... ");
                         $pages->add($page);
-                        $page = new Hashtable();
+                        $page = new DataRange();
                         $page->put("[#Text]", $listTotal);
                         $page->put("[#Link]", parent::getPageLink($listTotal));
                         $pages->add($page);

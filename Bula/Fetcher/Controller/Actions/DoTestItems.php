@@ -11,7 +11,7 @@ namespace Bula\Fetcher\Controller\Actions;
 
 use Bula\Objects\Response;
 use Bula\Objects\DateTimes;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataRange;
 use Bula\Model\DataSet;
 
 use Bula\Fetcher\Config;
@@ -79,7 +79,7 @@ class DoTestItems extends Page
             $boFetcher->fetchFromSources();
 
             $doTime = new DOTime(); // Need for DB reopen
-            $fields = new Hashtable();
+            $fields = new DataRange();
             $fields->put("d_Time", DateTimes::format(DateTimes::SQL_DTS, DateTimes::getTime()));
             if ($insertRequired) {
                 $fields->put("i_Id", 1);

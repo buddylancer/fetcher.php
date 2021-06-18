@@ -12,13 +12,13 @@ namespace Bula\Fetcher\Controller;
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
 
-use Bula\Objects\ArrayList;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataList;
+use Bula\Objects\DataRange;
 use Bula\Model\DataSet;
 use Bula\Fetcher\Model\DOCategory;
 
-require_once("Bula/Objects/ArrayList.php");
-require_once("Bula/Objects/Hashtable.php");
+require_once("Bula/Objects/DataList.php");
+require_once("Bula/Objects/DataRange.php");
 require_once("Bula/Fetcher/Model/DOCategory.php");
 
 /**
@@ -30,7 +30,7 @@ class Bottom extends Page
     /** Execute main logic for Bottom block */
     public function execute()
     {
-        $prepare = new Hashtable();
+        $prepare = new DataRange();
 
         $doCategory = new DOCategory();
         $dsCategory = $doCategory->enumAll("_this.i_Counter <> 0");
@@ -39,10 +39,10 @@ class Bottom extends Page
         $n1 = INT($size / 3) + ($size3 == 0 ? 0 : 1);
         $n2 = $n1 * 2;
         $nn = array(0, $n1, $n2, $size);
-        $filterBlocks = new ArrayList();
+        $filterBlocks = new DataList();
         for ($td = 0; $td < 3; $td++) {
-            $filterBlock = new Hashtable();
-            $rows = new ArrayList();
+            $filterBlock = new DataRange();
+            $rows = new DataList();
             for ($n = INT($nn[$td]); $n < INT($nn[$td+1]); $n++) {
                 $oCategory = $dsCategory->getRow($n);
                 if (NUL($oCategory))
@@ -52,7 +52,7 @@ class Bottom extends Page
                     continue;
                 $key = $oCategory->get("s_CatId");
                 $name = $oCategory->get("s_Name");
-                $row = new Hashtable();
+                $row = new DataRange();
                 $row->put("[#Link]", $this->getLink(Config::INDEX_PAGE, "?p=items&filter=", "items/filter/", $key));
                 $row->put("[#LinkText]", $name);
                 //if ($counter > 0)
@@ -71,10 +71,10 @@ class Bottom extends Page
             $n1 = INT($size / 3) + ($size3 == 0 ? 0 : 1); //17.3
             $n2 = $n1 * 2; //34.6
             $nn = array(0, $n1, $n2, $size);
-            $rssBlocks = new ArrayList();
+            $rssBlocks = new DataList();
             for ($td = 0; $td < 3; $td++) {
-                $rssBlock = new Hashtable();
-                $rows = new ArrayList();
+                $rssBlock = new DataRange();
+                $rows = new DataList();
                 for ($n = INT($nn[$td]); $n < INT($nn[$td+1]); $n++) {
                     $oCategory = $dsCategory->getRow($n);
                     if (NUL($oCategory))
@@ -82,7 +82,7 @@ class Bottom extends Page
                     $key = $oCategory->get("s_CatId");
                     $name = $oCategory->get("s_Name");
                     //$counter = INT($oCategory->get("i_Counter"));
-                    $row = new Hashtable();
+                    $row = new DataRange();
                     $row->put("[#Link]", $this->getLink(Config::RSS_PAGE, "?filter=", "rss/", CAT($key, ($this->context->FineUrls ? ".xml" : null))));
                     $row->put("[#LinkText]", $name);
                     $rows->add($row);

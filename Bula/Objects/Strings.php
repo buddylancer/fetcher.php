@@ -10,9 +10,9 @@
 namespace Bula\Objects;
 
 use Bula\Internal;
-use Bula\Objects\ArrayList;
+use Bula\Objects\DataList;
 use Bula\Objects\TString;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataRange;
 
 require_once("TString.php");
 
@@ -137,7 +137,7 @@ class Strings
         if ($input instanceof TString) $input = $input->getValue();
         $chunks =
             preg_split($divider, $input, -1, PREG_SPLIT_NO_EMPTY);
-        $result = new ArrayList();
+        $result = new DataList();
         for ($n = 0; $n < SIZE($chunks); $n++)
             $result->add($chunks[$n]);
         return $result->toArray();
@@ -203,13 +203,13 @@ class Strings
     /**
      * Replace "keys by values" in a string.
      * @param TString $template Input template.
-     * @param Hashtable $hash Set of key/value pairs.
+     * @param DataRange $hash Set of key/value pairs.
      * @return TString Resulting string.
      */
     public static function replaceInTemplate($template, $hash)
     {
 
-        $hash2 = Arrays::newHashtable();
+        $hash2 = Arrays::newDataRange();
         $keys = $hash->keys();
         while ($keys->nextElement()) {
             $key = $keys->current;

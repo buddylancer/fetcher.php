@@ -14,7 +14,7 @@ use Bula\Fetcher\Context;
 
 use Bula\Objects\Request;
 use Bula\Objects\TString;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataRange;
 
 use Bula\Fetcher\Model\DOSource;
 
@@ -41,7 +41,7 @@ class DoRedirectSource extends DoRedirect
             else {
                 $doSource = new DOSource();
                 $oSource =
-                    ARR(new Hashtable());
+                    ARR(new DataRange());
                 if (!$doSource->checkSourceName($sourceName, $oSource))
                     $errorMessage = "No such source name!";
                 else

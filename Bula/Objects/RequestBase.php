@@ -11,11 +11,11 @@ namespace Bula\Objects;
 
 use Bula\Objects\Arrays;
 use Bula\Objects\Enumerator;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataRange;
 
 require_once("Arrays.php");
 require_once("Enumerator.php");
-require_once("Hashtable.php");
+require_once("DataRange.php");
 
 /**
  * Base helper class for processing query/form request.
@@ -34,11 +34,11 @@ class RequestBase
     /**
      * Get all variables of given type.
      * @param Integer $type Required type.
-     * @return Hashtable Requested variables.
+     * @return DataRange Requested variables.
      */
     public function getVars($type)
     {
-        $output = Arrays::newHashtable();
+        $output = Arrays::newDataRange();
         $vars = filter_input_array($type);
         if ($vars === false || $vars == null)
             return $output;

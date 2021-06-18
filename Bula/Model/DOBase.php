@@ -9,16 +9,16 @@
  */
 namespace Bula\Model;
 
-use Bula\Objects\ArrayList;
+use Bula\Objects\DataList;
 use Bula\Objects\Enumerator;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataRange;
 use Bula\Objects\TString;
 use Bula\Objects\Strings;
 
 require_once("Bula/Meta.php");
-require_once("Bula/Objects/ArrayList.php");
+require_once("Bula/Objects/DataList.php");
 require_once("Bula/Objects/Enumerator.php");
-require_once("Bula/Objects/Hashtable.php");
+require_once("Bula/Objects/DataRange.php");
 require_once("Bula/Objects/TString.php");
 require_once("Bula/Objects/Strings.php");
 
@@ -335,10 +335,10 @@ class DOBase
 
     /**
      * Insert new record based on given fields.
-     * @param Hashtable $fields The set of fields.
+     * @param DataRange $fields The set of fields.
      * @return Integer Result of SQL-query execution.
      */
-    public function insert(Hashtable $fields)
+    public function insert(DataRange $fields)
     {
         $keys =
             $fields->keys();
@@ -366,10 +366,10 @@ class DOBase
     /**
      * Update existing record by ID based on given fields.
      * @param Integer $id Unique record ID.
-     * @param Hashtable $fields The set of fields.
+     * @param DataRange $fields The set of fields.
      * @return Integer Result of SQL-query execution.
      */
-    public function updateById($id, Hashtable $fields)
+    public function updateById($id, DataRange $fields)
     {
         $keys =
             $fields->keys();

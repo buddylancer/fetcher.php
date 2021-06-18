@@ -10,15 +10,15 @@
 namespace Bula\Objects;
 
 use Bula\Objects\Arrays;
-use Bula\Objects\ArrayList;
+use Bula\Objects\DataList;
 use Bula\Objects\TString;
 
 require_once("Arrays.php");
-require_once("ArrayList.php");
+require_once("DataList.php");
 require_once("TString.php");
 
 /**
- * Base class for ArrayList and Hashtable.
+ * Base class for DataList and DataRange.
  */
 abstract class Collection
 {
@@ -45,9 +45,9 @@ abstract class Collection
      */
     protected function pushValue($input)
     {
-        if ($input instanceof ArrayList)
+        if ($input instanceof DataList)
             return $input->toArray(0);
-        else if ($input instanceof Hashtable)
+        else if ($input instanceof DataRange)
             return Arrays::toArray($input);
         else if ($input instanceof TString)
             return $input->getValue();
@@ -63,13 +63,13 @@ abstract class Collection
     {
         if (is_array($input)) {
             if (isset($input[0]) && $input[0] == "_A") {
-                $result = new ArrayList();
+                $result = new DataList();
                 for ($n = 1; $n < sizeof($input); $n++)
                     $result->add($input[$n]);
                 return $result;
             }
             else
-                return Arrays::createHashtable($input);
+                return Arrays::createDataRange($input);
         }
         else if (is_string($input))
             return new TString($input);

@@ -84,9 +84,9 @@ class Regex
         $patternValue = CAT(DIV, self::escape($pattern), DIV, "u",
             ((INT($options) & RegexOptions::IgnoreCase) != 0) ? "i" : null);
         $outArray = array();
-        $result = new ArrayList();
+        $result = new DataList();
         if (preg_match($patternValue, $input->getValue(), $outArray) > 0)
-            $result = new ArrayList($outArray);
+            $result = new DataList($outArray);
         return $result->toArray();
     }
 

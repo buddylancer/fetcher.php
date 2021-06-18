@@ -12,7 +12,7 @@ namespace Bula\Fetcher\Controller\Testing;
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
 use Bula\Fetcher\Controller\Page;
-use Bula\Objects\ArrayList;
+use Bula\Objects\DataList;
 use Bula\Objects\TString;
 use Bula\Objects\Strings;
 use Bula\Objects\Request;
@@ -21,7 +21,7 @@ use Bula\Model\DataSet;
 
 require_once("Bula/Meta.php");
 require_once("Bula/Fetcher/Controller/Page.php");
-require_once("Bula/Objects/ArrayList.php");
+require_once("Bula/Objects/DataList.php");
 require_once("Bula/Objects/TString.php");
 require_once("Bula/Objects/Strings.php");
 require_once("Bula/Objects/Request.php");
@@ -92,7 +92,7 @@ class CallMethod extends Page
 
         // Fill array with parameters
         $count = 0;
-        $pars = new ArrayList();
+        $pars = new DataList();
         for ($n = 1; $n <= 6; $n++) {
             $parName = CAT("par", $n);
             if (!$this->context->Request->contains($parName))

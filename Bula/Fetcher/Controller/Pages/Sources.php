@@ -11,8 +11,8 @@ namespace Bula\Fetcher\Controller\Pages;
 
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
-use Bula\Objects\ArrayList;
-use Bula\Objects\Hashtable;
+use Bula\Objects\DataList;
+use Bula\Objects\DataRange;
 use Bula\Model\DataSet;
 use Bula\Fetcher\Model\DOSource;
 use Bula\Fetcher\Model\DOItem;
@@ -30,17 +30,17 @@ class Sources extends ItemsBase
 
     /**
      * Fast check of input query parameters.
-     * @return Hashtable Parsed parameters (or null in case of any error).
+     * @return DataRange Parsed parameters (or null in case of any error).
      */
     public function check()
     {
-        return new Hashtable();
+        return new DataRange();
     }
 
     /** Execute main logic for Source block. */
     public function execute()
     {
-        $prepare = new Hashtable();
+        $prepare = new DataRange();
         if (Config::SHOW_IMAGES)
             $prepare->put("[#Show_Images]", 1);
 
@@ -49,12 +49,12 @@ class Sources extends ItemsBase
 
         $dsSources = $doSource->enumSources();
         $count = 1;
-        $sources = new ArrayList();
+        $sources = new DataList();
         for ($ns = 0; $ns < $dsSources->getSize(); $ns++) {
             $oSource = $dsSources->getRow($ns);
             $sourceName = $oSource->get("s_SourceName");
 
-            $sourceRow = new Hashtable();
+            $sourceRow = new DataRange();
             $sourceRow->put("[#ColSpan]", Config::SHOW_IMAGES ? 4 : 3);
             $sourceRow->put("[#SourceName]", $sourceName);
             $sourceRow->put("[#ExtImages]", Config::EXT_IMAGES);
@@ -64,7 +64,7 @@ class Sources extends ItemsBase
             $sourceRow->put("[#RedirectSource]", $this->getLink(Config::INDEX_PAGE, "?p=items&source=", "items/source/", $sourceName));
 
             $dsItems = $doItem->enumItemsFromSource(null, $sourceName, null, 3);
-            $items = new ArrayList();
+            $items = new DataList();
             $itemCount = 0;
             for ($ni = 0; $ni < $dsItems->getSize(); $ni++) {
                 $oItem = $dsItems->getRow($ni);
