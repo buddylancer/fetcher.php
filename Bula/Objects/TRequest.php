@@ -10,20 +10,20 @@
 namespace Bula\Objects;
 
 use Bula\Objects\Arrays;
-use Bula\Objects\Enumerator;
-use Bula\Objects\DataRange;
+use Bula\Objects\TEnumerator;
+use Bula\Objects\THashtable;
 use Bula\Objects\Regex;
 
-require_once("RequestBase.php");
+require_once("TRequestBase.php");
 require_once("Arrays.php");
-require_once("Enumerator.php");
-require_once("DataRange.php");
+require_once("TEnumerator.php");
+require_once("THashtable.php");
 require_once("Regex.php");
 
 /**
  * Helper class for processing query/form request.
  */
-class Request extends RequestBase
+class TRequest extends TRequestBase
 {
     /** Internal storage for GET/POST variables */
     private $Vars = null;
@@ -36,15 +36,15 @@ class Request extends RequestBase
     /** Initialize internal variables for new request. */
     private function initialize()
     {
-        $this->Vars = Arrays::newDataRange();
+        $this->Vars = THashtable::create();
         $this->Vars->setPullValues(true);
-        $this->ServerVars = Arrays::newDataRange();
+        $this->ServerVars = THashtable::create();
         $this->ServerVars->setPullValues(true);
     }
 
     /**
      * Get private variables.
-     * @return DataRange
+     * @return THashtable
      */
     public function getPrivateVars()
     {
@@ -93,28 +93,28 @@ class Request extends RequestBase
      */
     public function getKeys()
     {
-        return $this->Vars->keys();
+        return new TEnumerator($this->Vars->keys());
     }
 
     /** Extract all POST variables into internal variables. */
     public function extractPostVars()
     {
         $vars = $this->getVars(INPUT_POST);
-        $this->Vars = Arrays::mergeDataRange($this->Vars, $vars);
+        $this->Vars = $this->Vars->merge($vars);
     }
 
     /** Extract all SERVER variables into internal storage. */
     public function extractServerVars()
     {
         $vars = $this->getVars(INPUT_SERVER);
-        $this->Vars = Arrays::mergeDataRange($this->ServerVars, $vars);
+        $this->Vars = $this->ServerVars->merge($vars);
     }
 
     /** Extract all GET and POST variables into internal storage. */
     public function extractAllVars()
     {
         $vars = $this->getVars(INPUT_GET);
-        $this->Vars = Arrays::mergeDataRange($this->Vars, $vars);
+        $this->Vars = $this->Vars->merge($vars);
         $this->extractPostVars();
     }
 
@@ -234,11 +234,11 @@ class Request extends RequestBase
      * Test (match) a page request with array of allowed pages.
      * @param Object[] $pages Array of allowed pages (and their parameters).
      * @param TString $defaultPage Default page to use for testing.
-     * @return DataRange Resulting page parameters.
+     * @return THashtable Resulting page parameters.
      */
     public function testPage($pages, $defaultPage = null)
     {
-        $pageInfo = new DataRange();
+        $pageInfo = new THashtable();
 
         // Get page name
         $page = null;
@@ -294,7 +294,7 @@ class Request extends RequestBase
      */
     public static function isDomainName($input)
     {
-        return Regex::isMatch($input, "^[A-Za-z]+[A-Za-z0-9\.]*$");
+        return Regex::isMatch($input, "^[A-Za-z]+[A-Za-z0-9\\.]*$");
     }
 
     /**

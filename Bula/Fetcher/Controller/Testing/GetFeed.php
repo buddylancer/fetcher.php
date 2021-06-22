@@ -14,12 +14,12 @@ use Bula\Fetcher\Context;
 use Bula\Fetcher\Controller\Page;
 
 use Bula\Objects\Helper;
-use Bula\Objects\Request;
-use Bula\Objects\Response;
+use Bula\Objects\TRequest;
+use Bula\Objects\TResponse;
 
 require_once("Bula/Objects/Helper.php");
-require_once("Bula/Objects/Request.php");
-require_once("Bula/Objects/Response.php");
+require_once("Bula/Objects/TRequest.php");
+require_once("Bula/Objects/TResponse.php");
 require_once("Bula/Fetcher/Controller/Page.php");
 
 /**

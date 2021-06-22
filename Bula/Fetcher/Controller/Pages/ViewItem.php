@@ -11,8 +11,8 @@ namespace Bula\Fetcher\Controller\Pages;
 
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
-use Bula\Objects\Request;
-use Bula\Objects\DataRange;
+use Bula\Objects\TRequest;
+use Bula\Objects\THashtable;
 use Bula\Model\DataSet;
 use Bula\Fetcher\Model\DOItem;
 use Bula\Fetcher\Controller\Util;
@@ -29,24 +29,24 @@ class ViewItem extends Page
 
     /**
      * Fast check of input query parameters.
-     * @return DataRange Parsed parameters (or null in case of any error).
+     * @return THashtable Parsed parameters (or null in case of any error).
      */
     public function check()
     {
-        $prepare = new DataRange();
+        $prepare = new THashtable();
         if (!$this->context->Request->contains("id")) {
             $prepare->put("[#ErrMessage]", "Item ID is required!");
             $this->write("error", $prepare);
             return null;
         }
         $id = $this->context->Request->get("id");
-        if (!Request::isInteger($id)) {
+        if (!TRequest::isInteger($id)) {
             $prepare->put("[#ErrMessage]", "Item ID must be positive integer!");
             $this->write("error", $prepare);
             return null;
         }
 
-        $pars = new DataRange();
+        $pars = new THashtable();
         $pars->put("id", $id);
         return $pars;
     }
@@ -60,7 +60,7 @@ class ViewItem extends Page
 
         $id = $pars->get("id");
 
-        $prepare = new DataRange();
+        $prepare = new THashtable();
 
         $doItem = new DOItem();
         $dsItems = $doItem->getById(INT($id));

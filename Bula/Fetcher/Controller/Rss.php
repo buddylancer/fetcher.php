@@ -12,10 +12,10 @@ namespace Bula\Fetcher\Controller;
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
 
-use Bula\Objects\Response;
+use Bula\Objects\TResponse;
 use Bula\Objects\Strings;
 
-require_once("Bula/Objects/Response.php");
+require_once("Bula/Objects/TResponse.php");
 require_once("Bula/Objects/Strings.php");
 
 require_once("Bula/Fetcher/Controller/RssBase.php");
@@ -51,7 +51,8 @@ class Rss extends RssBase
             (BLANK($filterName) ? null : CAT(" and filtered by '", $filterName, "'"))
         );
         $xmlContent = Strings::concat(
-            "<rss version=\"2.0\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\r\n",
+            "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>", EOL,
+            "<rss version=\"2.0\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\">", EOL,
             "<channel>", EOL,
             //"<title>" . Config::SITE_NAME . "</title>", EOL,
             "<title>", $rssTitle, "</title>", EOL,
@@ -62,9 +63,6 @@ class Rss extends RssBase
             "<lastBuildDate>", $pubDate, "</lastBuildDate>", EOL,
             "<generator>", Config::SITE_NAME, "</generator>", EOL
         );
-        $this->context->Response->writeHeader("Content-type", "text/xml; charset=UTF-8");
-        $this->context->Response->write(CAT("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>", EOL));
-        $this->context->Response->write($xmlContent->getValue());
         return $xmlContent;
     }
 
@@ -76,8 +74,6 @@ class Rss extends RssBase
         $xmlContent = Strings::concat(
             "</channel>", EOL,
             "</rss>", EOL);
-        $this->context->Response->write($xmlContent->getValue());
-        $this->context->Response->end();
         return $xmlContent;
     }
 
@@ -99,7 +95,6 @@ class Rss extends RssBase
             "</item>", EOL
         );
         $itemContent = Util::formatString($xmlTemplate, $args);
-        $this->context->Response->write($itemContent->getValue());
         return $itemContent;
     }
 }

@@ -11,18 +11,18 @@ namespace Bula\Fetcher\Controller;
 
 use Bula\Fetcher\Config;
 
-use Bula\Objects\DataList;
-use Bula\Objects\DataRange;
+use Bula\Objects\TArrayList;
+use Bula\Objects\THashtable;
 
-use Bula\Objects\Request;
+use Bula\Objects\TRequest;
 use Bula\Objects\DateTimes;
 use Bula\Objects\Helper;
 use Bula\Objects\TString;
 use Bula\Objects\Strings;
 
-require_once("Bula/Objects/DataList.php");
+require_once("Bula/Objects/TArrayList.php");
 require_once("Bula/Objects/DateTimes.php");
-require_once("Bula/Objects/DataRange.php");
+require_once("Bula/Objects/THashtable.php");
 require_once("Bula/Objects/Helper.php");
 require_once("Bula/Objects/TString.php");
 require_once("Bula/Objects/Strings.php");
@@ -104,7 +104,7 @@ class Util
      */
     public static function showFromCache($engine, $cacheFolder, $pageName, $className, $query = null)
     {
-        if (EQ($pageName, "bottom"))
+        if (EQ($pageName, "bottom") || EQ($pageName, "rest_bottom"))
             $query = $pageName;
         else {
             if ($query == null)
@@ -131,7 +131,7 @@ class Util
             //$content = CAT("*** Got from cache ", str_replace("/", " /", $fileName), "***<br/>", $content);
         }
         else {
-            $prefix = EQ($pageName, "bottom") ? null : "Pages/";
+            $prefix = EQ($pageName, "bottom") || EQ($pageName, "rest_bottom") ? null : "Pages/";
             $content = $engine->includeTemplate(CAT($prefix, $className));
 
             Helper::testFileFolder($fileName);

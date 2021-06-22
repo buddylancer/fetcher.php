@@ -11,12 +11,12 @@ namespace Bula\Fetcher\Controller;
 
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
-use Bula\Objects\DataList;
-use Bula\Objects\DataRange;
+use Bula\Objects\TArrayList;
+use Bula\Objects\THashtable;
 use Bula\Objects\Regex;
 use Bula\Objects\RegexOptions;
-use Bula\Objects\Request;
-use Bula\Objects\Response;
+use Bula\Objects\TRequest;
+use Bula\Objects\TResponse;
 use Bula\Model\DBConfig;
 use Bula\Model\DataAccess;
 use Bula\Fetcher\Controller\Util;
@@ -24,13 +24,13 @@ use Bula\Fetcher\Controller\Engine;
 
 require_once("Bula/Meta.php");
 require_once("Bula/Model/DBConfig.php");
-require_once("Bula/Objects/DataList.php");
-require_once("Bula/Objects/DataRange.php");
+require_once("Bula/Objects/TArrayList.php");
+require_once("Bula/Objects/THashtable.php");
 require_once("Bula/Objects/Regex.php");
 require_once("Bula/Objects/RegexOptions.php");
 require_once("Bula/Objects/TString.php");
-require_once("Bula/Objects/Request.php");
-require_once("Bula/Objects/Response.php");
+require_once("Bula/Objects/TRequest.php");
+require_once("Bula/Objects/TResponse.php");
 require_once("Bula/Model/DOBase.php");
 require_once("Bula/Fetcher/Controller/Page.php");
 require_once("Bula/Fetcher/Controller/Engine.php");
@@ -60,7 +60,7 @@ class Index extends Page
         if (self::$pagesArray == null)
             self::initialize();
 
-        DataAccess::setErrorDelegate("Bula\Objects\Response\end");
+        DataAccess::setErrorDelegate("Bula\Objects\TResponse\end");
 
         $pageInfo = $this->context->Request->testPage(self::$pagesArray, "home");
 
@@ -86,7 +86,7 @@ class Index extends Page
 
         $engine = $this->context->pushEngine(true);
 
-        $prepare = new DataRange();
+        $prepare = new THashtable();
         $prepare->put("[#Site_Name]", Config::SITE_NAME);
         $pFromVars = $this->context->Request->contains("p") ? $this->context->Request->get("p") : "home";
         $idFromVars = $this->context->Request->contains("id") ? $this->context->Request->get("id") : null;
@@ -119,7 +119,7 @@ class Index extends Page
         if (/*Config::$RssAllowed != null && */Config::SHOW_BOTTOM) {
             // Get bottom block either from cache or build it from the scratch
             if (Config::CACHE_PAGES)
-                $prepare->put("[#Bottom]", Util::showFromCache($engine, $this->context->CacheFolder, "bottom", "Bottom"));
+                $prepare->put("[#Bottom]", Util::showFromCache($engine, $this->context->CacheFolder, BLANK($apiName) ? "bottom" : CAT($apiName, "_bottom"), "Bottom"));
             else
                 $prepare->put("[#Bottom]", $engine->includeTemplate("Bottom"));
         }

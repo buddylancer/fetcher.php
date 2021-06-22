@@ -10,17 +10,17 @@
 namespace Bula\Objects;
 
 use Bula\Objects\Arrays;
-use Bula\Objects\DataList;
+use Bula\Objects\TArrayList;
 use Bula\Objects\TString;
 
 require_once("Arrays.php");
-require_once("DataList.php");
+require_once("TArrayList.php");
 require_once("TString.php");
 
 /**
- * Base class for DataList and DataRange.
+ * Base class for TArrayList and THashtable.
  */
-abstract class Collection
+abstract class TCollection
 {
     protected $collection = array();
     protected $pullValues = false;
@@ -45,10 +45,10 @@ abstract class Collection
      */
     protected function pushValue($input)
     {
-        if ($input instanceof DataList)
+        if ($input instanceof TArrayList)
             return $input->toArray(0);
-        else if ($input instanceof DataRange)
-            return Arrays::toArray($input);
+        else if ($input instanceof THashtable)
+            return $input->toArray();
         else if ($input instanceof TString)
             return $input->getValue();
         return $input;
@@ -63,13 +63,13 @@ abstract class Collection
     {
         if (is_array($input)) {
             if (isset($input[0]) && $input[0] == "_A") {
-                $result = new DataList();
+                $result = new TArrayList();
                 for ($n = 1; $n < sizeof($input); $n++)
                     $result->add($input[$n]);
                 return $result;
             }
             else
-                return Arrays::createDataRange($input);
+                return Arrays::createTHashtable($input);
         }
         else if (is_string($input))
             return new TString($input);

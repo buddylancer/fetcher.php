@@ -18,6 +18,7 @@ class TString
 {
     private $value = "";
     private $isUtf = false;
+    public $Utf = "";
 
     public function __construct($str = null)
     {
@@ -40,8 +41,12 @@ class TString
         else
             $this->value = CAT($str);
 
-        //$this->isUtf = (mb_detect_encoding($this->value) == "UTF-8"); //TODO
-        $this->isUtf = (preg_match("//u", $this->value) == 1);
+        $this->isUtf = (mb_detect_encoding($this->value) == "UTF-8"); //TODO
+        if ($this->isUtf) {
+            $this->Utf = "u";
+            $this->value = mb_convert_encoding($this->value, "UTF-8", "UTF-8");
+        }
+        //$this->isUtf = (preg_match("//u", $this->value) == 1);
     }
 
     /**
@@ -208,7 +213,7 @@ class TString
      */
     public function replaceAll($regex, $to)
     {
-        return $this->privateReplace(CAT(DIV, $regex, DIV), $to);
+        return $this->privateReplace(CAT(DIV, $regex, DIV, $this->Utf), $to);
     }
 
     /**
@@ -219,7 +224,7 @@ class TString
      */
     public function replaceFirst($regex , $to)
     {
-        return $this->privateReplace(CAT(DIV, $regex, DIV), $to, 1);
+        return $this->privateReplace(CAT(DIV, $regex, DIV, $this->Utf), $to, 1);
     }
 
     /**
@@ -238,7 +243,7 @@ class TString
         if ($limit != 0 || $hasPattern) {
             // Use preg_replace
             if (!$hasPattern)
-                $fromValue = CAT(DIV, $fromValue, DIV);
+                $fromValue = CAT(DIV, $fromValue, DIV, $this->Utf);
             $result = $limit == 0 ?
                 preg_replace($fromValue, $toValue, $this->value) :
                 preg_replace($fromValue, $toValue, $this->value, $limit);
@@ -318,7 +323,7 @@ class TString
      */
     public function split($divider, $count = -1)
     {
-        $pattern = CAT(DIV, $divider, DIV);
+        $pattern = CAT(DIV, $divider, DIV, $this->Utf);
         $chunks = preg_split($pattern, $this->value, $count, PREG_SPLIT_NO_EMPTY);
         $result = array();
         foreach ($chunks as $chunk)
@@ -332,7 +337,7 @@ class TString
      */
     public function toUpperCase()
     {
-        return new TString(strtoupper($this->value));
+        return new TString($this->isUtf ? mb_strtoupper($this->value) : strtoupper($this->value));
     }
 
     /**
@@ -341,6 +346,6 @@ class TString
      */
     public function toLowerCase()
     {
-        return new TString(strtolower($this->value));
+        return new TString($this->isUtf ? mb_strtolower($this->value) : strtolower($this->value));
     }
 }

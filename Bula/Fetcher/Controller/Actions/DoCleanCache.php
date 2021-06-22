@@ -10,10 +10,10 @@
 namespace Bula\Fetcher\Controller\Actions;
 
 use Bula\Objects\DateTimes;
-use Bula\Objects\Enumerator;
+use Bula\Objects\TEnumerator;
 use Bula\Objects\Helper;
 use Bula\Objects\Logger;
-use Bula\Objects\Request;
+use Bula\Objects\TRequest;
 use Bula\Objects\Strings;
 use Bula\Objects\TString;
 
@@ -39,7 +39,7 @@ class DoCleanCache extends Page
             $oLogger->initFile($filename);
         }
         else
-            $oLogger->initResponse($this->context->Response);
+            $oLogger->initTResponse($this->context->Response);
         $this->cleanCache($oLogger);
     }
 
@@ -56,7 +56,7 @@ class DoCleanCache extends Page
 
         $entries = Helper::listDirEntries($pathName);
         while ($entries->moveNext()) {
-            $entry = new TString($entries->current());
+            $entry = new TString($entries->getCurrent());
 
             if (Helper::isFile($entry) && $entry->endsWith($ext)) {
                 $oLogger->output(CAT("Deleting of ", $entry, " ...<br/>", EOL));

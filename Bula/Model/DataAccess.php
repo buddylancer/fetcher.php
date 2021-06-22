@@ -16,7 +16,7 @@ require_once("Bula\Meta.php");
  */
 class DataAccess
 {
-    private static $errorDelegate = "STOP";
+    private static $errorDelegate = null;
     private static $printDelegate = null; // Set "PR" for debug, set null for release
 
     /**
@@ -92,9 +92,9 @@ class DataAccess
     }
 
     /**
-     * Get next row (as DataRange) for last query.
+     * Get next row (as THashtable) for last query.
      * @return Object Result of query execution.
-     * @return DataRange Next row or null.
+     * @return THashtable Next row or null.
      */
     public static function fetchArray($result)
     {

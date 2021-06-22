@@ -9,23 +9,23 @@
  */
 namespace Bula\Fetcher;
 
-use Bula\Objects\Request;
-use Bula\Objects\Response;
+use Bula\Objects\TRequest;
+use Bula\Objects\TResponse;
 use Bula\Objects\Arrays;
 use Bula\Objects\Strings;
 
-use Bula\Objects\DataList;
-use Bula\Objects\DataRange;
+use Bula\Objects\TArrayList;
+use Bula\Objects\THashtable;
 
 use Bula\Fetcher\Controller\Engine;
 
 require_once("Bula/Meta.php");
 require_once("Bula/Fetcher/Config.php");
-require_once("Bula/Objects/Request.php");
-require_once("Bula/Objects/Response.php");
+require_once("Bula/Objects/TRequest.php");
+require_once("Bula/Objects/TResponse.php");
 require_once("Bula/Objects/Arrays.php");
-require_once("Bula/Objects/DataList.php");
-require_once("Bula/Objects/DataRange.php");
+require_once("Bula/Objects/TArrayList.php");
+require_once("Bula/Objects/THashtable.php");
 require_once("Bula/Objects/Strings.php");
 
 /**
@@ -35,14 +35,14 @@ class Context extends Config
 {
 
     /**
-     * Constructor for injecting Request and Response.
+     * Constructor for injecting TRequest and TResponse.
      * @param Object $request Current request.
      * @param Object $response Current response.
      */
     public function __construct(Object $request= null, Object $response= null)
     {
-        $this->Request = new Request($request);
-        $this->Response = new Response($response);
+        $this->Request = new TRequest($request);
+        $this->Response = new TResponse($response);
         $this->Request->response = $this->Response;
         $this->initialize();
     }
@@ -128,7 +128,7 @@ class Context extends Config
      */
     public function checkTestRun()
     {
-        $httpTester = $this->Request->getVar(/*[Request::]*/INPUT_SERVER, "HTTP_USER_AGENT");
+        $httpTester = $this->Request->getVar(/*[TRequest::]*/INPUT_SERVER, "HTTP_USER_AGENT");
         if ($httpTester == null)
             return;
         if (EQ($httpTester, "TestFull")) {
@@ -158,7 +158,7 @@ class Context extends Config
     {
         //------------------------------------------------------------------------------
         // You can change something below this line if you know what are you doing :)
-        $rootDir = $this->Request->getVar(/*[$Request->]*/INPUT_SERVER, "DOCUMENT_ROOT");
+        $rootDir = $this->Request->getVar(/*[$TRequest->]*/INPUT_SERVER, "DOCUMENT_ROOT");
         $rootDir = $rootDir->replace("\\", "/"); // Fix for IIS
         // Regarding that we have the ordinary local website (not virtual directory)
         for ($n = 0; $n <= 2; $n++) {
@@ -168,7 +168,7 @@ class Context extends Config
         $this->LocalRoot = $rootDir->concat("/");
         set_include_path($this->LocalRoot->getValue());
 
-        $this->Host = $this->Request->getVar(/*[Request::]*/INPUT_SERVER, "HTTP_HOST");
+        $this->Host = $this->Request->getVar(/*[TRequest::]*/INPUT_SERVER, "HTTP_HOST");
         $this->Site = Strings::concat("http://", $this->Host);
         $this->IsMobile = $this->Host->indexOf("m.") == 0;
         $this->Lang = $this->Host->lastIndexOf(".ru") != -1 ? "ru" : "en";
@@ -192,7 +192,7 @@ class Context extends Config
      */
     private function defineConstants()
     {
-        $this->GlobalConstants = new DataRange();
+        $this->GlobalConstants = new THashtable();
         $this->GlobalConstants->put("[#Site_Name]", Config::SITE_NAME);
         $this->GlobalConstants->put("[#Site_Comments]", Config::SITE_COMMENTS);
         $this->GlobalConstants->put("[#Top_Dir]", Config::TOP_DIR);
@@ -239,7 +239,7 @@ class Context extends Config
         $engine->setPrintFlag($printFlag);
         $this->EngineIndex++;
         if ($this->EngineInstances == null)
-            $this->EngineInstances = new DataList();
+            $this->EngineInstances = new TArrayList();
         if ($this->EngineInstances->size() <= $this->EngineIndex)
             $this->EngineInstances->add($engine);
         else

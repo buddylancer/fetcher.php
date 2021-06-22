@@ -9,12 +9,12 @@
  */
 namespace Bula\Fetcher\Controller\Pages;
 
-use Bula\Objects\DataRange;
+use Bula\Objects\THashtable;
 use Bula\Objects\Regex;
 
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
-use Bula\Objects\Request;
+use Bula\Objects\TRequest;
 use Bula\Objects\Strings;
 use Bula\Objects\TString;
 use Bula\Fetcher\Controller\Util;
@@ -34,8 +34,8 @@ abstract class ItemsBase extends Page
     public function checkList()
     {
         if ($this->context->Request->contains("list")) {
-            if (!Request::isInteger($this->context->Request->get("list"))) {
-                $prepare = new DataRange();
+            if (!TRequest::isInteger($this->context->Request->get("list"))) {
+                $prepare = new THashtable();
                 $prepare->put("[#ErrMessage]", "Incorrect list number!");
                 $this->write("error", $prepare);
                 return false;
@@ -57,13 +57,13 @@ abstract class ItemsBase extends Page
             $source = $this->context->Request->get("source");
             if (BLANK($source))
                 $errMessage->concat("Empty source name!<br/>");
-            else if (!Request::isDomainName("source"))
+            else if (!TRequest::isDomainName("source"))
                 $errMessage->concat("Incorrect source name!<br/>");
         }
         if ($errMessage->isEmpty())
             return true;
 
-        $prepare = new DataRange();
+        $prepare = new THashtable();
         $prepare->put("[#ErrMessage]", $errMessage);
         $this->write("error", $prepare);
         return false;
@@ -71,14 +71,14 @@ abstract class ItemsBase extends Page
 
     /**
      * Fill Row from Item.
-     * @param DataRange $oItem Original Item.
+     * @param THashtable $oItem Original Item.
      * @param TString $idField Name of ID field.
      * @param Integer $count The number of inserted Row in HTML table.
-     * @return DataRange Resulting Row.
+     * @return THashtable Resulting Row.
      */
-    protected function fillItemRow(DataRange $oItem, $idField, $count)
+    protected function fillItemRow(THashtable $oItem, $idField, $count)
     {
-        $row = new DataRange();
+        $row = new THashtable();
         $itemId = INT($oItem->get($idField));
         $urlTitle = $oItem->get("s_Url");
         $itemHref = $this->context->ImmediateRedirect ?
@@ -111,9 +111,9 @@ abstract class ItemsBase extends Page
                 $s_Creator = new TString(" "); //TODO -- "" doesn't works somehow, need to investigate
             $row->put("[#Creator]", $s_Creator);
         }
-        if ($this->context->contains("Name_Custom1") && $oItem->contains("s_Custom1") && !NUL($oItem->get("s_Custom1")))
+        if ($this->context->contains("Name_Custom1") && $oItem->containsKey("s_Custom1") && !NUL($oItem->get("s_Custom1")))
             $row->put("[#Custom1]", $oItem->get("s_Custom1"));
-        if ($this->context->contains("Name_Custom2") && $oItem->contains("s_Custom2") && !NUL($oItem->get("s_Custom2")))
+        if ($this->context->contains("Name_Custom2") && $oItem->containsKey("s_Custom2") && !NUL($oItem->get("s_Custom2")))
             $row->put("[#Custom2]", $oItem->get("s_Custom2"));
 
         $d_Date = Util::showTime($oItem->get("d_Date"));

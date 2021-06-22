@@ -9,15 +9,15 @@
  */
 namespace Bula\Model;
 
-use Bula\Objects\DataList;
+use Bula\Objects\TArrayList;
 
-use Bula\Objects\Response;
+use Bula\Objects\TResponse;
 use Bula\Objects\DateTimes;
 use Bula\Objects\Strings;
 use Bula\Objects\TString;
 
-require_once("Bula/Objects/Response.php");
-require_once("Bula/Objects/DataList.php");
+require_once("Bula/Objects/TResponse.php");
+require_once("Bula/Objects/TArrayList.php");
 require_once("Bula/Objects/DateTimes.php");
 require_once("Bula/Objects/Strings.php");
 require_once("Bula/Objects/TString.php");
@@ -46,7 +46,7 @@ class PreparedStatement
     /** Default public constructor */
     public function __construct()
     {
-        $this->pars = new DataList();
+        $this->pars = new TArrayList();
         $this->pars->add("dummy"); // Parameter number will start from 1.
     }
 

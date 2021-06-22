@@ -31,11 +31,11 @@ class Regex
     public static function isMatch($input, $pattern, $options = 0 )
     {
         $inputValue = CAT($input);
-        $patternValue = CAT(DIV, $pattern, DIV,
+        $patternValue = CAT(Strings::fixPattern($pattern, $input),
             ((INT($options) & RegexOptions::IgnoreCase) != 0) ? "i" : null);
         $result = preg_match($patternValue, $inputValue);
         if ($result === false)
-           return false;
+            return false;
         return $result == 1;
     }
 
@@ -49,9 +49,11 @@ class Regex
      */
     public static function replace($input, $pattern, $replacement, $options = 0)
     {
-        $patternValue = CAT(DIV, $pattern, DIV,
-            ((INT($options) & RegexOptions::IgnoreCase) != 0) ?    "i" : null);
-        return new TString(preg_replace($patternValue, CAT($replacement), $input->getValue()));
+        $patternValue = CAT(Strings::fixPattern($pattern, $input, $replacement),
+            ((INT($options) & RegexOptions::IgnoreCase) != 0) ? "i" : null);
+        if (preg_match($patternValue, $input->getValue()))
+            return new TString(preg_replace($patternValue, CAT($replacement), $input->getValue()));
+        return $input;
     }
 
     /**
@@ -63,7 +65,7 @@ class Regex
      */
     public static function split($input, $pattern, $options = null )
     {
-        $patternValue = CAT(DIV, self::escape($pattern), DIV,
+        $patternValue = CAT(Strings::fixPattern($pattern, $input),
             ((INT($options) & RegexOptions::IgnoreCase) != 0) ? "i" : null);
         $pregArray = preg_split($patternValue, $input->getValue(), -1, PREG_SPLIT_NO_EMPTY);
         $outArray = array();
@@ -81,12 +83,12 @@ class Regex
      */
     public static function getMatches($input, $pattern, $options = null )
     {
-        $patternValue = CAT(DIV, self::escape($pattern), DIV, "u",
+        $patternValue = CAT(Strings::fixPattern($pattern, $input),
             ((INT($options) & RegexOptions::IgnoreCase) != 0) ? "i" : null);
         $outArray = array();
-        $result = new DataList();
+        $result = new TArrayList();
         if (preg_match($patternValue, $input->getValue(), $outArray) > 0)
-            $result = new DataList($outArray);
+            $result = new TArrayList($outArray);
         return $result->toArray();
     }
 

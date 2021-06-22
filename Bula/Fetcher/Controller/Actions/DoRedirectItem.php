@@ -12,8 +12,8 @@ namespace Bula\Fetcher\Controller\Actions;
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
 
-use Bula\Objects\DataRange;
-use Bula\Objects\Request;
+use Bula\Objects\THashtable;
+use Bula\Objects\TRequest;
 use Bula\Objects\TString;
 
 use Bula\Model\DataSet;
@@ -37,7 +37,7 @@ class DoRedirectItem extends DoRedirect
             $errorMessage = "Item ID is required!";
         else {
             $id = $this->context->Request->get("id");
-            if (!Request::isInteger($id) || INT($id) <= 0)
+            if (!TRequest::isInteger($id) || INT($id) <= 0)
                 $errorMessage = "Incorrect item ID!";
             else {
                 $doItem = new DOItem();

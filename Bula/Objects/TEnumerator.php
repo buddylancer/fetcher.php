@@ -10,9 +10,9 @@
 namespace Bula\Objects;
 
 /**
- * Very simple implementation of Enumerator.
+ * Very simple implementation of TEnumerator.
  */
-class Enumerator
+class TEnumerator
 {
     private $collection = null;
     private $pointer = -1;
@@ -20,22 +20,16 @@ class Enumerator
     public function __construct ($elements)
     { $this->collection = $elements; }
 
-    public function hasMoreElements()
-    {
-        return ($this->pointer < SIZE($this->collection) - 1);
-    }
-
-    public function nextElement()
-    {
-        return $this->current = ($this->pointer < SIZE($this->collection) - 1) ? $this->collection[++$this->pointer] : null;
-    }
-
     public function moveNext()
     {
-        return $this->nextElement() !== null;
+        if ($this->pointer < SIZE($this->collection) - 1) {
+           $this->current = $this->collection[++$this->pointer];
+           return true;
+        }
+        return false;
     }
 
-    public function current()
+    public function getCurrent()
     {
         return $this->current;
     }

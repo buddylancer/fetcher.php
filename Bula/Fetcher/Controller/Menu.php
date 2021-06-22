@@ -12,11 +12,11 @@ namespace Bula\Fetcher\Controller;
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
 use Bula\Objects\TString;
-use Bula\Objects\DataList;
-use Bula\Objects\DataRange;
+use Bula\Objects\TArrayList;
+use Bula\Objects\THashtable;
 
-require_once("Bula/Objects/DataList.php");
-require_once("Bula/Objects/DataRange.php");
+require_once("Bula/Objects/TArrayList.php");
+require_once("Bula/Objects/THashtable.php");
 require_once("Bula/Objects/TString.php");
 
 /**
@@ -28,7 +28,7 @@ class Menu extends Page
     /** Execute main logic for Menu block */
     public function execute()
     {
-        $publicPages = new DataList();
+        $publicPages = new TArrayList();
 
         $publicPages->add("Home");
         $publicPages->add("home");
@@ -57,9 +57,9 @@ class Menu extends Page
             $publicPages->add("sources");
         }
 
-        $menuItems = new DataList();
+        $menuItems = new TArrayList();
         for ($n = 0; $n < $publicPages->size(); $n += 2) {
-            $row = new DataRange();
+            $row = new THashtable();
             $title = $publicPages->get($n+0);
             $page = $publicPages->get($n+1);
             $href = null;
@@ -78,7 +78,7 @@ class Menu extends Page
             $menuItems->add($row);
         }
 
-        $prepare = new DataRange();
+        $prepare = new THashtable();
         $prepare->put("[#MenuItems]", $menuItems);
         $this->write("menu", $prepare);
     }

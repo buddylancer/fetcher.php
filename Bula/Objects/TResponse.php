@@ -12,7 +12,7 @@ namespace Bula\Objects;
 /**
  * Helper class for processing server response.
  */
-class Response
+class TResponse
 {
     /** Current response */
 

@@ -9,17 +9,17 @@
  */
 namespace Bula\Objects;
 
-use Bula\Objects\Enumerator;
+use Bula\Objects\TEnumerator;
 
-require_once("ArrayList.php");
-require_once("Collection.php");
-require_once("Enumerator.php");
+require_once("TArrayList.php");
+require_once("TCollection.php");
+require_once("TEnumerator.php");
 require_once("TString.php");
 
 /**
- * Straight-forward implementation of Java Hashtable object.
+ * Straight-forward implementation of Java THashtable object.
  */
-class Hashtable extends Collection
+class THashtableBase extends TCollection
 {
     public function __construct()
     {
@@ -83,11 +83,13 @@ class Hashtable extends Collection
 
     /**
      * Get collection's keys.
-     * @return Enumerator Resulting Enumerator object
+     * @return TEnumerator Resulting TEnumerator object
      */
     public function keys()
     {
-        return new Enumerator(array_keys($this->collection));
+        $keys = array_keys($this->collection);
+        sort($keys);
+        return $keys; //new TEnumerator($keys);
     }
 
     /**
@@ -133,7 +135,7 @@ class Hashtable extends Collection
      */
     public function values()
     {
-        return new Enumerator(array_values($this->collection));
+        return new TEnumerator(array_values($this->collection));
     }
 
     // Return string value of a key.
@@ -145,6 +147,25 @@ class Hashtable extends Collection
         if ($keyVar == "")
             return null;
         return $keyVar;
+    }
+
+    /**
+     * Get collection as associative array.
+     * @return array
+     */
+    public function toArray()
+    {
+        $result = Arrays::newArray($this->size());
+        $keys = new TEnumerator($this->keys());
+        while ($keys->moveNext()) {
+            $key = $keys->getCurrent();
+            $value = $this->get($key);
+            if (is_null($value))
+                continue;
+            if ($value instanceof TString) $value = $value->getValue();
+            $result[$key] = $value;
+        }
+        return $result;
     }
 
 }

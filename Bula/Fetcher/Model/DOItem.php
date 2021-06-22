@@ -11,7 +11,7 @@ namespace Bula\Fetcher\Model;
 
 use Bula\Fetcher\Config;
 use Bula\Objects\DateTimes;
-use Bula\Objects\DataRange;
+use Bula\Objects\THashtable;
 use Bula\Objects\TString;
 use Bula\Objects\Strings;
 use Bula\Model\DBConfig;
@@ -81,9 +81,9 @@ class DOItem extends DOBase
     {
         $filterChunks = Strings::split("~", $filter);
         $includeChunks = SIZE($filterChunks) > 0 ?
-            Strings::split("|", $filterChunks[0]) : null;
+            Strings::split("\\|", $filterChunks[0]) : null;
         $excludeChunks = SIZE($filterChunks) > 1 ?
-            Strings::split("|", $filterChunks[1]) : null;
+            Strings::split("\\|", $filterChunks[1]) : null;
         $includeFilter = new TString();
         for ($n = 0; $n < SIZE($includeChunks); $n++) {
             if (!$includeFilter->isEmpty())

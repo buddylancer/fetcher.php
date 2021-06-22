@@ -1,5 +1,6 @@
 <?php
 
+use Bula\Objects\TNull;
 use Bula\Objects\TString;
 
 const DIV = "|";
@@ -27,7 +28,7 @@ function /* void */ PR(/* TString */ $str)
  */
 function NUL($value)
 {
-    return $value == null && !isset($value);
+    return is_null($value) || ($value instanceof TNull);
 }
 
 /**
@@ -99,7 +100,7 @@ function EQ($value1, $value2)
  */
 function BLANK($arg)
 {
-    if ($arg == null || !isset($arg))
+    if (NUL($arg))
         return true;
     if ($arg instanceof TString)
         return $arg->isEmpty();
@@ -126,6 +127,8 @@ function CAT(/* ... */)
     $args = func_get_args();
     /* TString */ $result = "";
     foreach ($args as $arg) {
+        if (NUL($arg))
+            continue;
         if (is_object($arg) && !($arg instanceof TString))
             debug_print_backtrace();
         $arg = ($arg instanceof TString) ? $arg->getValue() : "" . $arg; // make it string

@@ -9,14 +9,14 @@
  */
 namespace Bula\Model;
 
-use Bula\Objects\DataList;
-use Bula\Objects\Enumerator;
-use Bula\Objects\DataRange;
+use Bula\Objects\TArrayList;
+use Bula\Objects\TEnumerator;
+use Bula\Objects\THashtable;
 use Bula\Objects\TString;
 
-require_once("Bula/Objects/DataList.php");
-require_once("Bula/Objects/Enumerator.php");
-require_once("Bula/Objects/DataRange.php");
+require_once("Bula/Objects/TArrayList.php");
+require_once("Bula/Objects/TEnumerator.php");
+require_once("Bula/Objects/THashtable.php");
 require_once("Bula/Objects/TString.php");
 
 /**
@@ -31,7 +31,7 @@ class DataSet
     /** Default public constructor */
     public function __construct()
     {
-        $this->rows = new DataList();
+        $this->rows = new TArrayList();
         $this->pageSize = 10;
         $this->totalPages = 0;
     }
@@ -48,7 +48,7 @@ class DataSet
     /**
      * Get a row from the DataSet.
      * @param Integer $n Number of the row.
-     * @return DataRange Required row or null.
+     * @return THashtable Required row or null.
      */
     public function getRow($n)
     {
@@ -57,7 +57,7 @@ class DataSet
 
     /**
      * Add new row into the DataSet.
-     * @param DataRange $row New row to add.
+     * @param THashtable $row New row to add.
      */
     public function addRow($row)
     {
@@ -122,11 +122,10 @@ class DataSet
             $row = $this->getRow($n);
             $level++; $spaces = $this->addSpaces($level);
             $output->concat(CAT($spaces, "<Row>", $EOL));
-            $keys =
-                    $row->keys();
+            $keys = new TEnumerator($row->keys());
             while ($keys->moveNext()) {
                 $level++; $spaces = $this->addSpaces($level);
-                $key = $keys->current();
+                $key = $keys->getCurrent();
                 $value = $row->get($key);
                 if (NUL($value)) {
                     $output->concat(CAT($spaces, "<Item Name=\"", $key, "\" IsNull=\"True\" />", EOL));

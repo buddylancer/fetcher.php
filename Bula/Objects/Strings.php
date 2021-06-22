@@ -10,9 +10,9 @@
 namespace Bula\Objects;
 
 use Bula\Internal;
-use Bula\Objects\DataList;
+use Bula\Objects\TArrayList;
 use Bula\Objects\TString;
-use Bula\Objects\DataRange;
+use Bula\Objects\THashtable;
 
 require_once("TString.php");
 
@@ -28,6 +28,24 @@ class Strings
     public static function emptyArray()
     {
         return array();
+    }
+
+    public static function fixPattern($pattern, $input, $replacement = null)
+    {
+        $pattern = $pattern instanceof TString ? $pattern : new TString($pattern);
+        $input = $input instanceof TString ? $input : new TString($input);
+        if (!NUL($replacement))
+            $replacement = $replacement instanceof TString ? $replacement : new TString($replacement);
+        $utf = $input->Utf;
+        if (BLANK($utf)) $utf = $pattern->Utf;
+        if (BLANK($utf) && !NUL($replacement)) $utf = $replacement->Utf;
+        return CAT(DIV, $pattern->getValue(), DIV, $utf);
+    }
+
+    public static function indexOf($sample, $input)
+    {
+        $input = $input instanceof TString ? $input : new TString($input);
+        return $input->indexOf($sample);
     }
 
     /**
@@ -133,11 +151,11 @@ class Strings
      */
     public static function split($divider, $input)
     {
-        $divider = CAT(DIV, Regex::escape($divider), DIV);
+        $divider = self::fixPattern($divider, $input);
         if ($input instanceof TString) $input = $input->getValue();
         $chunks =
             preg_split($divider, $input, -1, PREG_SPLIT_NO_EMPTY);
-        $result = new DataList();
+        $result = new TArrayList();
         for ($n = 0; $n < SIZE($chunks); $n++)
             $result->add($chunks[$n]);
         return $result->toArray();
@@ -157,11 +175,11 @@ class Strings
         if (!$isObject) $input = new TString($input);
         if (!$from instanceof TString) $from = new TString($from);
         if (!$to instanceof TString) $to = new TString($to);
-        $hasPattern = $from->length() > 1 && $from->startsWith(DIV) && $from->endsWith(DIV);
+        $hasPattern = $from->length() > 1 && $from->startsWith(DIV); // && $from->endsWith(DIV);
         $result = null;
         if ($limit != 0 || $hasPattern) {
             // Use preg_replace
-            if (!$hasPattern) $from = self::concat(DIV, $from, DIV);
+            if (!$hasPattern) $from = self::fixPattern($from, $input, $to);
             if ($limit == 0)
                 $result = preg_replace($from->getValue(), $to->getValue(), $input->getValue());
             else
@@ -183,7 +201,7 @@ class Strings
      */
     public static function replaceAll($regex, $to, $input)
     {
-        $regex = CAT(DIV, $regex, DIV);
+        $regex = self::fixPattern($regex, $input, $to);
         return self::replace($regex, $to, $input);
     }
 
@@ -196,28 +214,40 @@ class Strings
      */
     public static function replaceFirst($regex , $to, $input)
     {
-        $regex = CAT(DIV, $regex, DIV);
+        $regex = self::fixPattern($regex, $input, $to);
         return self::replace($regex, $to, $input, 1);
     }
 
     /**
      * Replace "keys by values" in a string.
      * @param TString $template Input template.
-     * @param DataRange $hash Set of key/value pairs.
+     * @param THashtable $hash Set of key/value pairs.
      * @return TString Resulting string.
      */
     public static function replaceInTemplate($template, $hash)
     {
-
-        $hash2 = Arrays::newDataRange();
-        $keys = $hash->keys();
-        while ($keys->nextElement()) {
-            $key = $keys->current;
-            $value = $hash->get($key);
-            if ($value instanceof TString || is_integer($value) || is_string($value))
-                $hash2->put($key, $value);
+        $keys = new TEnumerator($hash->keys());
+        while ($keys->moveNext()) {
+            $key = $keys->getCurrent();
+            if (Strings::indexOf($key, $template) != -1)
+                $template = Strings::replace($key, $hash->get($key), $template);
         }
-        return strtr($template, Arrays::toArray($hash2));
-
+        return $template;
     }
+
+    /**
+     * Trim this string.
+     * @param TString $chars Which chars to trim [optional].
+     * @return TString Resulting string.
+     */
+    public static function trim($input, $chars= null)
+    {
+        return $chars == null ? trim($this->value) : trim($this->value, $chars);
+        if ($chars == null)
+            $chars = " \\n\\r\\t\\v\\0";
+        $input = Regex::replace($input, CAT("^", "[", $chars, "]*"), "");
+        $input = Regex::replace($input, CAT("[", $chars, "]*$"), "");
+        return $input;
+    }
+
 }

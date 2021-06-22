@@ -9,7 +9,7 @@
  */
 namespace Bula\Fetcher\Controller;
 
-use Bula\Objects\DataRange;
+use Bula\Objects\THashtable;
 
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
@@ -17,7 +17,7 @@ use Bula\Objects\TString;
 use Bula\Objects\DateTimes;
 
 require_once("Bula/Objects/TString.php");
-require_once("Bula/Objects/DataRange.php");
+require_once("Bula/Objects/THashtable.php");
 
 /**
  * Basic logic for generating Page block.
@@ -43,7 +43,7 @@ abstract class Page
     /**
      * Merge template with variables and write to engine.
      * @param TString $template Template name.
-     * @param DataRange $prepare Prepared variables.
+     * @param THashtable $prepare Prepared variables.
      */
     public function write($template, $prepare)
     {

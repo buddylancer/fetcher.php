@@ -73,13 +73,13 @@ insert into categories values ('PR', 'Puerto Rico', ' PR.| PR;| PR,|Puerto Rico|
 insert into categories values ('VI', 'Virgin Islands', ' VI.| VI;| VI,|Virgin Islands|Charlotte Amalie', 0);
 /* --- */
 insert into categories values ('Britain', 'World - Britain', 'Britain|Britanian|British|London', 0);
-insert into categories values ('Canada', 'World - Canada', 'Canada|Vancouver', 0);
+insert into categories values ('Canada', 'World - Canada', 'Canada|Vancouver|Ottawa|Vinnipeg|Toronto', 0);
 insert into categories values ('China', 'World - China', 'China|Chinese', 0);
-insert into categories values ('Czechia', 'World - Czech Republic', 'Czech Republic|Prague', 0);
+insert into categories values ('Czechia', 'World - Czech Republic', 'Czech Republic|Prague|Brno', 0);
 insert into categories values ('France', 'World - France', 'France|French|Paris', 0);
-insert into categories values ('Germany', 'World - Germany', 'Germany', 0);
+insert into categories values ('Germany', 'World - Germany', 'Germany|German|Berlin', 0);
 insert into categories values ('Iran', 'World - Iran', 'Iran|Iranian', 0);
-insert into categories values ('Mexico', 'World - Mexico', 'Mexico', 0);
+insert into categories values ('Mexico', 'World - Mexico', 'Mexico~New Mexico', 0);
 insert into categories values ('Netherlands', 'World - Netherlands', 'Netherlands|Amsterdam', 0);
 insert into categories values ('Poland', 'World - Poland', 'Poland|Polish|Warshawa', 0);
 insert into categories values ('Russia', 'World - Russia', 'Russia|Moscow', 0);

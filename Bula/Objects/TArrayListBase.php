@@ -9,16 +9,17 @@
  */
 namespace Bula\Objects;
 
-require_once("Collection.php");
+require_once("TCollection.php");
 
 /**
- * Straight-forward implementation of DataList.
+ * Straight-forward implementation of TArrayList.
  */
-class DataList extends Collection
+class TArrayListBase extends TCollection
 {
+    /** Constructor for array list with variable number of objects */
     public function __construct(/*...*/)
     {
-        $this->collection[] = "_A"; // Zero element marks that this is DataList, not DataRange
+        $this->collection[] = "_A"; // Zero element marks that this is TArrayList, not THashtable
         $args = func_get_args();
         if (SIZE($args) > 0)
             $this->pullValues = true;
@@ -46,16 +47,6 @@ class DataList extends Collection
     public function add($input)
     {
         $this->addObject($this->pushValue($input));
-    }
-
-    /**
-     * Add multiple objects.
-     * @param Object[] $inputs Array of objects.
-     */
-    public function addAll($inputs)
-    {
-        foreach ($inputs as $input)
-            $this->add($input);
     }
 
     /**

@@ -9,29 +9,21 @@
  */
 namespace Bula\Objects;
 
-use Bula\Objects\DataList;
-use Bula\Objects\Enumerator;
-use Bula\Objects\DataRange;
+use Bula\Objects\TArrayList;
+use Bula\Objects\TEnumerator;
+use Bula\Objects\THashtable;
+use Bula\Objects\TNull;
+
+require_once("TArrayList.php");
+require_once("TEnumerator.php");
+require_once("THashtable.php");
+require_once("TNull.php");
 
 /**
  * Helper class for manipulating with arrays.
  */
 class Arrays
 {
-    /** Create new array list. */
-    public static function newDataList()
-    {
-        return new DataList();
-    }
-
-    /**
-     * Create new hash table.
-     * @return DataRange New hash table.
-     */
-    public static function newDataRange()
-    {
-        return new DataRange();
-    }
 
     /**
      * Create new array of objects.
@@ -41,74 +33,6 @@ class Arrays
     public static function newArray($size)
     {
         return array();
-    }
-
-    /**
-     * Merge hash tables.
-     * @param DataRange $input Original hash table.
-     * @param DataRange $extra Hash table to merge with original one.
-     * @return DataRange Merged hash table.
-     */
-    public static function mergeDataRange($input, $extra)
-    {
-        if ($input == null)
-            return null;
-        if ($extra == null)
-            return $input;
-
-        $output = $input->cloneMe();
-        $keys =
-            $extra->keys();
-        while ($keys->moveNext()) {
-            $key = $keys->current();
-            $output->put($key, $extra->get($key));
-        }
-        return $output;
-    }
-
-    /**
-     * Merge array lists.
-     * @param DataList $input Original array list.
-     * @param DataList $extra Array list to merge with original one.
-     * @return DataList Resulting array list.
-     */
-    public static function mergeDataList($input, $extra)
-    {
-        if ($input == null)
-            return null;
-        if ($extra == null)
-            return $input;
-
-        $output = self::newDataList();
-        for ($n = 0; $n < SIZE($input); $n++)
-            $output->add($input->get($n));
-        for ($n = 0; $n < SIZE($extra); $n++)
-            $output->add($extra->get($n));
-        return $output;
-    }
-
-    /**
-     * Merge arrays.
-     * @param Array $input Original array.
-     * @param Array $extra Array to merge with original one.
-     * @return Array Resulting array.
-     */
-    public static function mergeArray($input, $extra)
-    {
-        if ($input == null)
-            return null;
-        if ($extra == null)
-            return $input;
-
-        $inputSize = SIZE($input);
-        $extraSize = SIZE($extra);
-        $newSize = $inputSize + $extraSize;
-        $output = self::newArray($newSize);
-        for ($n = 0; $n < $inputSize; $n++)
-            $output[$n] = $input[$n];
-        for ($n = 0; $n < $extraSize; $n++)
-            $output[$inputSize + $n] = $extra[$n];
-        return $output;
     }
 
     /**
@@ -134,64 +58,32 @@ class Arrays
     }
 
     /**
-     * Create array list from array of objects.
-     * @param Object[] $input Array of objects.
-     * @return DataList Resulting array list.
-     */
-    public static function createDataList($input)
-    {
-        if ($input == null)
-            return null;
-        $output = new DataList();
-        if (SIZE($input) == 0)
-            return $output;
-        foreach ($input as $obj)
-            $output->add($obj);
-        return $output;
-    }
-
-    /**
      * Create hash table from associative array.
      * @param Array $input Input array.
-     * @return DataRange Resulting hash table.
+     * @return THashtable Resulting hash table.
      */
-    public static function createDataRange($input)
+    public static function createTHashtable($input)
     {
         if ($input == null || !is_array($input))
             return null;
-        $output = new DataRange();
+        $output = new THashtable();
         if (SIZE($input) == 0)
             return $output;
 
         $keys = Arrays::getArrayKeys($input);
         while ($keys->moveNext()) {
-            $key = $keys->current();
-            if (is_string($key))
-                $output->put($key, Arrays::getArrayValue($input, $key));
+            $key = $keys->getCurrent();
+            if (is_string($key)) {
+                $value = Arrays::getArrayValue($input, $key);
+                $output->put($key, NUL($value) ? TNull::getValue() : $value);
+            }
         }
         return $output;
     }
 
-    /**
-     * Get collection as associative array.
-     * @return array
-     */
-    public static function toArray($input)
-    {
-        $result = self::newArray($input->size());
-        $keys = $input->keys();
-        while ($keys->moveNext()) {
-            $key = $keys->current();
-            $value = $input->get($key);
-            if ($value instanceof TString) $value = $value->getValue();
-            $result[$key] = $value;
-        }
-        return $result;
-    }
-
     public static function getArrayKeys($input)
     {
-        return new Enumerator(array_keys($input));
+        return new TEnumerator(array_keys($input));
     }
 
     public static function getArrayValue($input, $key)

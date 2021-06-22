@@ -12,9 +12,9 @@ namespace Bula\Fetcher\Controller\Actions;
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
 
-use Bula\Objects\Request;
+use Bula\Objects\TRequest;
 use Bula\Objects\TString;
-use Bula\Objects\DataRange;
+use Bula\Objects\THashtable;
 
 use Bula\Fetcher\Model\DOSource;
 
@@ -36,12 +36,12 @@ class DoRedirectSource extends DoRedirect
             $errorMessage = "Source name is required!";
         else {
             $sourceName = $this->context->Request->get("source");
-            if (!Request::isDomainName($sourceName))
+            if (!TRequest::isDomainName($sourceName))
                 $errorMessage = "Incorrect source name!";
             else {
                 $doSource = new DOSource();
                 $oSource =
-                    ARR(new DataRange());
+                    ARR(new THashtable());
                 if (!$doSource->checkSourceName($sourceName, $oSource))
                     $errorMessage = "No such source name!";
                 else

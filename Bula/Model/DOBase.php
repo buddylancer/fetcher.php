@@ -9,16 +9,16 @@
  */
 namespace Bula\Model;
 
-use Bula\Objects\DataList;
-use Bula\Objects\Enumerator;
-use Bula\Objects\DataRange;
+use Bula\Objects\TArrayList;
+use Bula\Objects\TEnumerator;
+use Bula\Objects\THashtable;
 use Bula\Objects\TString;
 use Bula\Objects\Strings;
 
 require_once("Bula/Meta.php");
-require_once("Bula/Objects/DataList.php");
-require_once("Bula/Objects/Enumerator.php");
-require_once("Bula/Objects/DataRange.php");
+require_once("Bula/Objects/TArrayList.php");
+require_once("Bula/Objects/TEnumerator.php");
+require_once("Bula/Objects/THashtable.php");
 require_once("Bula/Objects/TString.php");
 require_once("Bula/Objects/Strings.php");
 
@@ -335,20 +335,19 @@ class DOBase
 
     /**
      * Insert new record based on given fields.
-     * @param DataRange $fields The set of fields.
+     * @param THashtable $fields The set of fields.
      * @return Integer Result of SQL-query execution.
      */
-    public function insert(DataRange $fields)
+    public function insert(THashtable $fields)
     {
-        $keys =
-            $fields->keys();
+        $keys = new TEnumerator($fields->keys());
         $fieldNames = new TString();
         $fieldValues = new TString();
         $pars = array();
         //$pars->setPullValues(true);
         $n = 0;
         while ($keys->moveNext()) {
-            $key = $keys->current();
+            $key = $keys->getCurrent();
             if ($n != 0) $fieldNames->concat(", ");
             if ($n != 0) $fieldValues->concat(", ");
             $fieldNames->concat($key);
@@ -366,19 +365,18 @@ class DOBase
     /**
      * Update existing record by ID based on given fields.
      * @param Integer $id Unique record ID.
-     * @param DataRange $fields The set of fields.
+     * @param THashtable $fields The set of fields.
      * @return Integer Result of SQL-query execution.
      */
-    public function updateById($id, DataRange $fields)
+    public function updateById($id, THashtable $fields)
     {
-        $keys =
-            $fields->keys();
+        $keys = new TEnumerator($fields->keys());
         $setValues = new TString();
         $pars = array();
         //$pars->setPullValues(true);
         $n = 0;
         while ($keys->moveNext()) {
-            $key = $keys->current();
+            $key = $keys->getCurrent();
             if ($key == $this->idField) //TODO PHP
                 continue;
             if ($n != 0)

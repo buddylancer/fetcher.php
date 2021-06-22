@@ -12,14 +12,14 @@ namespace Bula\Fetcher\Controller;
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
 
-use Bula\Objects\DataList;
-use Bula\Objects\Enumerator;
-use Bula\Objects\DataRange;
+use Bula\Objects\TArrayList;
+use Bula\Objects\TEnumerator;
+use Bula\Objects\THashtable;
 use Bula\Objects\Regex;
 use Bula\Objects\RegexOptions;
 
-use Bula\Objects\Request;
-use Bula\Objects\Response;
+use Bula\Objects\TRequest;
+use Bula\Objects\TResponse;
 
 use Bula\Objects\DateTimes;
 use Bula\Objects\Helper;
@@ -37,12 +37,12 @@ use Bula\Fetcher\Controller\Util;
 use Bula\Fetcher\Controller\Page;
 
 require_once("Bula/Meta.php");
-require_once("Bula/Objects/Request.php");
-require_once("Bula/Objects/Response.php");
-require_once("Bula/Objects/DataList.php");
+require_once("Bula/Objects/TRequest.php");
+require_once("Bula/Objects/TResponse.php");
+require_once("Bula/Objects/TArrayList.php");
 require_once("Bula/Objects/DateTimes.php");
 require_once("Bula/Objects/Helper.php");
-require_once("Bula/Objects/DataRange.php");
+require_once("Bula/Objects/THashtable.php");
 require_once("Bula/Objects/Regex.php");
 require_once("Bula/Objects/RegexOptions.php");
 require_once("Bula/Objects/TString.php");
@@ -77,7 +77,7 @@ abstract class RssBase extends Page
             else {
                 $doSource = new DOSource();
                 $oSource =
-                    ARR(new DataRange());
+                    ARR(new THashtable());
                 if (!$doSource->checkSourceName($source, $oSource))
                     $errorMessage->concat(CAT("Incorrect source '", $source, "'!"));
             }
@@ -104,7 +104,7 @@ abstract class RssBase extends Page
                 }
                 else {
                     $oCategory =
-                        ARR(new DataRange());
+                        ARR(new THashtable());
                     if ($doCategory->checkFilterName($filterName, $oCategory))
                         $filter = $oCategory[0]->get("s_Filter");
                     else {
@@ -123,7 +123,7 @@ abstract class RssBase extends Page
         // Check that parameters contain only 'source' or/and 'filter'
         $keys = $this->context->Request->getKeys();
         while ($keys->moveNext()) {
-            $key = $keys->current();
+            $key = $keys->getCurrent();
             if (EQ($key, "source") || EQ($key, "filter") || EQ($key, "code") || EQ($key, "count")) {
                 //OK
             }
@@ -285,6 +285,8 @@ abstract class RssBase extends Page
             //Helper::writeText($cachedFile, Strings::concat("\xEF\xBB\xBF", $xmlContent));
             Helper::writeText($cachedFile, $contentToCache);
         }
+        $this->context->Response->writeHeader("Content-type", "text/xml; charset=UTF-8");
+        $this->context->Response->write($contentToCache); //TODO -- BOM?
 
         if (DBConfig::$Connection != null) {
             DBConfig::$Connection->close();

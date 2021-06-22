@@ -14,6 +14,8 @@ namespace Bula\Fetcher;
  */
 class Config
 {
+    /** Platform */
+    const PLATFORM = "PHP";
     /** Exactly the same as RewriteBase in .htaccess */
     const TOP_DIR = "/";
     /** Index page name */

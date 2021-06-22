@@ -12,8 +12,8 @@ namespace Bula\Fetcher\Controller\Actions;
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
 
-use Bula\Objects\Response;
-use Bula\Objects\DataRange;
+use Bula\Objects\TResponse;
+use Bula\Objects\THashtable;
 
 use Bula\Fetcher\Controller\Page;
 use Bula\Fetcher\Controller\Engine;
@@ -33,7 +33,7 @@ abstract class DoRedirect extends Page
      */
     public function executeRedirect($linkToRedirect, $errorMessage)
     {
-        $prepare = new DataRange();
+        $prepare = new THashtable();
         $templateName = null;
         if (!NUL($errorMessage)) {
             $prepare->put("[#Title]", "Error");

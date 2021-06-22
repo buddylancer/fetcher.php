@@ -16,11 +16,11 @@ use Bula\Fetcher\Context;
 
 use Bula\Objects\Arrays;
 use Bula\Objects\DateTimes;
-use Bula\Objects\Enumerator;
-use Bula\Objects\DataRange;
+use Bula\Objects\TEnumerator;
+use Bula\Objects\THashtable;
 use Bula\Objects\Helper;
 use Bula\Objects\Logger;
-use Bula\Objects\Request;
+use Bula\Objects\TRequest;
 use Bula\Objects\Strings;
 use Bula\Objects\TString;
 
@@ -35,9 +35,9 @@ use Bula\Fetcher\Controller\Actions\DoCleanCache;
 require_once("Bula/Internal.php");
 require_once("Bula/Objects/Arrays.php");
 require_once("Bula/Objects/DateTimes.php");
-require_once("Bula/Objects/Enumerator.php");
+require_once("Bula/Objects/TEnumerator.php");
 require_once("Bula/Objects/Helper.php");
-require_once("Bula/Objects/DataRange.php");
+require_once("Bula/Objects/THashtable.php");
 require_once("Bula/Objects/Logger.php");
 require_once("Bula/Objects/TString.php");
 require_once("Bula/Objects/Strings.php");
@@ -80,7 +80,7 @@ class BOFetcher
             $this->oLogger->initFile($filename);
         }
         else
-            $this->oLogger->initResponse($this->context->Response);
+            $this->oLogger->initTResponse($this->context->Response);
     }
 
     /**
@@ -94,7 +94,7 @@ class BOFetcher
 
     /**
      * Fetch data from the source.
-     * @param DataRange $oSource Source object.
+     * @param THashtable $oSource Source object.
      * @return Object[] Resulting items.
      */
     private function fetchFromSource($oSource)
@@ -130,8 +130,8 @@ class BOFetcher
 
     /**
      * Parse data from the item.
-     * @param DataRange $oSource Source object.
-     * @param DataRange $item Item object.
+     * @param THashtable $oSource Source object.
+     * @param THashtable $item Item object.
      * @return Integer Result of executing SQL-query.
      */
     private function parseItemData($oSource, $item)
@@ -159,7 +159,7 @@ class BOFetcher
         $boItem->addStandardCategories($this->dsCategories, $this->context->Lang);
 
         $url = $boItem->getUrlTitle(true); //TODO -- Need to pass true if transliteration is required
-        $fields = new DataRange();
+        $fields = new THashtable();
         $fields->put("s_Link", $boItem->link);
         $fields->put("s_Title", $boItem->title);
         $fields->put("s_FullTitle", $boItem->fullTitle);
@@ -219,7 +219,7 @@ class BOFetcher
             $itemsCounter = 0;
             // Loop through fetched items and parse their data
             for ($i = SIZE($itemsArray) - 1; $i >= 0; $i--) {
-                $hash = Arrays::createDataRange($itemsArray[$i]);
+                $hash = Arrays::createTHashtable($itemsArray[$i]);
                 if (BLANK($hash->get("link")))
                     continue;
                 $itemid = $this->parseItemData($oSource, $hash);
@@ -264,7 +264,7 @@ class BOFetcher
             $doItem = new DOItem();
             $sqlFilter = $doItem->buildSqlFilter($filter);
             $dsItems = $doItem->enumIds($sqlFilter);
-            $fields = new DataRange();
+            $fields = new THashtable();
             $fields->put("i_Counter", $dsItems->getSize());
             $result = $doCategory->updateById($id, $fields);
             if ($result < 0)

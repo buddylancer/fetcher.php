@@ -10,7 +10,7 @@
 namespace Bula\Objects;
 
 use Bula\Objects\TString;
-use Bula\Objects\Enumerator;
+use Bula\Objects\TEnumerator;
 
 require_once("TString.php");
 
@@ -58,7 +58,6 @@ class Helper
     public static function createDir($path)
     {
         return mkdir(CAT($path));
-
     }
 
     /**
@@ -69,7 +68,6 @@ class Helper
     public static function deleteFile($path)
     {
         return unlink(CAT($path));
-
     }
 
     /**
@@ -86,7 +84,7 @@ class Helper
 
         $entries = self::listDirEntries($path);
         while ($entries->moveNext()) {
-            $entry = CAT($entries->current());
+            $entry = CAT($entries->getCurrent());
 
             if (self::isFile($entry))
                 self::deleteFile($entry);
@@ -104,7 +102,6 @@ class Helper
     public static function removeDir($path)
     {
         return rmdir(CAT($path));
-
     }
 
     /**
@@ -116,6 +113,7 @@ class Helper
     public static function readAllText($filename, $encoding = null)
     {
         return new TString(file_get_contents(CAT($filename)));
+
     }
 
       /**
@@ -127,7 +125,6 @@ class Helper
     public static function readAllLines($filename, $encoding = null)
     {
         return file(CAT($filename));
-
     }
 
     /**
@@ -207,13 +204,14 @@ class Helper
     /**
      * List (enumerate) entries of a given path.
      * @param TString $path Path of a directory.
-     * @return Enumerator Enumerated entries.
+     * @return TEnumerator Enumerated entries.
      */
     public static function listDirEntries($path)
     {
+        $entries = new TArrayList();
+
         if (($handle = opendir(CAT($path))) == null)
-            return null;
-        $entries = new DataList();
+            null;
         while (false !== ($file = readdir($handle))) {
             if ($file == "." || $file == "..")
                 continue;
@@ -221,7 +219,7 @@ class Helper
             $entries->add($path2);
         }
         closedir($handle);
-        return new Enumerator($entries->toArray());
-    }
 
+        return new TEnumerator($entries->toArray());
+    }
 }

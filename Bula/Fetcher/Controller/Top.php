@@ -9,7 +9,7 @@
  */
 namespace Bula\Fetcher\Controller;
 
-use Bula\Objects\DataRange;
+use Bula\Objects\THashtable;
 
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
@@ -17,7 +17,7 @@ use Bula\Objects\TString;
 use Bula\Objects\DateTimes;
 
 require_once("Bula/Objects/TString.php");
-require_once("Bula/Objects/DataRange.php");
+require_once("Bula/Objects/THashtable.php");
 
 /**
  * Logic for generating Top block.
@@ -28,7 +28,7 @@ class Top extends Page
     /** Execute main logic for Top block */
     public function execute()
     {
-        $prepare = new DataRange();
+        $prepare = new THashtable();
         $prepare->put("[#ImgWidth]", $this->context->IsMobile ? 234 : 468);
         $prepare->put("[#ImgHeight]", $this->context->IsMobile ? 30 : 60);
         if ($this->context->TestRun)

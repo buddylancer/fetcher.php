@@ -9,9 +9,9 @@
  */
 namespace Bula\Fetcher\Controller\Actions;
 
-use Bula\Objects\Response;
+use Bula\Objects\TResponse;
 use Bula\Objects\DateTimes;
-use Bula\Objects\DataRange;
+use Bula\Objects\THashtable;
 use Bula\Model\DataSet;
 
 use Bula\Fetcher\Config;
@@ -40,8 +40,8 @@ class DoTestItems extends Page
             "<html xmlns=\"http://www.w3.org/1999/xhtml\">", EOL,
             "    <head>", EOL,
             "        <title>Buddy Fetcher -- Test for new items</title>", EOL,
-            "        <meta name=\"keywords\" content=\"Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL\" />", EOL,
-            "        <meta name=\"description\" content=\"Buddy Fetcher is a simple RSS Fetcher/aggregator written in PHP/MySQL\" />", EOL,
+            "        <meta name=\"keywords\" content=\"Buddy Fetcher, rss, fetcher, aggregator, ", Config::PLATFORM, ", MySQL\" />", EOL,
+            "        <meta name=\"description\" content=\"Buddy Fetcher is a simple RSS Fetcher/aggregator written in ", Config::PLATFORM, "/MySQL\" />", EOL,
             "        <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\" />", EOL,
             "    </head>", EOL,
             "    <body>", EOL
@@ -79,7 +79,7 @@ class DoTestItems extends Page
             $boFetcher->fetchFromSources();
 
             $doTime = new DOTime(); // Need for DB reopen
-            $fields = new DataRange();
+            $fields = new THashtable();
             $fields->put("d_Time", DateTimes::format(DateTimes::SQL_DTS, DateTimes::getTime()));
             if ($insertRequired) {
                 $fields->put("i_Id", 1);

@@ -9,7 +9,7 @@
  */
 namespace Bula\Objects;
 
-use Bula\Objects\Response;
+use Bula\Objects\TResponse;
 use Bula\Objects\DateTimes;
 use Bula\Objects\Helper;
 use Bula\Objects\TString;
@@ -40,7 +40,7 @@ class Logger
      * Initialize logging into file.
      * @param TString $filename Log file name.
      */
-    public function initResponse($response)
+    public function initTResponse($response)
     {
         $this->fileName = null;
         if (!NUL($response))

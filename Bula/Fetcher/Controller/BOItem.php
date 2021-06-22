@@ -11,9 +11,9 @@ namespace Bula\Fetcher\Controller;
 
 use Bula\Fetcher\Config;
 
-use Bula\Objects\DataList;
+use Bula\Objects\TArrayList;
 use Bula\Objects\Arrays;
-use Bula\Objects\DataRange;
+use Bula\Objects\THashtable;
 use Bula\Objects\Regex;
 use Bula\Objects\RegexOptions;
 
@@ -21,8 +21,8 @@ use Bula\Objects\TString;
 use Bula\Objects\Strings;
 use Bula\Model\DataSet;
 
-require_once("Bula/Objects/DataList.php");
-require_once("Bula/Objects/DataRange.php");
+require_once("Bula/Objects/TArrayList.php");
+require_once("Bula/Objects/THashtable.php");
 require_once("Bula/Objects/TString.php");
 require_once("Bula/Objects/Strings.php");
 require_once("Bula/Objects/Regex.php");
@@ -70,15 +70,15 @@ class BOItem
      */
     public function __construct($source, $item)
     {
-        $this->initialize($source, $item);
+            $this->initialize($source, $item);
     }
 
     /**
      * Initialize this BOItem.
-     * @param DataRange $source Current processed source.
-     * @param DataRange $item Current processed RSS-item from given source.
+     * @param THashtable $source Current processed source.
+     * @param THashtable $item Current processed RSS-item from given source.
      */
-    private function initialize($source, DataRange $item)
+    private function initialize($source, THashtable $item)
     {
         $this->source = $source;
         $this->item = $item;
@@ -161,7 +161,7 @@ class BOItem
             $description = $description->replace(" \n", "\n");
         while ($description->indexOf("\n\n\n") != -1)
             $description = $description->replace("\n\n\n", "\n\n");
-        $description = Regex::replace($description, "\n\n[ \t]*[+\-\*][^+\-\*][ \t]*", "\n* ");
+        $description = Regex::replace($description, "\n\n[ \t]*[\\+\\-\\*][^\\+\\-\\*][ \t]*", "\n* ");
         $description = Regex::replace($description, "[ \t]+", " ");
 
         $this->description = $description->trim();
@@ -202,7 +202,7 @@ class BOItem
         $category = null;
         if (!$categoryItem->isEmpty()) {
             $categoriesArr = $categoryItem->replace(",&,", " & ")->split(",");
-            $categoriesNew = new DataList();
+            $categoriesNew = new TArrayList();
             for ($c = 0; $c < SIZE($categoriesArr); $c++) {
                 $temp = $categoriesArr[$c];
                 if (BLANK($temp->trim()))
@@ -245,8 +245,9 @@ class BOItem
         //if (BLANK($this->description))
         //    return;
 
-        $categoryTags = BLANK($this->category) ?
-            Strings::emptyArray() : $this->category->split(",");
+        $categoryTags = new TArrayList();
+        if (!BLANK($this->category))
+            $categoryTags->addAll($this->category->split(","));
         for ($n1 = 0; $n1 < $dsCategories->getSize(); $n1++) {
             $oCategory = $dsCategories->getRow($n1);
             $rssAllowedKey = $oCategory->get("s_CatId");
@@ -255,9 +256,9 @@ class BOItem
             $filterValue = $oCategory->get("s_Filter");
             $filterChunks = Strings::split("~", $filterValue);
             $includeChunks = SIZE($filterChunks) > 0 ?
-                Strings::split("|", $filterChunks[0]) : Strings::emptyArray();
+                Strings::split("\\|", $filterChunks[0]) : Strings::emptyArray();
             $excludeChunks = SIZE($filterChunks) > 1 ?
-                Strings::split("|", $filterChunks[1]) : Strings::emptyArray();
+                Strings::split("\\|", $filterChunks[1]) : Strings::emptyArray();
 
             $includeFlag = false;
             for ($n2 = 0; $n2 < SIZE($includeChunks); $n2++) {
@@ -275,17 +276,18 @@ class BOItem
                     $includeFlag &= false;
             }
             if ($includeFlag) {
-                $categoryTags = ADD($categoryTags, $name);
+                $categoryTags->add($name);
              }
         }
-        if (SIZE($categoryTags) == 0)
+        if ($categoryTags->size() == 0)
             return;
 
         //TODO
         //$uniqueCategories = $this->NormalizeList($categoryTags, $lang);
         //$category = TString::join(", ", $uniqueCategories);
 
-        $this->category = Strings::join(", ", $categoryTags);
+        $this->category = Strings::join(", ", $categoryTags->toArray(
+        ));
     }
 
     /**
@@ -328,15 +330,15 @@ class BOItem
         if ($translit)
             $title = Util::transliterateRusToLat($title);
 
-        $title = Regex::replace($title, "\&amp\;", " and ");
-        $title = Regex::replace($title, "[^A-Za-z0-9\-\. ]", " ");
-        $title = Regex::replace($title, " +", " ");
+        $title = Regex::replace($title, "\\&amp\\;", " and ");
+        $title = Regex::replace($title, "[^A-Za-z0-9\\-\\. ]", " ");
+        $title = Regex::replace($title, "[ ]+", " ");
         $title = $title->trim();
-        $title = Regex::replace($title, "\.+", "-");
-        $title = Regex::replace($title, " \- ", "-");
-        $title = Regex::replace($title, " \. ", ".");
+        $title = Regex::replace($title, "\\.+", "-");
+        $title = Regex::replace($title, " \\- ", "-");
+        $title = Regex::replace($title, " \\. ", ".");
         $title = Regex::replace($title, "[ ]+", "-");
-        $title = Regex::replace($title, "\-+", "-");
+        $title = Regex::replace($title, "\\-+", "-");
         $title = $title->trim("-")->toLowerCase();
         return $title;
     }

@@ -10,35 +10,35 @@
 namespace Bula\Objects;
 
 use Bula\Objects\Arrays;
-use Bula\Objects\Enumerator;
-use Bula\Objects\DataRange;
+use Bula\Objects\TEnumerator;
+use Bula\Objects\THashtable;
 
 require_once("Arrays.php");
-require_once("Enumerator.php");
-require_once("DataRange.php");
+require_once("TEnumerator.php");
+require_once("THashtable.php");
 
 /**
  * Base helper class for processing query/form request.
  */
-class RequestBase
+class TRequestBase
 {
     /** Current response */
     public $response = null;
 
-    public function __construct($currentRequest= null)
+    public function __construct($currentTRequest= null)
     {
-        if (NUL($currentRequest))
+        if (NUL($currentTRequest))
             return;
     }
 
     /**
      * Get all variables of given type.
      * @param Integer $type Required type.
-     * @return DataRange Requested variables.
+     * @return THashtable TRequested variables.
      */
     public function getVars($type)
     {
-        $output = Arrays::newDataRange();
+        $output = THashtable::create();
         $vars = filter_input_array($type);
         if ($vars === false || $vars == null)
             return $output;
@@ -51,7 +51,7 @@ class RequestBase
      * Get a single variable of given type.
      * @param Integer $type Required type.
      * @param TString $name Variable name.
-     * @return TString Requested variable.
+     * @return TString TRequested variable.
      */
     public function getVar($type, $name)
     {

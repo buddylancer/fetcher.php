@@ -12,20 +12,20 @@ namespace Bula\Fetcher\Controller\Testing;
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
 use Bula\Fetcher\Controller\Page;
-use Bula\Objects\DataList;
+use Bula\Objects\TArrayList;
 use Bula\Objects\TString;
 use Bula\Objects\Strings;
-use Bula\Objects\Request;
-use Bula\Objects\Response;
+use Bula\Objects\TRequest;
+use Bula\Objects\TResponse;
 use Bula\Model\DataSet;
 
 require_once("Bula/Meta.php");
 require_once("Bula/Fetcher/Controller/Page.php");
-require_once("Bula/Objects/DataList.php");
+require_once("Bula/Objects/TArrayList.php");
 require_once("Bula/Objects/TString.php");
 require_once("Bula/Objects/Strings.php");
-require_once("Bula/Objects/Request.php");
-require_once("Bula/Objects/Response.php");
+require_once("Bula/Objects/TRequest.php");
+require_once("Bula/Objects/TResponse.php");
 require_once("Bula/Model/DataSet.php");
 
 /**
@@ -92,7 +92,7 @@ class CallMethod extends Page
 
         // Fill array with parameters
         $count = 0;
-        $pars = new DataList();
+        $pars = new TArrayList();
         for ($n = 1; $n <= 6; $n++) {
             $parName = CAT("par", $n);
             if (!$this->context->Request->contains($parName))
@@ -117,11 +117,11 @@ class CallMethod extends Page
             $this->context->Response->end("Can not instantiate class!");
             return;
         }
-        $reflectionMethod = new \ReflectionMethod($fullClass, $method);
+        $reflectionMethod = new \ReflectionMethod($fullClass, $method->getValue());
         $parameters = $reflectionMethod->getParameters();
         $countRequired = 0;
         for ($n = 0; $n < SIZE($parameters); $n++) {
-            $p = new \ReflectionParameter(array($fullClass, $method), $n);
+            $p = new \ReflectionParameter(array($fullClass, $method->getValue()), $n);
             if (!$p->isOptional()) $countRequired++;
         }
         if ($pars->size() < $countRequired)
