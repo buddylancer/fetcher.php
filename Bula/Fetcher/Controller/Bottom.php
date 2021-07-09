@@ -31,9 +31,12 @@ class Bottom extends Page
     public function execute()
     {
         $prepare = new THashtable();
+        $prepare->put("[#Items_By_Category]",
+            CAT(Config::NAME_ITEMS, "_by_", $this->context->get("Name_Category")));
 
         $doCategory = new DOCategory();
-        $dsCategory = $doCategory->enumAll("_this.i_Counter <> 0"); //, "_this.s_CatId");
+        $dsCategory = $doCategory->enumAll(Config::SHOW_EMPTY ? null : "_this.i_Counter <> 0",
+            Config::SORT_CATEGORIES == null ? null : CAT("_this.", Config::SORT_CATEGORIES));
         $size = $dsCategory->getSize();
         $size3 = $size % 3;
         $n1 = INT($size / 3) + ($size3 == 0 ? 0 : 1);
@@ -48,7 +51,7 @@ class Bottom extends Page
                 if (NUL($oCategory))
                     continue;
                 $counter = INT($oCategory->get("i_Counter"));
-                if (INT($counter) == 0)
+                if (Config::SHOW_EMPTY == false && INT($counter) == 0)
                     continue;
                 $key = $oCategory->get("s_CatId");
                 $name = $oCategory->get("s_Name");
@@ -65,7 +68,7 @@ class Bottom extends Page
         $prepare->put("[#FilterBlocks]", $filterBlocks);
 
         if (!$this->context->IsMobile) {
-            $dsCategory = $doCategory->enumAll(); //null, "_this.s_CatId");
+            //$dsCategory = $doCategory->enumAll(null, Config::SORT_CATEGORIES == null ? null : CAT("_this.", Config::SORT_CATEGORIES));
             $size = $dsCategory->getSize(); //50
             $size3 = $size % 3; //2
             $n1 = INT($size / 3) + ($size3 == 0 ? 0 : 1); //17.3

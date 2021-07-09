@@ -114,6 +114,8 @@ function BLANK($arg)
  */
 function LEN($str)
 {
+    if ($str instanceof TString)
+        return $str->length();
     return BLANK($str) ? 0 : strlen($str);
 }
 

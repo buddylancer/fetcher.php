@@ -30,6 +30,10 @@ class TRequest extends TRequestBase
     /** Internal storage for SERVER variables */
     private $ServerVars = null;
 
+    /**
+     * Default constructor.
+     * @param Object $currentRequest Current http request object.
+     */
     public function __construct($currentRequest)
     { $this->initialize(); }
 
@@ -294,7 +298,7 @@ class TRequest extends TRequestBase
      */
     public static function isDomainName($input)
     {
-        return Regex::isMatch($input, "^[A-Za-z]+[A-Za-z0-9\\.]*$");
+        return Regex::isMatch($input, "^[A-Za-z0-9]+[A-Za-z0-9\\.\\-]*$");
     }
 
     /**

@@ -4,8 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Buddy Fetcher :: items</title>
-<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL" />
-<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in PHP/MySQL" />
+<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, [#Platform], MySQL" />
+<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in [#Platform]/MySQL" />
 <link  rel="styleSheet" type="text/css" href="styles2.css" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 </head>
@@ -21,7 +21,7 @@
 <td class="left top" style="padding:2pt; white-space:nowrap;">
 <a style="font-variant:small-caps; font-size:30pt; font-weight:bold" href="/">
 <span>Buddy</span> <span class="red">Fetcher</span></a><br/>
-<strong>Latest Items</strong>
+<strong>Latest News Headlines</strong>
 </td>
 </tr>
 </table>
@@ -41,8 +41,8 @@
 <tr>
 <td class="menu center" style="padding:2pt; white-space:nowrap;">
  <a href="/">Home</a>
- &bull; <a href="/items">Items</a>
- &bull; <a href="#items_by_skills">By Categories</a>
+ &bull; <a href="/items">Headlines</a>
+ &bull; <a href="#Headlines_by_Region">By Region</a>
  &bull; <a href="/sources">Sources</a>
 </td>
 </tr>
@@ -131,8 +131,8 @@ return false;
 <!-- -->
 <tr>
 <td class="header">
-Browse Items<br/> ... from 'news.usnews.com'
-<input type="hidden" name="s_Title" value="Browse Items<br/> ... from 'news.usnews.com'" />
+Browse Headlines<br/> ... from 'news.usnews.com'
+<input type="hidden" name="s_Title" value="Browse Headlines<br/> ... from 'news.usnews.com'" />
 </td>
 </tr>
 
@@ -145,7 +145,7 @@ Page <strong>1</strong> from <strong>4</strong>
 </td>
 </tr>
 <tr class="column">
-<td style="width:70%; text-align:left">Item</td>
+<td style="width:70%; text-align:left">Headline</td>
 <td style="width:18%; text-align:center">Creator</td>
 <td style="width:12%; text-align:center">Published</td>
 </tr>
@@ -154,7 +154,7 @@ Page <strong>1</strong> from <strong>4</strong>
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/345/investigators-probe-reported-russian-tundra-pollution" title="From news.usnews.com">Investigators Probe Reported Russian Tundra Pollution</a></strong>
-<br/><strong>Categories</strong>: World - Russia
+<br/><strong>Regions</strong>: World - Russia
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -167,7 +167,7 @@ Associated Press
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/344/black-bear-rescued-as-cub-released-back-into-wyoming-woods" title="From news.usnews.com">Black Bear Rescued as Cub Released Back Into Wyoming Woods</a></strong>
-<br/><strong>Categories</strong>: Wyoming
+<br/><strong>Regions</strong>: Wyoming
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -192,7 +192,7 @@ Associated Press
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/342/confirmed-cases-hit-10-million-pence-skips-campaign-rallies" title="From news.usnews.com">Confirmed Cases Hit 10 Million; Pence Skips Campaign Rallies</a></strong>
-<br/><strong>Categories</strong>: World - France, World - Poland
+<br/><strong>Regions</strong>: World - France, World - Poland
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -229,7 +229,7 @@ Associated Press
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/339/china-reviews-heavily-criticized-hong-kong-security-bill" title="From news.usnews.com">China Reviews Heavily Criticized Hong Kong Security Bill</a></strong>
-<br/><strong>Categories</strong>: World - China
+<br/><strong>Regions</strong>: World - China
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -242,7 +242,7 @@ Associated Press
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/338/officials-fireworks-spark-utah-wildfire-evacuations" title="From news.usnews.com">Officials: Fireworks Spark Utah Wildfire, Evacuations</a></strong>
-<br/><strong>Categories</strong>: Utah
+<br/><strong>Regions</strong>: Utah
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -279,7 +279,7 @@ Associated Press
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/335/how-germany-did-it-completing-the-soccer-season-in-europe" title="From news.usnews.com">How Germany Did It: Completing the Soccer Season in Europe</a></strong>
-<br/><strong>Categories</strong>: World - Germany
+<br/><strong>Regions</strong>: World - Germany
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -292,7 +292,7 @@ Associated Press
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/334/france-holds-municipal-elections-postponed-by-virus-crisis" title="From news.usnews.com">France Holds Municipal Elections Postponed by Virus Crisis</a></strong>
-<br/><strong>Categories</strong>: World - France
+<br/><strong>Regions</strong>: World - France
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -305,7 +305,7 @@ Associated Press
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/333/ap-interview-us-envoy-calls-for-iran-arms-embargo-renewal" title="From news.usnews.com">AP Interview: US Envoy Calls for Iran Arms Embargo Renewal</a></strong>
-<br/><strong>Categories</strong>: World - Iran
+<br/><strong>Regions</strong>: World - Iran
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -354,7 +354,7 @@ Reuters
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/329/u-s-sanctions-coronavirus-make-for-iran-s-toughest-year-rouhani-says" title="From news.usnews.com">U.S. Sanctions, Coronavirus Make for Iran's Toughest Year, Rouhani Says</a></strong>
-<br/><strong>Categories</strong>: World - Iran
+<br/><strong>Regions</strong>: World - Iran
 </td>
 <td class="item" style="text-align:center">
 Reuters
@@ -379,7 +379,7 @@ Reuters
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/327/a-divided-poland-holds-presidential-vote-delayed-by-pandemic" title="From news.usnews.com">A Divided Poland Holds Presidential Vote Delayed by Pandemic</a></strong>
-<br/><strong>Categories</strong>: World - Poland
+<br/><strong>Regions</strong>: World - Poland
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -404,7 +404,7 @@ Associated Press
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/325/china-lawmakers-review-draft-of-hong-kong-national-security-bill-xinhua" title="From news.usnews.com">China Lawmakers Review Draft of Hong Kong National Security Bill: Xinhua</a></strong>
-<br/><strong>Categories</strong>: World - China
+<br/><strong>Regions</strong>: World - China
 </td>
 <td class="item" style="text-align:center">
 Reuters
@@ -417,7 +417,7 @@ Reuters
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/324/get-britain-moving-again-pm-johnson-to-unveil-new-infrastructure-plan" title="From news.usnews.com">'Get Britain Moving Again', PM Johnson to Unveil New Infrastructure Plan</a></strong>
-<br/><strong>Categories</strong>: World - Britain
+<br/><strong>Regions</strong>: World - Britain
 </td>
 <td class="item" style="text-align:center">
 Reuters
@@ -430,7 +430,7 @@ Reuters
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/323/shooting-at-california-walmart-distribution-center-leaves-two-dead-four-injured" title="From news.usnews.com">Shooting at California Walmart Distribution Center Leaves Two Dead, Four Injured</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Reuters
@@ -443,7 +443,7 @@ Reuters
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/322/welsh-first-minister-criticizes-uk-government-on-coronavirus-messaging" title="From news.usnews.com">Welsh First Minister Criticizes UK Government on Coronavirus Messaging</a></strong>
-<br/><strong>Categories</strong>: World - Britain
+<br/><strong>Regions</strong>: World - Britain
 </td>
 <td class="item" style="text-align:center">
 Reuters
@@ -492,8 +492,8 @@ Pages:
 <!-- BEGIN View/bottom.html -->
 <table class="m" cellpadding="0" style="border:0; width:100%; border-spacing:0">
 <tr>
-<td class="header" colspan="3" id="items_by_skills">
-Items by Categories
+<td class="header" colspan="3" id="Headlines_by_Region">
+Headlines by Region
 </td>
 </tr>
 
@@ -539,6 +539,7 @@ Items by Categories
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
 <a href="/items/filter/WI"><strong>Wisconsin</strong></a><br/>
 <a href="/items/filter/WY"><strong>Wyoming</strong></a><br/>
+<a href="/items/filter/DC"><strong>District of Columbia</strong></a><br/>
 <a href="/items/filter/PR"><strong>Puerto Rico</strong></a><br/>
 <a href="/items/filter/Britain"><strong>World - Britain</strong></a><br/>
 <a href="/items/filter/Canada"><strong>World - Canada</strong></a><br/>
@@ -565,7 +566,7 @@ Items by Categories
 <tr>
 <td class="header center middle" style="padding:4pt">
 Copyright &copy; 2020-2021 <strong><a href="/">Buddy Fetcher</a></strong><br/>
-<small>Powered by <a href="https://github.com/buddylancer/fetcher.php">Buddy Fetcher</a></small>
+<small>Powered by <a href="https://github.com/buddylancer/fetcher.[#Platform]">Buddy Fetcher for [#Platform]</a></small>
 </td>
 </tr>
 </table>

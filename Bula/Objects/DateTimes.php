@@ -18,6 +18,8 @@ require_once("TString.php");
  */
 class DateTimes
 {
+    /** Date/time format for processing custom date/times */
+    const DTS = "d-M-Y H:i";
     /** Date/time format for processing GMT date/times */
     const GMT_DTS = "d-M-Y H:i \G\M\T";
     /** Date/time format for RSS operations */
@@ -36,7 +38,9 @@ class DateTimes
      */
     public static function getTime($timeString= null)
     {
-        if ($timeString == null) $timeString = "now";
+        if ($timeString == null) {
+            $timeString = "now";
+        }
         return strtotime($timeString instanceof TString ? $timeString->getValue() : $timeString);
     }
 
@@ -71,5 +75,10 @@ class DateTimes
     public static function gmtFormat($formatString, $timeValue = 0)
     {
         return $timeValue == 0 ? gmdate($formatString, strtotime("now")) : gmdate($formatString, $timeValue);
+    }
+
+    public static function parse($formatString, $timeString)
+    {
+        return strtotime(date($formatString, strtotime($timeString)));
     }
 }

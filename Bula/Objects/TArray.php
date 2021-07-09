@@ -24,7 +24,7 @@ class TArray
 
     private function instantiate($size)
     {
-        $content = array[$size];
+        $content = array($size);
     }
 
     public function size()
@@ -49,14 +49,14 @@ class TArray
 
     public function add($value)
     {
-        $cloned = $this->clone();
+        $cloned = $this->cloneMe();
         $this->instantiate($this->size() + 1);
         for ($n = 0; $n < $cloned->size(); $n++)
             $this->set($n, $cloned->get($n));
         $this->set($cloned->size() + 1, $value);
     }
 
-    public function clone()
+    public function cloneMe()
     {
         $cloned = new TArray($this->size());
         for ($n = 0; $n < $this->size(); $n++)

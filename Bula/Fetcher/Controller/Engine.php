@@ -36,6 +36,7 @@ require_once("Bula/Objects/TString.php");
  */
 class Engine
 {
+    /** Instance of Context */
     public $context = null;
     private $printFlag = false;
     private $printString = "";
@@ -90,8 +91,12 @@ class Engine
      */
     public function write($val)
     {
-        if ($this->printFlag)
-            $this->context->Response->write($val);
+        if ($this->printFlag) {
+            $langFile = null;
+            if (BLANK($this->context->Api) && Config::SITE_LANGUAGE != null)
+                $langFile = CAT($this->context->LocalRoot, "local/", Config::SITE_LANGUAGE, ".txt");
+            $this->context->Response->write($val, $langFile);
+        }
         else
             $this->printString .= $val->getValue();
     }
@@ -321,7 +326,7 @@ class Engine
                 }
             }
         }
-        $result = self::formatTemplate($content->getValue(), $hash);
+        $result = self::formatTemplate($content, $hash);
         return $result;
     }
 }

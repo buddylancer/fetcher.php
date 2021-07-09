@@ -49,11 +49,11 @@ class Regex
      */
     public static function replace($input, $pattern, $replacement, $options = 0)
     {
+        if ($input instanceof TString) $input = CAT($input);
+        if ($pattern instanceof TString) $pattern = CAT($pattern);
         $patternValue = CAT(Strings::fixPattern($pattern, $input, $replacement),
             ((INT($options) & RegexOptions::IgnoreCase) != 0) ? "i" : null);
-        if (preg_match($patternValue, $input->getValue()))
-            return new TString(preg_replace($patternValue, CAT($replacement), $input->getValue()));
-        return $input;
+        return new TString(preg_replace($patternValue, CAT($replacement), $input));
     }
 
     /**
@@ -81,7 +81,7 @@ class Regex
      * @param Integer $options Matching options (0 - no options).
      * @return TString[] Resulting array of strings (or null).
      */
-    public static function getMatches($input, $pattern, $options = null )
+    public static function matches($input, $pattern, $options = null )
     {
         $patternValue = CAT(Strings::fixPattern($pattern, $input),
             ((INT($options) & RegexOptions::IgnoreCase) != 0) ? "i" : null);
@@ -100,7 +100,6 @@ class Regex
     public static function escape($pattern)
     {
         return preg_quote(CAT($pattern), DIV);
-
     }
 
     /**

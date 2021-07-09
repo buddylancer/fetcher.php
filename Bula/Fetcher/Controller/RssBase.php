@@ -15,8 +15,6 @@ use Bula\Fetcher\Context;
 use Bula\Objects\TArrayList;
 use Bula\Objects\TEnumerator;
 use Bula\Objects\THashtable;
-use Bula\Objects\Regex;
-use Bula\Objects\RegexOptions;
 
 use Bula\Objects\TRequest;
 use Bula\Objects\TResponse;
@@ -25,6 +23,9 @@ use Bula\Objects\DateTimes;
 use Bula\Objects\Helper;
 use Bula\Objects\TString;
 use Bula\Objects\Strings;
+
+use Bula\Objects\Regex;
+use Bula\Objects\RegexOptions;
 
 use Bula\Model\DBConfig;
 use Bula\Model\DataSet;
@@ -92,6 +93,7 @@ abstract class RssBase extends Page
         // Check filter
         $filter = null;
         $filterName = null;
+        $categoryName = null;
         $doCategory = new DOCategory();
         $dsCategories = $doCategory->enumCategories();
         if ($dsCategories->getSize() > 0) {
@@ -105,8 +107,10 @@ abstract class RssBase extends Page
                 else {
                     $oCategory =
                         ARR(new THashtable());
-                    if ($doCategory->checkFilterName($filterName, $oCategory))
+                    if ($doCategory->checkFilterName($filterName, $oCategory)) {
+                        $categoryName = $oCategory[0]->get("s_Name");
                         $filter = $oCategory[0]->get("s_Filter");
+                    }
                     else {
                         if ($anyFilter)
                             $filter = $filterName;
@@ -188,12 +192,14 @@ abstract class RssBase extends Page
         $nowDate = DateTimes::format(DateTimes::SQL_DTS);
         $nowTime = DateTimes::getTime($nowDate);
         $fromDate = DateTimes::gmtFormat(DateTimes::SQL_DTS, $nowTime - 6*60*60);
-        $dsItems = $doItem->enumItemsFromSource($fromDate, $source, $filter, $count);
+        //$search = DOItem::buildSqlByFilter($filter);
+        $search = DOItem::buildSqlByCategory($categoryName);
+        $dsItems = $doItem->enumItemsFromSource($fromDate, $source, $search, $count);
         $current = 0;
 
         $contentToCache = "";
         if ($dsItems->getSize() == 0)
-            $contentToCache = $this->writeStart($source, $filterName, $pubDate);
+            $contentToCache = $this->writeStart($source, $categoryName, $pubDate);
 
         for ($n = 0; $n < $dsItems->getSize(); $n++) {
             $oItem = $dsItems->getRow($n);
@@ -204,7 +210,7 @@ abstract class RssBase extends Page
             if ($current == 0) {
                 // Get puDate from the first item and write starting block
                 $pubDate = DateTimes::format(DateTimes::XML_DTS, DateTimes::getTime($date));
-                $contentToCache = $this->writeStart($source, $filterName, $pubDate);
+                $contentToCache = $this->writeStart($source, $categoryName, $pubDate);
             }
 
             $category = $this->context->contains("Name_Category") ? $oItem->get("s_Category") : null;
@@ -250,18 +256,34 @@ abstract class RssBase extends Page
             $args[2] = $this->getAbsoluteLink(Config::ACTION_PAGE, "?p=do_redirect_source&amp;source=", "redirect/source/", $sourceName);
             $args[3] = $sourceName;
             $args[4] = DateTimes::format(DateTimes::XML_DTS, DateTimes::getTime($date));
-            $additional = CAT(
-                (BLANK($creator) ? null : CAT($this->context->get("Name_Creator"), ": ", $creator, "<br/>")),
-                (BLANK($category) ? null : CAT($this->context->get("Name_Categories"), ": ", $category, "<br/>")),
-                (BLANK($custom2) ? null : CAT($this->context->get("Name_Custom2"), ": ", $custom2, "<br/>")),
-                (BLANK($custom1) ? null : CAT($this->context->get("Name_Custom1"), ": ", $custom1, "<br/>"))
-            );
+            $additional = null;
+            if (!BLANK($creator)) {
+                if ($additional != null)
+                    $additional = CAT($additional, "<br/>");
+                $additional = CAT($additional, $this->context->get("Name_Creator"), ": ", $creator);
+            }
+            if (!BLANK($category)) {
+                if ($additional != null)
+                    $additional = CAT($additional, "<br/>");
+                $additional = CAT($additional, $this->context->get("Name_Categories"), ": ", $category);
+            }
+            if (!BLANK($custom2)) {
+                if ($additional != null)
+                    $additional = CAT($additional, "<br/>");
+                $additional = CAT($additional, $this->context->get("Name_Custom2"), ": ", $custom2);
+            }
+            if (!BLANK($custom1)) {
+                if ($additional != null)
+                    $additional = CAT($additional, "<br/>");
+                $additional = CAT($additional, $this->context->get("Name_Custom1"), ": ", $custom1);
+            }
+
             $extendedDescription = null;
             if (!BLANK($description)) {
                 if (BLANK($additional))
                     $extendedDescription = $description;
                 else
-                    $extendedDescription = CAT($additional, "<br/>", $description);
+                    $extendedDescription = CAT($description, "<br/><br/>", $additional);
             }
             else if (!BLANK($additional))
                 $extendedDescription = $additional;
@@ -303,10 +325,10 @@ abstract class RssBase extends Page
     /**
      * Write start block (header) of an RSS-feed.
      * @param TString $source Source selected (or empty).
-     * @param TString $filterName Filter name selected (or empty).
+     * @param TString $category Category name selected (or empty).
      * @param TString $pubDate Date shown in the header.
      */
-    abstract function writeStart($source, $filterName, $pubDate);
+    abstract function writeStart($source, $category, $pubDate);
 
     /**
      * Write end block of an RSS-feed.

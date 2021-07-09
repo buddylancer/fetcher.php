@@ -40,15 +40,15 @@ class Rss extends RssBase
     /**
      * Write starting block of RSS-feed.
      * @param TString $source RSS-feed source name.
-     * @param TString $filterName RSS-feed 'filtered by' value.
+     * @param TString $category RSS-feed 'filtered by' category.
      * @param TString $pubDate Publication date.
      * @return TString Resulting XML-content of starting block.
      */
-    public function writeStart($source, $filterName, $pubDate)
+    public function writeStart($source, $category, $pubDate)
     {
         $rssTitle = CAT(
             "Items for ", (BLANK($source) ? "ALL sources" : CAT("'", $source, "'")),
-            (BLANK($filterName) ? null : CAT(" and filtered by '", $filterName, "'"))
+            (BLANK($category) ? null : CAT(" and filtered by '", $category, "'"))
         );
         $xmlContent = Strings::concat(
             "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>", EOL,

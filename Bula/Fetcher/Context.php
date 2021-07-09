@@ -98,6 +98,9 @@ class Context extends Config
     public $Api;
     /** Current language */
     public $Lang;
+    /** Current file extension */
+    /* Filename extension */
+    const FILE_EXT = ".php";
 
     /** Root cache folder for pages */
     public $CacheFolderRoot;
@@ -160,8 +163,10 @@ class Context extends Config
         // You can change something below this line if you know what are you doing :)
         $rootDir = $this->Request->getVar(/*[$TRequest->]*/INPUT_SERVER, "DOCUMENT_ROOT");
         $rootDir = $rootDir->replace("\\", "/"); // Fix for IIS
+        $removeSlashes =
+            2;
         // Regarding that we have the ordinary local website (not virtual directory)
-        for ($n = 0; $n <= 2; $n++) {
+        for ($n = 0; $n <= $removeSlashes; $n++) {
             $lastSlashIndex = $rootDir->lastIndexOf("/");
             $rootDir = $rootDir->substring(0, $lastSlashIndex);
         }
@@ -196,10 +201,16 @@ class Context extends Config
         $this->GlobalConstants->put("[#Site_Name]", Config::SITE_NAME);
         $this->GlobalConstants->put("[#Site_Comments]", Config::SITE_COMMENTS);
         $this->GlobalConstants->put("[#Top_Dir]", Config::TOP_DIR);
-        $this->GlobalConstants->put("[#Index_Page]", Config::INDEX_PAGE);
-        $this->GlobalConstants->put("[#Action_Page]", Config::ACTION_PAGE);
-        $this->GlobalConstants->put("[#Powered_By]", Config::POWERED_BY);
-        $this->GlobalConstants->put("[#Github_Repo]", Config::GITHUB_REPO);
+
+        if (!$this->TestRun)
+            $this->GlobalConstants->put("[#File_Ext]", self::FILE_EXT);
+        $this->GlobalConstants->put("[#Index_Page]", $this->TestRun ? Config::INDEX_PAGE :
+            Strings::replace("[#File_Ext]", self::FILE_EXT, Config::INDEX_PAGE));
+        $this->GlobalConstants->put("[#Action_Page]", $this->TestRun ? Config::ACTION_PAGE :
+            Strings::replace("[#File_Ext]", self::FILE_EXT, Config::ACTION_PAGE));
+        $this->GlobalConstants->put("[#Rss_Page]", $this->TestRun ? Config::RSS_PAGE :
+            Strings::replace("[#File_Ext]", self::FILE_EXT, Config::RSS_PAGE));
+
         //if ($this->IsMobile)
         //    $this->GlobalConstants->put("[#Is_Mobile]", "1");
         $this->GlobalConstants->put("[#Lang]", $this->Lang);
@@ -232,6 +243,7 @@ class Context extends Config
     /**
      * Push engine.
      * @param Boolean $printFlag Whether to print content immediately (true) or save it for further processing (false).
+     * @return Engine New Engine instance.
      */
     public function pushEngine($printFlag)
     {
@@ -258,7 +270,10 @@ class Context extends Config
         $this->EngineIndex--;
     }
 
-    /** Get current engine */
+    /**
+     * Get current engine
+     * @return Engine Current engine instance.
+     */
     public function getEngine()
     {
         return $this->EngineInstances->get($this->EngineIndex);

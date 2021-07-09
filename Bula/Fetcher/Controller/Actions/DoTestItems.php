@@ -71,12 +71,16 @@ class DoTestItems extends Page
         else
             $insertRequired = true;
 
+        $from = null;
+        if ($this->context->Request->contains("from"))
+            $from = $this->context->Request->get("from");
+
         $this->context->Response->write(self::$TOP);
         if ($updateRequired || $insertRequired) {
             $this->context->Response->write(CAT("Fetching new items... Please wait...<br/>", EOL));
 
             $boFetcher = new BOFetcher($this->context);
-            $boFetcher->fetchFromSources();
+            $boFetcher->fetchFromSources($from);
 
             $doTime = new DOTime(); // Need for DB reopen
             $fields = new THashtable();

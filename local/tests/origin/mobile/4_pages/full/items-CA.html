@@ -4,8 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Buddy Fetcher :: items</title>
-<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL" />
-<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in PHP/MySQL" />
+<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, [#Platform], MySQL" />
+<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in [#Platform]/MySQL" />
 <link  rel="styleSheet" type="text/css" href="styles2.css" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 </head>
@@ -21,7 +21,7 @@
 <td class="left top" style="padding:2pt; white-space:nowrap;">
 <a style="font-variant:small-caps; font-size:30pt; font-weight:bold" href="/">
 <span>Buddy</span> <span class="red">Fetcher</span></a><br/>
-<strong>Latest Items</strong>
+<strong>Latest News Headlines</strong>
 </td>
 </tr>
 </table>
@@ -41,8 +41,8 @@
 <tr>
 <td class="menu center" style="padding:2pt; white-space:nowrap;">
  <a href="/">Home</a>
- &bull; <a href="/?p=items">Items</a>
- &bull; <a href="#items_by_skills">By Categories</a>
+ &bull; <a href="/?p=items">Headlines</a>
+ &bull; <a href="#Headlines_by_Region">By Region</a>
  &bull; <a href="/?p=sources">Sources</a>
 </td>
 </tr>
@@ -131,8 +131,8 @@ return false;
 <!-- -->
 <tr>
 <td class="header">
-Browse Items<br/> ... for 'CA'
-<input type="hidden" name="s_Title" value="Browse Items<br/> ... for 'CA'" />
+Browse Headlines<br/> ... for 'California'
+<input type="hidden" name="s_Title" value="Browse Headlines<br/> ... for 'California'" />
 </td>
 </tr>
 
@@ -140,7 +140,7 @@ Browse Items<br/> ... for 'CA'
 <td>
 <table cellpadding="2" style="border:0; width:100%; border-spacing:0">
 <tr class="column">
-<td style="width:70%; text-align:left">Item</td>
+<td style="width:70%; text-align:left">Headline</td>
 <td style="width:18%; text-align:center">Creator</td>
 <td style="width:12%; text-align:center">Published</td>
 </tr>
@@ -149,7 +149,7 @@ Browse Items<br/> ... for 'CA'
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=323&title=shooting-at-california-walmart-distribution-center-leaves-two-dead-four-injured" title="From news.usnews.com">Shooting at California Walmart Distribution Center Leaves Two Dead, Four Injured</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Reuters
@@ -162,7 +162,7 @@ Reuters
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=320&title=2-dead-after-shooting-at-california-distribution-center" title="From news.usnews.com">2 Dead After Shooting at California Distribution Center</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -175,7 +175,7 @@ Associated Press
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=313&title=2-dead-after-shooting-at-california-distribution-center" title="From news.usnews.com">2 Dead After Shooting at California Distribution Center</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -188,7 +188,7 @@ Associated Press
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=281&title=hospital-says-2-people-were-killed-4-are-in-fair-condition-after-shooting-at-walmart-distribution-center-in-california" title="From news.usnews.com">Hospital Says 2 People Were Killed, 4 Are in Fair Condition After Shooting at Walmart Distribution Center in California</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -201,7 +201,7 @@ Associated Press
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=268&title=4-california-officers-on-leave-amid-probe-of-racist-posts" title="From news.usnews.com">4 California Officers on Leave Amid Probe of Racist Posts</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -214,7 +214,7 @@ Associated Press
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=258&title=low-income-california-zip-codes-see-spike-in-virus-cases" title="From news.usnews.com">Low-Income California Zip Codes See Spike in Virus Cases</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -227,7 +227,7 @@ Associated Press
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=186&title=best-iowa-mortgage-lenders" title="From money.usnews.com">Best Iowa Mortgage Lenders</a></strong>
-<br/><strong>Categories</strong>: California, Iowa
+<br/><strong>Regions</strong>: California, Iowa
 </td>
 <td class="item" style="text-align:center">
 Dawn Papandrea
@@ -240,7 +240,7 @@ Dawn Papandrea
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=156&title=best-california-mortgage-lenders" title="From money.usnews.com">Best California Mortgage Lenders</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Jessica Merritt
@@ -253,7 +253,7 @@ Jessica Merritt
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=544&title=20-beautiful-small-towns-in-california" title="From travel.usnews.com">20 Beautiful Small Towns in California</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Rachel Center
@@ -266,7 +266,7 @@ Rachel Center
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=533&title=15-top-weekend-getaways-in-california" title="From travel.usnews.com">15 Top Weekend Getaways in California</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Monica Echols
@@ -279,7 +279,7 @@ Monica Echols
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=520&title=the-8-best-santa-barbara-wine-tours" title="From travel.usnews.com">The 8 Best Santa Barbara Wine Tours</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Holly Johnson
@@ -292,7 +292,7 @@ Holly Johnson
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=513&title=die-19-besten-touren-durch-san-francisco" title="From travel.usnews.com">Die 19 besten Touren durch San Francisco</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Lyn Mettler
@@ -305,7 +305,7 @@ Lyn Mettler
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=512&title=los-19-mejores-recorridos-de-san-francisco" title="From travel.usnews.com">Los 19 mejores recorridos de San Francisco</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Lyn Mettler
@@ -318,7 +318,7 @@ Lyn Mettler
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=502&title=los-15-mejores-recorridos-de-los-angeles" title="From travel.usnews.com">Los 15 mejores recorridos de Los Ángeles</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Kyle McCarthy
@@ -331,7 +331,7 @@ Kyle McCarthy
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=501&title=die-15-besten-touren-durch-los-angeles" title="From travel.usnews.com">Die 15 besten Touren durch Los Angeles</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Kyle McCarthy
@@ -344,7 +344,7 @@ Kyle McCarthy
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=451&title=the-13-best-san-francisco-walking-tours" title="From travel.usnews.com">The 13 Best San Francisco Walking Tours</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Lyn Mettler
@@ -357,7 +357,7 @@ Lyn Mettler
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=388&title=california-is-turning-its-back-on-feinstein-in-favor-of-young-rising-stars" title="From opinion.usnews.com">California Is Turning Its Back on Feinstein in Favor of Young Rising Stars</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Jamie Stiehm
@@ -370,7 +370,7 @@ Jamie Stiehm
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=121&title=ama-opens-silicon-valley-outlet-bets-on-tech-to-transform-health-care" title="From health.usnews.com">AMA Opens Silicon Valley Outlet, Bets on Tech to Transform Health Care</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Steve Sternberg
@@ -383,7 +383,7 @@ Steve Sternberg
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=37&title=college-road-trip-california" title="From education.usnews.com">College Road Trip: California</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Brian Burnsed
@@ -410,8 +410,8 @@ Brian Burnsed
 <!-- BEGIN View/bottom.html -->
 <table class="m" cellpadding="0" style="border:0; width:100%; border-spacing:0">
 <tr>
-<td class="header" colspan="3" id="items_by_skills">
-Items by Categories
+<td class="header" colspan="3" id="Headlines_by_Region">
+Headlines by Region
 </td>
 </tr>
 
@@ -457,6 +457,7 @@ Items by Categories
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
 <a href="/?p=items&filter=WI"><strong>Wisconsin</strong></a><br/>
 <a href="/?p=items&filter=WY"><strong>Wyoming</strong></a><br/>
+<a href="/?p=items&filter=DC"><strong>District of Columbia</strong></a><br/>
 <a href="/?p=items&filter=PR"><strong>Puerto Rico</strong></a><br/>
 <a href="/?p=items&filter=Britain"><strong>World - Britain</strong></a><br/>
 <a href="/?p=items&filter=Canada"><strong>World - Canada</strong></a><br/>
@@ -483,7 +484,7 @@ Items by Categories
 <tr>
 <td class="header center middle" style="padding:4pt">
 Copyright &copy; 2020-2021 <strong><a href="/">Buddy Fetcher</a></strong><br/>
-<small>Powered by <a href="https://github.com/buddylancer/fetcher.php">Buddy Fetcher</a></small>
+<small>Powered by <a href="https://github.com/buddylancer/fetcher.[#Platform]">Buddy Fetcher for [#Platform]</a></small>
 </td>
 </tr>
 </table>

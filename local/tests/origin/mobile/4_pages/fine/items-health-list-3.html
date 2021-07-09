@@ -4,8 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Buddy Fetcher :: items</title>
-<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL" />
-<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in PHP/MySQL" />
+<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, [#Platform], MySQL" />
+<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in [#Platform]/MySQL" />
 <link  rel="styleSheet" type="text/css" href="styles2.css" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 </head>
@@ -21,7 +21,7 @@
 <td class="left top" style="padding:2pt; white-space:nowrap;">
 <a style="font-variant:small-caps; font-size:30pt; font-weight:bold" href="/">
 <span>Buddy</span> <span class="red">Fetcher</span></a><br/>
-<strong>Latest Items</strong>
+<strong>Latest News Headlines</strong>
 </td>
 </tr>
 </table>
@@ -41,8 +41,8 @@
 <tr>
 <td class="menu center" style="padding:2pt; white-space:nowrap;">
  <a href="/">Home</a>
- &bull; <a href="/items">Items</a>
- &bull; <a href="#items_by_skills">By Categories</a>
+ &bull; <a href="/items">Headlines</a>
+ &bull; <a href="#Headlines_by_Region">By Region</a>
  &bull; <a href="/sources">Sources</a>
 </td>
 </tr>
@@ -131,8 +131,8 @@ return false;
 <!-- -->
 <tr>
 <td class="header">
-Browse Items<br/> ... from 'health.usnews.com'
-<input type="hidden" name="s_Title" value="Browse Items<br/> ... from 'health.usnews.com'" />
+Browse Headlines<br/> ... from 'health.usnews.com'
+<input type="hidden" name="s_Title" value="Browse Headlines<br/> ... from 'health.usnews.com'" />
 </td>
 </tr>
 
@@ -145,7 +145,7 @@ Page <strong>3</strong> from <strong>4</strong>
 </td>
 </tr>
 <tr class="column">
-<td style="width:70%; text-align:left">Item</td>
+<td style="width:70%; text-align:left">Headline</td>
 <td style="width:18%; text-align:center">Creator</td>
 <td style="width:12%; text-align:center">Published</td>
 </tr>
@@ -406,7 +406,7 @@ Kimberly Leonard
 <tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/item/75/health-care-ceo-telemedicine-will-continue-to-grow" title="From health.usnews.com">Health Care CEO: Telemedicine Will Continue to Grow</a></strong>
-<br/><strong>Categories</strong>: Louisiana
+<br/><strong>Regions</strong>: Louisiana
 </td>
 <td class="item" style="text-align:center">
 Steve Sternberg
@@ -478,8 +478,8 @@ Pages:
 <!-- BEGIN View/bottom.html -->
 <table class="m" cellpadding="0" style="border:0; width:100%; border-spacing:0">
 <tr>
-<td class="header" colspan="3" id="items_by_skills">
-Items by Categories
+<td class="header" colspan="3" id="Headlines_by_Region">
+Headlines by Region
 </td>
 </tr>
 
@@ -525,6 +525,7 @@ Items by Categories
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
 <a href="/items/filter/WI"><strong>Wisconsin</strong></a><br/>
 <a href="/items/filter/WY"><strong>Wyoming</strong></a><br/>
+<a href="/items/filter/DC"><strong>District of Columbia</strong></a><br/>
 <a href="/items/filter/PR"><strong>Puerto Rico</strong></a><br/>
 <a href="/items/filter/Britain"><strong>World - Britain</strong></a><br/>
 <a href="/items/filter/Canada"><strong>World - Canada</strong></a><br/>
@@ -551,7 +552,7 @@ Items by Categories
 <tr>
 <td class="header center middle" style="padding:4pt">
 Copyright &copy; 2020-2021 <strong><a href="/">Buddy Fetcher</a></strong><br/>
-<small>Powered by <a href="https://github.com/buddylancer/fetcher.php">Buddy Fetcher</a></small>
+<small>Powered by <a href="https://github.com/buddylancer/fetcher.[#Platform]">Buddy Fetcher for [#Platform]</a></small>
 </td>
 </tr>
 </table>

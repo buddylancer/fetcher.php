@@ -18,45 +18,45 @@ call 98_folders.bat %folder% %package%
 set class=DOCategory
 
 set result=OK
-call	:check	(AZ)		getCategoryById AZ
-call	:check	(WY)		getCategoryById WY
-call	:check	(Arizona)	getCategoryByName Arizona
-call	:check	(Wyoming)	getCategoryByName Wyoming
-call	:check	()		enumCategories
-call	:check	(counter)	enumCategories counter
-call	:check	(counter~5)	enumCategories counter 5
+call	:check	(AZ)			getCategoryById AZ
+call	:check	(WY)			getCategoryById WY
+call	:check	(Arizona)		getCategoryByName Arizona
+call	:check	(Wyoming)		getCategoryByName Wyoming
+call	:check	()				enumCategories
+call	:check	(counter)		enumCategories counter
+call	:check	(counter~5)		enumCategories counter 5
 call	:check	(counter~5~10)	enumCategories counter 5 10
 
 set result=ERR
-call	:check	()		getCategoryById
-call	:check	(XX)		getCategoryById XX
-call	:check	()		getCategoryByName
-call	:check	(xxx)		getCategoryByName xxx
-call	:check	(xxx~-5)	enumCategories counter -5
+call	:check	()				getCategoryById
+call	:check	(XX)			getCategoryById XX
+call	:check	()				getCategoryByName
+call	:check	(xxx)			getCategoryByName xxx
+call	:check	(xxx~-5)		enumCategories counter -5
 call	:check	(xxx~-5~-10)	enumCategories counter -5 -10
 
 
 set class=DOItem
 
 set result=OK
-call	:check	(1)		getById 1
-call	:check	(545)		getById 545
-call	:check	(S1)		findItemByLink https://www.usnews.com/education/articles/2007/08/28/sat-scores-drop-for-the-second-year-in-a-row
-call	:check	(S545)		findItemByLink https://travel.usnews.com/features/the-best-camping-gear-to-buy-for-your-next-adventure
-rem call:check	S		item-build-filter	buildSqlFilter in1|in2~ex1|ex2
-call	:check	(S~~1~25)	enumItems news.usnews.com _ 1 25
-rem call:check	(D)		enumItemsFromDate 2020-03-28
-call	:check	(D~S~S~20)	enumItemsFromSource 2020-03-28 news.usnews.com _ 20
-rem call:check	()		purgeOldItems
+call	:check	(1)				getById 1
+call	:check	(last)			getById 545
+call	:check	(S1)			findItemByLink https://www.usnews.com/education/articles/2007/08/28/sat-scores-drop-for-the-second-year-in-a-row
+call	:check	(Slast)			findItemByLink https://travel.usnews.com/features/the-best-camping-gear-to-buy-for-your-next-adventure
+rem call:check	S				item-build-filter	buildSqlFilter in1|in2~ex1|ex2
+call	:check	(S~~1~25)		enumItems news.usnews.com _ 1 25
+rem call:check	(D)				enumItemsFromDate 2020-03-28
+call	:check	(D~S~S~20)		enumItemsFromSource 2020-03-28 news.usnews.com _ 20
+rem call:check	()				purgeOldItems
 
 set result=ERR
-call	:check	()		getById
-call	:check	(0)		getById 0
-call	:check	(-1)		getById -1
-call	:check	(999999)	getById 999999
-call	:check	(xxx)		getById xxx
-call	:check	()		findItemByLink
-call	:check	(xxx)		findItemByLink incorrect-link
+call	:check	()				getById
+call	:check	(0)				getById 0
+call	:check	(-1)			getById -1
+call	:check	(999999)		getById 999999
+call	:check	(xxx)			getById xxx
+call	:check	()				findItemByLink
+call	:check	(xxx)			findItemByLink incorrect-link
 
 set class=DOSource
 

@@ -16,6 +16,7 @@ require_once("TArrayListBase.php");
  */
 class TArrayList extends TArrayListBase
 {
+
     /** Create new array list. */
     public static function create()
     {
@@ -25,11 +26,16 @@ class TArrayList extends TArrayListBase
     /**
      * Add multiple objects.
      * @param Object[] $inputs Array of objects.
+     * @return Integer Number of added objects,
      */
     public function addAll($inputs)
     {
-        foreach ($inputs as $input)
+        $counter = 0;
+        foreach ($inputs as $input) {
             $this->add($input);
+            $counter++;
+        }
+        return $counter;
     }
 
     /**

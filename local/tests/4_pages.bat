@@ -17,22 +17,22 @@ call 97_working.bat %1%
 
 rem Positive
 call	:check	home
-call	:check	items 			items
-call	:check	sources			sources
+call	:check	items 				items
+call	:check	sources				sources
 call	:check	items-list-2		items list 2
 call	:check	items-list-3		items list 3
-call	:check	items-list-22		items list 22
+call	:check	items-list-last		items list 22
 call	:check	items-education		items source education.usnews.com
 call	:check	items-education-list-2	items source education.usnews.com list 2
 call	:check	items-health		items source health.usnews.com
 call	:check	items-health-list-2	items source health.usnews.com list 2
 call	:check	items-health-list-3	items source health.usnews.com list 3
 call	:check	items-health-list-4	items source health.usnews.com list 4
-call	:check	items-money		items source money.usnews.com
-call	:check	items-news		items source news.usnews.com
+call	:check	items-money			items source money.usnews.com
+call	:check	items-news			items source news.usnews.com
 call	:check	items-opinion		items source opinion.usnews.com
 call	:check	items-travel		items source travel.usnews.com
-call	:check	items-CA		items filter CA
+call	:check	items-CA			items filter CA
 call	:check	items-news-CA		items source news.usnews.com filter CA
 call	:check	items-CA-news		items filter CA source news.usnews.com
 

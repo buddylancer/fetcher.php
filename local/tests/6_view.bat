@@ -15,21 +15,21 @@ if "%1"=="rest" set fine_api=api/
 call 97_working.bat %1
 
 rem Positive
-call	:check	view-item-id-1	item id 1
-call	:check	view-item-id-2	item id 2
-call	:check	view-item-id-545		item id 545
+call	:check	view-item-id-1			item id 1
+call	:check	view-item-id-2			item id 2
+call	:check	view-item-id-last		item id 545
 
 rem Negative
-call	:check	err-view-item		item
-call	:check	err-view-item-id-	item id
-call	:check	err-view-item-id-0	item id 0
-call	:check	err-view-item-id--1	item id -1
+call	:check	err-view-item			item
+call	:check	err-view-item-id-		item id
+call	:check	err-view-item-id-0		item id 0
+call	:check	err-view-item-id--1		item id -1
 call	:check	err-view-item-id-99999	item id 99999
 call	:check	err-view-item-id-xxx	item id xxx
 call	:check	err-view-item-id-xxx1	item id xxx1
 call	:check	err-view-item-id-1xxx	item id 1xxx
-call	:check	err-view-item-id1-	item id1
-call	:check	err-view-item-id1-1	item id1 1
+call	:check	err-view-item-id1-		item id1
+call	:check	err-view-item-id1-1		item id1 1
 call	:check	err-view-item-inject	item id 'select+true'
 
 set file=

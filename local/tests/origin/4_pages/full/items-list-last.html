@@ -1,0 +1,568 @@
+
+<!-- BEGIN View/index.html -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Buddy Fetcher :: items</title>
+<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, [#Platform], MySQL" />
+<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in [#Platform]/MySQL" />
+<link  rel="styleSheet" type="text/css" href="styles.css" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+
+<body class="out" style="padding-top:5pt; padding-left:5pt;">
+<table class="out" cellpadding="0" style="border:0; width:970px; margin-left:auto; margin-right:auto; padding:0;">
+<tr>
+<td class="center top">
+
+<!-- BEGIN View/top.html -->
+<table class="out" style="width:100%; border:0; border-spacing:0;">
+<tr>
+<td class="left top" style="padding:2pt; white-space:nowrap;">
+<a style="font-variant:small-caps; font-size:30pt; font-weight:bold" href="/">
+<span>Buddy</span> <span class="red">Fetcher</span></a><br/>
+<strong>Latest News Headlines</strong>
+</td>
+<td style="text-align:right; vertical-align:bottom; padding:2pt; white-space:nowrap;">
+<!--div style="text-align:center; vertical-align:middle; width:468px; height:60px; background-color:#fff;">
+</div-->
+<strong>Today is: 28-Jun-2020 16:49 GMT</strong>
+</td>
+</tr>
+</table>
+
+<!-- END View/top.html -->
+
+</td>
+</tr>
+<tr>
+<td class="top" style="width:100%; height:100%">
+<table cellpadding="0" style="width:100%; height:100%; border-spacing:0">
+<tr>
+<td class="top">
+
+<!-- BEGIN View/menu.html -->
+<table style="width:100%; border:0; border-spacing:0;">
+<tr>
+<td class="menu center" style="padding:2pt; white-space:nowrap;">
+ <a href="/">Home</a>
+ &bull; <a href="/?p=items">Browse Headlines</a>
+ &bull; <a href="#Headlines_by_Region">Headlines by Region</a>
+ &bull; <a href="#Read_RSS_Feeds">Read RSS Feeds</a>
+ &bull; <a href="/?p=sources">Sources</a>
+</td>
+</tr>
+</table>
+<!-- END View/menu.html -->
+
+</td>
+</tr>
+
+<tr class="m">
+<td class="top" style="height:100%">
+
+<!-- BEGIN View/Pages/items.html -->
+<table class="m" style="border:0; width:100%; border-spacing:0" cellpadding="0">
+<!-- Uncomment to enable filtering by source and/or category -->
+<tr>
+<td>
+<table style="border:0; width:100%; border-spacing:0">
+
+<!-- BEGIN View/Pages/filter_items.html -->
+<tr class="m">
+<td style="text-align:center; padding:8pt">
+<form name="page_submit">
+Filter by source:
+<select name="source">
+<option value="0"  selected="selected" >-- Show All --</option>
+<option value="education.usnews.com"  >
+education.usnews.com
+[47]
+</option>
+<option value="health.usnews.com"  >
+health.usnews.com
+[99]
+</option>
+<option value="money.usnews.com"  >
+money.usnews.com
+[100]
+</option>
+<option value="news.usnews.com"  >
+news.usnews.com
+[99]
+</option>
+<option value="opinion.usnews.com"  >
+opinion.usnews.com
+[100]
+</option>
+<option value="travel.usnews.com"  >
+travel.usnews.com
+[100]
+</option>
+</select>
+<!--
+Time period:
+<select name="time">
+<option value="0">-- Show All--</option>
+<option value="6">Last 6 hours</option>
+<option value="12">Last 12 hours</option>
+<option value="24">Last 24 hours</option>
+<option value="w">Last week</option>
+<option value="m">Last month</option>
+</select>
+-->
+<input type="button" value=" >> " onclick="return func_submit();"/>
+
+</form>
+<script>
+function func_submit() {
+var frm = document.forms['page_submit'];
+if (frm['source'].selectedIndex == 0) {
+window.location.assign('/?p=items');
+return false;
+}
+var source = frm['source'].options[frm['source'].selectedIndex].value;
+window.location.assign('/?p=items&source=' + source);
+return false;
+}
+</script>
+</td>
+</tr>
+<!-- END View/Pages/filter_items.html -->
+
+</table>
+</td>
+</tr>
+<!-- -->
+<tr>
+<td class="header">
+Browse Headlines
+<input type="hidden" name="s_Title" value="Browse Headlines" />
+</td>
+</tr>
+
+<tr>
+<td>
+<table cellpadding="2" style="border:0; width:100%; border-spacing:0">
+<tr class="m">
+<td colspan="3" style="text-align:center; padding:8pt" >
+Page <strong>22</strong> from <strong>22</strong>
+</td>
+</tr>
+<tr class="column">
+<td style="width:70%; text-align:left">Headline</td>
+<td style="width:18%; text-align:center">Creator</td>
+<td style="width:12%; text-align:center">Published</td>
+</tr>
+
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=20&title=america-s-best-colleges-freshman-retention-rates" title="From education.usnews.com">America's Best Colleges: Freshman Retention Rates</a></strong>
+</td>
+<td class="item" style="text-align:center">
+</td>
+<td class="item" style="text-align:center">
+17-Mar-2009<br/>16:01 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=19&title=america-s-best-colleges-economic-diversity-among-top-schools" title="From education.usnews.com">America's Best Colleges: Economic Diversity Among Top Schools</a></strong>
+</td>
+<td class="item" style="text-align:center">
+</td>
+<td class="item" style="text-align:center">
+17-Mar-2009<br/>15:52 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=18&title=america-s-best-colleges-economic-diversity" title="From education.usnews.com">America's Best Colleges: Economic Diversity</a></strong>
+</td>
+<td class="item" style="text-align:center">
+</td>
+<td class="item" style="text-align:center">
+17-Mar-2009<br/>15:44 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=17&title=america-s-best-colleges-best-values" title="From education.usnews.com">America's Best Colleges: Best Values</a></strong>
+</td>
+<td class="item" style="text-align:center">
+</td>
+<td class="item" style="text-align:center">
+17-Mar-2009<br/>15:39 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=16&title=cheaper-bigger-and-cooler-student-loans" title="From education.usnews.com">Cheaper, Bigger, and Cooler Student Loans</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kim Clark
+</td>
+<td class="item" style="text-align:center">
+01-Jul-2008<br/>16:58 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=15&title=colleges-drop-their-loan-programs" title="From education.usnews.com">Colleges Drop Their Loan Programs</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kim Clark
+</td>
+<td class="item" style="text-align:center">
+17-Apr-2008<br/>17:10 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=14&title=the-impact-of-the-virginia-tech-attack" title="From education.usnews.com">The Impact of the Virginia Tech Attack</a></strong>
+<br/><strong>Regions</strong>: Virginia
+</td>
+<td class="item" style="text-align:center">
+Kenneth Terrell
+</td>
+<td class="item" style="text-align:center">
+17-Apr-2008<br/>16:59 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=13&title=cuts-in-european-language-studies" title="From education.usnews.com">Cuts in European-Language Studies</a></strong>
+<br/><strong>Regions</strong>: World - China
+</td>
+<td class="item" style="text-align:center">
+Lucia Graves
+</td>
+<td class="item" style="text-align:center">
+17-Apr-2008<br/>16:43 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=12&title=hot-tips-for-law-school-students" title="From education.usnews.com">Hot Tips for Law School Students</a></strong>
+</td>
+<td class="item" style="text-align:center">
+</td>
+<td class="item" style="text-align:center">
+26-Mar-2008<br/>16:01 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=11&title=hot-tips-for-a-graduate-degree-in-education" title="From education.usnews.com">Hot Tips for a Graduate Degree in Education</a></strong>
+</td>
+<td class="item" style="text-align:center">
+</td>
+<td class="item" style="text-align:center">
+26-Mar-2008<br/>16:01 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=10&title=new-ways-to-get-a-degree-in-education" title="From education.usnews.com">New Ways to Get a Degree in Education</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Lucia Graves
+</td>
+<td class="item" style="text-align:center">
+26-Mar-2008<br/>16:01 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=9&title=getting-business-school-skills-while-in-law-school" title="From education.usnews.com">Getting Business School Skills While in Law School</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Emma Schwartz
+</td>
+<td class="item" style="text-align:center">
+26-Mar-2008<br/>16:01 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=8&title=changes-for-the-gre-exam-this-fall" title="From education.usnews.com">Changes for the GRE Exam This Fall</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Lucia Graves
+</td>
+<td class="item" style="text-align:center">
+12-Sep-2007<br/>19:44 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=7&title=playing-your-cards-right" title="From education.usnews.com">Playing Your Cards Right</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kim Clark
+</td>
+<td class="item" style="text-align:center">
+07-Sep-2007<br/>16:44 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=6&title=loans-are-as-tricky-as-ever" title="From education.usnews.com">Loans Are as Tricky as Ever</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kimberly Palmer
+</td>
+<td class="item" style="text-align:center">
+07-Sep-2007<br/>16:39 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=5&title=the-new-rules-of-finding-aid" title="From education.usnews.com">The New Rules of Finding Aid</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kimberly Palmer
+</td>
+<td class="item" style="text-align:center">
+07-Sep-2007<br/>16:28 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=4&title=nickel-and-diming-your-kids-to-college" title="From education.usnews.com">Nickel and Diming Your Kids to College</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Paul J. Lim
+</td>
+<td class="item" style="text-align:center">
+07-Sep-2007<br/>16:23 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=3&title=learning-economics-101" title="From education.usnews.com">Learning Economics 101</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Emily Brandon
+</td>
+<td class="item" style="text-align:center">
+07-Sep-2007<br/>16:16 GMT
+</td>
+</tr>
+
+<tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=2&title=how-to-leverage-your-aid" title="From education.usnews.com">How to 'Leverage' Your Aid</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Kim Clark
+</td>
+<td class="item" style="text-align:center">
+07-Sep-2007<br/>16:03 GMT
+</td>
+</tr>
+
+<tr class="shade" onMouseOver="this.className='hover';" onMouseOut="this.className='shade';">
+<td class="item" style="height:30pt; vertical-align:middle;">
+<strong><a style="font-size:larger" href="/?p=view_item&id=1&title=sat-scores-drop-for-the-second-year-in-a-row" title="From education.usnews.com">SAT Scores Drop for the Second Year in a Row</a></strong>
+</td>
+<td class="item" style="text-align:center">
+Alex Kingsbury
+</td>
+<td class="item" style="text-align:center">
+28-Aug-2007<br/>15:41 GMT
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr class="m">
+<td style="padding:8pt; font-size:larger; text-align:center">
+Pages:
+[<strong><a href="/?p=items">&nbsp;1&nbsp;</a></strong>]
+<strong> ... </strong>
+[<strong><a href="/?p=items&list=20">&nbsp;20&nbsp;</a></strong>]
+[<strong><a href="/?p=items&list=21">&nbsp;21&nbsp;</a></strong>]
+<strong>=22=</strong>
+</td>
+</tr>
+</table>
+<!-- END View/Pages/items.html -->
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="center">
+
+<!-- BEGIN View/bottom.html -->
+<table class="m" cellpadding="0" style="border:0; width:100%; border-spacing:0">
+<tr>
+<td class="header" colspan="3" id="Headlines_by_Region">
+Headlines by Region
+</td>
+</tr>
+
+<tr>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+Headlines for <a href="/?p=items&filter=AL"><strong>Alabama</strong></a>&nbsp;(2)<br/>
+Headlines for <a href="/?p=items&filter=AK"><strong>Alaska</strong></a>&nbsp;(2)<br/>
+Headlines for <a href="/?p=items&filter=AZ"><strong>Arizona</strong></a>&nbsp;(1)<br/>
+Headlines for <a href="/?p=items&filter=AR"><strong>Arkansas</strong></a>&nbsp;(2)<br/>
+Headlines for <a href="/?p=items&filter=CA"><strong>California</strong></a>&nbsp;(19)<br/>
+Headlines for <a href="/?p=items&filter=CO"><strong>Colorado</strong></a>&nbsp;(3)<br/>
+Headlines for <a href="/?p=items&filter=CT"><strong>Connecticut</strong></a>&nbsp;(1)<br/>
+Headlines for <a href="/?p=items&filter=DE"><strong>Delaware</strong></a>&nbsp;(1)<br/>
+Headlines for <a href="/?p=items&filter=FL"><strong>Florida</strong></a>&nbsp;(9)<br/>
+Headlines for <a href="/?p=items&filter=GA"><strong>Georgia</strong></a>&nbsp;(6)<br/>
+Headlines for <a href="/?p=items&filter=HI"><strong>Hawaii</strong></a>&nbsp;(2)<br/>
+Headlines for <a href="/?p=items&filter=IL"><strong>Illinois</strong></a>&nbsp;(5)<br/>
+Headlines for <a href="/?p=items&filter=IN"><strong>Indiana</strong></a>&nbsp;(4)<br/>
+Headlines for <a href="/?p=items&filter=IA"><strong>Iowa</strong></a>&nbsp;(1)<br/>
+Headlines for <a href="/?p=items&filter=KS"><strong>Kansas</strong></a>&nbsp;(1)<br/>
+Headlines for <a href="/?p=items&filter=KY"><strong>Kentucky</strong></a>&nbsp;(4)<br/>
+Headlines for <a href="/?p=items&filter=LA"><strong>Louisiana</strong></a>&nbsp;(8)<br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+Headlines for <a href="/?p=items&filter=MA"><strong>Massachusetts</strong></a>&nbsp;(3)<br/>
+Headlines for <a href="/?p=items&filter=MI"><strong>Michigan</strong></a>&nbsp;(2)<br/>
+Headlines for <a href="/?p=items&filter=MN"><strong>Minnesota</strong></a>&nbsp;(2)<br/>
+Headlines for <a href="/?p=items&filter=MS"><strong>Mississippi</strong></a>&nbsp;(3)<br/>
+Headlines for <a href="/?p=items&filter=MO"><strong>Missouri</strong></a>&nbsp;(3)<br/>
+Headlines for <a href="/?p=items&filter=NV"><strong>Nevada</strong></a>&nbsp;(2)<br/>
+Headlines for <a href="/?p=items&filter=NM"><strong>New Mexico</strong></a>&nbsp;(2)<br/>
+Headlines for <a href="/?p=items&filter=NY"><strong>New York</strong></a>&nbsp;(6)<br/>
+Headlines for <a href="/?p=items&filter=NC"><strong>North Carolina</strong></a>&nbsp;(1)<br/>
+Headlines for <a href="/?p=items&filter=OH"><strong>Ohio</strong></a>&nbsp;(1)<br/>
+Headlines for <a href="/?p=items&filter=OK"><strong>Oklahoma</strong></a>&nbsp;(1)<br/>
+Headlines for <a href="/?p=items&filter=OR"><strong>Oregon</strong></a>&nbsp;(2)<br/>
+Headlines for <a href="/?p=items&filter=TN"><strong>Tennessee</strong></a>&nbsp;(1)<br/>
+Headlines for <a href="/?p=items&filter=TX"><strong>Texas</strong></a>&nbsp;(7)<br/>
+Headlines for <a href="/?p=items&filter=UT"><strong>Utah</strong></a>&nbsp;(3)<br/>
+Headlines for <a href="/?p=items&filter=VA"><strong>Virginia</strong></a>&nbsp;(1)<br/>
+Headlines for <a href="/?p=items&filter=WA"><strong>Washington</strong></a>&nbsp;(8)<br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
+Headlines for <a href="/?p=items&filter=WI"><strong>Wisconsin</strong></a>&nbsp;(1)<br/>
+Headlines for <a href="/?p=items&filter=WY"><strong>Wyoming</strong></a>&nbsp;(1)<br/>
+Headlines for <a href="/?p=items&filter=DC"><strong>District of Columbia</strong></a>&nbsp;(2)<br/>
+Headlines for <a href="/?p=items&filter=PR"><strong>Puerto Rico</strong></a>&nbsp;(1)<br/>
+Headlines for <a href="/?p=items&filter=Britain"><strong>World - Britain</strong></a>&nbsp;(4)<br/>
+Headlines for <a href="/?p=items&filter=Canada"><strong>World - Canada</strong></a>&nbsp;(1)<br/>
+Headlines for <a href="/?p=items&filter=China"><strong>World - China</strong></a>&nbsp;(8)<br/>
+Headlines for <a href="/?p=items&filter=Czechia"><strong>World - Czech Republic</strong></a>&nbsp;(2)<br/>
+Headlines for <a href="/?p=items&filter=France"><strong>World - France</strong></a>&nbsp;(5)<br/>
+Headlines for <a href="/?p=items&filter=Germany"><strong>World - Germany</strong></a>&nbsp;(2)<br/>
+Headlines for <a href="/?p=items&filter=Iran"><strong>World - Iran</strong></a>&nbsp;(3)<br/>
+Headlines for <a href="/?p=items&filter=Mexico"><strong>World - Mexico</strong></a>&nbsp;(4)<br/>
+Headlines for <a href="/?p=items&filter=Netherlands"><strong>World - Netherlands</strong></a>&nbsp;(1)<br/>
+Headlines for <a href="/?p=items&filter=Poland"><strong>World - Poland</strong></a>&nbsp;(2)<br/>
+Headlines for <a href="/?p=items&filter=Russia"><strong>World - Russia</strong></a>&nbsp;(9)<br/>
+Headlines for <a href="/?p=items&filter=South Korea"><strong>World - South Korea</strong></a>&nbsp;(2)<br/>
+Headlines for <a href="/?p=items&filter=Scotland"><strong>World - Scotland</strong></a>&nbsp;(1)<br/>
+</td>
+</tr>
+
+<tr>
+<td class="header" colspan="3" id="Read_RSS_Feeds">
+RSS Feeds by Region
+<span style="color:red; letter-spacing:0;">New!</span>
+</td>
+</tr>
+
+<tr>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align:top">
+Feed for <a href="/rss[#File_Ext]?filter=AL"><strong>Alabama</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=AK"><strong>Alaska</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=AZ"><strong>Arizona</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=AR"><strong>Arkansas</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=CA"><strong>California</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=CO"><strong>Colorado</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=CT"><strong>Connecticut</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=DE"><strong>Delaware</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=FL"><strong>Florida</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=GA"><strong>Georgia</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=HI"><strong>Hawaii</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=IL"><strong>Illinois</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=IN"><strong>Indiana</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=IA"><strong>Iowa</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=KS"><strong>Kansas</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=KY"><strong>Kentucky</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=LA"><strong>Louisiana</strong></a><br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align:top">
+Feed for <a href="/rss[#File_Ext]?filter=MA"><strong>Massachusetts</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=MI"><strong>Michigan</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=MN"><strong>Minnesota</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=MS"><strong>Mississippi</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=MO"><strong>Missouri</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=NV"><strong>Nevada</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=NM"><strong>New Mexico</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=NY"><strong>New York</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=NC"><strong>North Carolina</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=OH"><strong>Ohio</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=OK"><strong>Oklahoma</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=OR"><strong>Oregon</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=TN"><strong>Tennessee</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=TX"><strong>Texas</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=UT"><strong>Utah</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=VA"><strong>Virginia</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=WA"><strong>Washington</strong></a><br/>
+</td>
+<td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align:top">
+Feed for <a href="/rss[#File_Ext]?filter=WI"><strong>Wisconsin</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=WY"><strong>Wyoming</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=DC"><strong>District of Columbia</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=PR"><strong>Puerto Rico</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=Britain"><strong>World - Britain</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=Canada"><strong>World - Canada</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=China"><strong>World - China</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=Czechia"><strong>World - Czech Republic</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=France"><strong>World - France</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=Germany"><strong>World - Germany</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=Iran"><strong>World - Iran</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=Mexico"><strong>World - Mexico</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=Netherlands"><strong>World - Netherlands</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=Poland"><strong>World - Poland</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=Russia"><strong>World - Russia</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=South Korea"><strong>World - South Korea</strong></a><br/>
+Feed for <a href="/rss[#File_Ext]?filter=Scotland"><strong>World - Scotland</strong></a><br/>
+</td>
+</tr>
+</table>
+<!-- END View/bottom.html -->
+
+</td>
+</tr>
+
+<tr>
+<td class="header center middle" style="padding:4pt">
+Copyright &copy; 2020-2021 <strong><a href="/">Buddy Fetcher</a></strong><br/>
+<small>Powered by <a href="https://github.com/buddylancer/fetcher.[#Platform]">Buddy Fetcher for [#Platform]</a></small>
+</td>
+</tr>
+</table>
+</body>
+</html>
+<!-- END View/index.html -->

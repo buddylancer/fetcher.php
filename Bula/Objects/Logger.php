@@ -24,7 +24,7 @@ class Logger
 
     /**
      * Initialize logging into file.
-     * @param TString $filename Log file name.
+     * @param TString $filename Filename to write to.
      */
     public function initFile($filename)
     {
@@ -37,10 +37,10 @@ class Logger
     }
 
     /**
-     * Initialize logging into file.
-     * @param TString $filename Log file name.
+     * Initialize logging into response.
+     * @param TResponse $response Response to write to.
      */
-    public function initTResponse($response)
+    public function initResponse($response)
     {
         $this->fileName = null;
         if (!NUL($response))

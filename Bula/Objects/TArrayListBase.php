@@ -56,7 +56,7 @@ class TArrayListBase extends TCollection
      */
     public function contains($input)
     {
-        return in_array($input, $this-collection);
+        return in_array($input, $this->collection);
     }
 
     /**

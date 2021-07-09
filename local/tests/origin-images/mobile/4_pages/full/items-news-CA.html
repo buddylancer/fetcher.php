@@ -4,8 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Buddy Fetcher :: items</title>
-<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL" />
-<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in PHP/MySQL" />
+<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, [#Platform], MySQL" />
+<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in [#Platform]/MySQL" />
 <link  rel="styleSheet" type="text/css" href="styles2.css" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 </head>
@@ -21,7 +21,7 @@
 <td class="left top" style="padding:2pt; white-space:nowrap;">
 <a style="font-variant:small-caps; font-size:30pt; font-weight:bold" href="/">
 <span>Buddy</span> <span class="red">Fetcher</span></a><br/>
-<strong>Latest Items</strong>
+<strong>Latest News Headlines</strong>
 </td>
 </tr>
 </table>
@@ -41,8 +41,8 @@
 <tr>
 <td class="menu center" style="padding:2pt; white-space:nowrap;">
  <a href="/">Home</a>
- &bull; <a href="/?p=items">Items</a>
- &bull; <a href="#items_by_skills">By Categories</a>
+ &bull; <a href="/?p=items">Headlines</a>
+ &bull; <a href="#Headlines_by_Region">By Region</a>
  &bull; <a href="/?p=sources">Sources</a>
 </td>
 </tr>
@@ -131,8 +131,8 @@ return false;
 <!-- -->
 <tr>
 <td class="header">
-Browse Items<br/> ... from 'news.usnews.com' ... for 'CA'
-<input type="hidden" name="s_Title" value="Browse Items<br/> ... from 'news.usnews.com' ... for 'CA'" />
+Browse Headlines<br/> ... from 'news.usnews.com' ... for 'California'
+<input type="hidden" name="s_Title" value="Browse Headlines<br/> ... from 'news.usnews.com' ... for 'California'" />
 </td>
 </tr>
 
@@ -141,7 +141,7 @@ Browse Items<br/> ... from 'news.usnews.com' ... for 'CA'
 <table cellpadding="2" style="border:0; width:100%; border-spacing:0">
 <tr class="column">
 <td style="width:5%; text-align:center"></td>
-<td style="width:65%; text-align:center">Item</td>
+<td style="width:65%; text-align:center">Headline</td>
 <td style="width:18%; text-align:center">Creator</td>
 <td style="width:12%; text-align:center">Published</td>
 </tr>
@@ -153,7 +153,7 @@ Browse Items<br/> ... from 'news.usnews.com' ... for 'CA'
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=323&title=shooting-at-california-walmart-distribution-center-leaves-two-dead-four-injured" title="From news.usnews.com">Shooting at California Walmart Distribution Center Leaves Two Dead, Four Injured</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Reuters
@@ -169,7 +169,7 @@ Reuters
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=320&title=2-dead-after-shooting-at-california-distribution-center" title="From news.usnews.com">2 Dead After Shooting at California Distribution Center</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -185,7 +185,7 @@ Associated Press
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=313&title=2-dead-after-shooting-at-california-distribution-center" title="From news.usnews.com">2 Dead After Shooting at California Distribution Center</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -201,7 +201,7 @@ Associated Press
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=281&title=hospital-says-2-people-were-killed-4-are-in-fair-condition-after-shooting-at-walmart-distribution-center-in-california" title="From news.usnews.com">Hospital Says 2 People Were Killed, 4 Are in Fair Condition After Shooting at Walmart Distribution Center in California</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -217,7 +217,7 @@ Associated Press
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=268&title=4-california-officers-on-leave-amid-probe-of-racist-posts" title="From news.usnews.com">4 California Officers on Leave Amid Probe of Racist Posts</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -233,7 +233,7 @@ Associated Press
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=258&title=low-income-california-zip-codes-see-spike-in-virus-cases" title="From news.usnews.com">Low-Income California Zip Codes See Spike in Virus Cases</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -260,8 +260,8 @@ Associated Press
 <!-- BEGIN View/bottom.html -->
 <table class="m" cellpadding="0" style="border:0; width:100%; border-spacing:0">
 <tr>
-<td class="header" colspan="3" id="items_by_skills">
-Items by Categories
+<td class="header" colspan="3" id="Headlines_by_Region">
+Headlines by Region
 </td>
 </tr>
 
@@ -307,6 +307,7 @@ Items by Categories
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
 <a href="/?p=items&filter=WI"><strong>Wisconsin</strong></a><br/>
 <a href="/?p=items&filter=WY"><strong>Wyoming</strong></a><br/>
+<a href="/?p=items&filter=DC"><strong>District of Columbia</strong></a><br/>
 <a href="/?p=items&filter=PR"><strong>Puerto Rico</strong></a><br/>
 <a href="/?p=items&filter=Britain"><strong>World - Britain</strong></a><br/>
 <a href="/?p=items&filter=Canada"><strong>World - Canada</strong></a><br/>
@@ -333,7 +334,7 @@ Items by Categories
 <tr>
 <td class="header center middle" style="padding:4pt">
 Copyright &copy; 2020-2021 <strong><a href="/">Buddy Fetcher</a></strong><br/>
-<small>Powered by <a href="https://github.com/buddylancer/fetcher.php">Buddy Fetcher</a></small>
+<small>Powered by <a href="https://github.com/buddylancer/fetcher.[#Platform]">Buddy Fetcher for [#Platform]</a></small>
 </td>
 </tr>
 </table>

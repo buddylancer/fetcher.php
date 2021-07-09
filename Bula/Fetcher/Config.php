@@ -21,9 +21,9 @@ class Config
     /** Index page name */
     const INDEX_PAGE = "";
     /** Action page name */
-    const ACTION_PAGE = "action.php";
+    const ACTION_PAGE = "action[#File_Ext]";
     /** RSS-feeds page name */
-    const RSS_PAGE = "rss.php";
+    const RSS_PAGE = "rss[#File_Ext]";
     /** Current API output format (can be "Json" or "Xml" for now) */
     const API_FORMAT = "Json";
     /** Current API output content type (can be "application/json" or "text/xml" for now) */
@@ -64,24 +64,26 @@ class Config
     const DB_ITEMS_ROWS = 25;
 
     // Fill these fields by your site data
+    /** Site language (default - null) */
+    const SITE_LANGUAGE = null;
     /** Site name */
     const SITE_NAME = "Buddy Fetcher";
     /** Site comments */
-    const SITE_COMMENTS = "Latest Items";
+    const SITE_COMMENTS = "Latest News Headlines";
     /** Site keywords */
-    const SITE_KEYWORDS = "Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL";
+    const SITE_KEYWORDS = "Buddy Fetcher, rss, fetcher, aggregator, [#Platform], MySQL";
     /** Site description */
-    const SITE_DESCRIPTION = "Buddy Fetcher is a simple RSS fetcher/aggregator written in PHP/MySQL";
+    const SITE_DESCRIPTION = "Buddy Fetcher is a simple RSS fetcher/aggregator written in [#Platform]/MySQL";
 
     /** Name of item (in singular form) */
-    const NAME_ITEM = "Item";
+    const NAME_ITEM = "Headline";
     /** Name of items (in plural form) */
-    const NAME_ITEMS = "Items";
+    const NAME_ITEMS = "Headlines";
     // Uncomment what fields should be extracted and name them appropriately
     /** Name of category (in singular form) */
-    const NAME_CATEGORY = "Category";
+    const NAME_CATEGORY = "Region";
     /** Name of categories (in plural form) */
-    const NAME_CATEGORIES = "Categories";
+    const NAME_CATEGORIES = "Regions";
     /** Name of creator */
     const NAME_CREATOR = "Creator";
     /** Name of custom field 1 (comment when not extracted) */
@@ -91,9 +93,18 @@ class Config
 
     /** Show bottom blocks (Filtering and RSS) */
     const SHOW_BOTTOM = true;
+    /** Show empty categories */
+    const SHOW_EMPTY = false;
+    /** Sort categories by Id (s_CatId) or Name (s_Name) or NULL for default (as-is) */
+    const SORT_CATEGORIES = null;
+
+    /** Site time shift with respect to GMT (hours*100+minutes) */
+    const TIME_SHIFT = 0;
+    /** Site time zone name (GMT or any other) */
+    const TIME_ZONE = "GMT";
 
     /** Powered By string */
-    const POWERED_BY = "Buddy Fetcher";
+    const POWERED_BY = "Buddy Fetcher for [#Platform]";
     /** GitHub repository */
-    const GITHUB_REPO = "buddylancer/fetcher.php";
+    const GITHUB_REPO = "buddylancer/fetcher.[#Platform]";
 }

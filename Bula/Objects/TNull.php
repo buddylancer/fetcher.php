@@ -9,6 +9,9 @@
  */
 namespace Bula\Objects;
 
+/**
+ * Implementation of DB NULL object.
+ */
 class TNull
 {
     private static $value;
@@ -18,6 +21,10 @@ class TNull
         $value = null;
     }
 
+    /**
+     * Get NULL value.
+     * @return TNull NULL value.
+     */
     public static function getValue()
     {
         if (self::$value == null)

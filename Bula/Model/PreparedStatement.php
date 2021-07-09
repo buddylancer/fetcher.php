@@ -9,11 +9,10 @@
  */
 namespace Bula\Model;
 
-use Bula\Objects\TArrayList;
-
-use Bula\Objects\TResponse;
 use Bula\Objects\DateTimes;
 use Bula\Objects\Strings;
+use Bula\Objects\TArrayList;
+use Bula\Objects\TResponse;
 use Bula\Objects\TString;
 
 require_once("Bula/Objects/TResponse.php");
@@ -58,10 +57,10 @@ class PreparedStatement
     {
         $this->recordSet = new RecordSet();
         if ($this->formQuery()) {
-            DataAccess::callPrintDelegate(CAT("Executing selection query [", $this->query, "] ..."));
+            DataAccess::callPrintDelegate(CAT("<br/>", EOL, "Executing selection query [", $this->query, "] ..."));
             $result = DataAccess::selectQuery($this->link, $this->query->getValue());
             if ($result == null || $result == false) {
-                DataAccess::callErrorDelegate(CAT("Selection query failed [", $this->query, "]"));
+                DataAccess::callErrorDelegate(CAT("<br/>", EOL, "Selection query failed [", $this->query, "]"));
                 return null;
             }
             $this->recordSet->result = $result;

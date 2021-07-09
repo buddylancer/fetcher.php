@@ -112,11 +112,11 @@ class Helper
      */
     public static function readAllText($filename, $encoding = null)
     {
-        return new TString(file_get_contents(CAT($filename)));
+        return file_get_contents(CAT($filename));
 
     }
 
-      /**
+    /**
      * Read all content of text file as list of lines.
      * @param TString $filename File name.
      * @param TString $encoding Encoding name [optional].

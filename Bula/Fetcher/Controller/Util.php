@@ -42,7 +42,8 @@ class Util
         $output = Strings::stripSlashes($input);
         $output = $output->replace("<", "&lt;");
         $output = $output->replace(">", "&gt;");
-        $output = $output->replace("&", "&amp;");
+        $output = $output->replace("&#34;", "&quot;");
+        //$output = $output->replace("&", "&amp;");
         $output = $output->replace("\"", "&quot;");
         return $output;
     }
@@ -62,13 +63,16 @@ class Util
     }
 
     /**
-     * Format date/time to GMT presentation.
+     * Format date/time according to Config settings.
      * @param TString $input Input date/time.
      * @return TString Resulting date/time.
      */
-    public static function showTime($input)
+    public static function showTime($input= null)
     {
-        return DateTimes::format(DateTimes::GMT_DTS, DateTimes::getTime($input));
+        $time = DateTimes::getTime($input);
+        $delta = 3600 * (Config::TIME_SHIFT / 100) + 60 * (Config::TIME_SHIFT % 100);
+        $time += $delta;
+        return CAT(DateTimes::format(DateTimes::DTS, $time), " ", Config::TIME_ZONE);
     }
 
     /**

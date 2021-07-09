@@ -74,6 +74,7 @@ DROP TABLE IF EXISTS `items`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `items` (
   `i_ItemId` int(11) NOT NULL AUTO_INCREMENT,
+  `b_Counted` int(11) NOT NULL DEFAULT '0',
   `i_SourceLink` int(11) NOT NULL DEFAULT '0',
   `d_Date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `s_Link` varchar(256) DEFAULT NULL,
@@ -81,6 +82,7 @@ CREATE TABLE `items` (
   `s_FullTitle` varchar(1024) NOT NULL,
   `s_Url` varchar(255) DEFAULT NULL,
   `s_Category` varchar(1024) DEFAULT NULL,
+  `i_Categories` int(11) NOT NULL DEFAULT '0',
   `s_Creator` varchar(60) DEFAULT NULL,
   `s_Custom1` varchar(60) DEFAULT NULL,
   `s_Custom2` varchar(60) DEFAULT NULL,
@@ -90,6 +92,41 @@ CREATE TABLE `items` (
   KEY `IX_Link` (`s_Link`(256)),
   KEY `IX_Date` (`d_Date`),
   KEY `IX_SourceLink` (`i_SourceLink`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rules`
+--
+
+DROP TABLE IF EXISTS `rules`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `rules` (
+  `i_RuleId` int(11) NOT NULL AUTO_INCREMENT,
+  `s_SourceName` varchar(60) NOT NULL,
+  `s_To` varchar(16) NOT NULL,
+  `s_Operation` varchar(16) DEFAULT NULL,
+  `s_From` varchar(16) DEFAULT NULL,
+  `i_Value` int(11) NOT NULL DEFAULT '0',
+  `s_Pattern` varchar(128) DEFAULT NULL,
+  `s_Value` varchar(60) DEFAULT NULL,
+  UNIQUE KEY `i_RuleId` (`i_RuleId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rules`
+--
+
+DROP TABLE IF EXISTS `mappings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mappings` (
+  `i_MappingId` int(11) NOT NULL AUTO_INCREMENT,
+  `s_From` varchar(16) DEFAULT NULL,
+  `s_To` varchar(16) NOT NULL,
+  UNIQUE KEY `i_MappingId` (`i_MappingId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

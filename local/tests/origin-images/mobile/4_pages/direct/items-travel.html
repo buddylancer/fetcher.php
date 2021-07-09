@@ -4,8 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Buddy Fetcher :: items</title>
-<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL" />
-<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in PHP/MySQL" />
+<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, [#Platform], MySQL" />
+<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in [#Platform]/MySQL" />
 <link  rel="styleSheet" type="text/css" href="styles2.css" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 </head>
@@ -21,7 +21,7 @@
 <td class="left top" style="padding:2pt; white-space:nowrap;">
 <a style="font-variant:small-caps; font-size:30pt; font-weight:bold" href="/">
 <span>Buddy</span> <span class="red">Fetcher</span></a><br/>
-<strong>Latest Items</strong>
+<strong>Latest News Headlines</strong>
 </td>
 </tr>
 </table>
@@ -41,8 +41,8 @@
 <tr>
 <td class="menu center" style="padding:2pt; white-space:nowrap;">
  <a href="/">Home</a>
- &bull; <a href="/items">Items</a>
- &bull; <a href="#items_by_skills">By Categories</a>
+ &bull; <a href="/items">Headlines</a>
+ &bull; <a href="#Headlines_by_Region">By Region</a>
  &bull; <a href="/sources">Sources</a>
 </td>
 </tr>
@@ -131,8 +131,8 @@ return false;
 <!-- -->
 <tr>
 <td class="header">
-Browse Items<br/> ... from 'travel.usnews.com'
-<input type="hidden" name="s_Title" value="Browse Items<br/> ... from 'travel.usnews.com'" />
+Browse Headlines<br/> ... from 'travel.usnews.com'
+<input type="hidden" name="s_Title" value="Browse Headlines<br/> ... from 'travel.usnews.com'" />
 </td>
 </tr>
 
@@ -140,13 +140,13 @@ Browse Items<br/> ... from 'travel.usnews.com'
 <td>
 <table cellpadding="2" style="border:0; width:100%; border-spacing:0">
 <tr class="m">
-<td colspan="3" style="text-align:center; padding:8pt" >
+<td colspan="4" style="text-align:center; padding:8pt" >
 Page <strong>1</strong> from <strong>4</strong>
 </td>
 </tr>
 <tr class="column">
 <td style="width:5%; text-align:center"></td>
-<td style="width:65%; text-align:center">Item</td>
+<td style="width:65%; text-align:center">Headline</td>
 <td style="width:18%; text-align:center">Creator</td>
 <td style="width:12%; text-align:center">Published</td>
 </tr>
@@ -173,7 +173,7 @@ Zach Watson
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/544/20-beautiful-small-towns-in-california" title="From travel.usnews.com">20 Beautiful Small Towns in California</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Rachel Center
@@ -309,7 +309,7 @@ Gwen Pratesi
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/535/the-10-best-san-antonio-tours" title="From travel.usnews.com">The 10 Best San Antonio Tours</a></strong>
-<br/><strong>Categories</strong>: Texas
+<br/><strong>Regions</strong>: Texas
 </td>
 <td class="item" style="text-align:center">
 John Rodwan
@@ -325,7 +325,7 @@ John Rodwan
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/534/the-11-best-salem-tours" title="From travel.usnews.com">The 11 Best Salem Tours</a></strong>
-<br/><strong>Categories</strong>: Massachusetts
+<br/><strong>Regions</strong>: Massachusetts
 </td>
 <td class="item" style="text-align:center">
 Lyn Mettler
@@ -341,7 +341,7 @@ Lyn Mettler
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/533/15-top-weekend-getaways-in-california" title="From travel.usnews.com">15 Top Weekend Getaways in California</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Monica Echols
@@ -357,7 +357,7 @@ Monica Echols
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/532/the-7-best-chicago-walking-tours" title="From travel.usnews.com">The 7 Best Chicago Walking Tours</a></strong>
-<br/><strong>Categories</strong>: Illinois
+<br/><strong>Regions</strong>: Illinois
 </td>
 <td class="item" style="text-align:center">
 Holly Johnson
@@ -373,7 +373,7 @@ Holly Johnson
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/531/the-14-best-puerto-vallarta-tours" title="From travel.usnews.com">The 14 Best Puerto Vallarta Tours</a></strong>
-<br/><strong>Categories</strong>: World - Mexico
+<br/><strong>Regions</strong>: World - Mexico
 </td>
 <td class="item" style="text-align:center">
 John Rodwan
@@ -389,7 +389,7 @@ John Rodwan
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/530/the-12-best-atlanta-tours" title="From travel.usnews.com">The 12 Best Atlanta Tours</a></strong>
-<br/><strong>Categories</strong>: Georgia
+<br/><strong>Regions</strong>: Georgia
 </td>
 <td class="item" style="text-align:center">
 Gwen Pratesi
@@ -420,7 +420,7 @@ Lyn Mettler
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/528/the-15-best-denver-tours" title="From travel.usnews.com">The 15 Best Denver Tours</a></strong>
-<br/><strong>Categories</strong>: Colorado
+<br/><strong>Regions</strong>: Colorado
 </td>
 <td class="item" style="text-align:center">
 Lyn Mettler
@@ -436,7 +436,7 @@ Lyn Mettler
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/527/the-8-best-dallas-tours" title="From travel.usnews.com">The 8 Best Dallas Tours</a></strong>
-<br/><strong>Categories</strong>: Texas
+<br/><strong>Regions</strong>: Texas
 </td>
 <td class="item" style="text-align:center">
 Holly Johnson
@@ -452,7 +452,7 @@ Holly Johnson
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/526/the-15-best-mexico-city-tours" title="From travel.usnews.com">The 15 Best Mexico City Tours</a></strong>
-<br/><strong>Categories</strong>: World - Mexico
+<br/><strong>Regions</strong>: World - Mexico
 </td>
 <td class="item" style="text-align:center">
 Gwen Pratesi
@@ -468,7 +468,7 @@ Gwen Pratesi
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/525/15-top-all-inclusive-resorts-in-florida" title="From travel.usnews.com">15 Top All-Inclusive Resorts in Florida</a></strong>
-<br/><strong>Categories</strong>: Florida
+<br/><strong>Regions</strong>: Florida
 </td>
 <td class="item" style="text-align:center">
 Gwen Pratesi
@@ -514,7 +514,7 @@ Kyle McCarthy
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/redirect/item/522/the-17-best-vancouver-tours" title="From travel.usnews.com">The 17 Best Vancouver Tours</a></strong>
-<br/><strong>Categories</strong>: World - Canada
+<br/><strong>Regions</strong>: World - Canada
 </td>
 <td class="item" style="text-align:center">
 Lyn Mettler
@@ -566,8 +566,8 @@ Pages:
 <!-- BEGIN View/bottom.html -->
 <table class="m" cellpadding="0" style="border:0; width:100%; border-spacing:0">
 <tr>
-<td class="header" colspan="3" id="items_by_skills">
-Items by Categories
+<td class="header" colspan="3" id="Headlines_by_Region">
+Headlines by Region
 </td>
 </tr>
 
@@ -613,6 +613,7 @@ Items by Categories
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
 <a href="/items/filter/WI"><strong>Wisconsin</strong></a><br/>
 <a href="/items/filter/WY"><strong>Wyoming</strong></a><br/>
+<a href="/items/filter/DC"><strong>District of Columbia</strong></a><br/>
 <a href="/items/filter/PR"><strong>Puerto Rico</strong></a><br/>
 <a href="/items/filter/Britain"><strong>World - Britain</strong></a><br/>
 <a href="/items/filter/Canada"><strong>World - Canada</strong></a><br/>
@@ -639,7 +640,7 @@ Items by Categories
 <tr>
 <td class="header center middle" style="padding:4pt">
 Copyright &copy; 2020-2021 <strong><a href="/">Buddy Fetcher</a></strong><br/>
-<small>Powered by <a href="https://github.com/buddylancer/fetcher.php">Buddy Fetcher</a></small>
+<small>Powered by <a href="https://github.com/buddylancer/fetcher.[#Platform]">Buddy Fetcher for [#Platform]</a></small>
 </td>
 </tr>
 </table>

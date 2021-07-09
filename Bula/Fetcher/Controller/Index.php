@@ -11,27 +11,36 @@ namespace Bula\Fetcher\Controller;
 
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
-use Bula\Objects\TArrayList;
-use Bula\Objects\THashtable;
+
 use Bula\Objects\Regex;
 use Bula\Objects\RegexOptions;
+
+use Bula\Objects\Strings;
+use Bula\Objects\TArrayList;
+use Bula\Objects\THashtable;
 use Bula\Objects\TRequest;
 use Bula\Objects\TResponse;
+
 use Bula\Model\DBConfig;
 use Bula\Model\DataAccess;
+
 use Bula\Fetcher\Controller\Util;
 use Bula\Fetcher\Controller\Engine;
 
 require_once("Bula/Meta.php");
 require_once("Bula/Model/DBConfig.php");
-require_once("Bula/Objects/TArrayList.php");
-require_once("Bula/Objects/THashtable.php");
+require_once("Bula/Model/DOBase.php");
+
 require_once("Bula/Objects/Regex.php");
 require_once("Bula/Objects/RegexOptions.php");
+
+require_once("Bula/Objects/Strings.php");
+require_once("Bula/Objects/TArrayList.php");
+require_once("Bula/Objects/THashtable.php");
 require_once("Bula/Objects/TString.php");
 require_once("Bula/Objects/TRequest.php");
 require_once("Bula/Objects/TResponse.php");
-require_once("Bula/Model/DOBase.php");
+
 require_once("Bula/Fetcher/Controller/Page.php");
 require_once("Bula/Fetcher/Controller/Engine.php");
 require_once("Bula/Fetcher/Controller/Util.php");
@@ -95,8 +104,14 @@ class Index extends Page
             $title = CAT($title, " :: ", $pFromVars, (!NUL($idFromVars) ? CAT(" :: ", $idFromVars) : null));
 
         $prepare->put("[#Title]", $title); //TODO -- need unique title on each page
-        $prepare->put("[#Keywords]", Config::SITE_KEYWORDS);
-        $prepare->put("[#Description]", Config::SITE_DESCRIPTION);
+        $prepare->put("[#Keywords]",
+            $this->context->TestRun ? Config::SITE_KEYWORDS :
+            Strings::replace("[#Platform]", Config::PLATFORM, Config::SITE_KEYWORDS)
+        );
+        $prepare->put("[#Description]",
+            $this->context->TestRun ? Config::SITE_DESCRIPTION :
+            Strings::replace("[#Platform]", Config::PLATFORM, Config::SITE_DESCRIPTION)
+        );
         $prepare->put("[#Styles]", CAT(
                 ($this->context->TestRun ? null : Config::TOP_DIR),
                 $this->context->IsMobile ? "styles2" : "styles"));
@@ -123,6 +138,15 @@ class Index extends Page
             else
                 $prepare->put("[#Bottom]", $engine->includeTemplate("Bottom"));
         }
+
+        $prepare->put("[#Github_Repo]",
+            $this->context->TestRun ? Config::GITHUB_REPO :
+            Strings::replace("[#Platform]", Strings::toLowerCase(Config::PLATFORM), Config::GITHUB_REPO)
+        );
+        $prepare->put("[#Powered_By]",
+            $this->context->TestRun ? Config::POWERED_BY :
+            Strings::replace("[#Platform]", Config::PLATFORM, Config::POWERED_BY)
+        );
 
         $this->context->Response->writeHeader("Content-type", CAT(
             (BLANK($apiName) ? "text/html" : Config::API_CONTENT), "; charset=UTF-8")

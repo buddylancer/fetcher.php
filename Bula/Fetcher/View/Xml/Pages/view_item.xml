@@ -6,7 +6,9 @@
 <PostedBy>External item from [#SourceName]</PostedBy>
 <RedirectSource>[#RedirectSource]</RedirectSource>
 <Published>[#Date]</Published>
+<!--#if [#Description]-->
 <Description>[#Description]</Description>
+<!--#end if-->
 <ItemID>[#ItemID]</ItemID>
 <!--#if [#Category]-->
 <[#Name_Categories]>[#Category]</[#Name_Categories]>

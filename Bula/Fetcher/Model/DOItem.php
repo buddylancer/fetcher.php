@@ -10,10 +10,14 @@
 namespace Bula\Fetcher\Model;
 
 use Bula\Fetcher\Config;
+
+use Bula\Objects\Regex;
+
 use Bula\Objects\DateTimes;
 use Bula\Objects\THashtable;
 use Bula\Objects\TString;
 use Bula\Objects\Strings;
+
 use Bula\Model\DBConfig;
 use Bula\Model\DOBase;
 use Bula\Model\DataSet;
@@ -73,12 +77,29 @@ class DOItem extends DOBase
     }
 
     /**
+     * Build SQL query from category name.
+     * @param TString $category Category name.
+     * @return TString Appropriate SQL-query.
+     */
+    public static function buildSqlByCategory($category)
+    {
+        if (NUL($category))
+            return null;
+        //$category = Regex::escape(Regex::escape($category));
+        $category = CAT("[ ]", Regex::escape(Regex::escape($category)), "[, ]");
+        return $category == null ? null : CAT("concat(' ', _this.s_Category, ' ') REGEXP '", $category, "'");
+    }
+
+    /**
      * Build SQL query from categories filter.
      * @param TString $filter Filter from the category.
      * @return TString Appropriate SQL-query.
      */
-    public function buildSqlFilter($filter)
+    public static function buildSqlByFilter($filter)
     {
+        if ($filter == null)
+            return null;
+
         $filterChunks = Strings::split("~", $filter);
         $includeChunks = SIZE($filterChunks) > 0 ?
             Strings::split("\\|", $filterChunks[0]) : null;
@@ -88,11 +109,11 @@ class DOItem extends DOBase
         for ($n = 0; $n < SIZE($includeChunks); $n++) {
             if (!$includeFilter->isEmpty())
                 $includeFilter->concat(" OR ");
-            $includeFilter->concat("(_this.s_Title LIKE '%");
+            $includeFilter->concat("(_this.s_Title REGEXP '");
                 $includeFilter->concat($includeChunks[$n]);
-            $includeFilter->concat("%' OR _this.t_FullDescription LIKE '%");
+            $includeFilter->concat("' OR _this.t_FullDescription REGEXP '");
                 $includeFilter->concat($includeChunks[$n]);
-            $includeFilter->concat("%')");
+            $includeFilter->concat("')");
         }
         if (!$includeFilter->isEmpty())
             $includeFilter = Strings::concat(" (", $includeFilter, ") ");
@@ -102,7 +123,7 @@ class DOItem extends DOBase
             if (!BLANK($excludeFilter))
                 $excludeFilter = Strings::concat($excludeFilter, " AND ");
             $excludeFilter = Strings::concat($excludeFilter,
-                "(_this.s_Title not like '%", $excludeChunks[$n], "%' AND _this.t_Description not like '%", $excludeChunks[$n], "%')");
+                "(_this.s_Title NOT REGEXP '", $excludeChunks[$n], "' AND _this.t_Description NOT REGEXP '", $excludeChunks[$n], "')");
         }
         if (!$excludeFilter->isEmpty())
             $excludeFilter = Strings::concat(" (", $excludeFilter, ") ");
@@ -123,13 +144,12 @@ class DOItem extends DOBase
      */
     public function enumItems($source, $search, $list, $rows)
     { //, $totalRows) {
-        $realSearch = BLANK($search) ? null : $this->buildSqlFilter($search);
         $query1 = Strings::concat(
             " SELECT _this.", $this->idField, " FROM ", $this->tableName, " _this ",
             " LEFT JOIN sources s ON (s.i_SourceId = _this.i_SourceLink) ",
-            " WHERE s.b_SourceActive = 1 ",
+            " WHERE s.b_SourceActive = 1 AND _this.b_Counted = 1",
             (BLANK($source) ? null : CAT(" AND s.s_SourceName = '", $source, "' ")),
-            (BLANK($realSearch) ? null : CAT(" AND (", $realSearch, ") ")),
+            (BLANK($search) ? null : CAT(" AND (", $search, ") ")),
             " ORDER BY _this.d_Date DESC, _this.", $this->idField, " DESC "
         );
 
@@ -173,7 +193,7 @@ class DOItem extends DOBase
         $query = Strings::concat(
             " SELECT _this.*, s.s_SourceName FROM ", $this->tableName, " _this ",
             " INNER JOIN sources s ON (s.i_SourceId = _this.i_SourceLink) ",
-            " WHERE _this.d_Date > ? ",
+            " WHERE _this.b_Counted = 1 AND _this.d_Date > ? ",
             " ORDER BY _this.d_Date DESC, _this.", $this->idField, " DESC "
         );
         $pars = array("setDate", $fromdate);
@@ -185,19 +205,18 @@ class DOItem extends DOBase
      * Enumerate items from given date.
      * @param TString $fromDate Date to include items starting from.
      * @param TString $source Source name to include items from (default - all sources).
-     * @param TString $filter Filter for the category (or empty - no filtering).
+     * @param TString $search Search for filtering category (or empty - no filtering).
      * @param type $maxItems Max number of returned items.
      * @return DataSet Resulting data set.
      */
-    public function enumItemsFromSource($fromDate, $source, $filter, $maxItems= 20 )
+    public function enumItemsFromSource($fromDate, $source, $search, $maxItems= 20 )
     {
-        $realFilter = BLANK($filter) ? null : $this->buildSqlFilter($filter);
         $query1 = Strings::concat(
             " SELECT _this.*, s.s_SourceName FROM ", $this->tableName, " _this ",
             " INNER JOIN sources s ON (s.i_SourceId = _this.i_SourceLink) ",
-            " WHERE s.b_SourceActive = 1 ",
+            " WHERE s.b_SourceActive = 1 AND _this.b_Counted = 1",
             (BLANK($source) ? null : Strings::concat(" AND s.s_SourceName = '", $source, "' ")),
-            (BLANK($realFilter) ? null : Strings::concat(" AND (", $realFilter, ") ")),
+            (BLANK($search) ? null : Strings::concat(" AND (", $search, ") ")),
             " ORDER BY _this.d_Date DESC, _this.", $this->idField, " DESC ",
             " LIMIT ", STR($maxItems)
         );
@@ -212,7 +231,7 @@ class DOItem extends DOBase
             " WHERE s.b_SourceActive = 1 ",
             (BLANK($source) ? null : Strings::concat(" AND s.s_SourceName = '", $source, "' ")),
             " AND _this.d_Date > ? ",
-            (BLANK($realFilter) ? null : Strings::concat(" AND (", $realFilter, ") ")),
+            (BLANK($search) ? null : Strings::concat(" AND (", $search, ") ")),
             " ORDER BY _this.d_Date DESC, _this.", $this->idField, " DESC ",
             " LIMIT ", STR($maxItems)
         );

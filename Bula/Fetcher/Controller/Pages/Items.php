@@ -112,6 +112,7 @@ class Items extends ItemsBase
 
         $errorMessage = new TString();
         $filter = null;
+        $category = null;
 
         if (!NUL($filterName)) {
             $doCategory = new DOCategory();
@@ -119,10 +120,13 @@ class Items extends ItemsBase
                 ARR(new THashtable());
             if (!$doCategory->checkFilterName($filterName, $oCategory))
                 $errorMessage->concat("Non-existing filter name!");
-            else
+            else  {
+                $category = $oCategory[0]->get("s_Name");
                 $filter = $oCategory[0]->get("s_Filter");
+            }
         }
 
+        $sourceId = -1;
         if (!NUL($sourceName)) {
             $doSource = new DOSource();
             $oSource =
@@ -132,6 +136,8 @@ class Items extends ItemsBase
                     $errorMessage->concat("<br/>");
                 $errorMessage->concat("Non-existing source name!");
             }
+            else
+                $sourceId = INT($oSource[0]->get("i_SourceId"));
         }
 
         $engine = $this->context->getEngine();
@@ -145,6 +151,7 @@ class Items extends ItemsBase
 
         if (Config::SHOW_IMAGES)
             $prepare->put("[#Show_Images]", 1);
+        $prepare->put("[#ColSpan]", Config::SHOW_IMAGES ? 4 : 3);
 
         // Uncomment to enable filtering by source and/or category
         $prepare->put("[#FilterItems]", $engine->includeTemplate("Pages/FilterItems"));
@@ -154,7 +161,7 @@ class Items extends ItemsBase
             Config::NAME_ITEMS,
             ($this->context->IsMobile ? "<br/>" : null),
             (!BLANK($sourceName) ? CAT(" ... from '", $sourceName, "'") : null),
-            (!BLANK($filter) ? CAT(" ... for '", $filterName, "'") : null)
+            (!BLANK($filter) ? CAT(" ... for '", $category, "'") : null)
         );
 
         $prepare->put("[#Title]", $s_Title);
@@ -162,13 +169,22 @@ class Items extends ItemsBase
         $maxRows = Config::DB_ITEMS_ROWS;
 
         $doItem = new DOItem();
-        $dsItems = $doItem->enumItems($sourceName, $filter, $listNumber, $maxRows);
+        //$realFilter = DOItem::buildSqlByFilter($filter);
+        $realFilter = DOItem::buildSqlByCategory($category);
+        $dsItems = $doItem->enumItems($sourceName, $realFilter, $listNumber, $maxRows);
 
         $listTotal = $dsItems->getTotalPages();
         if ($listNumber > $listTotal) {
-            $prepare->put("[#ErrMessage]", "List number is too large!");
-            $this->write("error", $prepare);
-            return;
+            if ($listTotal > 0) {
+                $prepare->put("[#ErrMessage]", "List number is too large!");
+                $this->write("error", $prepare);
+                return;
+            }
+            else {
+                $prepare->put("[#ErrMessage]", "Empty list!");
+                $this->write("error", $prepare);
+                return;
+            }
         }
         if ($listTotal > 1) {
             $prepare->put("[#List_Total]", $listTotal);

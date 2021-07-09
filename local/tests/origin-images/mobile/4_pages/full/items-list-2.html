@@ -4,8 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Buddy Fetcher :: items</title>
-<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL" />
-<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in PHP/MySQL" />
+<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, [#Platform], MySQL" />
+<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in [#Platform]/MySQL" />
 <link  rel="styleSheet" type="text/css" href="styles2.css" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 </head>
@@ -21,7 +21,7 @@
 <td class="left top" style="padding:2pt; white-space:nowrap;">
 <a style="font-variant:small-caps; font-size:30pt; font-weight:bold" href="/">
 <span>Buddy</span> <span class="red">Fetcher</span></a><br/>
-<strong>Latest Items</strong>
+<strong>Latest News Headlines</strong>
 </td>
 </tr>
 </table>
@@ -41,8 +41,8 @@
 <tr>
 <td class="menu center" style="padding:2pt; white-space:nowrap;">
  <a href="/">Home</a>
- &bull; <a href="/?p=items">Items</a>
- &bull; <a href="#items_by_skills">By Categories</a>
+ &bull; <a href="/?p=items">Headlines</a>
+ &bull; <a href="#Headlines_by_Region">By Region</a>
  &bull; <a href="/?p=sources">Sources</a>
 </td>
 </tr>
@@ -131,8 +131,8 @@ return false;
 <!-- -->
 <tr>
 <td class="header">
-Browse Items<br/>
-<input type="hidden" name="s_Title" value="Browse Items<br/>" />
+Browse Headlines<br/>
+<input type="hidden" name="s_Title" value="Browse Headlines<br/>" />
 </td>
 </tr>
 
@@ -140,13 +140,13 @@ Browse Items<br/>
 <td>
 <table cellpadding="2" style="border:0; width:100%; border-spacing:0">
 <tr class="m">
-<td colspan="3" style="text-align:center; padding:8pt" >
+<td colspan="4" style="text-align:center; padding:8pt" >
 Page <strong>2</strong> from <strong>22</strong>
 </td>
 </tr>
 <tr class="column">
 <td style="width:5%; text-align:center"></td>
-<td style="width:65%; text-align:center">Item</td>
+<td style="width:65%; text-align:center">Headline</td>
 <td style="width:18%; text-align:center">Creator</td>
 <td style="width:12%; text-align:center">Published</td>
 </tr>
@@ -158,7 +158,7 @@ Page <strong>2</strong> from <strong>22</strong>
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=320&title=2-dead-after-shooting-at-california-distribution-center" title="From news.usnews.com">2 Dead After Shooting at California Distribution Center</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -204,7 +204,7 @@ Associated Press
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=317&title=mental-health-issues-compounded-by-covid-19-quarantine" title="From news.usnews.com">Mental Health Issues Compounded by COVID-19 Quarantine</a></strong>
-<br/><strong>Categories</strong>: Florida
+<br/><strong>Regions</strong>: Florida
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -220,7 +220,7 @@ Associated Press
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=316&title=miami-s-black-officers-conflicted-about-protests-loyalties" title="From news.usnews.com">Miami’s Black Officers Conflicted About Protests, Loyalties</a></strong>
-<br/><strong>Categories</strong>: Florida
+<br/><strong>Regions</strong>: Florida
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -236,7 +236,7 @@ Associated Press
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=315&title=officials-florida-woman-dies-in-gunfire-with-deputies" title="From news.usnews.com">Officials: Florida Woman Dies in Gunfire With Deputies</a></strong>
-<br/><strong>Categories</strong>: Florida
+<br/><strong>Regions</strong>: Florida
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -252,7 +252,7 @@ Associated Press
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=314&title=black-lives-matter-mural-vandalized-in-orlando" title="From news.usnews.com">Black Lives Matter Mural Vandalized in Orlando</a></strong>
-<br/><strong>Categories</strong>: Florida
+<br/><strong>Regions</strong>: Florida
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -268,7 +268,7 @@ Associated Press
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=313&title=2-dead-after-shooting-at-california-distribution-center" title="From news.usnews.com">2 Dead After Shooting at California Distribution Center</a></strong>
-<br/><strong>Categories</strong>: California
+<br/><strong>Regions</strong>: California
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -284,7 +284,7 @@ Associated Press
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=312&title=czech-republic-s-daily-number-of-new-coronavirus-cases-highest-since-april-8" title="From news.usnews.com">Czech Republic's Daily Number of New Coronavirus Cases Highest Since April 8</a></strong>
-<br/><strong>Categories</strong>: World - Czech Republic
+<br/><strong>Regions</strong>: World - Czech Republic
 </td>
 <td class="item" style="text-align:center">
 Reuters
@@ -300,7 +300,7 @@ Reuters
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=311&title=comfort-levels-vary-for-michigan-arts-culture-customers" title="From news.usnews.com">Comfort Levels Vary for Michigan Arts, Culture Customers</a></strong>
-<br/><strong>Categories</strong>: Michigan
+<br/><strong>Regions</strong>: Michigan
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -346,7 +346,7 @@ Associated Press
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=308&title=mississippi-set-to-remove-confederate-emblem-from-its-flag" title="From news.usnews.com">Mississippi Set to Remove Confederate Emblem From Its Flag</a></strong>
-<br/><strong>Categories</strong>: Mississippi
+<br/><strong>Regions</strong>: Mississippi
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -392,7 +392,7 @@ Reuters
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=305&title=one-dead-another-injured-in-shooting-at-jefferson-square-park-in-louisville" title="From news.usnews.com">One Dead, Another Injured in Shooting at Jefferson Square Park in Louisville</a></strong>
-<br/><strong>Categories</strong>: Kentucky
+<br/><strong>Regions</strong>: Kentucky
 </td>
 <td class="item" style="text-align:center">
 Reuters
@@ -408,7 +408,7 @@ Reuters
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=304&title=hoosiers-embrace-of-victory-gardens-grows-during-pandemic" title="From news.usnews.com">Hoosiers' Embrace of ‘Victory Gardens’ Grows During Pandemic</a></strong>
-<br/><strong>Categories</strong>: Indiana
+<br/><strong>Regions</strong>: Indiana
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -424,7 +424,7 @@ Associated Press
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=303&title=iu-freshmen-still-hope-for-college-experience-in-pandemic" title="From news.usnews.com">IU Freshmen Still Hope for ‘College Experience’ in Pandemic</a></strong>
-<br/><strong>Categories</strong>: Indiana
+<br/><strong>Regions</strong>: Indiana
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -455,7 +455,7 @@ Associated Press
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=301&title=this-alabama-dining-gem-is-hidden-in-plain-sight" title="From news.usnews.com">This Alabama Dining Gem Is Hidden in Plain Sight</a></strong>
-<br/><strong>Categories</strong>: Alabama
+<br/><strong>Regions</strong>: Alabama
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -486,7 +486,7 @@ Associated Press
 </td>
 <td class="item" style="height:30pt; vertical-align:middle;">
 <strong><a style="font-size:larger" href="/?p=view_item&id=299&title=ceelo-green-discusses-the-authenticity-of-his-new-album" title="From news.usnews.com">CeeLo Green Discusses the Authenticity of His New Album</a></strong>
-<br/><strong>Categories</strong>: Georgia
+<br/><strong>Regions</strong>: Georgia
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -569,8 +569,8 @@ Pages:
 <!-- BEGIN View/bottom.html -->
 <table class="m" cellpadding="0" style="border:0; width:100%; border-spacing:0">
 <tr>
-<td class="header" colspan="3" id="items_by_skills">
-Items by Categories
+<td class="header" colspan="3" id="Headlines_by_Region">
+Headlines by Region
 </td>
 </tr>
 
@@ -616,6 +616,7 @@ Items by Categories
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
 <a href="/?p=items&filter=WI"><strong>Wisconsin</strong></a><br/>
 <a href="/?p=items&filter=WY"><strong>Wyoming</strong></a><br/>
+<a href="/?p=items&filter=DC"><strong>District of Columbia</strong></a><br/>
 <a href="/?p=items&filter=PR"><strong>Puerto Rico</strong></a><br/>
 <a href="/?p=items&filter=Britain"><strong>World - Britain</strong></a><br/>
 <a href="/?p=items&filter=Canada"><strong>World - Canada</strong></a><br/>
@@ -642,7 +643,7 @@ Items by Categories
 <tr>
 <td class="header center middle" style="padding:4pt">
 Copyright &copy; 2020-2021 <strong><a href="/">Buddy Fetcher</a></strong><br/>
-<small>Powered by <a href="https://github.com/buddylancer/fetcher.php">Buddy Fetcher</a></small>
+<small>Powered by <a href="https://github.com/buddylancer/fetcher.[#Platform]">Buddy Fetcher for [#Platform]</a></small>
 </td>
 </tr>
 </table>

@@ -9,12 +9,12 @@
  */
 namespace Bula\Fetcher\Controller;
 
-use Bula\Objects\THashtable;
-
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
-use Bula\Objects\TString;
+
 use Bula\Objects\DateTimes;
+use Bula\Objects\THashtable;
+use Bula\Objects\TString;
 
 require_once("Bula/Objects/TString.php");
 require_once("Bula/Objects/THashtable.php");
@@ -34,7 +34,7 @@ class Top extends Page
         if ($this->context->TestRun)
             $prepare->put("[#Date]", "28-Jun-2020 16:49 GMT");
         else
-            $prepare->put("[#Date]", Util::showTime(DateTimes::gmtFormat(DateTimes::SQL_DTS)));
+            $prepare->put("[#Date]", Util::showTime());
 
         $this->write("top", $prepare);
     }

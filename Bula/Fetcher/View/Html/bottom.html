@@ -1,7 +1,7 @@
 <table class="m" cellpadding="0" style="border:0; width:100%; border-spacing:0">
     <tr>
-        <td class="header" colspan="3" id="items_by_skills">
-            [#Name_Items] by [#Name_Categories]
+        <td class="header" colspan="3" id="[#Items_By_Category]">
+            [#Name_Items] by [#Name_Category]
         </td>
     </tr>
 
@@ -13,7 +13,7 @@
                 <a href="[#Link]"><strong>[#LinkText]</strong></a><br/>
             <!--#end if-->
             <!--#if ![#Is_Mobile]-->
-                <a href="[#Link]">[#Name_Items] for '<strong>[#LinkText]</strong>'</a> ([#Counter])<br/>
+                [#Name_Items] for <a href="[#Link]"><strong>[#LinkText]</strong></a>&nbsp;([#Counter])<br/>
             <!--#end if-->
             <!--#end repeat-->
         </td>
@@ -22,8 +22,8 @@
 
     <!--#if ![#Is_Mobile]-->
     <tr>
-        <td class="header" colspan="3" id="read_rss_feeds">
-            RSS-feeds by [#Name_Categories]
+        <td class="header" colspan="3" id="Read_RSS_Feeds">
+            RSS Feeds by [#Name_Category]
             <span style="color:red; letter-spacing:0;">New!</span>
         </td>
     </tr>
@@ -32,7 +32,7 @@
         <!--#repeat [#RssBlocks]-->
         <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align:top">
             <!--#repeat [#Rows]-->
-                <a href="[#Link]">Feed for '<strong>[#LinkText]</strong>'</a><br/>
+                Feed for <a href="[#Link]"><strong>[#LinkText]</strong></a><br/>
             <!--#end repeat-->
         </td>
         <!--#end repeat-->

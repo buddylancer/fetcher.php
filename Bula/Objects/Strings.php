@@ -10,6 +10,7 @@
 namespace Bula\Objects;
 
 use Bula\Internal;
+use Bula\Objects\Regex;
 use Bula\Objects\TArrayList;
 use Bula\Objects\TString;
 use Bula\Objects\THashtable;
@@ -42,10 +43,15 @@ class Strings
         return CAT(DIV, $pattern->getValue(), DIV, $utf);
     }
 
-    public static function indexOf($sample, $input)
+    /**
+     * Convert string to lower case.
+     * @param TString $input Input string.
+     * @return TString Resulting string.
+     */
+    public static function toLowerCase($input)
     {
         $input = $input instanceof TString ? $input : new TString($input);
-        return $input->indexOf($sample);
+        return $input->toLowerCase();
     }
 
     /**
@@ -86,8 +92,9 @@ class Strings
      */
     public static function removeTags($input, $except= null )
     {
+        if ($input != null && $input instanceof TString) $input = $input->getValue();
         if ($except != null && $except instanceof TString) $except = $except->getValue();
-        return new TString(strip_tags($input->getValue(), $except == null ? null : $except));
+        return new TString(strip_tags($input, $except == null ? null : $except));
     }
 
     /**
@@ -157,7 +164,7 @@ class Strings
             preg_split($divider, $input, -1, PREG_SPLIT_NO_EMPTY);
         $result = new TArrayList();
         for ($n = 0; $n < SIZE($chunks); $n++)
-            $result->add($chunks[$n]);
+            $result->add(new TString($chunks[$n]));
         return $result->toArray();
     }
 
@@ -229,25 +236,28 @@ class Strings
         $keys = new TEnumerator($hash->keys());
         while ($keys->moveNext()) {
             $key = $keys->getCurrent();
-            if (Strings::indexOf($key, $template) != -1)
-                $template = Strings::replace($key, $hash->get($key), $template);
+            if ($template->indexOf($key) != -1)
+                $template = $template->replace($key, $hash->get($key));
         }
         return $template;
     }
 
     /**
      * Trim this string.
+     * @param TString $input String to trim.
      * @param TString $chars Which chars to trim [optional].
      * @return TString Resulting string.
      */
     public static function trim($input, $chars= null)
     {
-        return $chars == null ? trim($this->value) : trim($this->value, $chars);
-        if ($chars == null)
-            $chars = " \\n\\r\\t\\v\\0";
-        $input = Regex::replace($input, CAT("^", "[", $chars, "]*"), "");
-        $input = Regex::replace($input, CAT("[", $chars, "]*$"), "");
-        return $input;
+
+        if ($input instanceof TString) $input = $input->getValue();
+        return new TString($chars == null ? trim($input) : trim($input, $chars));
+
     }
 
+    public static function cleanChars($input)
+    {
+        return Internal::cleanChars($input);
+    }
 }

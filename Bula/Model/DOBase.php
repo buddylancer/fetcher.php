@@ -237,6 +237,29 @@ class DOBase
     }
 
     /**
+     * Get DataSet containing counter only.
+     * @return DataSet Resulting data set.
+     * /
+    public DataSet countIds() {
+        return countIds(null); }
+    Java,CS*/
+
+    /**
+     * Get DataSet containing counter only.
+     * @param TString $where Where condition [optional].
+     * @return DataSet Resulting data set.
+     */
+    public function countIds($where= null)
+    {
+        $query = Strings::concat(
+            " select count(", $this->idField, ") as i_Counter from ", $this->tableName, " _this ",
+            (BLANK($where) ? null : CAT(" where ", $where))
+        );
+        $pars = array();
+        return $this->getDataSet($query, $pars);
+    }
+
+    /**
      * Get DataSet with all records enumerated.
      * @param TString $where Where condition [optional].
      * @param TString $order Field to order by [optional].
@@ -360,6 +383,22 @@ class DOBase
             " values (", $fieldValues, ")"
         );
         return $this->updateInternal($query, $pars, "insert");
+    }
+
+    /**
+     * Execute update query.
+     * @param TString $setValues String with "set" clause.
+     * @param TString $where String with "where" clause.
+     * @return Integer Number of records updated.
+     */
+    public function update($setValues, $where)
+    {
+        $query = Strings::concat(
+            " update ", $this->tableName, " _this set ", $setValues,
+            " where (", $where, ")"
+        );
+        $pars = array();
+        return $this->updateInternal($query, $pars, "update");
     }
 
     /**

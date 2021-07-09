@@ -4,8 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Buddy Fetcher</title>
-<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, PHP, MySQL" />
-<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in PHP/MySQL" />
+<meta name="keywords" content="Buddy Fetcher, rss, fetcher, aggregator, [#Platform], MySQL" />
+<meta name="description" content="Buddy Fetcher is a simple RSS fetcher/aggregator written in [#Platform]/MySQL" />
 <link  rel="styleSheet" type="text/css" href="styles2.css" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 </head>
@@ -21,7 +21,7 @@
 <td class="left top" style="padding:2pt; white-space:nowrap;">
 <a style="font-variant:small-caps; font-size:30pt; font-weight:bold" href="/">
 <span>Buddy</span> <span class="red">Fetcher</span></a><br/>
-<strong>Latest Items</strong>
+<strong>Latest News Headlines</strong>
 </td>
 </tr>
 </table>
@@ -41,8 +41,8 @@
 <tr>
 <td class="menu center" style="padding:2pt; white-space:nowrap;">
  <a href="/">Home</a>
- &bull; <a href="/?p=items">Items</a>
- &bull; <a href="#items_by_skills">By Categories</a>
+ &bull; <a href="/?p=items">Headlines</a>
+ &bull; <a href="#Headlines_by_Region">By Region</a>
  &bull; <a href="/?p=sources">Sources</a>
 </td>
 </tr>
@@ -62,7 +62,7 @@
 <table cellpadding="0" class="m" style="width:100%; border:0; border-spacing:0">
 <tr>
 <td class="header">
-Latest Items / <a href="/?p=items">Browse Items</a>
+Latest Headlines / <a href="/?p=items">Browse Headlines</a>
 </td>
 </tr>
 </table>
@@ -72,9 +72,9 @@ Latest Items / <a href="/?p=items">Browse Items</a>
 <td>
 <table class="m" cellpadding="2" style="width:100%; border:0; border-spacing:0">
 <tr class="column">
-<td style="width:70%; text-align:left">Item</td>
+<td style="width:70%; text-align:left">Headline</td>
 <td style="width:18%; text-align:center">Creator</td>
-<td style="width:12%; text-align:center">Date</td>
+<td style="width:12%; text-align:center">Published</td>
 </tr>
 
 <tr onMouseOver="this.className='hover';" onMouseOut="this.className='m'">
@@ -83,7 +83,7 @@ Latest Items / <a href="/?p=items">Browse Items</a>
 <a style="font-size:larger" href="/?p=view_item&id=345&title=investigators-probe-reported-russian-tundra-pollution" title="From news.usnews.com">
 Investigators Probe Reported Russian Tundra Pollution</a>
 </strong>
-<br/><strong>Categories</strong>: World - Russia
+<br/><strong>Regions</strong>: World - Russia
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -99,7 +99,7 @@ Associated Press
 <a style="font-size:larger" href="/?p=view_item&id=344&title=black-bear-rescued-as-cub-released-back-into-wyoming-woods" title="From news.usnews.com">
 Black Bear Rescued as Cub Released Back Into Wyoming Woods</a>
 </strong>
-<br/><strong>Categories</strong>: Wyoming
+<br/><strong>Regions</strong>: Wyoming
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -130,7 +130,7 @@ Associated Press
 <a style="font-size:larger" href="/?p=view_item&id=342&title=confirmed-cases-hit-10-million-pence-skips-campaign-rallies" title="From news.usnews.com">
 Confirmed Cases Hit 10 Million; Pence Skips Campaign Rallies</a>
 </strong>
-<br/><strong>Categories</strong>: World - France, World - Poland
+<br/><strong>Regions</strong>: World - France, World - Poland
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -176,7 +176,7 @@ Associated Press
 <a style="font-size:larger" href="/?p=view_item&id=339&title=china-reviews-heavily-criticized-hong-kong-security-bill" title="From news.usnews.com">
 China Reviews Heavily Criticized Hong Kong Security Bill</a>
 </strong>
-<br/><strong>Categories</strong>: World - China
+<br/><strong>Regions</strong>: World - China
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -192,7 +192,7 @@ Associated Press
 <a style="font-size:larger" href="/?p=view_item&id=338&title=officials-fireworks-spark-utah-wildfire-evacuations" title="From news.usnews.com">
 Officials: Fireworks Spark Utah Wildfire, Evacuations</a>
 </strong>
-<br/><strong>Categories</strong>: Utah
+<br/><strong>Regions</strong>: Utah
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -238,7 +238,7 @@ Associated Press
 <a style="font-size:larger" href="/?p=view_item&id=335&title=how-germany-did-it-completing-the-soccer-season-in-europe" title="From news.usnews.com">
 How Germany Did It: Completing the Soccer Season in Europe</a>
 </strong>
-<br/><strong>Categories</strong>: World - Germany
+<br/><strong>Regions</strong>: World - Germany
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -254,7 +254,7 @@ Associated Press
 <a style="font-size:larger" href="/?p=view_item&id=334&title=france-holds-municipal-elections-postponed-by-virus-crisis" title="From news.usnews.com">
 France Holds Municipal Elections Postponed by Virus Crisis</a>
 </strong>
-<br/><strong>Categories</strong>: World - France
+<br/><strong>Regions</strong>: World - France
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -270,7 +270,7 @@ Associated Press
 <a style="font-size:larger" href="/?p=view_item&id=333&title=ap-interview-us-envoy-calls-for-iran-arms-embargo-renewal" title="From news.usnews.com">
 AP Interview: US Envoy Calls for Iran Arms Embargo Renewal</a>
 </strong>
-<br/><strong>Categories</strong>: World - Iran
+<br/><strong>Regions</strong>: World - Iran
 </td>
 <td class="item" style="text-align:center">
 Associated Press
@@ -314,7 +314,7 @@ Reuters
 </tr>
 <tr>
 <td style="text-align:center; padding:12pt;">
-<strong><a href="/?p=items">Browse All Items</a></strong>
+<strong><a href="/?p=items">Browse All Headlines</a></strong>
 </td>
 </tr>
 </table>
@@ -331,8 +331,8 @@ Reuters
 <!-- BEGIN View/bottom.html -->
 <table class="m" cellpadding="0" style="border:0; width:100%; border-spacing:0">
 <tr>
-<td class="header" colspan="3" id="items_by_skills">
-Items by Categories
+<td class="header" colspan="3" id="Headlines_by_Region">
+Headlines by Region
 </td>
 </tr>
 
@@ -378,6 +378,7 @@ Items by Categories
 <td style="font-size:larger; padding:12pt; width:33%; text-align:center; vertical-align: top">
 <a href="/?p=items&filter=WI"><strong>Wisconsin</strong></a><br/>
 <a href="/?p=items&filter=WY"><strong>Wyoming</strong></a><br/>
+<a href="/?p=items&filter=DC"><strong>District of Columbia</strong></a><br/>
 <a href="/?p=items&filter=PR"><strong>Puerto Rico</strong></a><br/>
 <a href="/?p=items&filter=Britain"><strong>World - Britain</strong></a><br/>
 <a href="/?p=items&filter=Canada"><strong>World - Canada</strong></a><br/>
@@ -404,7 +405,7 @@ Items by Categories
 <tr>
 <td class="header center middle" style="padding:4pt">
 Copyright &copy; 2020-2021 <strong><a href="/">Buddy Fetcher</a></strong><br/>
-<small>Powered by <a href="https://github.com/buddylancer/fetcher.php">Buddy Fetcher</a></small>
+<small>Powered by <a href="https://github.com/buddylancer/fetcher.[#Platform]">Buddy Fetcher for [#Platform]</a></small>
 </td>
 </tr>
 </table>

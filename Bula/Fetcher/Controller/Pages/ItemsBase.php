@@ -9,14 +9,16 @@
  */
 namespace Bula\Fetcher\Controller\Pages;
 
-use Bula\Objects\THashtable;
-use Bula\Objects\Regex;
-
 use Bula\Fetcher\Config;
 use Bula\Fetcher\Context;
-use Bula\Objects\TRequest;
+
+use Bula\Objects\Regex;
+
 use Bula\Objects\Strings;
+use Bula\Objects\THashtable;
+use Bula\Objects\TRequest;
 use Bula\Objects\TString;
+
 use Bula\Fetcher\Controller\Util;
 use Bula\Fetcher\Controller\Engine;
 use Bula\Fetcher\Controller\Page;
