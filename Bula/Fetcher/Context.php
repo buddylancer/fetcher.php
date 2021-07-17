@@ -19,14 +19,20 @@ use Bula\Objects\THashtable;
 
 use Bula\Fetcher\Controller\Engine;
 
+use Bula\Model\Connection;
+
 require_once("Bula/Meta.php");
+
 require_once("Bula/Fetcher/Config.php");
-require_once("Bula/Objects/TRequest.php");
-require_once("Bula/Objects/TResponse.php");
+
 require_once("Bula/Objects/Arrays.php");
 require_once("Bula/Objects/TArrayList.php");
 require_once("Bula/Objects/THashtable.php");
+require_once("Bula/Objects/TRequest.php");
+require_once("Bula/Objects/TResponse.php");
 require_once("Bula/Objects/Strings.php");
+
+require_once("Bula/Model/Connection.php");
 
 /**
  * Class for request context.
@@ -44,9 +50,23 @@ class Context extends Config
         $this->Request = new TRequest($request);
         $this->Response = new TResponse($response);
         $this->Request->response = $this->Response;
+
+        $this->Connection = Connection::createConnection();
+
         $this->initialize();
     }
 
+    /** Public desctructor */
+    public function __desctruct()
+    {
+        if ($this->Connection != null) {
+            $this->Connection->close();
+            $this->Connection = null;
+        }
+    }
+
+    /** Current DB connection */
+    public $Connection = null;
     /** Current request */
     public $Request = null;
     /** Current response */

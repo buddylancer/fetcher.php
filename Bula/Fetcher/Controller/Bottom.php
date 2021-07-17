@@ -34,7 +34,7 @@ class Bottom extends Page
         $prepare->put("[#Items_By_Category]",
             CAT(Config::NAME_ITEMS, "_by_", $this->context->get("Name_Category")));
 
-        $doCategory = new DOCategory();
+        $doCategory = new DOCategory($this->context->Connection);
         $dsCategory = $doCategory->enumAll(Config::SHOW_EMPTY ? null : "_this.i_Counter <> 0",
             Config::SORT_CATEGORIES == null ? null : CAT("_this.", Config::SORT_CATEGORIES));
         $size = $dsCategory->getSize();

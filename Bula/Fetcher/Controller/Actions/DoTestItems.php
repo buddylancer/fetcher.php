@@ -58,10 +58,10 @@ class DoTestItems extends Page
         $insertRequired = false;
         $updateRequired = false;
 
-        $doTime = new DOTime();
+        $doTime = new DOTime($this->context->Connection);
 
         $dsTimes = $doTime->getById(1);
-        $timeShift = 240; // 4 min
+        $timeShift = -1; // 240; // 4 min
         $currentTime = DateTimes::getTime();
         if ($dsTimes->getSize() > 0) {
             $oTime = $dsTimes->getRow(0);
@@ -82,7 +82,7 @@ class DoTestItems extends Page
             $boFetcher = new BOFetcher($this->context);
             $boFetcher->fetchFromSources($from);
 
-            $doTime = new DOTime(); // Need for DB reopen
+            $doTime = new DOTime($this->context->Connection); // Need for DB reopen
             $fields = new THashtable();
             $fields->put("d_Time", DateTimes::format(DateTimes::SQL_DTS, DateTimes::getTime()));
             if ($insertRequired) {

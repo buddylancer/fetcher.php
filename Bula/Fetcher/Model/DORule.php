@@ -16,15 +16,15 @@ require_once("Bula/Model/Connection.php");
 require_once("Bula/Model/DOBase.php");
 
 /**
- * Manipulating with times.
+ * Manipulating with rules.
  */
-class DOTime extends DOBase
+class DORule extends DOBase
 {
     /** Public constructor (overrides base constructor) */
     public function __construct($connection)
     {
         parent::__construct($connection);
-        $this->tableName = "as_of_time";
-        $this->idField = "i_Id";
+        $this->tableName = "rules";
+        $this->idField = "i_RuleId";
     }
 }

@@ -14,6 +14,8 @@ use Bula\Objects\TArrayList;
 use Bula\Objects\THashtable;
 use Bula\Objects\TString;
 use Bula\Objects\Strings;
+
+use Bula\Model\Connection;
 use Bula\Model\DOBase;
 use Bula\Model\DataSet;
 
@@ -21,6 +23,8 @@ require_once("Bula/Objects/TArrayList.php");
 require_once("Bula/Objects/THashtable.php");
 require_once("Bula/Objects/TString.php");
 require_once("Bula/Objects/Strings.php");
+
+require_once("Bula/Model/Connection.php");
 require_once("Bula/Model/DOBase.php");
 require_once("Bula/Model/DataSet.php");
 
@@ -30,9 +34,9 @@ require_once("Bula/Model/DataSet.php");
 class DOSource extends DOBase
 {
     /** Public constructor (overrides base constructor) */
-    public function __construct()
+    public function __construct($connection)
     {
-        parent::__construct();
+        parent::__construct($connection);
         $this->tableName = "sources";
         $this->idField = "i_SourceId";
     }

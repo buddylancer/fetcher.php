@@ -15,6 +15,8 @@ use Bula\Objects\THashtable;
 use Bula\Objects\TString;
 use Bula\Objects\Strings;
 
+use Bula\Model\Connection;
+
 require_once("Bula/Meta.php");
 require_once("Bula/Objects/TArrayList.php");
 require_once("Bula/Objects/TEnumerator.php");
@@ -23,9 +25,9 @@ require_once("Bula/Objects/TString.php");
 require_once("Bula/Objects/Strings.php");
 
 require_once("DBConfig.php");
-require_once("RecordSet.php");
 require_once("Connection.php");
 require_once("DataSet.php");
+require_once("RecordSet.php");
 
 /**
  * Base class for manipulating with DB objects.
@@ -47,28 +49,9 @@ class DOBase
     protected $idField;
 
     /** Public constructor */
-    public function __construct()
+    public function __construct($connection)
     {
-        if (DBConfig::$Connection == null)
-            DBConfig::$Connection = $this->createConnection();
-
-        $this->dbConnection = DBConfig::$Connection;
-    }
-
-    // Create connection to the database given parameters from DBConfig.
-    private function createConnection()
-    {
-        $oConn = new Connection();
-        $dbAdmin = DBConfig::DB_ADMIN != null ? DBConfig::DB_ADMIN : DBConfig::DB_NAME;
-        $dbPassword = DBConfig::DB_PASSWORD != null ? DBConfig::DB_PASSWORD : DBConfig::DB_NAME;
-        $ret = 0;
-        if (DBConfig::DB_CHARSET != null)
-            $ret = $oConn->open(DBConfig::DB_HOST, DBConfig::DB_PORT, $dbAdmin, $dbPassword, DBConfig::DB_NAME, DBConfig::DB_CHARSET);
-        else
-            $ret = $oConn->open(DBConfig::DB_HOST, DBConfig::DB_PORT, $dbAdmin, $dbPassword, DBConfig::DB_NAME);
-        if ($ret == -1)
-            $oConn = null;
-        return $oConn;
+        $this->dbConnection = $connection;
     }
 
     /**

@@ -9,11 +9,13 @@
  */
 namespace Bula\Model;
 
+use Bula\Model\DBConfig;
 use Bula\Model\PreparedStatement;
 use Bula\Objects\TString;
 
 require_once("Bula/Meta.php");
 require_once("Bula/Objects/TString.php");
+require_once("DBConfig.php");
 require_once("DataAccess.php");
 require_once("PreparedStatement.php");
 
@@ -24,6 +26,22 @@ class Connection
 {
     private $link; // Mysql link object
     private $stmt; // Prepared statement to use with connection
+
+    // Create connection to the database given parameters from DBConfig.
+    public static function createConnection()
+    {
+        $oConn = new Connection();
+        $dbAdmin = DBConfig::DB_ADMIN != null ? DBConfig::DB_ADMIN : DBConfig::DB_NAME;
+        $dbPassword = DBConfig::DB_PASSWORD != null ? DBConfig::DB_PASSWORD : DBConfig::DB_NAME;
+        $ret = 0;
+        if (DBConfig::DB_CHARSET != null)
+            $ret = $oConn->open(DBConfig::DB_HOST, DBConfig::DB_PORT, $dbAdmin, $dbPassword, DBConfig::DB_NAME, DBConfig::DB_CHARSET);
+        else
+            $ret = $oConn->open(DBConfig::DB_HOST, DBConfig::DB_PORT, $dbAdmin, $dbPassword, DBConfig::DB_NAME);
+        if ($ret == -1)
+            $oConn = null;
+        return $oConn;
+    }
 
     /**
      * Open connection to the database.

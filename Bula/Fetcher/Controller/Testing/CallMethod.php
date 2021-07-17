@@ -112,7 +112,7 @@ class CallMethod extends Page
         $classFile = CAT($fullClass, ".php");
         require_once($classFile);
         $fullClass = Strings::replace("/", "\\", $fullClass);
-        $doClass = new $fullClass;
+        $doClass = new $fullClass($this->context->Connection);
         if ($doClass == null) {
             $this->context->Response->end("Can not instantiate class!");
             return;

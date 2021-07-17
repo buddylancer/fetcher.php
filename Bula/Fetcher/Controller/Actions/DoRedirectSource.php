@@ -39,7 +39,7 @@ class DoRedirectSource extends DoRedirect
             if (!TRequest::isDomainName($sourceName))
                 $errorMessage = "Incorrect source name!";
             else {
-                $doSource = new DOSource();
+                $doSource = new DOSource($this->context->Connection);
                 $oSource =
                     ARR(new THashtable());
                 if (!$doSource->checkSourceName($sourceName, $oSource))

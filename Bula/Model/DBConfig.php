@@ -28,6 +28,4 @@ class DBConfig
     const DB_PORT = 3306;
     /** Date/time format used for DB operations */
     const SQL_DTS = "Y-m-d H:i:s";
-    /** Database connection is stored here */
-    public static $Connection = null;
 }

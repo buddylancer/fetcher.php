@@ -88,10 +88,5 @@ class Action extends Page
         //Config::includeFile(CAT($actionClass, ".php"));
         $args0 = new TArrayList(); $args0->add($this->context);
         Internal::callMethod($actionClass, $args0, "execute", null);
-
-        if (DBConfig::$Connection != null) {
-            DBConfig::$Connection->close();
-            DBConfig::$Connection = null;
-        }
     }
 }

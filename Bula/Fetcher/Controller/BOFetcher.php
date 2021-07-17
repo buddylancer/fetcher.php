@@ -94,11 +94,11 @@ class BOFetcher
      */
     private function preLoadCategories()
     {
-        $doCategory = new DOCategory();
+        $doCategory = new DOCategory($this->context->Connection);
         $this->dsCategories = $doCategory->enumCategories();
-        $doRule = new DORule();
+        $doRule = new DORule($this->context->Connection);
         $this->dsRules = $doRule->enumAll();
-        $doMapping = new DOMapping();
+        $doMapping = new DOMapping($this->context->Connection);
         $this->dsMappings = $doMapping->enumAll();
     }
 
@@ -188,7 +188,7 @@ class BOFetcher
         $date = DateTimes::gmtFormat(DateTimes::SQL_DTS, DateTimes::fromRss($pubDate));
 
         // Check whether item with the same link exists already
-        $doItem = new DOItem();
+        $doItem = new DOItem($this->context->Connection);
         $dsItems = $doItem->findItemByLink($boItem->link, $sourceId);
         if ($dsItems->getSize() > 0)
             return 0;
@@ -240,20 +240,20 @@ class BOFetcher
         $this->oLogger->output(CAT("Start logging<br/>", EOL));
 
         //TODO -- Purge old items
-        //$doItem = new DOItem();
+        //$doItem = new DOItem($this->context->Connection);
         //$doItem->purgeOldItems(10);
 
         define("MAGPIE_OUTPUT_ENCODING", "UTF-8");
         define("MAGPIE_DEBUG", 1);
         define("MAGPIE_FETCH_TIME_OUT", 30);
-        //if (!$this->context->TestRun) {
-        //    define("MAGPIE_CACHE_ON", true);
-        //    define("MAGPIE_CACHE_DIR", CAT($this->context->FeedFolder));
-        //}
-        //else {
+        if (!$this->context->TestRun) {
+            define("MAGPIE_CACHE_ON", true);
+            define("MAGPIE_CACHE_DIR", CAT($this->context->FeedFolder));
+        }
+        else {
             define("MAGPIE_CACHE_ON", false);
-        //}
-        $doSource = new DOSource();
+        }
+        $doSource = new DOSource($this->context->Connection);
         $dsSources = $doSource->enumFetchedSources();
 
         $totalCounter = 0;
@@ -282,13 +282,6 @@ class BOFetcher
                     $totalCounter++;
                 }
             }
-
-            // Release connection after each source
-            if (DBConfig::$Connection != null) {
-                DBConfig::$Connection->close();
-                DBConfig::$Connection = null;
-            }
-
             $this->oLogger->output(CAT("<br/>", EOL, "... fetched (", $itemsCounter, " items) end"));
         }
 
@@ -309,8 +302,8 @@ class BOFetcher
     private function recountCategories()
     {
         $this->oLogger->output(CAT("<br/>", EOL, "Recount categories ... "));
-        $doCategory = new DOCategory();
-        $doItem = new DOItem();
+        $doCategory = new DOCategory($this->context->Connection);
+        $doItem = new DOItem($this->context->Connection);
         $dsCategories = $doCategory->enumCategories();
         for ($n = 0; $n < $dsCategories->getSize(); $n++) {
             $oCategory = $dsCategories->getRow($n);

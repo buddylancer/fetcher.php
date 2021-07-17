@@ -30,7 +30,7 @@ class FilterItems extends Page
     /** Execute main logic for FilterItems block. */
     public function execute()
     {
-        $doSource = new DOSource();
+        $doSource = new DOSource($this->context->Connection);
 
         $source = null;
         if ($this->context->Request->contains("source"))

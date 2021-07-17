@@ -115,7 +115,7 @@ class Items extends ItemsBase
         $category = null;
 
         if (!NUL($filterName)) {
-            $doCategory = new DOCategory();
+            $doCategory = new DOCategory($this->context->Connection);
             $oCategory =
                 ARR(new THashtable());
             if (!$doCategory->checkFilterName($filterName, $oCategory))
@@ -128,7 +128,7 @@ class Items extends ItemsBase
 
         $sourceId = -1;
         if (!NUL($sourceName)) {
-            $doSource = new DOSource();
+            $doSource = new DOSource($this->context->Connection);
             $oSource =
                 ARR(new THashtable());
             if (!$doSource->checkSourceName($sourceName, $oSource)) {
@@ -168,7 +168,7 @@ class Items extends ItemsBase
 
         $maxRows = Config::DB_ITEMS_ROWS;
 
-        $doItem = new DOItem();
+        $doItem = new DOItem($this->context->Connection);
         //$realFilter = DOItem::buildSqlByFilter($filter);
         $realFilter = DOItem::buildSqlByCategory($category);
         $dsItems = $doItem->enumItems($sourceName, $realFilter, $listNumber, $maxRows);

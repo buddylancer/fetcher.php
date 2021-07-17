@@ -44,8 +44,8 @@ class Sources extends ItemsBase
         if (Config::SHOW_IMAGES)
             $prepare->put("[#Show_Images]", 1);
 
-        $doSource = new DOSource();
-        $doItem = new DOItem();
+        $doSource = new DOSource($this->context->Connection);
+        $doItem = new DOItem($this->context->Connection);
 
         $dsSources = $doSource->enumSources();
         $count = 1;

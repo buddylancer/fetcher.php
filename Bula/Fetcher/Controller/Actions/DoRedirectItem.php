@@ -40,7 +40,7 @@ class DoRedirectItem extends DoRedirect
             if (!TRequest::isInteger($id) || INT($id) <= 0)
                 $errorMessage = "Incorrect item ID!";
             else {
-                $doItem = new DOItem();
+                $doItem = new DOItem($this->context->Connection);
                 $dsItems = $doItem->getById(INT($id));
                 if ($dsItems->getSize() == 0)
                     $errorMessage = "No item with such ID!";

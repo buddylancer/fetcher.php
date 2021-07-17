@@ -76,7 +76,7 @@ abstract class RssBase extends Page
             if (BLANK($source))
                 $errorMessage->concat("Empty source!");
             else {
-                $doSource = new DOSource();
+                $doSource = new DOSource($this->context->Connection);
                 $oSource =
                     ARR(new THashtable());
                 if (!$doSource->checkSourceName($source, $oSource))
@@ -94,7 +94,7 @@ abstract class RssBase extends Page
         $filter = null;
         $filterName = null;
         $categoryName = null;
-        $doCategory = new DOCategory();
+        $doCategory = new DOCategory($this->context->Connection);
         $dsCategories = $doCategory->enumCategories();
         if ($dsCategories->getSize() > 0) {
             $filterName = $this->context->Request->get("filter");
@@ -178,7 +178,7 @@ abstract class RssBase extends Page
             }
         }
 
-        $doItem = new DOItem();
+        $doItem = new DOItem($this->context->Connection);
 
         // 0 - item url
         // 1 - item title
@@ -309,11 +309,6 @@ abstract class RssBase extends Page
         }
         $this->context->Response->writeHeader("Content-type", "text/xml; charset=UTF-8");
         $this->context->Response->write($contentToCache); //TODO -- BOM?
-
-        if (DBConfig::$Connection != null) {
-            DBConfig::$Connection->close();
-            DBConfig::$Connection = null;
-        }
     }
 
     /**

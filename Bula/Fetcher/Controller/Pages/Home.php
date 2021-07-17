@@ -44,7 +44,7 @@ class Home extends ItemsBase
 
         $prepare = new THashtable();
 
-        $doItem = new DOItem();
+        $doItem = new DOItem($this->context->Connection);
 
         $prepare->put("[#BrowseItemsLink]", $this->getLink(Config::INDEX_PAGE, "?p=", null, "items"));
         if (Config::SHOW_IMAGES)

@@ -19,10 +19,13 @@ use Bula\Objects\TString;
 use Bula\Objects\Strings;
 
 use Bula\Model\DBConfig;
+use Bula\Model\Connection;
 use Bula\Model\DOBase;
 use Bula\Model\DataSet;
 
 require_once("Bula/Objects/TString.php");
+
+require_once("Bula/Model/Connection.php");
 require_once("Bula/Model/DOBase.php");
 
 /**
@@ -31,9 +34,9 @@ require_once("Bula/Model/DOBase.php");
 class DOItem extends DOBase
 {
     /** Public constructor (overrides base constructor) */
-    public function __construct()
+    public function __construct($connection)
     {
-        parent::__construct();
+        parent::__construct($connection);
         $this->tableName = "items";
         $this->idField = "i_ItemId";
     }

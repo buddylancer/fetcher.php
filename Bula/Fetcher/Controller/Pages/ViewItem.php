@@ -62,7 +62,7 @@ class ViewItem extends Page
 
         $prepare = new THashtable();
 
-        $doItem = new DOItem();
+        $doItem = new DOItem($this->context->Connection);
         $dsItems = $doItem->getById(INT($id));
         if ($dsItems == null || $dsItems->getSize() == 0) {
             $prepare->put("[#ErrMessage]", "Wrong item ID!");
