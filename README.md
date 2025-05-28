@@ -23,10 +23,10 @@ This product was initially ported from original PHP version using own convertor 
 Working NET version, ported from the same original PHP version with the same convertor (using ~150 regular expressions), can be found at http://github.com/buddylancer/fetcher.net.
 
 Websites powered by Buddy Fetcher:
-- 1001 Freelance Projects (http://www.1001freelanceprojects.com)
-- 1001 Freelance Projects / RU (http://www.1001freelanceprojects.ru)
-- 1001 Remote Jobs (http://www.1001remotejobs.com)
-- 1001 Remote Jobs / RU (http://www.1001remotejobs.ru)
+- 1001 Freelance Projects (http://www.1001fp.com)
+- 1001 Freelance Projects / RU (http://www.1001fp.ru)
+- 1001 Remote Jobs (http://www.1001rejo.com)
+- 1001 Remote Jobs / RU (http://www.1001rejo.ru)
 
 Other versions of Buddy Fetcher:
 - .NET version - http://github.com/buddylancer/fetcher.net
